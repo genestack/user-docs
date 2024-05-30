@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Uniprot Homo Sapiens",
+        "url": "https://odm-init.s3.ap-south-1.amazonaws.com/dictionaries/Homo_sapiens.csv",
+        "description": "Uniprot proteins dictionary for Homo Sapiens. The original data are available with this query: https://www.uniprot.org/uniprot/?query=*&fil=reviewed%3Ayes+AND+organism%3A\"Homo+sapiens+(Human)+[9606]\"&sort=score"
+    },
+    {
+        "name": "Therapeutic Area",
+        "url": "https://odm-init.s3.amazonaws.com/dictionaries/therapeutic_area.csv",
+        "description": "A non-hierarchical controlled vocabulary for Therapeutic Area field"
+    }
+]

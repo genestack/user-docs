@@ -1,0 +1,10 @@
+Label,Name,Parent,To_parent,From_parent
+metre,m,,,
+femtometre,fm,metre,x * 10 ^ -15,x / 10 ^ -15
+picometre,pm,metre,x * 10 ^ -12,x / 10 ^ -12
+nanometre,nm,metre,x * 10 ^ -9,x / 10 ^ -9
+micrometre,μm,metre,x * 10 ^ -6,x / 10 ^ -6
+millimetre,mm,metre,x * 10 ^ -3,x / 10 ^ -3
+kilometre,km,metre,x * 10 ^ 3,x / 10 ^ 3
+centimetre,cm,metre,x * 10 ^ -2,x / 10 ^ -2
+inch,in,metre,x * 0.0254,x / 0.0254

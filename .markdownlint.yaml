@@ -1,0 +1,15 @@
+# https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+MD007:
+  indent: 4
+
+MD013:
+  code_block_line_length: 500
+  line_length: 800
+
+MD024:
+  siblings_only: true
+
+MD033: false
+
+MD046: false
