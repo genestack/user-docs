@@ -1,5 +1,4 @@
-site_name: Open Data Manager Documentation
-site_url: https://genestack.github.io/documentation
+site_name: User documentation
 
 nav:
     - Home: index.md
