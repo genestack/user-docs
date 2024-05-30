@@ -1,0 +1,19 @@
+[
+    {
+        "object_type": "sample",
+        "raw_keys": ["Cell Type", "Cells"],
+        "genestack_key": "Cell Type",
+        "rules": {
+            "CD19+": "B cell",
+            "CD14+": "CD14-positive monocyte",
+            "CD8+": "CD8-positive, alpha-beta T cell",
+            "CD4+": "CD4-positive, alpha-beta T cell"
+        }
+    },
+    {
+        "object_type": "sample",
+        "raw_keys": ["Sex", "Gender"],
+        "genestack_key": "Sex",
+        "dictionary": "Sex"
+    }
+]

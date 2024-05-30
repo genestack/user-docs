@@ -1,0 +1,11 @@
+Label,Name,Parent,To_parent,From_parent
+second,sec,,,
+week,w,second,x * 604800,x / 604800
+day,d,second,x * 86400,x / 86400
+hour,h,second,x * 3600,x / 3600
+minute,min,second,x * 60,x / 60
+month,m,second,x * 2628000.0,x / 2628000.0
+year,y,second,x * 31536000,x / 31536000
+hertz,Hz,,,
+second per second,sec/sec,,,
+hour per day,h/d,second per second,x * (3600 / 86400),x / (3600 / 86400)

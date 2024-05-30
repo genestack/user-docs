@@ -1,3 +1,12 @@
 .DS_Store
 .idea/
 
+generated
+site
+venv
+
+# Earthly stuff
+.env
+.env-woq
+.arg
+.secret

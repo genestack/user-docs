@@ -1,0 +1,15 @@
+:root {
+    --md-primary-fg-color: #3caf7a;
+    --md-primary-fg-color--light: #cbf7e2;
+    --md-primary-fg-color--dark: #086e3e;
+
+    --md-accent-fg-color: #024da1;
+}
+
+.md-grid {
+    max-width: 72rem;
+}
+
+.md-typeset .admonition {
+    font-size: 0.8rem;
+}
