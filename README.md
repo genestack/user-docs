@@ -40,6 +40,7 @@ Set correct versions for archives of generated documentations
 ```shell
 export OPENAPI_VERSION='1.x.x-x'  # Version from teamcity
 export SDK_VERSION='1.x.xbx'  # Version from teamcity
+export USER_GUIDE_VERSION='1.x.x-x'  # Version from teamcity
 ```
 
 Use script to download and unarchive generated documentations

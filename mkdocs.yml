@@ -2,6 +2,8 @@ site_name: User documentation
 
 nav:
     - Home: index.md
+    - Guide:
+        - user-guide/index.md
     - Tools:
         - Python SDK:
             - Installation: tools/odm-sdk/installation.md
