@@ -42,6 +42,11 @@ nav:
                         - tools/odm-api/r/generated/README.md
     - UI:
         - Training Materials: ui/training-materials.md
+    - Release notes:
+          - v1.50 - v1.59: release-notes/v1.50-v1.59.md
+          - v1.40 - v1.49: release-notes/v1.40-v1.49.md
+          - v1.30 - v1.39: release-notes/v1.30-v1.39.md
+          - v1.20 - v1.29: release-notes/v1.20-v1.29.md
 theme:
     name: material
     palette:
