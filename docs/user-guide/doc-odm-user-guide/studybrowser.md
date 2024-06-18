@@ -23,7 +23,7 @@ based on dictionaries of terms that are present in ODM.
 
 The search is synonym-aware (exact and related), so if you type in ‘human’ the auto-complete suggests ‘Homo sapiens’ as the preferred label of humans and the results from synonyms are automatically included in search results.
 
-Question marks (?) match any character, and you can use asterisks (\*) to allow any number of (including zero) wildcard characters: 
+Question marks (?) match any character, and you can use asterisks (\*) to allow any number of (including zero) wildcard characters:
 
 ```
 *

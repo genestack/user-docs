@@ -56,6 +56,7 @@ ODM enables you to add any data to your study. There are two main ways to associ
 - Attach a File: Add various research materials related to your study, such as PDF, XLSX, DOCX, PPTX, images, and more. All users with access to the study can download these attached files. However, unlike the “Import Data” option, attached files’ content is not indexed or searchable.
 
 #### NOTE
+
 Data uploading through the user interface is currently in BETA stage. The current version supports file uploading of up to 5GB. Future releases will enhance its functionality and flexibility.
 
 You can find a detailed description of the supported file formats [Tabular data](supported-formats.md#format-label).
@@ -94,16 +95,19 @@ In the subsequent dialog window, several parameters need to be defined:
 - Other - TSV format.
 
 #### NOTE
+
 In the BETA the list of the Data Type options is fixed. Make sure you chose the right data class for your dataset. The ability to add custom data classes as well as change the selected data class for the uploaded data will be added in future releases.
 
 **Link With**: Choose the entity you wish to link your data to. For instance, if you’re uploading a transcriptomics file with gene expression measurements for each sample, you should link your data to the samples.
 
 #### NOTE
+
 In the BETA version, you need to have sample information (metadata) created/uploaded on the Samples tab to enable data import. If no Libraries or Preparations exist for the Study, ‘Sample’ is the only available option.
 
 **Link By**: Choose the ID column at the Sample (Library, Preparation) tab that will be used to identify Sample (Library, Preparation) names in the uploaded file.
 
 #### NOTE
+
 In the BETA version, the only option to link your data is through the ‘Sample Source ID’ column you must provide at the Sample (Library or Preparation tab). To link by any Sample/Library/Preparion metadata column, you’ll need to use the API.
 
 **Number of Feature Attributes**: If your file includes more than one column describing the feature, specify the number of such columns (you can find more information about this on the format description page). It’s crucial to indicate the correct number of feature attributes to prevent potential issues during file upload.

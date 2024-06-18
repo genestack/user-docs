@@ -10,6 +10,7 @@ in the top-right corner of the page and, then, select the menu item **Profile**.
 On the opening page you’ll find the following sections:
 
 ![image](doc-odm-user-guide/images/odm_profile.png)
+
 - The first section contains your personal information, whether you are an admin and/or a curator user and which groups you belong to. You can click the group name to taken directly to the group in the Manage Users application.
 - The  **API tokens** section is where you can download an access-token which allows the use of scripts/APIs. Learn more about how to generate Genestack REST API tokens in the section [Getting a Genestack API token](getting-a-genestack-api-token.md#token-label).
 

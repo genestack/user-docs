@@ -19,7 +19,7 @@ You import gene-transcript mapping in two stages. First, import the mapping file
 
 ### Importing the gene-transcript mapping file
 
-To import the gene-transcript mapping file submit a **POST** request to the 
+To import the gene-transcript mapping file submit a **POST** request to the
 
 ```
 `/import/transcript-mapping <<HOST>/swagger/?urls.primaryName=job#/Data%20import%20jobs/startImportJob>`_
@@ -40,7 +40,7 @@ To import the gene-transcript mapping file submit a **POST** request to the
 }
 ```
 
-Because uploading is asynchronous the system returns a confirmation message with a **jobExecId**. This can then be supplied as a **GET** request to the 
+Because uploading is asynchronous the system returns a confirmation message with a **jobExecId**. This can then be supplied as a **GET** request to the
 
 ```
 `/{jobExecId}​/output <<HOST>/swagger/?urls.primaryName=job#/Job%20operations/output>`_
@@ -50,7 +50,7 @@ Because uploading is asynchronous the system returns a confirmation message with
 
 ### Linking the gene-transcript mapping file to an expression matrix file
 
-To link the mapping file to expression data submit a **POST** request to the 
+To link the mapping file to expression data submit a **POST** request to the
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/saveLinks>`_
@@ -60,12 +60,12 @@ To link the mapping file to expression data submit a **POST** request to the
 
 ```default
 [
-	{
-		"firstId": "GSF123456",
-		"firstType": "geneTranscriptMapping",
-		"secondId": "GSF098765",
-		"secondType": "expressionGroup"
-	}
+ {
+  "firstId": "GSF123456",
+  "firstType": "geneTranscriptMapping",
+  "secondId": "GSF098765",
+  "secondType": "expressionGroup"
+ }
 ]
 ```
 
@@ -73,7 +73,7 @@ Expression data can be linked to previously uploaded mapping files (even the map
 
 ## Querying gene-transcript mappings
 
-To return the geneIDs for a given set of transcripts across all mapping files, supply the transcript IDs of interest to **GET** 
+To return the geneIDs for a given set of transcripts across all mapping files, supply the transcript IDs of interest to **GET**
 
 ```
 `/gene-transcript-mapping/genes <<HOST>/swagger/?urls.primaryName=gene-transcript-mapping#/Gene%20Transcript%20Mappping%20queries/searchByTranscripts>`_
@@ -81,7 +81,7 @@ To return the geneIDs for a given set of transcripts across all mapping files, s
 
  endpoint
 
-To return the geneIDs for a given set of transcripts in a particular mapping file, supply the accession of the mapping file and the transcript IDs of interest to the **GET** 
+To return the geneIDs for a given set of transcripts in a particular mapping file, supply the accession of the mapping file and the transcript IDs of interest to the **GET**
 
 ```
 `/gene-transcript-mapping/{id}/genes <<HOST>/swagger/?urls.primaryName=gene-transcript-mapping#/Gene%20Transcript%20Mappping%20queries/searchByTranscriptsWithinFile>`_
@@ -89,7 +89,7 @@ To return the geneIDs for a given set of transcripts in a particular mapping fil
 
  endpoint
 
-To return the transcript IDs for a given list of geneIDs across all mapping files supply the genesIDs of interest to **GET** 
+To return the transcript IDs for a given list of geneIDs across all mapping files supply the genesIDs of interest to **GET**
 
 ```
 `/gene-transcript-mapping/transcripts <<HOST>/swagger/?urls.primaryName=gene-transcript-mapping#/Gene%20Transcript%20Mappping%20queries/searchByGenes>`_
@@ -97,7 +97,7 @@ To return the transcript IDs for a given list of geneIDs across all mapping file
 
  endpoint
 
-To return the transcript IDs for a given list of geneIDs in a particular mapping files supply the accession of the mapping file and the genesIDs of interest to **GET** 
+To return the transcript IDs for a given list of geneIDs in a particular mapping files supply the accession of the mapping file and the genesIDs of interest to **GET**
 
 ```
 `/gene-transcript-mapping/{id}/transcripts <<HOST>/swagger/?urls.primaryName=gene-transcript-mapping#/Gene%20Transcript%20Mappping%20queries/searchByGenesWithinFile>`_
@@ -111,7 +111,7 @@ To look at the mapping for given genes in a study you need to:
 
 1. Retrieve the accession of the expressionGroup of interest for a given study
 
-Supply the study accession as the studyQuery parameter to **GET** 
+Supply the study accession as the studyQuery parameter to **GET**
 
 ```
 `/omics/expression/group <<HOST>/swagger/?urls.primaryName=integrationCurator#/Omics%20queries/searchExpressionGroups>`_
@@ -119,13 +119,13 @@ Supply the study accession as the studyQuery parameter to **GET**
 
 1. Retrieve the accession for the mapping linked to that expression group (if more than one, choose one)
 
-Submit a **GET** request to the /links 
+Submit a **GET** request to the /links
 
 ```
 `endpoint <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/getLinksByParams>`_
 ```
 
- with the parameters:  firstId = accession of expression group, secondType = “geneTranscriptMapping”. The API endpoint returns an array of accessions, you can check each mapping file via the API endpoint **GET** 
+ with the parameters:  firstId = accession of expression group, secondType = “geneTranscriptMapping”. The API endpoint returns an array of accessions, you can check each mapping file via the API endpoint **GET**
 
 ```
 `/gene-transcript-mapping/{id} <<HOST>/swagger/?urls.primaryName=gene-transcript-mapping#/Gene%20Transcript%20Mappping%20queries/getDetailsByAccession>`_
@@ -135,7 +135,7 @@ Submit a **GET** request to the /links
 
 1. Retrieve transcript IDs for genes of interest
 
-Submit a **GET** request to the endpoint 
+Submit a **GET** request to the endpoint
 
 ```
 `/gene-transcript-mapping/{id}/transcripts <<HOST>/swagger/?urls.primaryName=gene-transcript-mapping#/Gene%20Transcript%20Mappping%20queries/searchByGenesWithinFile>`_
@@ -145,7 +145,7 @@ Submit a **GET** request to the endpoint
 
 ## Performing OMICS queries using transcript IDs
 
-Transcript IDs can be provided to OMICS queries (**GET** 
+Transcript IDs can be provided to OMICS queries (**GET**
 
 ```
 `/omics​/expression/data <<HOST>/swagger/?urls.primaryName=integrationCurator#/Omics%20queries/searchExpressionData>`_
@@ -155,7 +155,7 @@ Transcript IDs can be provided to OMICS queries (**GET**
 
 ## Checking a mapping is available for a given expression data file
 
-The 
+The
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/getLinksByParams>`_
@@ -163,7 +163,7 @@ The
 
  endpoint can be queried to determine which mapping files have been linked to a given expression data file. First use the endpoint **GET** with **“firstId = accession of expression group”**, and , **secondType = “geneTranscriptMapping”** to return the accession of the mapping file.
 
-Then to view the mapping file supply this accession as the {id} in **GET** 
+Then to view the mapping file supply this accession as the {id} in **GET**
 
 ```
 `/gene-transcript-mapping/{id} <<HOST>/swagger/?urls.primaryName=gene-transcript-mapping#/Gene%20Transcript%20Mappping%20queries/getDetailsByAccession>`_
@@ -175,13 +175,13 @@ It is also possible to add mapping file URL information to metadata templates in
 
 ## Checking which expression data files are linked to a given mapping file
 
-The 
+The
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/getLinksByParams>`_
 ```
 
- endpoint can be queried to determine which expression data files have been linked to a given mapping file (so you know which links to delete after removing the mapping file, for example). Send a **GET** request to the 
+ endpoint can be queried to determine which expression data files have been linked to a given mapping file (so you know which links to delete after removing the mapping file, for example). Send a **GET** request to the
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/getLinksByParams>`_
@@ -195,13 +195,13 @@ There is currently no method to update a mapping file, so to update a mapping th
 
 ## Removing a gene-transcript mapping file
 
-Mapping files can be deleted by sending a **DELETE** request to the 
+Mapping files can be deleted by sending a **DELETE** request to the
 
 ```
 `/gene-transcript-mapping/{id} <<HOST>/swagger/?urls.primaryName=gene-transcript-mapping#/Gene%20Transcript%20Mappping%20queries/deleteFile>`_
 ```
 
- endpoint. It is possible to remove a mapping file regardless of whether the mapping file is linked to an expression data file or not. Any existing links are not removed by this endpoint, but instead need to be removed by sending a **DELETE** request to the 
+ endpoint. It is possible to remove a mapping file regardless of whether the mapping file is linked to an expression data file or not. Any existing links are not removed by this endpoint, but instead need to be removed by sending a **DELETE** request to the
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/deleteLink>`_

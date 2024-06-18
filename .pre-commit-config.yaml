@@ -3,6 +3,7 @@ repos:
   rev: v0.39.0
   hooks:
   - id: markdownlint
+    exclude: ^docs/user-guide/
     args:
     - --fix
 

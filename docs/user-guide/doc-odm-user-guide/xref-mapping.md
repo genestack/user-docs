@@ -19,7 +19,7 @@ You import cross-reference mapping in two stages. First, import the mapping file
 
 ### Importing the cross-reference mapping file
 
-To import the mapping file submit a **POST** request to the 
+To import the mapping file submit a **POST** request to the
 
 ```
 `/reference-data/xrefsets <<HOST>/swagger/?urls.primaryName=reference-data#/Xrefset%20queries/create>`_
@@ -42,7 +42,7 @@ To import the mapping file submit a **POST** request to the
 
 ### Linking the mapping file to an expression matrix file
 
-To link the mapping file to expression data submit a **POST** request to the 
+To link the mapping file to expression data submit a **POST** request to the
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/saveLinks>`_
@@ -52,12 +52,12 @@ To link the mapping file to expression data submit a **POST** request to the
 
 ```default
 [
-	{
-		"firstId": "GSF123456",
-		"firstType": "geneTranscriptMapping",
-		"secondId": "GSF098765",
-		"secondType": "expressionGroup"
-	}
+ {
+  "firstId": "GSF123456",
+  "firstType": "geneTranscriptMapping",
+  "secondId": "GSF098765",
+  "secondType": "expressionGroup"
+ }
 ]
 ```
 
@@ -65,7 +65,7 @@ Expression data can be linked to previously uploaded mapping files (even the map
 
 ## Querying cross-reference mappings
 
-To return the entries across all mapping files, supply gene or transcript IDs of interest to the **GET** 
+To return the entries across all mapping files, supply gene or transcript IDs of interest to the **GET**
 
 ```
 `/xrefsets/entries <<HOST>/swagger/?urls.primaryName=reference-data#/Xrefset%20queries/searchEntries>`_
@@ -73,7 +73,7 @@ To return the entries across all mapping files, supply gene or transcript IDs of
 
  endpoint.
 
-To return the gene or transcript IDs for a given set of entries a particular mapping file, supply the accession of the mapping file and the transcript IDs of interest to the **GET** 
+To return the gene or transcript IDs for a given set of entries a particular mapping file, supply the accession of the mapping file and the transcript IDs of interest to the **GET**
 
 ```
 `/xrefsets/{id}/entries <<HOST>/swagger/?urls.primaryName=reference-data#/Xrefset%20queries/searchEntriesWithinFile>`_
@@ -87,7 +87,7 @@ To look at the mapping for given genes in a study you need to:
 
 1. Retrieve the accession of the expressionGroup of interest for a given study
 
-Supply the study accession as the studyQuery parameter to **GET** 
+Supply the study accession as the studyQuery parameter to **GET**
 
 ```
 `/omics/expression/group <<HOST>/swagger/?urls.primaryName=integrationCurator#/Omics%20queries/searchExpressionGroups>`_
@@ -95,13 +95,13 @@ Supply the study accession as the studyQuery parameter to **GET**
 
 1. Retrieve the accession for the mapping linked to that expression group (if more than one, choose one)
 
-Submit a **GET** request to the /links 
+Submit a **GET** request to the /links
 
 ```
 `endpoint <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/getLinksByParams>`_
 ```
 
- with the parameters:  firstId = accession of expression group, secondType = “geneTranscriptMapping”. The API endpoint returns an array of accessions, you can check each mapping file via the API endpoint **GET** 
+ with the parameters:  firstId = accession of expression group, secondType = “geneTranscriptMapping”. The API endpoint returns an array of accessions, you can check each mapping file via the API endpoint **GET**
 
 ```
 `/xrefsets/{id}/metadata <<HOST>/swagger/?urls.primaryName=reference-data#/Xrefset%20queries/getDetailsByAccession>`_
@@ -111,7 +111,7 @@ Submit a **GET** request to the /links
 
 1. Retrieve transcript IDs for genes of interest
 
-Submit a **GET** request to the endpoint 
+Submit a **GET** request to the endpoint
 
 ```
 `/xrefsets/{id}/entries <<HOST>/swagger/?urls.primaryName=reference-data#/Xrefset%20queries/searchEntriesWithinFile>`_
@@ -121,7 +121,7 @@ Submit a **GET** request to the endpoint
 
 ## Performing OMICS queries using gene/transcript IDs
 
-Gene/transcript IDs can be provided to OMICS queries (**GET** 
+Gene/transcript IDs can be provided to OMICS queries (**GET**
 
 ```
 `/omics​/expression/data <<HOST>/swagger/?urls.primaryName=integrationCurator#/Omics%20queries/searchExpressionData>`_
@@ -131,7 +131,7 @@ Gene/transcript IDs can be provided to OMICS queries (**GET**
 
 ## Checking a mapping is available for a given expression data file
 
-The 
+The
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/getLinksByParams>`_
@@ -139,7 +139,7 @@ The
 
  endpoint can be queried to determine which mapping files have been linked to a given expression data file. First use the endpoint **GET** with **“firstId = accession of expression group”**, and , **secondType = “geneTranscriptMapping”** to return the accession of the mapping file.
 
-Then to view the mapping file supply this accession as the {id} in **GET** 
+Then to view the mapping file supply this accession as the {id} in **GET**
 
 ```
 `/xrefsets/{id}/metadata <<HOST>/swagger/?urls.primaryName=reference-data#/Xrefset%20queries/getDetailsByAccession>`_
@@ -151,13 +151,13 @@ It is also possible to add mapping file URL information to metadata templates in
 
 ## Checking which expression data files are linked to a given mapping file
 
-The 
+The
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/getLinksByParams>`_
 ```
 
- endpoint can be queried to determine which expression data files have been linked to a given mapping file (so you know which links to delete after removing the mapping file, for example). Send a **GET** request to the 
+ endpoint can be queried to determine which expression data files have been linked to a given mapping file (so you know which links to delete after removing the mapping file, for example). Send a **GET** request to the
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/getLinksByParams>`_
@@ -171,13 +171,13 @@ There is currently no method to update a mapping file, so to update a mapping th
 
 ## Removing a mapping file
 
-Mapping files can be deleted by sending a **DELETE** request to the 
+Mapping files can be deleted by sending a **DELETE** request to the
 
 ```
 `/xrefsets/{id} <<HOST>/swagger/?urls.primaryName=reference-data#/Xrefset%20queries/deleteFile>`_
 ```
 
- endpoint. It is possible to remove a mapping file regardless of whether the mapping file is linked to an expression data file or not. Any existing links are not removed by this endpoint, but instead need to be removed by sending a **DELETE** request to the 
+ endpoint. It is possible to remove a mapping file regardless of whether the mapping file is linked to an expression data file or not. Any existing links are not removed by this endpoint, but instead need to be removed by sending a **DELETE** request to the
 
 ```
 `/links <<HOST>/swagger/?urls.primaryName=integrationCurator#/Linkage/deleteLink>`_

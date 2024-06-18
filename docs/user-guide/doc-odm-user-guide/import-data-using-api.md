@@ -41,6 +41,7 @@ In this example, we will import tiny subset of data from the 1000 Genomes Projec
 | Study Source         | Study Description              | Target Disease   |
 |----------------------|--------------------------------|------------------|
 | 1000 Genomes Project | Subset of 1000 Genomes Project | Healthy          |
+
 - [Test_1000g.samples.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv), a tab-delimited file of sample attributes.
 
 | Sample Source        | Sample Source ID   | Species      | Sex   | Population   |
@@ -49,23 +50,27 @@ In this example, we will import tiny subset of data from the 1000 Genomes Projec
 | 1001 Genomes Project | HG00121            | Homo sapiens | F     | British      |
 | 1002 Genomes Project | HG00183            | Homo sapiens | M     | Finnish      |
 | 1003 Genomes Project | HG00176            | Homo sapiens | F     | Finnish      |
+
 - [Test_1000g.gct](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct), a [GCT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29) file of expression data from multiple sequencing runs
 
 | Name            | Description   |   HG00119 |   HG00121 |   HG00183 |   HG00176 |
 |-----------------|---------------|-----------|-----------|-----------|-----------|
 | ENSG00000077044 |               |      14.7 |      16.8 |      17.2 |      19.5 |
 | ENSG00000085982 |               |       4.2 |       7.1 |       5.5 |       6.8 |
+
 - [Test_1000g.gct.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct.tsv), a tab-separated file that describes the expression data
 
 | Expression Source    | Normalization Method   | Genome Version   |
 |----------------------|------------------------|------------------|
 | 1000 Genomes Project | RPKM                   | GRCh38.91        |
+
 - [Test_1000g.vcf](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf), a [VCF](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file of variant data from multiple sequencing runs
 
 |   #CHROM |       POS | ID          | REF   | ALT   |   QUAL | FILTER   | INFO    | FORMAT   | HG00119   | HG00121   | HG00183   | HG00176   |
 |----------|-----------|-------------|-------|-------|--------|----------|---------|----------|-----------|-----------|-----------|-----------|
 |        2 | 233364596 | rs838705    | G     | A     |    100 | PASS     | AF=0.64 | GT       | 0|0       | 0|1       | 1|0       | 1|1       |
 |        2 | 233385915 | rs201966773 | T     | TTC   |    987 | PASS     | AF=0.86 | GT       | 0|0       | 0|1       | 1|1       | 1|1       |
+
 - [Test_1000g.vcf.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf.tsv), a tab-separated file that describes the variant data
 
 | Variant Source       | Genome Version   |
@@ -74,8 +79,9 @@ In this example, we will import tiny subset of data from the 1000 Genomes Projec
 
 We will go through the following steps:
 
-1.  Authorization Token
+1. Authorization Token
 <br/>
+
 1.a Generate an API token
 <br/>
 1.b Use Access Token
@@ -92,6 +98,7 @@ We will go through the following steps:
 <br/>
 7.  Check that you can query the relationships between objects
 <br/>
+
 1. **Authorization Token**
 
 When using the APIs, you need to provide a token for authentication.
@@ -165,6 +172,7 @@ You can also confirm this visually, by going to the **Study Browser** and check 
 owned by you:
 
 ![image](doc-odm-user-guide/images/empty_study.png)
+
 1. **Import samples**
 
 To import samples, you should use a different endpoint, *sampleCurator*:
@@ -328,6 +336,7 @@ This example is similar to the previous one, but demonstrates using library/prep
 | Study Source         | Study Description              |
 |----------------------|--------------------------------|
 | 1000 Genomes Project | Subset of 1000 Genomes Project |
+
 - [Test_RM.samples.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.samples.tsv), a tab-delimited file of sample attributes.
 
 | Sample Source        | Sample Source ID   | Sex   | Population   |
@@ -336,18 +345,21 @@ This example is similar to the previous one, but demonstrates using library/prep
 | 1001 Genomes Project | SRR6441188         | F     | British      |
 | 1002 Genomes Project | SRR6441196         | M     | Finnish      |
 | 1003 Genomes Project | SRR6441197         | F     | Finnish      |
+
 - [Test_RM.libraries.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.libraries.tsv), a tab-delimited file of library metadata.
 
 | Library ID   | Sample Source ID      | Preparation Protocol   | Library Type      |
 |--------------|-----------------------|------------------------|-------------------|
 | LIB1         | SRR6441195|SRR6441188 | NGS                    | Spatial RNA-Seq-1 |
 | LIB2         | SRR6441196            | NGS                    | RNA-Seq-1         |
+
 - [Test_RM_g.gct](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM_g.gct), a [GCT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29) file of expression data from multiple sequencing runs. Note in this example the GCT file is using library IDs for linking.
 
 | Name      | Description   |   LIB1 |   LIB2 |
 |-----------|---------------|--------|--------|
 | ENSG00777 |               |   21.9 |   19.9 |
 | ENSG00888 |               |   23.7 |   24.9 |
+
 - [Test_RM_g.gct.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM_g.gct.tsv), a tab-separated file that describes the expression data
 
 | Normalization Method   | Genome Version   |
@@ -419,6 +431,7 @@ You can also confirm this visually, by going to the **Study Browser** and check 
 owned by you:
 
 ![image](doc-odm-user-guide/images/empty-RM-study.png)
+
 1. **Import samples**
 
 To import samples, you should use a different endpoint, *sampleCurator*:
@@ -553,6 +566,7 @@ If successful, in the Study Browser you should see (after refreshing the page) t
 to your study has changed from ‘-’ to ‘4’:
 
 ![image](doc-odm-user-guide/images/sample-RM-added.png)
+
 1. **Import and link library metadata file to samples**
 
 The next step is to import a library metadata file and link it to the samples file. First we import the library file using a POST call to the /libaries endpoint:
@@ -570,6 +584,7 @@ curl -X POST "<HOST>/frontend/rs/genestack/integrationCurator/default-released/i
 If successful you will see a library tab appear in the Metadata Editor:
 
 ![image](doc-odm-user-guide/images/library-added.png)
+
 1. **Import and link gene expression data to libraries**
 
 Now we’ll import expression data, supplying two files, one for the metadata, and another for the

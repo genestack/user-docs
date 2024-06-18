@@ -24,9 +24,11 @@ templates etc.) to any experiments.
 When you click on the study name, a drop-down menu will appear allowing you to:
 
 ![image](doc-odm-user-guide/images/me-dropdown-2.png)
+
 - **Share** data with your colleagues
 
 ![image](doc-odm-user-guide/images/share.png)
+
 - **Export** data by creating a link that can be used to download data and can be shared with your colleagues
 
 ![image](doc-odm-user-guide/images/export-data-link.png)
@@ -34,16 +36,20 @@ When you click on the study name, a drop-down menu will appear allowing you to:
 You can also click the Export button near the top right of any Metadata editor tab.
 
 ![image](doc-odm-user-guide/images/export_button.png)
+
 - **Rename** study
 
 ![image](doc-odm-user-guide/images/rename.png)
+
 - **Copy accession** of the study
 
 ![image](doc-odm-user-guide/images/copy-accession.png)
+
 - **Get more information** about the study. For example, you can learn when the study is created and modified, who is
   the owner and which groups it is shared with.
 
 ![image](doc-odm-user-guide/images/more-info.png)
+
 - **Explore and change metadata template** by clicking on “Explore” and “Apply another…”
   option in the drop-down menu.
 

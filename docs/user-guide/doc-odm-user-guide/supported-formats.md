@@ -193,6 +193,7 @@ This is followed by one field per sample, with the colon-separated data in this 
 specified in the format. The first sub-field must always be the genotype (GT) if it is present.
 There are no required sub-fields.
 As with the INFO field, there are several common, reserved keywords that are standards across the community:
+
 - **GT** : genotype, encoded as allele values separated by either of / or |. The allele values are 0 for the reference
 allele (what is in the REF field), 1 for the first allele listed in ALT, 2 for the second allele list in ALT and
 so on.
