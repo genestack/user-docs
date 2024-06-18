@@ -16,7 +16,6 @@ build:
             apk add curl && \
             pypi-clean.sh
 
-    ARG --required USER_GUIDE_VERSION
     ARG --required SDK_VERSION
     ARG --required OPENAPI_VERSION
     COPY collect-deps.sh .
