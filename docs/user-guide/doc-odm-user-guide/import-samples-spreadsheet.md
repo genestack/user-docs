@@ -80,6 +80,7 @@ In the subsequent dialog window, several parameters need to be defined:
 - Proteomics - TSV format.
 - Single cell proteomics - Supports data provided in TSV format. Note: the support of the Single Cell data is limited in the BETA and the TSV uploading is recommended via the API specifying “Skip Zeros” parameter in the acttached metadata file.
 - Metabolomics - TSV format.
+- Lipidomics - TSV format.
 - Epigenomics - TSV format.
 - DNA methylation - TSV format.
 - Chemoinformatics - TSV format.
