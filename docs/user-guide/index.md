@@ -1,20 +1,22 @@
 # Open Data Manager user guide
 
-Our **Open Data Manager (ODM)** workspace increases the productivity of all
-kinds of data-related projects across Life Sciences - from Agritech to
-Genomics. With so much breadth, it’s easy to get confused as to what exactly we
-do regarding **Data Management** and **File Management**. You might even think
-they’re two peas in a pod. Trust us, we get it - the two terms seem purely
-semantic (and maybe a little pedantic!) - yet there are core fundamental
-differences between the two!
+Welcome to the **Open Data Manager (ODM) User Guide**.
 
-**File Management** is present across a breadth of industries large and small;
-however, when scientific data is involved - it simply just isn’t sufficient.
-Why? Check out [our article here](https://genestack.com/news/blog/data-management-in-life-sciences-key-concepts/) to learn about the **Data Management**
-approach and its advantages.
+### File Management vs. Data Management
 
-**Important! Data Management**  has requirements, shown in this short video.
-[Get familiar with ODM basics](https://www.youtube.com/watch?v=-p-_0MMAtHM&list=PLqGSwEO9VFw0fuFPC7MD0CLJw7ZLmXiLk&index=6).
+Our ODM workspace enhances productivity across various data-related projects
+in the Life Sciences, from Agritech to Genomics.
+With such a broad scope, it’s easy to get confused about the specifics of
+**Data Management** and **File Management**. Although they may seem similar,
+they have fundamental differences that are crucial to understand.
+
+**File Management** is prevalent across many industries, but when it comes to 
+scientific data, it is often insufficient.
+Why? Check out [our detailed article here](https://genestack.com/news/blog/data-management-in-life-sciences-key-concepts/).
+
+!!! tip "Important" 
+    **Data Management** has specific requirements, which are explained in this 
+    short introductory video: [Familiarize yourself with the basics of ODM](https://www.youtube.com/watch?v=-p-_0MMAtHM&list=PLqGSwEO9VFw0fuFPC7MD0CLJw7ZLmXiLk&index=6).
 
 With an understanding of **Data Management** under the belt, the next question
 is onboarding. When considering what ODM can do for you; *context is key*. What
@@ -61,9 +63,6 @@ Want to know more? Learn more by watching our videos below.
 * [How to search for the data needed](https://www.youtube.com/watch?v=Gunh_fFIHB4&list=PLqGSwEO9VFw1L0gPg2CgrLMnPsS3oGn3T&index=3)
 * [How to unlock the power of ODM with the advanced usage of APIs](https://www.youtube.com/watch?v=7bLXBLp6Cxs&list=PLqGSwEO9VFw0fuFPC7MD0CLJw7ZLmXiLk&index=1)
 
-<br/>
-<br/>
-
 ## In Depth User Guide Articles
 
 * [User Quick Start Guide](doc-odm-user-guide/quickstart_user.md)
@@ -99,7 +98,7 @@ Want to know more? Learn more by watching our videos below.
     * [Importing a cross-reference mapping](doc-odm-user-guide/xref-mapping.md#importing-a-cross-reference-mapping)
     * [Querying cross-reference mappings](doc-odm-user-guide/xref-mapping.md#querying-cross-reference-mappings)
     * [Retrieving the mapping for a given gene in a study](doc-odm-user-guide/xref-mapping.md#retrieving-the-mapping-for-a-given-gene-in-a-study)
-    * [Performing OMICS queries using gene/transcript IDs](doc-odm-user-guide/xref-mapping.md#performing-omics-queries-using-gene-transcript-ids)
+    * [Performing OMICS queries using gene/transcript IDs](doc-odm-user-guide/xref-mapping.md/#performing-omics-queries-using-genetranscript-ids)
     * [Checking a mapping is available for a given expression data file](doc-odm-user-guide/xref-mapping.md#checking-a-mapping-is-available-for-a-given-expression-data-file)
     * [Checking which expression data files are linked to a given mapping file](doc-odm-user-guide/xref-mapping.md#checking-which-expression-data-files-are-linked-to-a-given-mapping-file)
     * [Updating a mapping file](doc-odm-user-guide/xref-mapping.md#updating-a-mapping-file)
@@ -116,7 +115,7 @@ Want to know more? Learn more by watching our videos below.
     * [Accessing the Template Editor](doc-odm-user-guide/template-editor.md#accessing-the-template-editor)
     * [What is a template?](doc-odm-user-guide/template-editor.md#what-is-a-template)
     * [Create and edit template](doc-odm-user-guide/template-editor.md#create-and-edit-template)
-    * [Grouping/compounding metadata fields](doc-odm-user-guide/template-editor.md#grouping-compounding-metadata-fields)
+    * [Grouping/compounding metadata fields](doc-odm-user-guide/template-editor.md/#groupingcompounding-metadata-fields)
     * [Export template](doc-odm-user-guide/template-editor.md#export-template)
     * [Change template](doc-odm-user-guide/template-editor.md#change-template)
 * [Curator Guide](doc-odm-user-guide/curator_guide.md)
@@ -129,7 +128,7 @@ Want to know more? Learn more by watching our videos below.
     * [Publishing a new version of metadata](doc-odm-user-guide/versioning.md#publishing-a-new-version-of-metadata)
     * [Discarding unpublished changes](doc-odm-user-guide/versioning.md#discarding-unpublished-changes)
     * [Viewing change history and restoring previous versions](doc-odm-user-guide/versioning.md#viewing-change-history-and-restoring-previous-versions)
-    * [Adding/deleting/importing sample objects](doc-odm-user-guide/versioning.md#adding-deleting-importing-sample-objects)
+    * [Adding/deleting/importing sample objects](doc-odm-user-guide/versioning.md/#viewing-change-history-and-restoring-previous-versions)
     * [Exporting data](doc-odm-user-guide/versioning.md#exporting-data)
 * [Sharing Studies](doc-odm-user-guide/sharing.md)
     * [Sharing from the Study Browser](doc-odm-user-guide/sharing.md#sharing-from-the-study-browser)
