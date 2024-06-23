@@ -13,7 +13,7 @@ nav:
           - Data Consumer: user-guide/quick-start/consumer-api.md
           - Data Contributor: user-guide/quick-start/contributor-api.md
           - Administrator: user-guide/quick-start/admin-gui.md
-      - Key Concepts: user-guide/doc-odm-user-guide/quickstart_user.md
+      - Key Concepts: user-guide/key-concepts/key-concepts.md
       - Users, Roles, Permissions: user-guide/doc-odm-user-guide/quickstart_user.md
       - Guides:
             - GUI Guide:
