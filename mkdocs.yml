@@ -86,8 +86,18 @@ nav:
 theme:
     name: material
     palette:
+      - scheme: default
         primary: custom
         accent: custom
+        toggle:
+          icon: material/brightness-7
+          name: Switch to dark mode
+      - scheme: slate
+        primary: custom
+        accent: custom
+        toggle:
+          icon: material/brightness-4
+          name: Switch to light mode
     logo: assets/logo.svg
     favicon: assets/favicon.ico
     features:
