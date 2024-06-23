@@ -33,7 +33,7 @@ ODM is a comprehensive system designed to simplify and optimise data management 
 
     Use **advanced** data management functionality via ODM endpoints
 
-- :octicons-info-24:{ .lg .middle } __[About Genestack](https://genestack.com/)__
+- :octicons-info-24:{ .lg .middle } __[About Genestack](https://genestack.com/){:target="_blank"}__
 
     ---
     Reach our website to learn more about our Products and Services
