@@ -10,7 +10,7 @@ ODM is a comprehensive system designed to simplify and optimise data management 
 
     Become familiar with Data Consuming, Data Contribution, and Administration basics via ODM User Interface and API
 
-- :material-dna:{ .lg .middle } __[Key Concepts](#)__
+- :material-dna:{ .lg .middle } __[Key Concepts](user-guide/key-concepts/key-concepts.md)__
 
     ---
 
