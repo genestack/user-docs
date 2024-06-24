@@ -16,7 +16,7 @@ ODM is a comprehensive system designed to simplify and optimise data management 
 
     Key Concepts definition for more efficient experience with ODM
 
-- :fontawesome-solid-users:{ .lg .middle } __[Users, Roles, and Permissions](#)__
+- :fontawesome-solid-users:{ .lg .middle } __[Users, Roles, and Permissions](user-guide/users-roles-permissions/users-roles-permissions.md)__
 
     ---
 
