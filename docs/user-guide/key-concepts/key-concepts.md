@@ -28,7 +28,7 @@ and seamless integration from study design to data analysis.
 
     ---
     Describe how your data was processed, including normalization techniques, 
-    the instrumentation used, and the types of processed data (e.g., TCV, VCF).
+    the instrumentation used, and the types of processed data (e.g., TSV, VCF).
 
 - :octicons-number-16:  __Data__
 
