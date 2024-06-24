@@ -14,7 +14,7 @@ nav:
           - Data Contributor: user-guide/quick-start/contributor-api.md
           - Administrator: user-guide/quick-start/admin-gui.md
       - Key Concepts: user-guide/key-concepts/key-concepts.md
-      - Users, Roles, Permissions: user-guide/doc-odm-user-guide/quickstart_user.md
+      - Users, Roles, Permissions: user-guide/users-roles-permissions/users-roles-permissions.md
       - Guides:
             - GUI Guide:
                 - user-guide/index.md
