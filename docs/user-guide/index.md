@@ -128,7 +128,7 @@ Want to know more? Learn more by watching our videos below.
     * [Publishing a new version of metadata](doc-odm-user-guide/versioning.md#publishing-a-new-version-of-metadata)
     * [Discarding unpublished changes](doc-odm-user-guide/versioning.md#discarding-unpublished-changes)
     * [Viewing change history and restoring previous versions](doc-odm-user-guide/versioning.md#viewing-change-history-and-restoring-previous-versions)
-    * [Adding/deleting/importing sample objects](doc-odm-user-guide/versioning.md/#viewing-change-history-and-restoring-previous-versions)
+    * [Adding/deleting/importing sample objects](doc-odm-user-guide/versioning.md/#addingdeletingimporting-sample-objects)
     * [Exporting data](doc-odm-user-guide/versioning.md#exporting-data)
 * [Sharing Studies](doc-odm-user-guide/sharing.md)
     * [Sharing from the Study Browser](doc-odm-user-guide/sharing.md#sharing-from-the-study-browser)
