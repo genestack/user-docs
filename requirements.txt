@@ -1,5 +1,5 @@
 mkdocs-material==9.5.27
-mike==2.1.1
+mike==2.1.2
 
 # https://github.com/squidfunk/mkdocs-material/issues/3085#issuecomment-933373590
 Jinja2==3.1.4
