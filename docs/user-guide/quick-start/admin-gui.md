@@ -1,6 +1,6 @@
 # Administrator in GUI
 
-As an Admin, you have the ability to manage users, permissions, and groups within the Open Data Manager (ODM). 
+If you have **Manage organization** permission, your user account will be marked with **Admin** label. As an Admin, you have the ability to create and deactivate users, change users' passwords, and manage user permissions within the Open Data Manager (ODM). To add, update, and delete groups **Manage groups** permission is required.
 This guide will help you navigate these features efficiently.
 
 ## Accessing Your Profile and Permissions
@@ -9,7 +9,7 @@ This guide will help you navigate these features efficiently.
 
 ![Profile button](quick-start-images/enter-profile.png)
 
-* If you are an Admin, you can add, edit, and delete information within the ODM.
+* Admin user will be marked with **Admin** label.
 
 ![Admin label](quick-start-images/admin-facet.png)
 
@@ -45,6 +45,7 @@ and Configure Facets to see a brief description of each permission.
 
 ## Add, Update, and Delete Groups
 
+* To add, update, and delete groups **Manage groups** permission is required.
 * Click on Groups to explore existing groups and their members.
 
 ![Create New Group](quick-start-images/add-new-group.png)
