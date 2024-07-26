@@ -4,7 +4,7 @@ ODM is a comprehensive system designed to simplify and optimise data management 
 
 <div class="grid cards" markdown>
 
--   :material-map-clock:{ .lg .middle } __[Quick Start](user-guide/quick-start/index.md)__
+- :material-map-clock:{ .lg .middle } __[Quick Start](user-guide/quick-start/index.md)__
 
     ---
 
@@ -25,13 +25,13 @@ ODM is a comprehensive system designed to simplify and optimise data management 
 - :fontawesome-solid-flask-vial:{ .lg .middle } __[Graphical User Interface Guide](user-guide/index.md)__
 
     ---
-    Use **basic** data management functionality via ODM user interface
+    Use __basic__ data management functionality via ODM user interface
 
-- :simple-swagger:{ .lg .middle } __[API Endpoints Guide](#)__
+- :simple-swagger:{ .lg .middle } __[API Endpoints Guide](google.com)__
 
     ---
 
-    Use **advanced** data management functionality via ODM endpoints
+    Use __advanced__ data management functionality via ODM endpoints
 
 - :octicons-info-24:{ .lg .middle } __[About Genestack](https://genestack.com/){:target="_blank"}__
 
