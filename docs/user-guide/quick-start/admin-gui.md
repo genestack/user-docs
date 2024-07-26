@@ -1,4 +1,4 @@
-# Administrator in GUI blabla
+# Administrator in GUI
 
 If you have **Manage organization** permission, your user account will be marked with **Admin** label. As an Admin, you have the ability to create and deactivate users, change users' passwords, and manage user permissions within the Open Data Manager (ODM). To add, update, and delete groups **Manage groups** permission is required.
 This guide will help you navigate these features efficiently.
