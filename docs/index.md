@@ -22,12 +22,12 @@ ODM is a comprehensive system designed to simplify and optimise data management 
 
     User Profile setup and customisation, working with User Groups
 
-- :fontawesome-solid-flask-vial:{ .lg .middle } __[Graphical User Interface Guide](user-guide/index.md)__
+- :fontawesome-solid-flask-vial:{ .lg .middle } __[User Interface Guide](user-guide/index.md)__
 
     ---
     Use __basic__ data management functionality via ODM user interface
 
-- :simple-swagger:{ .lg .middle } __[API Endpoints Guide](google.com)__
+- :simple-swagger:{ .lg .middle } __[API Endpoints Guide](user-guide/index.md)__
 
     ---
 

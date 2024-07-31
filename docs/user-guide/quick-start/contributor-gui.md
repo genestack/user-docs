@@ -1,4 +1,4 @@
-# Contributor in GUI
+# Contributor in the User Interface
 
 As a Data Contributor, you can create new studies and manage data efficiently 
 through the Open Data Manager interface. Follow these steps to get started.

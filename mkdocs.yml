@@ -5,7 +5,7 @@ nav:
       - index.md
       - Quick Start:
         - user-guide/quick-start/index.md
-        - Data in GUI:
+        - Data in the User Interface:
           - Data Consumer: user-guide/quick-start/consumer-gui.md
           - Data Contributor: user-guide/quick-start/contributor-gui.md
           - Administrator: user-guide/quick-start/admin-gui.md
@@ -16,7 +16,7 @@ nav:
       - Key Concepts: user-guide/key-concepts/key-concepts.md
       - Users, Roles, Permissions: user-guide/users-roles-permissions/users-roles-permissions.md
       - Guides:
-            - GUI Guide:
+            - User Interface Guide:
                 - user-guide/index.md
             - API Guide: user-guide/doc-odm-user-guide/quickstart_user.md
       - About Genestack: https://genestack.com/

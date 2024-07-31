@@ -2,7 +2,7 @@
 
 <div class="grid cards" markdown>
 
-- :material-download-multiple: :material-monitor:  __[Data Consumer in GUI](consumer-gui.md)__
+- :material-download-multiple: :material-monitor:  __[Data Consumer in the User Interface](consumer-gui.md)__
 
     ---
     This guide will help you navigate the main features of the Open Data Manager as a Data Consumer
@@ -12,7 +12,7 @@
     ---
     As a data consumer, you can explore and retrieve data from the API endpoints
 
-- :material-upload: :material-monitor:  __[Data Contributor in GUI](contributor-gui.md)__
+- :material-upload: :material-monitor:  __[Data Contributor in the User Interface](contributor-gui.md)__
 
     ---
     As a Data Contributor, you can create new studies and manage data efficiently
@@ -22,7 +22,7 @@
     ---
     As a Data Contributor, you can create a new study by uploading and linking entities
 
-- :fontawesome-solid-user-gear: :material-monitor:  __[Administrator in GUI](admin-gui.md)__
+- :fontawesome-solid-user-gear: :material-monitor:  __[Administrator in the User Interface](admin-gui.md)__
 
     ---
     As an Admin, you have the ability to manage users, permissions, and groups

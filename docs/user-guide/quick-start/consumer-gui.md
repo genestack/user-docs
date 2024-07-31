@@ -1,4 +1,4 @@
-# Data Consumer in GUI
+# Data Consumer in the User Interface
 
 This guide will help you navigate the main features of the Open Data Manager as a Data Consumer.
 
