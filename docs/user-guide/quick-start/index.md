@@ -1,4 +1,12 @@
-# Quick Start 
+# Quick Start to the ODM
+
+Explore the guide to unlock the full potential of ODM and transform your data management practices. 
+Whether you're using the Interface or the API, ODM is here to support your scientific endeavors with robust, 
+scalable solutions.
+
+* **Using the Interface**: Navigate through the intuitive interface to manage your data efficiently.
+* **Using the Application Programming Interface (API)**: Leverage the power of automation and integration 
+to scale your data management capabilities.
 
 <div class="grid cards" markdown>
 

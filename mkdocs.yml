@@ -3,7 +3,7 @@ site_name: User documentation
 nav:
     - Home:
       - index.md
-      - Quick Start:
+      - Quick Start to the ODM:
         - user-guide/quick-start/index.md
         - Data in the User Interface:
           - Data Consumer: user-guide/quick-start/consumer-gui.md
