@@ -25,11 +25,11 @@
 - :fontawesome-solid-user-gear: :material-monitor:  __[Administrator in the User Interface](admin-gui.md)__
 
     ---
-    As an Admin, you have the ability to manage users, permissions, and groups
+    As an Admin, you have the ability to manage users and permissions
 
 - :fontawesome-solid-user-gear: :simple-swagger:  __[Administrator in API](admin-api.md)__
 
     ---
-    As a Data Administrator, you can add, update, and delete users and groups
+    As a Data Administrator, you can add, update, and delete users
 
 </div>
