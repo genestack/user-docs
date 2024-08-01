@@ -1,16 +1,36 @@
-# Contributor in the User Interface
+# Data Contributor in the User Interface
 
-As a Data Contributor, you can create new studies and manage data efficiently 
+As a **Data Contributor**, you can create new studies and manage data efficiently 
 through the Open Data Manager interface. Follow these steps to get started.
 
 ## Create a New Study
 
+### Understanding the Data Model in ODM
+
+The organization of data and metadata in ODM ensures thorough documentation and seamless 
+integration from study design to data analysis.
+
+* **Study**: Defines the context, aims, and statistical design. 
+* **Samples Metadata**: Documents biological attributes like tissue type, disease status, and treatment conditions.
+* **Libraries/Preparations**: Details sample preparation methods and libraries used, if applicable. 
+* **Experimental Data Metadata**: Describes data processing techniques, including normalization, instrumentation, 
+and data types (e.g., GCT, VCF). 
+* **Experimental Data**: The actual data generated from the study (e.g. bulk transcriptomics, gen variant, etc.).
+
+The diagram below outlines the flow of data in a biological study, highlighting key stages:
+
+![Data Model](quick-start-images/data-model.png)
+
+### Create a Study
+
 To create a new study in the Open Data Manager, follow these steps:
 
-* Click on **Create new study**: Start by selecting the option to create a New Study. 
-* Assign a **Name**: Give your study a descriptive name to identify it easily. 
-* Select the **Template**: Choose the template you want to use for your study. 
+1. **Click on 'Create new study'**: Start by selecting the option to create a New Study on the main dashboard 
+(a) or from the menu in the top left corner, then click on “Create a New Study” (b).
+  ![Create Study](quick-start-images/create-study-button.png)
 
+2. **Assign a Name**: Give your study a descriptive name to identify it easily.
+3. **Select the Template**: Choose the template you want to use for your study. 
 Templates define the metadata structure and validation rules for your study. 
 You can create your own template, and there is no limit on the number of templates you can use.
 
@@ -23,47 +43,60 @@ You can create your own template, and there is no limit on the number of templat
 
 ![Create Study](quick-start-images/create-study.png)
 
-## Explore and Edit Study Details:
+## Explore and Edit Study Details
 
-* Once your study is created, explore the tabs and features presented.
-* To edit the details of your study, click on **Edit**.
+Once you click on “Create,” a new study will be automatically created, and you will be redirected to it. 
+Here, you can explore the various tabs and features that are available.
 
 ![Study Metadata](quick-start-images/study-metadata.png)
 
-* Select the feature you want to edit, for example, **Study Source**.
+### Accession number
+In addition, a unique accession number is automatically generated for each study in the ODM. 
+The accession number allows you to identify the specific study and to further work with the study via API endpoints.
 
-![Update metadata field](quick-start-images/study-source.png)
+### Edit details
+1. To edit the details of your study, select a tab and click on **Edit** (at the bottom of the page).
+  ![Edit button](quick-start-images/study-edit-button.png)
 
-* Click **Publish** to save the changes. You can customize the name for the version you are updating.
+2. Select the feature you want to edit, for example, **Study Source**. Type the new value for the field.
+  ![Update metadata field](quick-start-images/study-source.png)
 
-![Publish Study](quick-start-images/study-publish.png)
+3. Click **Publish** to save the changes. You can customize the name for the version you are updating by clicking 
+the **Publish** button at the bottom of the screen. A new window will pop up, allowing you to customize the version name.
+  ![Publish Study](quick-start-images/study-publish.png)
 
-## Upload Samples
-* Click on **Samples**. 
-* Then click on **Edit**. 
-* Select tabular files **(TSV)** to upload by clicking on the indicated symbol.
-* Click **Select tsv file...** and choose your file.
-* Click **Import**. 
-* Ensure the changes are saved by clicking **Publish**.
+## Upload Samples Metadata
+1. To upload sample metadata, click on the **Samples** tab on the main screen of the study.
+   ![Select Samples Tab](quick-start-images/select-samples-tab.png)
 
-![Upload Samples](quick-start-images/upload-samles.png)
+2. Click on **Edit** at the bottom left of your sample table.
+3. Select tabular files **(TSV)** by clicking on the cloud symbol in the top right of your sample table. 
+You can upload sample metadata from any experiment (e.g., flow cytometry, gene variant, transcriptomics) as 
+long as the file is in a tabular format (TSV).
+   ![Upload Samples](quick-start-images/upload-samples.png)
 
-![Select Samples file](quick-start-images/select-samples-tsv.png)
+4. A new window will pop up. Click **Select tsv file...** and choose your file. 
+5. Once your file is recognized, click **Import**.
+   ![Select Samples file](quick-start-images/select-samples-tsv.png)
 
-* Customize the version you are saving by assigning any preferred name, label, or description.
-
-![Create New Version](quick-start-images/samples-version-description.png)
-
-* To see all the versions created before, click on the bottom of the page.
-
-![Version History](quick-start-images/samples-version-select.png)
+6. Ensure the changes are saved by clicking **Publish**.
+7. In the resulting pop-up box, enter the preferred name, label, or description for
+the activity you just performed to add it to the version log, e.g., *“Sample Metadata has been added.”* 
+For more information on versioning, see the Data Versioning section below.
+   ![Publish Samples](quick-start-images/publish-samples-metadata.png)
 
 ## Data Versioning
 
-* View previously created versions and restore any previous version if needed. 
-* If you don't intend to restore any version, simply click on **Back to the latest version**.
+1. To see all the versions of your metadata previously published, click on the clock icon at the bottom of the page.
+   ![Version History](quick-start-images/samples-version-select.png)
 
-![Version History](quick-start-images/samples-version-history.png)
+2. The resulting view will show you all the previously created versions of this data when they were created, 
+the description entered at the time of publication, and the user who altered the data. 
+3. You can click on any of the lines in the table and then **Restore** at the bottom of the page to restore 
+a previous version of the data. 
+4. To return to the latest version without changing the version simply click on **Back to the latest version** 
+at the bottom of the screen.
+  ![Version History](quick-start-images/samples-version-history.png)
 
 ## Upload Libraries and Preparations
 
