@@ -86,7 +86,7 @@ of the attribute in the list or use **Reset** option to remove all the attribute
    ![Explore View](quick-start-images/explore-data-4.png)
 
 6. The plot combining two attributes displays informative data, such as sample count, and minimal and maximum values.
-   ![Explore View](quick-start-images/explore-data-4.png)
+   ![Explore View](quick-start-images/explore-data-5.png)
 
 7. To export the plot in SVG or PNG formats, simply hover over the top right corner of the plot. A menu with three dots :material-dots-horizontal: will appear, allowing you to select the desired format for download. The available formats for downloading the plot are SVG and PNG.
    ![Explore View](quick-start-images/explore-data-export.png)
