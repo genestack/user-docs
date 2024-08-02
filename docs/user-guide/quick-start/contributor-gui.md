@@ -194,39 +194,79 @@ displayed in the Data tab by type: Experimental (e.g., bulk transcriptomics) and
 
 ## Data curation
 
-* Click on the **Samples** tab to explore previously uploaded data. 
-* To start the curation process, click on **Edit**.
+Data curation involves the process of creating, organizing, and maintaining data sets so they can be accessed and
+used by people looking for information. This process includes collecting, structuring, indexing, and cataloging data 
+for users in an organization, group, or the general public. In ODM, you can validate and harmonize your metadata 
+across studies to ensure it conforms to your data model, allowing you to spend less time on data wrangling and 
+more time on data analysis. Follow these steps to integrate and curate your data seamlessly.
+
+### Access the Samples Tab:
+
+* Click on the **Samples** tab from the main study screen to explore previously uploaded data. 
+* To start the curation process, click on **Edit** at the bottom left corner of your window.
 
 ![Sample Edit](quick-start-images/samples-edit.png)
 
-* **Identify data that is not validated**. Validation is crucial for ensuring data quality, 
-facilitating data harmonization and streamlining data management. 
+### Identify any data
+
+* Identify any data that is not valid according to the applied template. 
+Invalid data will be highlighted in **red** under the yellow template columns.
+  ![Select invalid value](quick-start-images/invalid-data.png)
+
+* Validation is crucial for ensuring data quality, facilitating data harmonization, and streamlining data management.
 
 !!! tip "Find more information regarding validation in the [Key Concepts](../key-concepts/key-concepts.md){:target="_blank"} section."
 
-![Select invalid value](quick-start-images/invalid-data.png)
+* Click on the **Invalid Metadata** text at the top right of your table to see an explanation of which 
+attributes are not valid and why.
 
-* **Add data by typing the details**. 
-Values and labels will be suggested based on the ontologies selected for specific features.
+![Select invalid value](quick-start-images/invalid-data-summary.png)
+
+### Correct Invalid Data
+
+* Add or correct any invalid data by typing the details. Suggested values and labels will be based 
+on the selected ontologies for specific features.
 
 ![Select valid value](quick-start-images/data-validation1.png)
 
-* Validated values will be highlighted in **green**.
+* Once the data is corrected, the new and validated values will be shown in **green**.
 
 ![Valid value](quick-start-images/valid-data.png)
 
+### Bulk replace Values
 * Replace all values in a column by clicking on **Bulk replace** and typing the new values.
-Preferred values are suggested based on the template ontologies.
+Preferred values are suggested based on the template ontologies. 
+* Add missing values in bulk by clicking on the empty field and typing the new value. Suggested values will appear 
+based on the dictionaries selected for the template, e.g., for the Age unit, suggested values will be shown. 
+Click on **replace** to apply the changes.
 
 ![Bulk replace](quick-start-images/bulk-replace-validation.png)
 
-* You can also copy or reassign values from another column.
+* If you are correcting invalid values rather than adding missing data, you can also use this function 
+to correct data in groups.
+
+!!! example "Correct values in bulk"
+    Correct values in bulk by selecting the new name (suggested values from the dictionary will display). 
+    Select and apply changes to replace values in the selected cells, e.g., change “cell type: brain ventricle” 
+    to “brain ventricle”. The change will apply to all 5 cells where the values are found. 
+    The process is visualised on the screenshot below.
+
+![Bulk replace](quick-start-images/bulk-replace-correct.png)
+
+### Copy or Reassign Values
+
+* Copy or reassign values from another column by clicking on the selected column and clicking **Copy values to...**
+* Select the column where you want to copy the existing values and click on **Copy values**. 
+If the selected column contains data, you will receive a notification to confirm you want to replace the existing data.
 
 ![Copy Data](quick-start-images/copy-values.png)
 
-* To save changes, click on **Publish**.
+### Save Changes
 
-![Scroll Sample Tab](quick-start-images/sample-scroll.png)
+Once you are done with the changes, click on **Publish** at the bottom left of the page to save the current changes. 
+Customize the name of the changes you have made in the current version.
 
-By following these steps, you can efficiently create, manage, and curate studies as a 
-Data Contributor using the GUI of the Open Data Manager.
+![Publish Curated Data](quick-start-images/publish-curated.png)
+
+By following these steps, you can efficiently create, manage, and curate studies as a Data Contributor 
+using the interface of the Open Data Manager.
