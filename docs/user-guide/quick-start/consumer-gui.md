@@ -99,6 +99,8 @@ Export all the information contained in the study. Note that some studies may ha
 2. A window will open, and the file will be compressed.
 3. Once compressed, you can download the folder containing all the data and metadata from the study.
 
+!!! warning "If some externally stored data is inaccessible due to its removal from the original external storage (the link to the storage is invalid), the study cannot be exported."
+
 ![Export Data](quick-start-images/export-data.png)
 
 By following these steps, you can efficiently browse, visualize, and export data as a Data Consumer using 
