@@ -82,10 +82,10 @@ long as the file is in a tabular format (TSV).
 6. Ensure the changes are saved by clicking **Publish**.
 7. In the resulting pop-up box, enter the preferred name, label, or description for
 the activity you just performed to add it to the version log, e.g., *“Sample Metadata has been added.”* 
-For more information on versioning, see the Data Versioning section below.
+For more information on versioning, see the Metadata Versioning section below.
    ![Publish Samples](quick-start-images/publish-samples-metadata.png)
 
-## Data Versioning
+## Metadata Versioning
 
 1. To see all the versions of your metadata previously published, click on the clock icon at the bottom of the page.
    ![Version History](quick-start-images/samples-version-select.png)
