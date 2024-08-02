@@ -1,6 +1,8 @@
 # Administrator in the User Interface
 
-If you have **Manage organization** permission, your user account will be marked with **Admin** label. As an Admin, you have the ability to create and deactivate users, change users' passwords, and manage user permissions within the Open Data Manager (ODM). To add, update, and delete groups **Manage groups** permission is required.
+If you have **Manage organization** permission, your user account will be marked with **Admin** label. 
+As an Admin, you have the ability to create and deactivate users, change users' passwords, and manage user 
+permissions within the Open Data Manager (ODM). To add, update, and delete groups **Manage groups** permission is required.
 This guide will help you navigate these features efficiently.
 
 ## Accessing Your Profile and Permissions
@@ -39,9 +41,9 @@ and Configure Facets to see a brief description of each permission.
 ![Select Permissions](quick-start-images/select-user-permission.png)
 
 * Assign specific permissions or all permissions to users.
-* Change passwords or deactivate users as needed.
+    ![User Options](quick-start-images/user-options.png)
 
-![User Options](quick-start-images/user-options.png)
+* Change passwords or deactivate users as needed.
 
 ## Add, Update, and Delete Groups
 
@@ -68,8 +70,10 @@ and Configure Facets to see a brief description of each permission.
 ![Create New Member](quick-start-images/add-new-member.png)
 
 ### Delete Groups
+!!! warning "To add, update, and delete groups "Manage groups" permission is required."
 
-* To delete a group, click on the group and select the option to delete. Note that deleting groups is a permanent action.
+* To delete a group, navigate to three dots icon :material-dots-horizontal: and select the option to delete. 
+Note that deleting groups is a permanent action.
 
 ![Delete Group](quick-start-images/delete-group.png)
 
