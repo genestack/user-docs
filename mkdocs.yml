@@ -1,9 +1,43 @@
 site_name: User documentation
 
 nav:
-    - Home: index.md
+    - Home:
+      - index.md
+      - Quick Start to the ODM:
+        - user-guide/quick-start/index.md
+        - Data in the User Interface:
+          - Data Consumer: user-guide/quick-start/consumer-gui.md
+          - Data Contributor: user-guide/quick-start/contributor-gui.md
+          - Administrator: user-guide/quick-start/admin-gui.md
+        - Data in API:
+          - Data Consumer: user-guide/quick-start/consumer-api.md
+          - Data Contributor: user-guide/quick-start/contributor-api.md
+          - Administrator: user-guide/quick-start/admin-api.md
+      - Key Concepts: user-guide/key-concepts/key-concepts.md
+      - Users, Roles, Permissions: user-guide/users-roles-permissions/users-roles-permissions.md
+      - Guides:
+            - User Interface Guide:
+                - user-guide/index.md
+            - API Guide: user-guide/doc-odm-user-guide/quickstart_user.md
+      - About Genestack: https://genestack.com/
     - Guide:
         - user-guide/index.md
+        - Quick Start Guide: user-guide/doc-odm-user-guide/quickstart_user.md
+        - User Setup: user-guide/doc-odm-user-guide/setup.md
+        - Create New Study: user-guide/doc-odm-user-guide/create-study.md
+        - Import Data on ODM: user-guide/doc-odm-user-guide/import-samples-spreadsheet.md
+        - Import Data Using API: user-guide/doc-odm-user-guide/import-data-using-api.md
+        - Import Data Using Python Script: user-guide/doc-odm-user-guide/import-data-using-python-script.md
+        - Exporting Data: user-guide/doc-odm-user-guide/exporting-data.md
+        - Cross-reference Mapping: user-guide/doc-odm-user-guide/xref-mapping.md
+        - Study Browser: user-guide/doc-odm-user-guide/studybrowser.md
+        - Metadata Editor: user-guide/doc-odm-user-guide/metadata-editor.md
+        - Template Editor: user-guide/doc-odm-user-guide/template-editor.md
+        - Curator Guide: user-guide/doc-odm-user-guide/curator_guide.md
+        - Metadata Versioning: user-guide/doc-odm-user-guide/versioning.md
+        - Sharing Studies: user-guide/doc-odm-user-guide/sharing.md
+        - Getting a Genestack API token: user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md
+        - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md
@@ -52,8 +86,18 @@ nav:
 theme:
     name: material
     palette:
+      - scheme: default
         primary: custom
         accent: custom
+        toggle:
+          icon: material/brightness-7
+          name: Switch to dark mode
+      - scheme: slate
+        primary: custom
+        accent: custom
+        toggle:
+          icon: material/brightness-4
+          name: Switch to light mode
     logo: assets/logo.svg
     favicon: assets/favicon.ico
     features:
