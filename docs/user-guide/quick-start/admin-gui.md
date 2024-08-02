@@ -37,7 +37,6 @@ This guide will help you navigate these features efficiently.
 
 * Hover over sections such as Manage Groups, Set up Templates, Access all data, 
 and Configure Facets to see a brief description of each permission.
-
 ![Select Permissions](quick-start-images/select-user-permission.png)
 
 * Assign specific permissions or all permissions to users.
