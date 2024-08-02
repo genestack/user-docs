@@ -18,7 +18,7 @@ Members of this group will now be able to view this study using the **Shared wit
 
 ![image](doc-odm-user-guide/images/shared_with_me1.png)
 
-## Sharing from the Metainfo Editor
+## Sharing from the Metadata Editor
 
 Sharing from the Metadata Editor is similar to the above, except that to access the sharing menu you must click on the name of the study/folder icon at the top of the page:
 

@@ -132,7 +132,7 @@ Want to know more? Learn more by watching our videos below.
     * [Exporting data](doc-odm-user-guide/versioning.md#exporting-data)
 * [Sharing Studies](doc-odm-user-guide/sharing.md)
     * [Sharing from the Study Browser](doc-odm-user-guide/sharing.md#sharing-from-the-study-browser)
-    * [Sharing from the Metainfo Editor](doc-odm-user-guide/sharing.md#sharing-from-the-metainfo-editor)
+    * [Sharing from the Metadata Editor](doc-odm-user-guide/sharing.md#sharing-from-the-metainfo-editor)
 * [Getting a Genestack API token](doc-odm-user-guide/getting-a-genestack-api-token.md)
     * [Generate API token via Genestack software](doc-odm-user-guide/getting-a-genestack-api-token.md#generate-api-token-via-genestack-software)
 * [Supported File Formats](doc-odm-user-guide/supported-formats.md)
