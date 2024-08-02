@@ -157,7 +157,11 @@ local computer or a cloud-based storage system (such as AWS)
 To ensure proper linking, make sure your file includes a column called **Sample Source ID** with the same 
 IDs used in the Sample Metadata table uploaded previously (see section "Upload Samples Metadata"). 
 * **Custom Linking**: Alternatively you can select a different column to link the experimental data, such as 
-**Sample Name**, **Date**, etc. This provides flexibility in how data is associated, but it is recommended to 
+**Sample Name**, **Date**, etc.
+
+!!! warning "Only template attribute can be used as a custom linking attribute."
+
+This provides flexibility in how data is associated, but it is recommended to 
 include the SampleSourceID column for consistent referencing and linking samples metadata files with additional 
 data types like libraries and preparations.
 
