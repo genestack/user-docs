@@ -15,7 +15,7 @@ integration from study design to data analysis.
 * **Libraries/Preparations**: Details sample preparation methods and libraries used, if applicable. 
 * **Experimental Data Metadata**: Describes data processing techniques, including normalization, instrumentation, 
 and data types (e.g., GCT, VCF). 
-* **Experimental Data**: The actual data generated from the study (e.g. bulk transcriptomics, gen variant, etc.).
+* **Experimental Data**: The actual data generated from the study (e.g. bulk transcriptomics, gene variant, etc.).
 
 The diagram below outlines the flow of data in a biological study, highlighting key stages:
 
@@ -25,8 +25,8 @@ The diagram below outlines the flow of data in a biological study, highlighting 
 
 To create a new study in the Open Data Manager, follow these steps:
 
-1. **Click on 'Create new study'**: Start by selecting the option to create a New Study on the main dashboard 
-(a) or from the menu in the top left corner, then click on “Create a New Study” (b).
+1. **Click on "Create new study"**: Start by selecting the option to create a New Study on the main dashboard 
+(a), or from the menu in the top left corner, then click on **“Create New Study”** (b).
   ![Create Study](quick-start-images/create-study-button.png)
 
 2. **Assign a Name**: Give your study a descriptive name to identify it easily.
