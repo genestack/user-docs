@@ -4,7 +4,7 @@ As a **Data Contributor**, you can create new studies and manage data efficientl
 through the Open Data Manager interface. Follow these steps to get started.
 
 ## Create a New Study
-
+  
 ### Understanding the Data Model in ODM
 
 The organization of data and metadata in ODM ensures thorough documentation and seamless 
@@ -123,37 +123,72 @@ to ensure proper recognition and linking of the data.
 
 ![Link Libraries](quick-start-images/lib-prep-linkage.png)
 
-## Upload Data
+## Upload experimental Data and attach files
 
-### Explore the Data Tab
+In addition to the samples, libraries, and preparations metadata described above, you can upload experimental 
+data such as bulk transcriptomics, lipidomics, single-cell data, and gene variants that are linked to your study
+via sample metadata and libraries/preparations. You can also supplement your study by attaching related research 
+materials like PDFs, XLSX, DOCX, PPTX files, images, and more. Please note, the contents of these attached files 
+won't be indexed or made searchable.
 
-* **Navigate to the Data Tab:** Click on the **Data** tab to import and attach data.
+* To upload experimental data or attach files, navigate to the **Data** Tab: 
+On the main screen of the study, click on the **Data** tab to import and attach data.
+  ![Upload Data](quick-start-images/study-data-tab.png)
 
-![Upload Data](quick-start-images/study-data-tab.png)
+* On the Data tab, click on the **Add data** button. This will open a new window where you can select 
+the action to perform: import data or attach a file.
+  ![Upload Data](quick-start-images/add-data-button.png)
 
-* **Select Data Type:** Choose the type of data to import and link, 
-such as transcriptomics, proteomics, or other types of data.
+You can upload your experimental data, such as bulk transcriptomics, proteomics, chemoinformatics, 
+and more, in a supported tabular format like TSV, GCT, VCF, or FACS. The contents of the uploaded file 
+will be indexed and searchable. Select **Data class** to choose the type of data to import. 
+If the type of data is not listed, select the **Other** option.
 
-### Link Data
+![Upload Data](quick-start-images/select-data-class.png)
 
-* Default Linking: By default, the data is linked with the Samples file using the **Sample 
-Source ID** column. Ensure that the imported file includes the **Sample Source ID** column 
-for references and identification within the ODM. 
-* Custom Linking: Users can now select a different column to link the data, such as **Sample Name**, **Date**, etc. 
-This provides flexibility in how data is associated, but it is still recommended to include the 
-**Sample Source ID** column for consistent referencing and identification within the ODM.
+* Click "Next." This will open a window where you can select a file containing experimental data from your 
+local computer or a cloud-based storage system (such as AWS)
+  ![Upload Data](quick-start-images/select-data-file.png)
+
+### Linking Data
+
+* **Default Linking**: By default, the data is linked with the Samples file using the **SampleSource ID** column. 
+To ensure proper linking, make sure your file includes a column called **Sample Source ID** with the same 
+IDs used in the Sample Metadata table uploaded previously (see section "Upload Samples Metadata"). 
+* **Custom Linking**: Alternatively you can select a different column to link the experimental data, such as 
+**Sample Name**, **Date**, etc. This provides flexibility in how data is associated, but it is recommended to 
+include the SampleSourceID column for consistent referencing and linking samples metadata files with additional 
+data types like libraries and preparations.
 
 ![Link Data](quick-start-images/linking-data.png)
 
-### Attach a file
+The selected files will be scanned to find an appropriate link (typically the **SampleSource ID** column) and 
+the uploading will automatically begin.
 
-* To attach a file, click on **Add data** and then select **Attach a file**. 
+![Link Data](quick-start-images/linking-data-result.png)
+
+### Attach a file
+In addition, supplement your study by attaching related research materials like PDFs, XLSX, DOCX, PPTX files, 
+images, and more. Note that the contents of these attached files won't be indexed or made searchable.
+Attachment of additional files is different from linked files, allowing you to add files that 
+are part of your research but not directly linked to the samples metadata or experimental data. 
+These files may contain budget reports, manuscripts, presentations, logos, etc. This tool helps you keep 
+all your data in one place.
+
+To attach a file:
+
+* Click on **Add data** and then select **Attach a file**. 
 * You can attach any format files such as PDF, PNG, etc. 
-* Click **Select file...**
+* Click **Select file...**. Select the file from your local computer.
 
 ![Attach file](quick-start-images/attach-file.png)
 
-* Your files will be displayed in the **Data** tab.
+The files will be uploaded (upload time will depend on the size of the files). 
+Your files will be displayed in the Data tab under "Attached Files."
+
+Once the files are selected, the upload will begin and the files will be attached. Available data will be 
+displayed in the Data tab by type: Experimental (e.g., bulk transcriptomics) and Attached files 
+(e.g., manuscripts, reports).
 
 ![Attachment metadata](quick-start-images/attachment-metadata.png)
 
