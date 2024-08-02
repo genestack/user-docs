@@ -100,11 +100,28 @@ at the bottom of the screen.
 
 ## Upload Libraries and Preparations
 
-* Click on **+ More** button:
-    * To add libraries, click on **Libraries**. 
-    * To add preparations, click on **Preparations**.
+### Add Libraries and Preparations
+In addition to sample metadata, you can also add Libraries and Preparations metadata. 
+To do so, click on the tab **+More** to display both options:
+
+![More](quick-start-images/lib-prep-more.png)
+
+* To add libraries, click on **Libraries** and select the tabular file to import from your local computer. 
+* To add preparations, click on **Preparations** and select the tabular file to import from your local computer.
+  
+Both types of files are linked to the samples metadata file (from the Samples tab) via the **SampleSource ID** column. 
+Ensure this column is included in all files to maintain the link between sample metadata, libraries, and preparations.
 
 ![Create Libraries](quick-start-images/upload-lib-prep.png)
+
+### Link Metadata Files
+* Ensure that the SampleSource ID column is included in all files to maintain the link between samples metadata, 
+libraries, and preparations.
+* Additionally, include the Library ID column for libraries and the Preparation ID column for preparations 
+to ensure proper recognition and linking of the data.
+* Once the data is recognized and linked via these columns, the new metadata tabs will display the recently added data.
+
+![Link Libraries](quick-start-images/lib-prep-linkage.png)
 
 ## Upload Data
 
