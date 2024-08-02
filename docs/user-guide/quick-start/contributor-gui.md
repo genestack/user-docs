@@ -152,13 +152,16 @@ local computer or a cloud-based storage system (such as AWS)
 
 ### Linking Data
 
-* **Default Linking**: By default, the data is linked with the Samples file using the **SampleSource ID** column. 
+* **Default Linking**: By default, the data is linked with the Samples file using the 
+**SampleSource ID** column.
 To ensure proper linking, make sure your file includes a column called **Sample Source ID** with the same 
 IDs used in the Sample Metadata table uploaded previously (see section "Upload Samples Metadata"). 
 * **Custom Linking**: Alternatively you can select a different column to link the experimental data, such as 
 **Sample Name**, **Date**, etc. This provides flexibility in how data is associated, but it is recommended to 
 include the SampleSourceID column for consistent referencing and linking samples metadata files with additional 
 data types like libraries and preparations.
+
+Data can be linked to Library or Preparation metadata by using **Library ID** and **Preparation ID**.
 
 ![Link Data](quick-start-images/linking-data.png)
 
