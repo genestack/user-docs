@@ -41,8 +41,6 @@ and Configure Facets to see a brief description of each permission.
 ![Select Permissions](quick-start-images/select-user-permission.png)
 
 * Assign specific permissions or all permissions to users.
-    ![User Options](quick-start-images/user-options.png)
-
 * Change passwords or deactivate users as needed.
 
 ## Add, Update, and Delete Groups
