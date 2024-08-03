@@ -1,4 +1,4 @@
-mkdocs-material==9.5.30
+mkdocs-material==9.5.31
 mike==2.1.2
 
 # https://github.com/squidfunk/mkdocs-material/issues/3085#issuecomment-933373590
