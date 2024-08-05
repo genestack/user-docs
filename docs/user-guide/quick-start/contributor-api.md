@@ -62,7 +62,6 @@ An access token is required to work with the API endpoints. Follow these steps t
    ![Authorize access](quick-start-images/authorize-access.png)
 
 4. Click on **Try it out** to activate it. The **Try it out** step is required for every single endpoint.
-
 ![Try it out](quick-start-images/try-it-out.png)
 
 ## The ODM Data Model
@@ -192,76 +191,67 @@ Use the ID to track the status of the import
 ## Linking your entities
 
 1. **Redirect to the Integration Curator Page**: To link entities (e.g., samples and data) with the study, 
-provide your token and authorize the execution of the selected endpoint. Identify the ID accession from the uploaded study. 
-Note the Genestack accession values shown in the response (e.g., for sample metadata, the accession number is GSF1147034).
+provide your token and authorize the execution of the selected endpoint. Identify the ID accession from 
+the uploaded study. Note the Genestack accession values shown in the response (e.g., for sample metadata, 
+the accession number is GSF1147034).
+    For this particular example, these are the accession IDs:
+    * **Study Accession ID: GSF1147033**
+    * **Samples Accession ID: GSF1147034**
+    * **Experimental Data Accession ID: GSF1147049**
 
-For this particular example, these are the accession IDs:
-
-* **Study Accession ID: GSF1147033**
-* **Samples Accession ID: GSF1147034**
-* **Experimental Data Accession ID: GSF1147049**
-
-1. **Integration Endpoints**: Click on the integration endpoints, shown as integrationCurator. These endpoints will 
+2. **Integration Endpoints**: Click on the integration endpoints, shown as integrationCurator. These endpoints will 
 allow you to link data and metadata to samples and samples to studies.
-
-![API Main](quick-start-images/api-main-page.png)
+   ![Integration Endpoints](quick-start-images/integration-endpoints.png)
 
 ### Link Samples and Study
 
 1. **Link Samples to Study**: Once the samples and study are uploaded to the ODM, the next step is to link the 
 samples to the study. Important: At least one parameter has to match with the Study file, e.g., **Sample Source ID**.
 
-1. **Identify the GroupId** from the response obtained after uploading the samples (e.g., **GSF1147034**)
+2. **Identify the GroupId** from the response obtained after uploading the samples (e.g., **GSF1147034**)
 
-1. Select the section **Sample Integration as a Curator** to link samples with a study. Select the endpoint 
+3. Select the section **Sample Integration as a Curator** to link samples with a study. Select the endpoint 
 **Create a Link Between a Group of Sample Objects and a Study** 
-/api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}
 
-![API Main](quick-start-images/api-main-page.png)
+    `/api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}`.
+   ![Sample Integration](quick-start-images/post-sample-integration.png)
 
-1. **Enter Accession Details:** Add the required values (ID accession) for the study and samples, and click **Execute**.
+4. **Enter Accession Details:** Add the required values (ID accession) for the study and samples, and click **Execute**.
+   * **Study Accession ID: GSF1147033**
+   * **Samples Accession ID: GSF1147034**
+   ![Accession](quick-start-images/sample-integration-accession.png)
 
-* **Study Accession ID: GSF1147033**
-* **Samples Accession ID: GSF1147034**
+5. **Check the Response**: A response will show that the link was successful.   
+   ![Response](quick-start-images/sample-integration-response.png)
 
-![API Main](quick-start-images/api-main-page.png)
-
-1. **Check the Response**: A response will show that the link was successful.   
-   ![API Main](quick-start-images/api-main-page.png)
-
-1. **Confirm in ODM**: You can open the study in the ODM interface to see that the data is now linked.
-
-![API Main](quick-start-images/api-main-page.png)
+6. **Confirm in ODM**: You can open the study in the ODM interface to see that the data is now linked.
+   ![Confirmation](quick-start-images/sample-integration-confirm.png)
 
 ### Link Experimental Data and Samples
 
 1. Identify the **groupID** number for the Data. For this particular example, the Data accession number is **GSF1147049**
+    * **Samples Accession ID: GSF1147034**
+    * **Experimental Data Accession ID: GSF1147049**
 
-* **Samples Accession ID: GSF1147034**
-* **Experimental Data Accession ID: GSF1147049**
-
-1. To link experimental data with samples (and the study), click on the "Expression integration as Curator" endpoints.
+2. To link experimental data with samples (and the study), click on the "Expression integration as Curator" endpoints.
     1. Select the endpoint to create a link between data (for this specific example expression in GCT format 
    previously uploaded) with a group of samples.
-    1. Click on the endpoint  to **Create a link between a group of expression objects and a group of 
-   samples objects**: /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}
+    2. Click on the endpoint  to **Create a link between a group of expression objects and a group of 
+   samples objects**: 
+   `/api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}`
+   ![Data Integration](quick-start-images/post-data-integration.png)
 
-![API Main](quick-start-images/api-main-page.png)
-
-1. **Enter Accession Details:** Add the relevant information, including the data accession number and samples accession
+3. **Enter Accession Details:** Add the relevant information, including the data accession number and samples accession
 number, and click **Execute.**
+   ![Accession](quick-start-images/post-data-accession.png)
 
-![API Main](quick-start-images/api-main-page.png)
-
-1. **Check the Response**: The response will show that the link has been created between the group of samples and 
+4. **Check the Response**: The response will show that the link has been created between the group of samples and 
 the experimental data
+   ![Response](quick-start-images/post-data-response.png)
 
-![API Main](quick-start-images/api-main-page.png)
-
-1. **Confirm in ODM**: You can open the ODM interface to confirm that samples and experimental data are now 
+5. **Confirm in ODM**: You can open the ODM interface to confirm that samples and experimental data are now 
 linked to the study.
-
-![API Main](quick-start-images/api-main-page.png)
+   ![Confirmation](quick-start-images/post-data-confirm.png)
 
 By following these steps, you can efficiently interact with the API endpoints via the Swagger interface,
 tailored to your role and permissions.
