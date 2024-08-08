@@ -20,7 +20,10 @@ Follow these steps to get started on using the ODM’s API Endpoints :
 
 ## Using Swagger for API Interaction
 
-Swagger provides an interactive interface for exploring and interacting with the API endpoints.
+Swagger is an API documentation tool which provides an interactive interface for exploring and
+interacting with the API endpoints. Its` main goal is to familiarise users with the available endpoints,
+parameters, structure of response, etc. Note that it is not for day-to-day usage or integrations.
+
 Follow these steps to use Swagger effectively, based on your role and permissions:
 
 1. **Select the Endpoints for Specific Actions:** Depending on your role (Data Consumer, Data Contributor, or Data Admin)
