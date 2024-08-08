@@ -88,7 +88,8 @@ A new Swagger window will display important information regarding the token para
 ### Explore the Study User definition
 
 The **studyUser** definition contains several endpoints to retrieve data, such as 
-*List or search for study metadata objects,* and *Retrieve a single study object by ID (accession)*, among others.
+*List or search for study metadata objects,* `GET /api/as-user/studies` 
+and *Retrieve a single study object by ID (accession)* `GET /api/as-user/studies/{id}`, among others.
 
 ![Study SPoT](quick-start-images/study-spot.png)
 
