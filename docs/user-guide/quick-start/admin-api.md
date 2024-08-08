@@ -59,7 +59,7 @@ An access token is required to work with the API endpoints. Follow these steps t
 
 ### Authorize with the Token
 1. Once the token is generated, you need to authorize the use of the endpoints.
-2. Direct to the endpoint of interest depending on the action to run (retrieve data, export data, upload entities, etc.)
+2. Direct to the endpoint of interest depending on the action to run (retrieve data, stream data, upload entities, etc.)
 3. Click on **Authorize**, select the type of token (Access Token or Genestack API token),
    and navigate to the specific endpoint.
    ![Authorize access](quick-start-images/authorize-access.png)
