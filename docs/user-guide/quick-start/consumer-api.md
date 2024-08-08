@@ -35,6 +35,8 @@ the `studyUser` definition contains API endpoints specifically for retrieving st
 
 ## API token
 
+!!! warning "Depending on the ODM configuration some users can use their access tokens. If you follow this instruction in case of another configuration, you will get an authorisation error."
+
 An access token is required to work with the API endpoints. Follow these steps to create and use an API token:
 
 ### Generate a Token
