@@ -15,8 +15,14 @@ Follow these steps to get started on using the ODM’s API Endpoints :
 
 2. **Explore the API Documentation:**
     * This action will display the API Documentation window, where you can explore how the data model in ODM is structured.
-    * In this window, you will also see how the endpoints are grouped based on your user permissions.
+    * In this window, you will also see how the endpoints are grouped based on general use cases.
    ![API Main](quick-start-images/api-main-page.png)
+
+!!! question "Endpoint groups explanation"
+      * "Query/retrieve data" with the list of user endpoints - only these endpoints can be used by users who are not included in the group Curator, also these endpoints can be used by users from the Curator group also.
+      * "Import/curate data" with the list of curator endpoints - can be used only by users from the group Curator.
+      * "Data sources" - some endpoints can be used by curators only, others by curators and researchers.
+      * "Manage organisation" - this section is actual only for users with the permission to manage organization.
 
 ## Using Swagger for API Interaction
 
