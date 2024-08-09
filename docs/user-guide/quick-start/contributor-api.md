@@ -1,5 +1,13 @@
 # Data Contributors using the API
 
+!!! abstract "About this guide"
+    This guide provides a basic overview of API documentation in Swagger for non-technical users.
+    It is not intended as a detailed guide for daily API usage, but rather as an introduction to understanding the
+    documentation.
+
+    We are currently working on an advanced guide that covers all use cases to provide you with the best 
+    experience using the ODM REST API.
+
 In addition to the options available to Data Consumers (retrieving data), **Data Contributors** can
 also create studies and curate data (see the Figure below). The main functions available are Create
 a new study and Curate Data.
