@@ -1,5 +1,13 @@
 # Data consumers using the API
 
+!!! abstract "About this guide"
+    This guide provides a basic overview of API documentation in Swagger for non-technical users. 
+    It is not intended as a detailed guide for daily API usage, but rather as an introduction to understanding the 
+    documentation.
+      
+    We are currently working on an advanced guide that covers all use cases to provide you with the best 
+    experience using the ODM REST API.
+
 As a **Data Consumer** user type, you can explore and retrieve data from the ODM using the API endpoints.
 
 ## Access the API Endpoints for Data Consumer
