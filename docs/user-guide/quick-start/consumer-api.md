@@ -129,6 +129,7 @@ for details on how to obtain a study’s accession number).
 
 ![Access Study](quick-start-images/consumer-api-study-access.png)
 
+* Go to your Study menu on the User Interface.
 * Click **Copy accession** and paste the accession number into the "query" field. 
 For this example, use **GSF1102568**, and click **Execute**.
 
