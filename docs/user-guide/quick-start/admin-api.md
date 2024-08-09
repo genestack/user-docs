@@ -1,4 +1,13 @@
 # Administrators using API
+
+!!! abstract "About this guide"
+    This guide provides a basic overview of API documentation in Swagger for non-technical users.
+    It is not intended as a detailed guide for daily API usage, but rather as an introduction to understanding the
+    documentation.
+
+    We are currently working on an advanced guide that covers all use cases to provide you with the best 
+    experience using the ODM REST API.
+
 As an administrator, as well as all of the data contributor and consumer functions, you can add, update, 
 and delete users via the API.
 
