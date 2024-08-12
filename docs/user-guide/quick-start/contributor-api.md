@@ -47,7 +47,7 @@ the appropriate endpoints. Examples include retrieving sample metadata, updating
       * When you select an endpoint of interest and click on it, a new window will display the Swagger interface.
       * This interface allows you to explore available endpoints for querying and retrieving data.
 3. **Accessing Endpoints:**
-      * Use the top right button to select specific functions. For example, the `studyUser` definition contains API 
+      * Use the top right button to select specific functions. For example, the `sampleCurator` definition contains API 
    endpoints specifically for retrieving study metadata.
 
 ![Swagger](quick-start-images/swagger-groups.png)
