@@ -4,7 +4,7 @@ ARG --global --required HARBOR_DOCKER_REGISTRY
 ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
-    FROM python:3.12.4-alpine
+    FROM python:3.12.5-alpine
     DO github.com/genestack/earthly-libs+PYTHON_PREPARE
 
     COPY requirements.txt .
