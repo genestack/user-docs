@@ -50,7 +50,7 @@ the appropriate endpoints. Examples include retrieving sample metadata, updating
       * Use the top right button to select specific functions. For example, the `studyUser` definition contains API 
    endpoints specifically for retrieving study metadata.
 
-[Swagger](quick-start-images/swagger-groups.png)
+![Swagger](quick-start-images/swagger-groups.png)
 
 ## API token
 
@@ -89,12 +89,12 @@ To create a study, you need to perform two main steps:
 an entity (e.g., TSV file with sample attributes).
 2. **Link the corresponding entities together** (e.g., link sample data to the corresponding study).
 
-!!! warning "If you upload your file without linking it, it won’t be searchable and will not appear in the ODM interface."
+!!! warning "If you upload your file without linking it, it won’t appear in the ODM interface but will be accessible via API."
 
 The ODM Model includes two additional entities to describe experimental design: **Libraries and Preparations**. 
 Both Libraries and Preparations can be linked to Samples and can be utilized as sample grouping entities. 
 **DataFrames**, which contain experimental data such as gene expression and flow cytometry, can be linked to Samples, 
-Preparations, or Libraries.
+but only expression data can be linked to Preparations and Libraries.
 
 ![Data Model](quick-start-images/data-model-linking.png)
 
@@ -128,6 +128,8 @@ Review [the section above](../quick-start/contributor-api.md/#api-token) to get 
 click **Execute**.
 ![Execute](quick-start-images/post-study-execute.png)
 
+    * !!! warning "Template accession should be changed to the actual on skipped at all. In case it was skipped, default template will be applied."
+
 5. **Check the Response**: The response will show that the study import has started. An execution job ID will be 
 assigned to the import process, **1268** in this particular example. Use the ID to track the status of the import.
 ![Response](quick-start-images/post-study-response.png)
@@ -151,11 +153,9 @@ Upload the sample metadata TSV file that contains the list of experimental sampl
 1. **Access API Endpoints**
     * Navigate to the API documentation from the main dashboard by clicking on **"API Documentation"**. 
    This opens a new window displaying the data model and specific endpoints for each action.
-2. Find the **Job**  Endpoint Endpoint to upload samples. 
+2. Find the **Job** endpoint to upload samples. 
 3. **Import Sample Metadata**: Select the endpoint **Import a group of sample metadata objects from a 
-TSV file** (`/api/v1/jobs/import/samples`). Review the requirements for the file to be recognized and uploaded. 
-You will need to authorize the steps with your token (see section **API Token** above for more details on how 
-to authorize tokens).
+TSV file** (`/api/v1/jobs/import/samples`). Review the requirements for the file to be recognized and uploaded.
 ![API Main](quick-start-images/post-samples.png)
 
 4. **Enter Parameters**: Add the link to where the file is stored (e.g., AWS) and click **Execute**.
@@ -170,9 +170,9 @@ Use the ID to track the status of the import.
 to ensure the import process is successful and no errors are detected.
 ![Status](quick-start-images/post-samples-status.png)
 
-!!! tip "Notice that an accession number was automatically assigned to the newly uploaded samples. This accession number will be relevant to link entities later."
+!!! tip "Here you can see Sample Group Accession ID. This accession number will be relevant to link entities later."
 
-**Samples Accession ID**: `GSF1147034`
+**Sample Group Accession ID**: `GSF1147034`
 
 ### Uploading Experimental data: Expression in GCT format
 
@@ -191,8 +191,10 @@ For expression data, as well as any type of tabular experimental data not listed
 **Import any tabular data or GCT files** (`/api/v1/jobs/import/expression`) and click on **Try it out**
 ![Post expression](quick-start-images/post-expression.png)
 
-4. **Enter Parameters**: Indicate the required parameters: link to the storage space, template, data class, etc.
-![Param](quick-start-images/post-expression-param.png)
+4. **Enter Parameters**: Indicate the required parameters: link to the data file, template, data class, etc.
+Optionally you can specify a link to metadata.
+![Param](quick-start-images/post-expression-param.png) 
+    * !!! warning "For all `.tsv` files "numberOfFeatureAttributes" parameter is mandatory."
 
 5. **Check the Response**: The response will show that the experimental data, gene expression in this example, 
 import has started. An execution job ID will be assigned to the import process, **1271** in this particular example. 
@@ -207,13 +209,15 @@ Use the ID to track the status of the import
 
 ## Linking your entities
 
+!!! tip "For the ODM proper work the linkage should be done in the specified order: Samples to Studies and then Data to Samples."
+
 1. **Redirect to the Integration Curator Page**: To link entities (e.g., samples and data) with the study, 
 provide your token and authorize the execution of the selected endpoint. Identify the ID accession from 
 the uploaded study. Note the Genestack accession values shown in the response (e.g., for sample metadata, 
 the accession number is GSF1147034).
     For this particular example, these are the accession IDs:
     * **Study Accession ID: GSF1147033**
-    * **Samples Accession ID: GSF1147034**
+    * **Sample Group Accession ID: GSF1147034**
     * **Experimental Data Accession ID: GSF1147049**
 
 2. **Integration Endpoints**: Click on the integration endpoints, shown as integrationCurator. These endpoints will 
@@ -222,12 +226,12 @@ allow you to link data and metadata to samples and samples to studies.
 
 ### Link Samples and Study
 
-1. **Link Samples to Study**: Once the samples and study are uploaded to the ODM, the next step is to link the 
-samples to the study. Important: At least one parameter has to match with the Study file, e.g., **Sample Source ID**.
+1. **Link Samples to Study**: Once the samples and study are uploaded to the ODM, the next step is to link samples 
+to study and link data to samples.
 
 2. **Identify the GroupId** from the response obtained after uploading the samples (e.g., **GSF1147034**)
 
-3. Select the section **Sample Integration as a Curator** to link samples with a study. Select the endpoint 
+3. Select the section **Sample Integration as Curator** to link samples with a study. Select the endpoint 
 **Create a Link Between a Group of Sample Objects and a Study** 
 
     `/api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}`.
@@ -235,7 +239,7 @@ samples to the study. Important: At least one parameter has to match with the St
 
 4. **Enter Accession Details:** Add the required values (ID accession) for the study and samples, and click **Execute**.
    * **Study Accession ID: GSF1147033**
-   * **Samples Accession ID: GSF1147034**
+   * **Sample Group Accession ID: GSF1147034**
    ![Accession](quick-start-images/sample-integration-accession.png)
 
 5. **Check the Response**: A response will show that the link was successful.   
@@ -244,10 +248,10 @@ samples to the study. Important: At least one parameter has to match with the St
 6. **Confirm in ODM**: You can open the study in the ODM interface to see that the data is now linked.
    ![Confirmation](quick-start-images/sample-integration-confirm.png)
 
-### Link Experimental Data and Samples
+### Link Experimental Data and Sample Group
 
 1. Identify the **groupID** number for the Data. For this particular example, the Data accession number is **GSF1147049**
-    * **Samples Accession ID: GSF1147034**
+    * **Sample Group Accession ID: GSF1147034**
     * **Experimental Data Accession ID: GSF1147049**
 
 2. To link experimental data with samples (and the study), click on the "Expression integration as Curator" endpoints.
@@ -258,7 +262,7 @@ samples to the study. Important: At least one parameter has to match with the St
    `/api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}`
    ![Data Integration](quick-start-images/post-data-integration.png)
 
-3. **Enter Accession Details:** Add the relevant information, including the data accession number and samples accession
+3. **Enter Accession Details:** Add the relevant information, including the data accession number and sample group accession
 number, and click **Execute.**
    ![Accession](quick-start-images/post-data-accession.png)
 
