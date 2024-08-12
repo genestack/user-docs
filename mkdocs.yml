@@ -98,7 +98,7 @@ theme:
         toggle:
           icon: material/brightness-4
           name: Switch to light mode
-    logo: assets/logo.svg
+    logo: assets/ODM-mono-white.png
     favicon: assets/favicon.ico
     features:
         - announce.dismiss
