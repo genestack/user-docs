@@ -47,7 +47,6 @@ exporting data and metadata.
       * This interface allows you to explore available endpoints for querying and retrieving data.
 3. **Accessing Endpoints:** Use the top right button to select specific functions. For example, 
 the `studyUser` definition contains API endpoints specifically for retrieving study metadata.
-
 ![Swagger](quick-start-images/swagger-groups.png)
 
 ## API token
