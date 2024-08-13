@@ -25,7 +25,6 @@ Follow these steps to get started on using the ODM’s API Endpoints :
 2. **Explore the API Documentation**
       * This action will display the API Documentation window, where you can explore how the data model in ODM is structured.
       * In this window, you will also see how the endpoints are grouped based on general use cases.
-        ![API Main](quick-start-images/api-main-page.png)
 
 !!! question "Endpoint groups explanation"
       * "Query/retrieve data" with the list of user endpoints - only these endpoints can be used by users who are not included in the group Curator, also these endpoints can be used by users from the Curator group also.
@@ -82,119 +81,46 @@ An access token is required to work with the API endpoints. Follow these steps t
 4. Click on **Try it out** to activate it. The **Try it out** step is required for every single endpoint.
 ![Try it out](quick-start-images/try-it-out.png)
 
-## Use Case Example: Retrieve, update, and delete a group
+## Use Case Example: Find detached data in ODM
 
-!!! warning "In order to add, update, and delete Groups, "Manage groups" permission is required."
+**Endpoint**: GET `/api/v1/manage-data/detached-objects`
 
-Let's go through a practical example using the group "**Demo 2024**"
-![Use Case 1](quick-start-images/admin-api-uc-1.png)
+A data object is considered "detached" if it lacks any direct or indirect link to a root-level object, referred to 
+as a "study." A study itself is classified as detached if it has no links to lower-level objects.
 
-### Accessing Group Endpoints
+1. To locate orphaned data (detached objects), you can use the "Retrieve a list of detached objects" endpoint.
+    ![Use Case 17](quick-start-images/admin-api-uc-20.png)
 
-To manage groups, navigate to the **scimGroups** section.
-![Use Case 2](quick-start-images/admin-api-uc-2.png)
+2. You can apply filters to specify the type of data you wish to retrieve and limit the number of results displayed 
+(up to 2,000). If no filters are applied, the endpoint will return a list of all available detached objects. 
+In the example below, the results are limited to the first 5 available objects.
+   ![Use Case 17](quick-start-images/admin-api-uc-21.png)
 
-A new Swagger window will display with the endpoints to add, edit and delete groups.
-![Use Case 3](quick-start-images/admin-api-uc-3.png)
+3. The results display the first 5 detached objects in the system, including detailed information for each object, 
+such as the Genestack accession number, the type of detached object, the owner's email, and the date of creation. 
+The "cursor" at the end indicates the last object retrieved from the list, which allows you to continue the 
+search from where it left off.
+   ![Use Case 17](quick-start-images/admin-api-uc-22.png)
 
-### Retrieve a List of Groups
+4. You can apply filters to search for specific types of detached objects, 
+such as `STUDY`, `SAMPLE_GROUP`, `LIBRARY_GROUP`, `PREPARATION_GROUP`, `TABULAR_DATA`, `GENE_VARIANT`, and 
+`FLOW_CYTOMETRY`. For instance, you can filter by LIBRARY_GROUP to retrieve the first 10 detached library group objects.
+   ![Use Case 17](quick-start-images/admin-api-uc-23.png)
 
-Endpoint: `/api/v1/scim/Groups`
+Identifying detached objects can help you recognize data that may no longer be relevant in the system. 
+You can use the Genestack accession number to delete data that is no longer required. For more information on 
+deleting data, refer to the next section "Delete Data in ODM".
 
-1. Click on **Retrieve a list of available groups**.
-![Use Case 4](quick-start-images/admin-api-uc-4.png)
+## Use Case Example: Delete data in ODM
 
-2. Without filters, this endpoint will return a list of all available groups, including accession IDs, members,
-and creation/modification dates
-![Use Case 5](quick-start-images/admin-api-uc-5.png)
+**Endpoint:** DELETE `/api/v1/manage-data/data`
+!!! warning "The deletion of data is an irreversible action and it is only available for users with "Manage organization" and "Access all data" permissions."
 
-3. To filter for a specific group, use the `filter` field. For example, to find the group "**Demo 2024**", use the 
-filter `displayName eq "Demo 2024"`. 
-!!! note "Note the name is case-sensitive."
-![Use Case 6](quick-start-images/admin-api-uc-6.png)
-
-4. The response will display the details for the group of interest. For the specific example, the ID for the 
-“Demo 2024” Group is `GSG000035`.
-![Use Case 7](quick-start-images/admin-api-uc-7.png)
-
-### Retrieve a Group by ID
-
-**Endpoint:** `/api/v1/scim/Groups/{id}`
-
-1. To get information about a specific group using **Group ID**, use the "Retrieve a group by ID" endpoint.
-![Use Case 8](quick-start-images/admin-api-uc-8.png)
-
-2. Enter the group ID, such as `GSG000035` for "**Demo 2024**".
-![Use Case 9](quick-start-images/admin-api-uc-9.png)
-
-3. The response will include details about the group called. In contrast to the previous endpoint /api/v1/scim/Groups, 
-the endpoint `/api/v1/scim/Groups/{id}` will display details of the creation and modification of the group indicated 
-by the assigned ID. The information can be downloaded in a JSON file format.
-![Use Case 10](quick-start-images/admin-api-uc-10.png)
-
-### Update a group
-
-To modify a group's structure by adding or removing users:
-
-Use the **Endpoint:** `/api/v1/scim/Groups/{id}`
-
-#### Add a new user
-
-1. You will need the ID of the User you want to add and the ID of the Group where the user will be added.
-2. Retrieve the User ID by selecting the appropriate endpoint. 
-3. For this example, the details were obtained from the previous steps. For the Group name “**Demo 2024**”, 
-and the User name “**New User 2024**”, the details are as follows:
-    * **ID Group**: `GSG000035`
-    * **User ID**: `63`
-4. Add the parameters for **Group ID** and the request body to include the User ID.
-![Use Case 11](quick-start-images/admin-api-uc-11.png) 
-
-5. The response (code 200\) will confirm the successful operation. You can verify the addition of the new member, 
-**New User 2024**, by retrieving the group by ID or searching for the group in the ODM interface.
-![Use Case 11a](quick-start-images/admin-api-uc-11a.png) 
-
-#### Remove a user
-
-Similarly, use the same endpoint, `/api/v1/scim/Groups/{id},` to remove a user from the group.
-
-For this example:
-
-* **Group ID**: `GSG000035`
-* **User ID**: `63`
-![Use Case 12](quick-start-images/admin-api-uc-12.png)
-
-* The response (code 200\) will confirm the successful operation. You can verify the removal of the member 
-**New User 2024** by retrieving the group by ID or searching for the group in the ODM interface.
-![Use Case 13](quick-start-images/admin-api-uc-13.png) 
-
-### Delete a Group
-
-**Endpoint:** `/api/v1/scim/Groups/{id}`
-!!! warning "The deletion of a group is an irreversible action and it is only available for administrators."
-
-1. To delete a group, use the "Delete a group" endpoint
-![Use Case 14](quick-start-images/admin-api-uc-14.png)
-
-2. Enter the group ID of the group you intend to delete, such as `GSG000035` for "Demo 2024".
-![Use Case 15](quick-start-images/admin-api-uc-15.png)
-
-3. The response will confirm the deletion. You can verify the deletion by checking the Groups section 
-in the ODM interface; the "Demo 2024" group should no longer be listed.
-![Use Case 16](quick-start-images/admin-api-uc-16.png)
-
-The outcome 204 indicates that the operation to remove the group **Demo 2024** (ID GSG000035) has been successful. 
-You can corroborate the action by logging into ODM and searching for the existing groups.
-
-### Delete data in ODM
-
-**Endpoint:** `/api/v1/manage-data/data`
-!!! warning "The deletion of data is an irreversible action and it is only available for administrators."
-
-1. To delete a group, use the "Delete objects from ODM" endpoint
+1. To delete a group, use the `/api/v1/manage-data/data` endpoint
 ![Use Case 17](quick-start-images/admin-api-uc-17.png)
 
-2. Enter the group ID of the data you intend to delete. For this example, we will delete the study GSF1147012, 
-named “Demo version 2”
+2. Enter the data object or data group accession of the data you intend to delete. 
+For this example, we will delete the study GSF1147012, named “Demo version 2”.
 ![Use Case 18](quick-start-images/admin-api-uc-18.png) 
 
 3. The response will confirm the deletion. You can verify the deletion by checking the Groups section in the 
