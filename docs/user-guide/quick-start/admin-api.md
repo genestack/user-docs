@@ -85,6 +85,8 @@ An access token is required to work with the API endpoints. Follow these steps t
 
 **Endpoint**: GET `/api/v1/manage-data/detached-objects`
 
+!!! Warning "Manage organisation" and "Access all data" permissions are required for working with detached objects."
+
 A data object is considered "detached" if it lacks any direct or indirect link to a root-level object, referred to 
 as a "study." A study itself is classified as detached if it has no links to lower-level objects.
 
@@ -116,14 +118,15 @@ deleting data, refer to the next section "Delete Data in ODM".
 **Endpoint:** DELETE `/api/v1/manage-data/data`
 !!! warning "The deletion of data is an irreversible action and it is only available for users with "Manage organization" and "Access all data" permissions."
 
-1. To delete a group, use the `/api/v1/manage-data/data` endpoint
+1. To delete a data object ora  data group, use the `/api/v1/manage-data/data` endpoint
 ![Use Case 17](quick-start-images/admin-api-uc-17.png)
 
-2. Enter the data object or data group accession of the data you intend to delete. 
+2. Enter the data object or the data group accession of the data you intend to delete. 
 For this example, we will delete the study GSF1147012, named “Demo version 2”.
 ![Use Case 18](quick-start-images/admin-api-uc-18.png) 
 
-3. The response will confirm the deletion. You can verify the deletion by checking the Groups section in the 
+3. The response indicates that the deletion of the following files and all linked data has been started. 
+You can verify the deletion by checking the Groups section in the 
 ODM interface; the "Demo version 2" group should no longer be listed.
 ![Use Case 19](quick-start-images/admin-api-uc-19.png)  
 
