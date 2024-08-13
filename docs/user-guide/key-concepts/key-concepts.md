@@ -125,15 +125,6 @@ auditing purposes and for tracking who accessed or modified data.
 * **Efficiency**: They enable seamless and efficient interaction with the ODM API, as they eliminate the need 
 for repetitive manual authentication, streamlining automated workflows and integrations.
 
-!!! tip "For detailed instructions on how to create and use an API token, please refer to the following documents"
-
-    <div class="grid cards" markdown>
-
-    - __[How to Create an Authorization Token](#){:target="_blank"}__
-    - __[API Tokens: Authentication](#){:target="_blank"}__
-
-    </div>
-
 By understanding and utilizing API tokens, you can enhance the security, control, and efficiency of your 
 interactions with the Open Data Manager API.
 
