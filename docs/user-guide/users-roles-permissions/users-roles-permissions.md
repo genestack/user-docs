@@ -31,7 +31,7 @@ The diagram below illustrates the three primary roles in ODM and their associate
 The structured approach to roles and permissions helps facilitate seamless collaboration 
 and efficient data management within the ODM platform.
 
-!!! tip "For detailed description for Users and Permissions, please refer to the [Permissions and User Groups](#){:target="_blank"} article"
+!!! tip "For detailed description for Users and Permissions, please refer to the [Permissions and User Groups](../doc-odm-user-guide/setup.md/#users-and-permissions){:target="_blank"} article"
 
 By defining these roles and permissions clearly, ODM ensures that users have the appropriate access 
 and capabilities needed to perform their tasks effectively while maintaining data security and integrity.
