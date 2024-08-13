@@ -16,9 +16,8 @@ nav:
       - Key Concepts: user-guide/key-concepts/key-concepts.md
       - Users, Roles, Permissions: user-guide/users-roles-permissions/users-roles-permissions.md
       - Guides:
-            - User Interface Guide:
+            - User Interface Advanced Guide:
                 - user-guide/index.md
-            - API Guide: user-guide/doc-odm-user-guide/quickstart_user.md
       - About Genestack: https://genestack.com/
     - Guide:
         - user-guide/index.md
