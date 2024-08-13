@@ -30,7 +30,7 @@ Follow these steps to get started on using the ODM’s API Endpoints :
       * "Query/retrieve data" with the list of user endpoints - only these endpoints can be used by users who are not included in the group Curator, also these endpoints can be used by users from the Curator group also.
       * "Import/curate data" with the list of curator endpoints - can be used only by users from the group Curator.
       * "Data sources" - some endpoints can be used by curators only, others by curators and researchers.
-      * "Manage organization" - this section is actual only for users with the permission to manage organization.
+      * "Manage organisation" - this section is actual only for users with the permission to manage organisation.
 
 ## Using Swagger for API Interaction
 
