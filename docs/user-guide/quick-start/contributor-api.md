@@ -102,10 +102,14 @@ but only expression data can be linked to Preparations and Libraries.
 
 Let's reproduce the most frequent use case by creating an entire study using the Swagger interface. 
 Swagger provides a user-friendly interface for interacting with APIs. For this example, 
-we will use the file [GSE60871](https://drive.google.com/drive/folders/1CDBIK4oOeXtbTDsi5P5jqvPkI2xH66ET?usp=drive\_link), which contains the main entities: study, samples, and experimental 
+we will use the file [GSE60871](https://bio-test-data.s3.us-west-2.amazonaws.com/GSE60871/), which contains the main entities: study, samples, and experimental 
 data (in this case gene expression):
 
-![Folder](quick-start-images/folder-with-data.png)
+Data files for this use case:
+
+* [GSE60871_Study metadata](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_study.tsv) (TSV file)
+* [GSE60871_Sample metadata](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_samples.tsv) (TSV file)
+* [GSE60871_Experimental data](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_expression.gct) (gene expression in GCT format)
 
 ### API Token
 
