@@ -85,7 +85,7 @@ An access token is required to work with the API endpoints. Follow these steps t
 
 **Endpoint**: GET `/api/v1/manage-data/detached-objects`
 
-!!! Warning "Manage organisation" and "Access all data" permissions are required for working with detached objects."
+!!! Warning ""Manage organisation" and "Access all data" permissions are required for working with detached objects."
 
 A data object is considered "detached" if it lacks any direct or indirect link to a root-level object, referred to 
 as a "study." A study itself is classified as detached if it has no links to lower-level objects.
