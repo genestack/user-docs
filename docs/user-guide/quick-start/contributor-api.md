@@ -30,7 +30,7 @@ Follow these steps to get started on using the ODM’s API Endpoints :
       * "Query/retrieve data" with the list of user endpoints - only these endpoints can be used by users who are not included in the group Curator, also these endpoints can be used by users from the Curator group also.
       * "Import/curate data" with the list of curator endpoints - can be used only by users from the group Curator.
       * "Data sources" - some endpoints can be used by curators only, others by curators and researchers.
-      * "Manage organisation" - this section is actual only for users with the permission to manage organization.
+      * "Manage organization" - this section is actual only for users with the permission to manage organization.
 
 ## Using Swagger for API Interaction
 
@@ -88,13 +88,15 @@ To create a study, you need to perform two main steps:
 1. **Upload your data files**, such as study metadata, sample metadata, and experimental data, corresponding to 
 an entity (e.g., TSV file with sample attributes).
 2. **Link the corresponding entities together** (e.g., link sample data to the corresponding study).
-
-!!! warning "If you upload your file without linking it, it won’t appear in the ODM interface but will be accessible via API."
-
-The ODM Model includes two additional entities to describe experimental design: **Libraries and Preparations**. 
+    * !!! warning "If you upload your file without linking it, it won’t appear in the ODM interface but will be accessible via API."
+3. The ODM Model includes two additional entities to describe experimental design: **Libraries and Preparations**. 
 Both Libraries and Preparations can be linked to Samples and can be utilized as sample grouping entities. 
 **DataFrames**, which contain experimental data such as gene expression and flow cytometry, can be linked to Samples, 
 but only expression data can be linked to Preparations and Libraries.
+4. Additionally, the ODM provides the capability to import and link a **cross-reference (xref) mapping file**. 
+This allows you to look up genes for a given set of transcripts and vice versa. Mappings are associated with 
+expression data files, but if desired all mapping files can be queried to return all mappings. 
+Currently all mapping file operations are carried out via API. For more information please check [Cross-reference Mapping page](../doc-odm-user-guide/xref-mapping.md).
 
 ![Data Model](quick-start-images/data-model-linking.png)
 
@@ -132,7 +134,7 @@ Review [the section above](../quick-start/contributor-api.md/#api-token) to get 
 click **Execute**.
 ![Execute](quick-start-images/post-study-execute.png)
 
-    * !!! warning "Template accession should be changed to the actual on skipped at all. In case it was skipped, default template will be applied."
+    * !!! warning "Template accession should be changed to the actual or skipped at all. In case it was skipped, default template will be applied."
 
 5. **Check the Response**: The response will show that the study import has started. An execution job ID will be 
 assigned to the import process, **1268** in this particular example. Use the ID to track the status of the import.
@@ -164,6 +166,8 @@ TSV file** (`/api/v1/jobs/import/samples`). Review the requirements for the file
 
 4. **Enter Parameters**: Add the link to where the file is stored (e.g., AWS) and click **Execute**.
 ![Param](quick-start-images/post-samples-param.png)
+
+    * !!! warning "Template accession should be changed to the actual."
 
 5. **Check the Response**: The response will show that the sample metadata import has started. 
 An execution job ID will be assigned to the import process, **1269** in this particular example. 
