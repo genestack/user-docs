@@ -10,5 +10,9 @@
 # Python packages
 **/requirements*.txt
 
+# OCI-images
+**/Earthfile
+**/Dockerfile
+
 # GitHub Actions
 .github/workflows/*
