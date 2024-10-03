@@ -5,9 +5,11 @@ As an Admin, you have the ability to create and deactivate users, change users' 
 permissions within the Open Data Manager (ODM). To add, update, and delete groups **Manage groups** permission is required.
 This guide will help you navigate these features efficiently.
 
+!!! warning "Some text here"
+    Warning message
+
 ![Data Model](quick-start-images/1DataModel.png)
 *The Data Administrator user has the permissions granted to Data Consumer and Data Contributor, as well as Managing Organization permissions to add, edit, and delete Users and Groups in ODM*
-
 
 
 ## Accessing Your Profile and Permissions
@@ -189,5 +191,3 @@ Note that **deleting groups is a permanent action**.
 
 
 By following these steps, you can effectively manage users, permissions, and groups as an Admin using the Interface of the Open Data Manager.
-
-
