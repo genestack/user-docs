@@ -218,7 +218,7 @@ To remove a member from a group, follow these steps:
 * To delete a group, navigate to the group to want to delete
 * Click on the three dots on the right and select the option to delete. 
 
-!!! note "Important Note"
+!!! note "Warning"
     Deleting groups is a **permanent** action
 
 <figure markdown="span">
