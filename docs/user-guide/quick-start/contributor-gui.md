@@ -194,7 +194,7 @@ On the main screen of the study, click on the **Data** tab to import and attach 
 
 <figure markdown="span">  
 ![Upload Data](quick-start-images/study-data-tab.png)
-<figcaption>Click on the Data tab to access options for uploading experimental data and attaching additional files</figcaption>
+<figcaption>Click on the <strong>Data</strong> tab to access options for uploading experimental data and attaching additional files</figcaption>
 </figure>
 
 * On the Data tab, click on the **Add data** button. This will open a new window where you can select 
@@ -212,7 +212,7 @@ If the type of data is not listed, select the **Other** option.
 
 <figure markdown="span">
 ![Upload Data](quick-start-images/select-data-class.png)
-<figcaption>Import experimental data linked to your study by clicking on the <strong>Add data</strong> button, then selecting <strong>Data class</strong> to choose the type of data to import. If the type of data is not listed, select the Other option</figcaption>
+<figcaption>Import experimental data linked to your study by clicking on the <strong>Add data</strong> button, then selecting <strong>Data class</strong> to choose the type of data to import. If the type of data is not listed, select the <strong>Other</strong> option</figcaption>
 </figure>
 
 * Click **Next.** This will open a window where you can select a file containing experimental data from your 
@@ -297,13 +297,20 @@ more time on data analysis. Follow these steps to integrate and curate your data
 * Click on the **Samples** tab from the main study screen to explore previously uploaded data. 
 * To start the curation process, click on **Edit** in the bottom left corner of your window.
 
+<figure markdown="span">
 ![Sample Edit](quick-start-images/samples-edit.png)
+<figcaption>To curate data, navigate to the <strong>Samples</strong> tab (where the samples metadata is imported) and click on the Edit button at the bottom of the screen</figcaption>
+</figure>
 
 ### Identify any data
 
 * Identify any data that is not valid according to the applied template. 
 Invalid data will be highlighted in **red** under the yellow template columns.
-  ![Select invalid value](quick-start-images/invalid-data.png)
+
+<figure markdown="span">
+![Select invalid value](quick-start-images/invalid-data.png)
+<figcaption>Invalid data that does not follow the template rules will be highlighted in <strong>red</strong>, while valid data will be shown in <strong>green</strong></figcaption>
+</figure>
 
 * Validation is crucial for ensuring data quality, facilitating data harmonization, and streamlining data management.
 
@@ -312,18 +319,27 @@ Invalid data will be highlighted in **red** under the yellow template columns.
 * Click on the **Invalid Metadata** text at the top right of your table to see an explanation of which 
 attributes are not valid and why.
 
+<figure markdown="span">
 ![Select invalid value](quick-start-images/invalid-data-summary.png)
+<figcaption>Click on <strong>Invalid Metadata</strong> to explore the Validation summary. The summary explains the invalid data, such as preferred labels for dictionaries or empty fields</figcaption>
+</figure>
 
 ### Correct Invalid Data
 
 * Add or correct any invalid data by typing the details. Suggested values and labels will be based 
 on the selected ontologies for specific features.
 
+<figure markdown="span">
 ![Select valid value](quick-start-images/data-validation1.png)
+<figcaption>Type the corrected values. Preferred labels based on dictionaries will be suggested, e.g., the preferred label for <strong>human</strong> is <strong>Homo sapiens</strong></figcaption>
+</figure>
 
 * Once the data is corrected, the new and validated values will be shown in **green**.
 
+<figure markdown="span">
 ![Valid value](quick-start-images/valid-data.png)
+<figcaption>Validated values will be highlighted in <strong>green</strong></figcaption>
+</figure>
 
 ### Bulk replace Values
 * Replace all values in a column by clicking on **Bulk replace** and typing the new values.
@@ -332,7 +348,10 @@ Preferred values are suggested based on the template ontologies.
 based on the dictionaries selected for the template, e.g., for the Age unit, suggested values will be shown. 
 Click on **replace** to apply the changes.
 
+<figure markdown="span">
 ![Bulk replace](quick-start-images/bulk-replace-validation.png)
+<figcaption>Add missing values in bulk by clicking on the empty field and typing the new value. Suggested values will appear based on the dictionaries selected for the template, e.g., for the <strong>Age unit</strong>, suggested values will be shown. Click on <strong>replace</strong> to apply the changes</figcaption>
+</figure>
 
 * If you are correcting invalid values rather than adding missing data, you can also use this function 
 to correct data in groups.
@@ -343,7 +362,10 @@ to correct data in groups.
     to “brain ventricle”. The change will apply to all 5 cells where the values are found. 
     The process is visualised on the screenshot below.
 
+<figure markdown="span">
 ![Bulk replace](quick-start-images/bulk-replace-correct.png)
+<figcaption>Correct values in bulk by selecting the new name (suggested values from the dictionary will display). Select and apply changes to replace values in the selected cells, e.g., change <strong>cell type: brain ventricle</strong> to <strong>brain ventricle</strong>. The change will apply to all cells where the values are found</figcaption>
+</figure>
 
 ### Copy or Reassign Values
 
@@ -351,14 +373,20 @@ to correct data in groups.
 * Select the column where you want to copy the existing values and click on **Copy values**. 
 If the selected column contains data, you will receive a notification to confirm you want to replace the existing data.
 
+<figure markdown="span">
 ![Copy Data](quick-start-images/copy-values.png)
+<figcaption>Copy values from one column to another by clicking on <strong>Copy values to...</strong> then select the new column to copy the values to and click on the <strong>Copy values</strong> button. If the column already contains data, a notification will appear</figcaption>
+</figure>
 
 ### Save Changes
 
 Once you are done with the changes, click on **Publish** at the bottom left of the page to save the current changes. 
 Customize the name of the changes you have made in the current version.
 
+<figure markdown="span">
 ![Publish Curated Data](quick-start-images/publish-curated.png)
+<figcaption>After making edits, save the changes by clicking <strong>Publish</strong> (on the bottom left). Customize the name of the changes made in the current version</figcaption>
+</figure>
 
 By following these steps, you can efficiently create, manage, and curate studies as a Data Contributor 
 using the interface of the Open Data Manager.
