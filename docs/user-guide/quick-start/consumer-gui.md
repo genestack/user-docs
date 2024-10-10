@@ -156,4 +156,4 @@ Export all the information contained in the study. Note that some studies may ha
 </figure>
 
 By following these steps, you can efficiently browse, visualize, and export data as a Data Consumer using 
-the Interface of the **Open Data Manager**.
+the Interface of the Open Data Manager.
