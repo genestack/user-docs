@@ -192,7 +192,7 @@ To remove a member from a group, follow these steps:
 <figcaption>Remove members. Select the group, such as <strong>Demo ODM version 2</strong>, from which you want to remove members. Click on the three dots next to the member's name and select <strong>Remove member</strong>. Remember, every group requires at least one group administrator. If removing an admin, ensure another administrator is assigned beforehand</figcaption>
 </figure>
 
-
+d
 
 
 
