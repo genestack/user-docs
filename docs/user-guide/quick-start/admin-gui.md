@@ -27,7 +27,7 @@ This guide will help you navigate these features efficiently.
 As an administrator, you can add, edit and delete groups, as well as deactivate users. 
 
 !!! info "Important"
-    In order to be able to remove groups, the user should have the **Manage organization** permission
+    In order to be able to add, edit and deactivate users, the user should have the **Manage organization** permission
 
 ### Add New Users:
 Follow these steps to add and edit users, as well as groups
@@ -130,7 +130,7 @@ To create a new group manually, follow these steps:
    * Click on the three-line menu button at the top left of the dashboard to access the **Groups** section.
 
     !!! info "Important"
-        In order to be able to remove groups, the user should have the **Manage organization** permission.
+        In order to be able to create, edit and delete groups, the user should have the **Manage organization** permission.
 
     <figure markdown="span">
     ![Groups](quick-start-images/13Groups.png)
@@ -192,62 +192,25 @@ To remove a member from a group, follow these steps:
 <figcaption>Remove members. Select the group, such as <strong>Demo ODM version 2</strong>, from which you want to remove members. Click on the three dots next to the member's name and select <strong>Remove member</strong>. Remember, every group requires at least one group administrator. If removing an admin, ensure another administrator is assigned beforehand</figcaption>
 </figure>
 
-d
+##### Edit Group members:
 
+* You can edit the roles of group members by clicking on their role descriptions. You can change members to administrators or vice versa. Note that each group must have at least one administrator.
 
-
-## Edit and Update Permissions
-
-* Click the icon to be redirected to the **Users and Permissions** section.
-
-![Go to Dash](quick-start-images/go-to-dashboard.png)
-
-* Click **Users and Permissions**.
-
-![Users and Permissions](quick-start-images/user-permissions-tab.png)
-
-* Hover over sections such as Manage Groups, Set up Templates, Access all data, 
-and Configure Facets to see a brief description of each permission.
-![Select Permissions](quick-start-images/select-user-permission.png)
-
-* Assign specific permissions or all permissions to users.
-* Change passwords or deactivate users as needed.
-
-## Add, Update, and Delete Groups
-
-* To add, update, and delete groups **Manage groups** permission is required.
-* Click on Groups to explore existing groups and their members.
-
-![Create New Group](quick-start-images/add-new-group.png)
-
-### Create new Groups
-
-* Click on **New Group** to create a new group.
-
-![New Group Button](quick-start-images/new-group-button.png)
-
-* Choose a name for the group and click **Create**.
-
-![New Group Create Button](quick-start-images/create-group-button.png)
-
-### Edit and Add Members to the Groups
-
-* Add new members to your group by selecting from the list of users or using the search bar to find specific members. 
-* Click Add member to add the selected user to the group.
-
-![Create New Member](quick-start-images/add-new-member.png)
+<figure markdown="span">
+![EditGroups](quick-start-images/19EditMembers.png){width="500"}
+<figcaption>Edit group members. You can change the roles for the members to either <strong>group members</strong> or <strong>group administrators</strong>. Keep in mind that each group requires at least one <strong>admin</strong></figcaption>
+</figure>
 
 ### Delete Groups
-!!! warning "To add, update, and delete groups "Manage groups" permission is required."
 
-* To delete a group, navigate to three dots icon :material-dots-horizontal: and select the option to delete. 
-Note that deleting groups is a permanent action.
+* To delete a group, navigate to the group to want to delete
+* Click on the three dots on the right and select the option to delete.
 
-![Delete Group](quick-start-images/delete-group.png)
+!!! warning "Delete groups is a permanent action"
 
-* Remove members that are no longer active in the group by selecting them and confirming their removal.
+<figure markdown="span">
+![DeleteGroup](quick-start-images/20DeleteGroup.png){width=600}
+<figcaption>Delete groups. Navigate to the group you intend to delete, e.g. <strong>Group Demo version 3</strong>. Click on the three dots on the right side and click on <strong>Delete group</strong>. A notification will appear to confirm the deletion of the group. The group will be deleted permanently</figcaption>
+</figure>
 
-![Remove Member](quick-start-images/remove-member.png)
-
-By following these steps, you can effectively manage users, permissions, 
-and groups as an Admin using the GUI of the Open Data Manager.
+By following these steps, you can effectively manage users, permissions, and groups as an Admin using the Interface of the Open Data Manager.
