@@ -142,4 +142,4 @@ ODM interface; the "Demo version 2" group should no longer be listed.
 ![Use Case 19](quick-start-images/admin-api-uc-19.png)  
 <figcaption>The outcome 202 indicates that the operation to remove the study <strong>Demo version 2</strong> (ID GSF1147012) has been successful. You can corroborate the action by logging into ODM and searching for the specific study.</figcaption>
 
-By following these steps, Data Administrators can efficiently manage users and groups within the **ODM** using the API. 
+By following these steps, Data Administrators can efficiently manage users and groups within the **ODM** using the API endpoints. 

@@ -196,7 +196,7 @@ An execution job ID will be assigned to the import process, **1269** in this par
 Use the ID to track the status of the import.
 
     ![Response](quick-start-images/post-samples-response.png)
-    <figcaption>The response confirms the upload of the study has started and and ID for the Job has been assigned (1269 for this example)</figcaption>
+    <figcaption>The response confirms the upload of the study has started and an ID for the Job has been assigned (1269 for this example)</figcaption>
 
 6. **Track the Import Status**: You can track the status of the import with the endpoint `/api/v1/jobs/{jobExecId}/output` 
 to ensure the import process is successful and no errors are detected.
