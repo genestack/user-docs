@@ -158,5 +158,5 @@ The downloaded file with the study metadata will look like this:
 ![Response2](quick-start-images/consumer-api-study-responce-2.png)
 <figcaption>Example of the downloaded JSON file with the study. The file contains the study details including accession number, study type, etc.</figcaption>
 
-By following these steps, you can efficiently interact with the API endpoints via the Swagger interface,
+By following these steps, you can efficiently interact with the **API endpoints** via the Swagger interface,
 tailored to your role and permissions.

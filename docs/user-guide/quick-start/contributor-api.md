@@ -328,5 +328,5 @@ linked to the study.
    ![Confirmation](quick-start-images/post-data-confirm.png)
    <figcaption>View of the study with sample metadata and experimental data (gene expression) linked</figcaption>
 
-By following these steps, you can efficiently interact with the API endpoints via the Swagger interface,
+By following these steps, you can efficiently interact with the **API endpoints** via the Swagger interface,
 tailored to your role and permissions.
