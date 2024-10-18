@@ -218,7 +218,7 @@ To share a study, you must be the study owner (the user who imported it to ODM).
 ![41Share.png](doc-odm-user-guide/images/41Share.png){width=600}
 <figcaption>To share a study, open the study of interest and click on the top bar menu. Select Share. A window will open with the available groups to share the study with</figcaption>
 
-**Only owners can share the study**. If a user is a member of the curator group, the user can still access the study and curate data, however, the study cannot be shared with other groups.
+**Only owners can share the study**. If a user is a member of the curator group, the user can still access the study and curate data, however, the study cannot be shared with other groups
 
 ![42ShareLim.png](doc-odm-user-guide/images/42ShareLim.png)
 <figcaption>Owners can share studies only with groups they are members of</figcaption>
