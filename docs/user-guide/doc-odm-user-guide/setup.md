@@ -203,7 +203,7 @@ Curators can explore, edit, and curate data. However, some limitations are set b
 ![40Curator.png](doc-odm-user-guide/images/40Curator.png)
 <figcaption>Curators with Manage Group permissions can edit the Curator groups. Users can add and remove users, edit permissions and even delete groups</figcaption>
 
-* **Curators without Manage Groups permissions**: Curators without the permission to manage groups, can still explore and edit data. However, adding or removing users within groups (including the Curator Group) is unavailable.
+* **Curators without Manage Groups permissions**: Curators without the permission to manage groups, can still explore and edit data. However, adding or removing users within groups (including the Curator Group) is unavailable
 
 ![31CuratorLim.png](doc-odm-user-guide/images/31CuratorLim.png)
 <figcaption>Member of the curator groups but without Manage Groups permissions can still have access to data and curation options, however, users cannot add or remove members</figcaption>
