@@ -47,4 +47,4 @@ In addition, a unique accession number is automatically generated for each study
 * Click **Publish** to save the changes. You can customize the name for the version you are updating by clicking the **Publish** button at the bottom of the screen. A new window will pop up, allowing you to customize the version name. 
 
 ![PublishChanges.png](doc-odm-user-guide/images/PublishChanges.png)
-<figcaption>Customize the version of the changes made to the tabs</figcaption>
+<figcaption>Customize the version of the changes made to the Tabs</figcaption>
