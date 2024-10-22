@@ -219,6 +219,6 @@ Once the files are selected, the upload will begin and the files will be attache
 * **File Upload Errors**: If the file contains issues preventing ODM from processing it correctly, an error message will provide details about the problem. These errors are often related to file format inconsistencies. For more assistance, refer to the [Supported File Formats](supported-formats.md) section or contact Genestack’s customer care team. 
 * Failed file uploads will remain visible for seven days before automatic deletion.
 
-Following these guidelines will help ensure a smooth and error-free data import process. Pay careful attention to the data class, linking strategy, and file format requirements to avoid common issues
+Following these guidelines will help ensure a smooth and error-free data import process. Pay careful attention to the data class, linking strategy, and file format requirements to avoid common issues.
 
 If you encounter any problems or need additional support, don’t hesitate to consult the relevant sections of the User Guide or reach out to Genestack’s team for assistance.  
