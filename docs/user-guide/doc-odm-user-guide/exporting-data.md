@@ -1,19 +1,33 @@
 # Exporting Data
 
-To export data from a study either click the three buttons icon next to the study title from the Study Browser or click the study name in the Metadata editor and select **Export data**.
+In addition to browsing, exploring, and visualizing studies, you can also export full datasets. 
 
-![image](doc-odm-user-guide/images/export-data-menu.png)
+1. In your study window click on the **Export Button**
+* The **Export** button can be accessed from the right side of the dashboard or by clicking on the study title, which will reveal a dropdown menu with the option to export data.
 
-You can also click the Export button near the top right of any Metadata editor tab.
+![1ExportData.png](doc-odm-user-guide/images/1ExportData.png)
+<figcaption>Export the data by clicking on the <strong>Export</strong> option at the top right, or by clicking on the menu at the top of the page</figcaption>
 
-![image](doc-odm-user-guide/images/export_button.png)
+* Clicking the **Export** button will open a new window where all the files associated with the study will be compressed.
+* Once the files are compressed, the download button will be active and the files can be downloaded to your local computer.
+* The link is pre-authenticated so anyone with the link will be able to download the study and associated data.
+* Previous export links that have been generated will be listed at the bottom of the screen. These are archive versions and will reflect the data at the time the link was generated, not necessarily the latest version.
 
-You will be taken to a page which generates an export link - this will download a compressed copy of all of the metadata and data associated with a study (including samples and omics metadata, and all versions of data files if more than one version has been imported). The archive will also contain a ReadMe file describing all the exported files. The link is pre-authenticated so anyone with the link will be able to download the study and associated data.
+![2CompressingData.png](doc-odm-user-guide/images/2CompressingData.png)
+<figcaption>Files will be compressed, and once ready, the folder can be downloaded to the user’s local computer.</figcaption>
 
-![image](doc-odm-user-guide/images/export-data-link.png)
+## Understanding the Downloaded Contents
 
-Previous export links that have been generated will be listed at the bottom of the screen. These are archive versions and will reflect the data at the time the link was generated, not necessarily the latest version.
+* The downloaded folder will contain all the linked and attached files related to the specific study.
 
-It is possible to export just one dataset of interest. For doing it navigate to a tab with analysis of interest and click on the “Download data” button. The data file with the corresponding metadata file and the description will be compressed into an archive and available via the link.
+* Additionally, a text file named **file_descriptions** (in a plain text format) will be included, summarizing the information of the downloaded files.
 
-![image](doc-odm-user-guide/images/add_data-button.png)
+![3Contents.png](doc-odm-user-guide/images/3Contents.png)
+<figcaption>Downloaded files. The downloaded folder contains all the data and metadata associated with the study. In addition, a plain text file called <strong>file_descriptions</strong> is automatically created and contains detailed information about the data that has been downloaded</figcaption>
+
+## Exporting a Specific Dataset
+* You can export a specific dataset of interest. To do this, navigate to the tab containing the desired analysis and click the **Download file** button. 
+* The dataset, along with its corresponding metadata and description, will be compressed into an archive and made available via a download link.
+
+![4OtherDataSets.png](doc-odm-user-guide/images/4OtherDataSets.png)
+<figcaption>Download specific Datasets by selecting them and click on <strong>Download file</strong></figcaption>
