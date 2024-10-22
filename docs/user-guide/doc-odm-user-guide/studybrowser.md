@@ -108,5 +108,5 @@ You can reorder facets by dragging the icon next to the facet name or delete the
 * Click the question mark next to the search bar to open the search help section for more details about advanced search functionality.
 
 ![15Help.png](doc-odm-user-guide/images/15Help.png)
-<figcaption>Navigation and help. Click on the question mark symbol <strong>(?)</strong> to open the search bar help section including operators, ontologies, and wildcards. Click on the <strong>Tasks</strong> option to visualize the status of any task you are running. Click on <strong>View all</strong> to visualize the last tasks you have run and their status (running, done, failed, etc.)</figcaption>
+<figcaption>Navigation and help. Click on the question mark symbol <strong>(?)</strong> to open the search bar help section including operators, ontologies, and wildcards. Click on the <strong>Tasks</strong> option to visualize the status of any task you are running. Click on <strong>View all</strong> to visualize the last tasks you have run and their status (running, done, failed, etc.).</figcaption>
 
