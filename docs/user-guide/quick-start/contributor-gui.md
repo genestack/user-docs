@@ -28,8 +28,8 @@ The diagram below outlines the flow of data in a biological study, highlighting 
 
 To create a new study in the Open Data Manager, follow these steps:
 
-1. **Click on "Create new study"**: Start by selecting the option to create a New Study on the main dashboard 
-(a), or from the menu in the top left corner, then click on **“Create New Study”** (b).
+1. **Click on "Create new study"**: Start by selecting the option to **Create new study** on the main dashboard 
+(a), or from the menu in the top left corner, then click on **Create New Study** (b).
 
     <figure markdown="span">
     ![Create Study](quick-start-images/create-study-button.png)
@@ -55,7 +55,7 @@ You can create your own template, and there is no limit on the number of templat
 
 ## Explore and Edit Study Details
 
-Once you click on “Create,” a new study will be automatically created, and you will be redirected to it. 
+Once you click on **Create**, a new study will be automatically created, and you will be redirected to it. 
 Here, you can explore the various tabs and features that are available.
 
 <figure markdown="span">
@@ -147,6 +147,9 @@ at the bottom of the screen.
     <figcaption>Data versioning allows you to track the changes performed on the metadata. You can restore a previous version or go back to the current version</figcaption>
     </figure>
 
+!!! note "Metadata Versioning"
+    Learn more about metadata versioning and definitions, by exploring the section [Metadata Versioning](../doc-odm-user-guide/versioning.md)
+
 ## Upload Libraries and Preparations
 
 ### Add Libraries and Preparations
@@ -161,7 +164,7 @@ To do so, click on the tab **+More** to display both options:
 * To add libraries, click on **Libraries** and select the tabular file to import from your local computer. 
 * To add preparations, click on **Preparations** and select the tabular file to import from your local computer.
   
-Both types of files are linked to the samples metadata file (from the Samples tab) via the **SampleSource ID** column. 
+Both types of files are linked to the samples metadata file (from the Samples tab) via the **Sample Source ID** column. 
 Ensure this column is included in all files to maintain the link between sample metadata, libraries, and preparations.
 
 <figure markdown="span">
@@ -170,15 +173,15 @@ Ensure this column is included in all files to maintain the link between sample 
 </figure>
 
 ### Link Metadata Files
-* Ensure that the SampleSource ID column is included in all files to maintain the link between samples metadata, 
+* Ensure that the **Sample Source ID** column is included in all files to maintain the link between samples metadata, 
 libraries, and preparations.
-* Additionally, include the Library ID column for libraries and the Preparation ID column for preparations 
+* Additionally, include the **Library ID** column for libraries and the **Preparation ID** column for preparations 
 to ensure proper recognition and linking of the data.
 * Once the data is recognized and linked via these columns, the new metadata tabs will display the recently added data.
 
 <figure markdown="span">
 ![Link Libraries](quick-start-images/lib-prep-linkage.png)
-<figcaption>Additional experimental metadata such as libraries and preparations can be added and linked. Ensure the appropriate columns, besides <strong>SampleSource ID</strong>, are included to link the data. For libraries, add the <strong>Library ID</strong> column, and for preparations add the <strong>Preparation ID</strong> column. The data will be shown on the main page of the study</figcaption>
+<figcaption>Additional experimental metadata such as libraries and preparations can be added and linked. Ensure the appropriate columns, besides <strong>Sample Source ID</strong>, are included to link the data. For libraries, add the <strong>Library ID</strong> column, and for preparations add the <strong>Preparation ID</strong> column. The data will be shown on the main page of the study</figcaption>
 </figure>
 
 ## Upload experimental Data and attach files
@@ -186,8 +189,10 @@ to ensure proper recognition and linking of the data.
 In addition to the samples, libraries, and preparations metadata described above, you can upload experimental 
 data such as bulk transcriptomics, lipidomics, single-cell data, and gene variants that are linked to your study
 via sample metadata and libraries/preparations. You can also supplement your study by attaching related research 
-materials like PDFs, XLSX, DOCX, PPTX files, images, and more. Please note, the contents of these attached files 
-won't be indexed or made searchable.
+materials like PDFs, XLSX, DOCX, PPTX files, images, and more. 
+
+!!! note
+    The contents of the attached files won't be indexed or made searchable.
 
 * To upload experimental data or attach files, navigate to the **Data** Tab: 
 On the main screen of the study, click on the **Data** tab to import and attach data.
@@ -226,7 +231,7 @@ local computer or a cloud-based storage system (such as AWS)
 ### Linking Data
 
 * **Default Linking**: By default, the data is linked with the Samples file using the 
-**SampleSource ID** column.
+**Sample Source ID** column.
 To ensure proper linking, make sure your file includes a column called **Sample Source ID** with the same 
 IDs used in the Sample Metadata table uploaded previously (see section "Upload Samples Metadata"). 
 * **Custom Linking**: Alternatively you can select a different column to link the experimental data, such as 
@@ -235,17 +240,17 @@ IDs used in the Sample Metadata table uploaded previously (see section "Upload S
 !!! warning "Only template attribute can be used as a custom linking attribute."
 
 This provides flexibility in how data is associated, but it is recommended to 
-include the SampleSourceID column for consistent referencing and linking samples metadata files with additional 
+include the Sample SourceID column for consistent referencing and linking samples metadata files with additional 
 data types like libraries and preparations.
 
 Data can be linked to Library or Preparation metadata by using **Library ID** and **Preparation ID**.
 
 <figure markdown="span">
 ![Link Data](quick-start-images/linking-data.png)
-<figcaption>Select an experimental data file. The data must include a column to be linked to the sample metadata file (typically the <strong>SampleSource ID</strong>)</figcaption>
+<figcaption>Select an experimental data file. The data must include a column to be linked to the sample metadata file (typically the <strong>Sample Source ID</strong>)</figcaption>
 </figure>
 
-The selected files will be scanned to find an appropriate link (typically the **SampleSource ID** column) and 
+The selected files will be scanned to find an appropriate link (typically the **Sample Source ID** column) and 
 the uploading will automatically begin.
 
 <figure markdown="span">
@@ -273,7 +278,7 @@ To attach a file:
 </figure>
 
 The files will be uploaded (upload time will depend on the size of the files). 
-Your files will be displayed in the Data tab under "Attached Files."
+Your files will be displayed in the Data tab under **Attached Files**.
 
 Once the files are selected, the upload will begin and the files will be attached. Available data will be 
 displayed in the Data tab by type: Experimental (e.g., bulk transcriptomics) and Attached files 
@@ -309,7 +314,7 @@ Invalid data will be highlighted in **red** under the yellow template columns.
 
 <figure markdown="span">
 ![Select invalid value](quick-start-images/invalid-data.png)
-<figcaption>Invalid data that does not follow the template rules will be highlighted in <strong>red</strong>, while valid data will be shown in <strong>green</strong></figcaption>
+<figcaption>Invalid data that does not follow the template rules will be highlighted in red. Data will be highlighted in green only if the column is linked to a dictionary, and the value is recognized as valid by matching the dictionary. In all other cases, valid data will not be highlighted in green</figcaption>
 </figure>
 
 * Validation is crucial for ensuring data quality, facilitating data harmonization, and streamlining data management.
@@ -354,13 +359,12 @@ Click on **replace** to apply the changes.
 </figure>
 
 * If you are correcting invalid values rather than adding missing data, you can also use this function 
-to correct data in groups.
+to correct data in groups. The process is visualised on the screenshot below.
 
 !!! example "Correct values in bulk"
     Correct values in bulk by selecting the new name (suggested values from the dictionary will display). 
     Select and apply changes to replace values in the selected cells, e.g., change “cell type: brain ventricle” 
-    to “brain ventricle”. The change will apply to all 5 cells where the values are found. 
-    The process is visualised on the screenshot below.
+    to “brain ventricle”. The change will apply to all 5 cells where the values are found.
 
 <figure markdown="span">
 ![Bulk replace](quick-start-images/bulk-replace-correct.png)
