@@ -4,17 +4,10 @@ This guide will help you navigate the main features of the Open Data Manager as 
 
 ## Main Page
 
-When you open ODM you will be taken to the start page or “Dashboard” as shown below:
+When you open ODM you will be taken to the start page or **Dashboard**. Here you can access important links to the Quick Start guide, the User Guides, and documentation for the API, and share your feedback.
 
 <figure markdown="span">
 ![Main Page](quick-start-images/main-page.png)
-<figcaption>View of the ODM main dashboard</figcaption>
-</figure>
-
-Here you can access important links to the Quick Start guide, the User Guides, and documentation for the API, and share your feedback.
-
-<figure markdown="span">
-![Tools](quick-start-images/tools.png)
 <figcaption>The main dashboard contains access to useful information, including Quick Start examples, User Guides, and API endpoints documentation</figcaption>
 </figure>
 
@@ -22,7 +15,7 @@ Here you can access important links to the Quick Start guide, the User Guides, a
 
 As a Data Consumer, you can browse and explore various studies. 
 
-To search and browse studies, click on the **“Browse studies”** button on the dashboard/start page.
+To search and browse studies, click on the **Browse studies** button on the dashboard/start page.
 
 <figure markdown="span">
 ![Browse Studies](quick-start-images/browse-studies.png)
@@ -34,7 +27,8 @@ To search and browse studies, click on the **“Browse studies”** button on th
 Apply filters to search for specific studies. For example, select filters using the criteria in the panel on the left, 
 such as Data Class, Organism, etc.
 
-!!! info "The exact filters you see may vary depending on the data contained within your ODM. Administrators can lock which facets are available for all users."
+!!! info 
+    The exact filters you see may vary depending on the data contained within your ODM. Administrators can lock which facets are available for all users.
 
 <figure markdown="span">
   ![Filters](quick-start-images/filters.png){ width="700" }
@@ -42,7 +36,8 @@ such as Data Class, Organism, etc.
 </figure>
 
 The system's search functionality is designed to enhance user experience and efficiency by allowing users 
-to look up specific keywords effortlessly. By entering terms such as **"bowel"**, users can quickly access a range 
+to look up specific keywords effortlessly. 
+By entering terms such as **"bowel"**, users can quickly access a range 
 of relevant studies. 
 
 Additionally, the search bar is equipped with an intuitive autocomplete feature, 
