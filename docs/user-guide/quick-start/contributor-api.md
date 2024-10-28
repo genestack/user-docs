@@ -135,7 +135,7 @@ Review [the section above](../quick-start/contributor-api.md/#api-token) to get 
     ![Job end](quick-start-images/job-group.png)
     <figcaption>Select the **Job** endpoint to upload a study.</figcaption>
 
-3. Click on **Import study metadata from a TSV file** (`/api/v1/jobs/import/study`) and click on **Try it out**.
+3. Click on **Import study metadata from a TSV file** (`POST /api/v1/jobs/import/study`) and click on **Try it out**.
 
     ![Post study](quick-start-images/post-study.png)
     <figcaption>Click **Import study metadata from a TSV file** to upload the study metadata file and activate it by clicking <strong>Try it out</strong></figcaption>
@@ -155,10 +155,10 @@ assigned to the import process, **1268** in this particular example. Use the ID 
     <figcaption>The response confirms the study upload has started and the ID for the Job has been assigned (**1268** for this example)</figcaption>
 
 6. **Track the Import Status**: You can track the status of the import with the endpoint  
-`/api/v1/jobs/{jobExecId}/output` to corroborate the import process is successful and no errors were detected.
+`GET /api/v1/jobs/{jobExecId}/output` to corroborate the import process is successful and no errors were detected.
 
     ![Status](quick-start-images/post-study-status.png)
-    <figcaption>Use the endpoint ==/api/v1/jobs/{jobExecId}/output== to review the status of the job import. An accession number will be assigned to the study if the import was successful. Accession number: **GSF1147033**</figcaption>
+    <figcaption>Use the endpoint ==GET /api/v1/jobs/{jobExecId}/output== to review the status of the job import. An accession number will be assigned to the study if the import was successful. Accession number: **GSF1147033**</figcaption>
 
 7. **Explore the Study in the ODM**: You can explore the ODM dashboard to see your study. Notice that no samples 
 or data are associated with it yet.
@@ -175,11 +175,11 @@ or data are associated with it yet.
 Upload the sample metadata TSV file that contains the list of experimental samples and corresponding attributes.
 
 1. **Access API Endpoints**
-    * Navigate to the API documentation from the main dashboard by clicking on **"API Documentation"**. 
+    * Navigate to the API documentation from the main dashboard by clicking on **API Documentation**. 
    This opens a new window displaying the data model and specific endpoints for each action.
 2. Find the **Job** endpoint to upload samples. 
 3. **Import Sample Metadata**: Select the endpoint **Import a group of sample metadata objects from a 
-TSV file** (`/api/v1/jobs/import/samples`). Review the requirements for the file to be recognized and uploaded.
+TSV file** (`POST /api/v1/jobs/import/samples`). Review the requirements for the file to be recognized and uploaded.
 
     ![API Main](quick-start-images/post-samples.png)
     <figcaption>Click Import a group of sample metadata objects from a TSV file to upload a sample metadata file and activate it by clicking <strong>Try it out</strong></figcaption>
@@ -196,13 +196,13 @@ An execution job ID will be assigned to the import process, **1269** in this par
 Use the ID to track the status of the import.
 
     ![Response](quick-start-images/post-samples-response.png)
-    <figcaption>The response confirms the upload of the study has started and an ID for the Job has been assigned (1269 for this example)</figcaption>
+    <figcaption>The response confirms the upload of the sample metadata has started and an ID for the Job has been assigned (1269 for this example)</figcaption>
 
-6. **Track the Import Status**: You can track the status of the import with the endpoint `/api/v1/jobs/{jobExecId}/output` 
+6. **Track the Import Status**: You can track the status of the import with the endpoint `GET /api/v1/jobs/{jobExecId}/output` 
 to ensure the import process is successful and no errors are detected.
 
     ![Status](quick-start-images/post-samples-status.png){width=600}
-    <figcaption>Use the endpoint ==/api/v1/jobs/{jobExecId}/output== to review the status of the job import. An accession number will be assigned to the study if the import is successful</figcaption>
+    <figcaption>Use the endpoint ==GET /api/v1/jobs/{jobExecId}/output== to review the status of the job import. An accession number will be assigned to the sample metadata if the import is successful</figcaption>
 
 !!! tip "Here you can see Sample Group Accession ID. This accession number will be relevant to link entities later."
 
@@ -214,7 +214,7 @@ Upload the experimental data file that is part of your research (part of the sam
 metadata previously uploaded).
 
 1. **Access API Endpoints**
-    * Navigate to the API documentation from the main dashboard by clicking on "**API Documentation**."
+    * Navigate to the API documentation from the main dashboard by clicking on **API Documentation**.
    This opens a new window displaying the data model and specific endpoints for each action.
 2. **Select the Job Endpoint**
     * Locate and select the appropriate endpoint for the action you want to perform.
@@ -222,7 +222,7 @@ metadata previously uploaded).
 The **Job** endpoint displays a list of options to upload data. You can select the endpoint based on the 
 type of files to upload including experimental data such as flow cytometry, gene variant, etc.
 For expression data, as well as any type of tabular experimental data not listed, select the endpoint 
-**Import any tabular data or GCT files** (`/api/v1/jobs/import/expression`) and click on **Try it out**
+**Import any tabular data or GCT files** (`POST /api/v1/jobs/import/expression`) and click on **Try it out**
 
     ![Post expression](quick-start-images/post-expression.png)
     <figcaption>Click **Import any tabular data from a TSV file or GCT files** to import expression experimental data and activate it by clicking **Try it out**</figcaption>
@@ -232,19 +232,21 @@ Optionally you can specify a link to metadata.
    
     ![Param](quick-start-images/post-expression-param.png)
     <figcaption>Enter the link for the experimental data file and details, then click Execute</figcaption>
+   
+    !!! warning "For all `.tsv` files "numberOfFeatureAttributes" parameter is mandatory."
 
 5. **Check the Response**: The response will show that the experimental data, gene expression in this example, 
 import has started. An execution job ID will be assigned to the import process, **1271** in this particular example. 
 Use the ID to track the status of the import
 
     ![Response](quick-start-images/post-expression-response.png)
-    <figcaption>The response confirms the upload of the study has started and an ID for the Job has been assigned (1271 for this example)</figcaption>
+    <figcaption>The response confirms the upload of the experimental data has started and an ID for the Job has been assigned (1271 for this example)</figcaption>
 
 6. **Track the Import Status**: You can track the status of the import with the endpoint  
-`/api/v1/jobs/{jobExecId}/output` to corroborate the import process is successful and no errors were detected
+`GET /api/v1/jobs/{jobExecId}/output` to corroborate the import process is successful and no errors were detected
 
     ![Status](quick-start-images/post-expression-status.png)
-    <figcaption>Use the endpoint ==/api/v1/jobs/{jobExecId}/output== to review the status of the job import. An accession number will be assigned to the study if the import is successful</figcaption>
+    <figcaption>Use the endpoint ==GET /api/v1/jobs/{jobExecId}/output== to review the status of the job import. An accession number will be assigned to the experimental data if the import is successful</figcaption>
 
 !!! tip "Notice that an accession number was automatically assigned to the newly uploaded experimental data. This accession number will be relevant to link entities later."
 
@@ -278,10 +280,10 @@ to study and link data to samples.
 3. Select the section **Sample Integration as Curator** to link samples with a study. Select the endpoint 
 **Create a Link Between a Group of Sample Objects and a Study** 
 
-    `/api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}`.
+    `POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}`.
   
     ![Sample Integration](quick-start-images/post-sample-integration.png)
-    <figcaption>Select the Sample integration as Curator section to find the endpoint to link sample metadata with study ==/api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}==</figcaption>
+    <figcaption>Select the Sample integration as Curator section to find the endpoint to link sample metadata with study ==POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}==</figcaption>
 
 4. **Enter Accession Details:** Add the required values (ID accession) for the study and samples, and click **Execute**.
     * **Study Accession ID: GSF1147033**
@@ -308,15 +310,15 @@ to study and link data to samples.
    previously uploaded) with a group of samples.
     2. Click on the endpoint  to **Create a link between a group of expression objects and a group of 
    samples objects**: 
-   `/api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}`
+   `POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}`
   
     ![Data Integration](quick-start-images/post-data-integration.png)
-    <figcaption>Click on Expression integration as Curator to find the endpoints to link experimental data with samples (and the study). Select the endpoint ==/api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}==</figcaption>
+    <figcaption>Click on Expression integration as Curator to find the endpoints to link experimental data with samples (and the study). Select the endpoint ==POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}==</figcaption>
 
 3. **Enter Accession Details:** Add the relevant information, including the data accession number and sample group accession
-number, and click **Execute.**
-   ![Accession](quick-start-images/post-data-accession.png)
-   <figcaption>Add the details of the accession numbers corresponding to the experimental data (<strong>GSF1147049</strong>) and the sample group object (<strong>GSF1147034</strong>). By default, the linking attribute will be the column <strong>Sample source ID</strong>, but you can customize it </figcaption>
+number, and click **Execute.** By default, the linking attribute is the column **Sample Source ID**, but it can be customized.
+   ![link-features.png](quick-start-images/link-features.png)
+   <figcaption>Add the details of the accession numbers corresponding to the experimental data (<strong>GSF1147049</strong>) and the sample group object (<strong>GSF1147034</strong>). By default, the linking attribute will be the column <strong>Sample Source ID</strong>, but you can customize it, for example <strong>Patient_ID</strong> </figcaption>
 
 4. **Check the Response**: The response will show that the link has been created between the group of samples and 
 the experimental data

@@ -92,7 +92,7 @@ and navigate to the specific endpoint.
 ## Use Case Example for Data Consumer: Retrieve study metadata
 
 For this particular example, the API endpoints to retrieve study metadata are displayed and tested. 
-Follow the instructions to retrieve only study metadata, endpoint `/api/v1/as-user/studies`:
+Follow the instructions to retrieve only study metadata, endpoint `GET /api/v1/as-user/studies`:
 
 ### Search for the Endpoint
 
@@ -118,14 +118,14 @@ and *Retrieve a single study object by ID (accession)* `GET /api/as-user/studies
 ### Select the endpoint of interest
 
 * For this particular example, where the objective is to retrieve study metadata from a particular study, 
-select the endpoint **List or search for study metadata objects** (`GET /api/v1/as-user/studies/{id}`).
+select the endpoint **List or search for study metadata objects** (`GET /api/v1/as-user/studies`).
 * When clicking on an endpoint, a dropdown menu will show insights regarding the endpoint, 
 including definitions and requirements.
 * You can select specific filters and features to include for the endpoint
 **List or search for study metadata objects.**
 
-![Study SPoT endpoints](quick-start-images/study-spot-2.png)
-<figcaption>Select the endpoint {==/api/v1/as-user/studies==} to retrieve study metadata only from a specific study</figcaption>
+![endpoint_updated.png](quick-start-images/endpoint_updated.png)
+<figcaption>Select the endpoint {==/api/v1/as-user/studies==} to retrieve study metadata objects by searching/listing study metadata</figcaption> 
 
 ### Add the Accession Number
 

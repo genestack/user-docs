@@ -88,7 +88,7 @@ An access token is required to work with the API endpoints. Follow these steps t
 
 ## Use Case Example: Find detached data in ODM
 
-**Endpoint**: GET `/api/v1/manage-data/detached-objects`
+**Endpoint**: `GET /api/v1/manage-data/detached-objects`
 
 !!! Warning ""Manage organisation" and "Access all data" permissions are required for working with detached objects."
 
@@ -120,16 +120,16 @@ such as `STUDY`, `SAMPLE_GROUP`, `LIBRARY_GROUP`, `PREPARATION_GROUP`, `TABULAR_
 
 Identifying detached objects can help you recognize data that may no longer be relevant in the system. 
 You can use the Genestack accession number to delete data that is no longer required. For more information on 
-deleting data, refer to the next section "Delete Data in ODM".
+deleting data, refer to the next section **Delete Data in ODM**.
 
 ## Use Case Example: Delete data in ODM
 
 **Endpoint:** DELETE `/api/v1/manage-data/data`
 !!! warning "The deletion of data is an irreversible action and it is only available for users with "Manage organization" and "Access all data" permissions."
 
-1. To delete a data object or a data group, use the `/api/v1/manage-data/data` endpoint
+1. To delete a data object or a data group, use the `GET /api/v1/manage-data/data` endpoint
     ![Use Case 17](quick-start-images/admin-api-uc-17.png)
-    <figcaption>Use the endpoint {==/api/v1/manage-data/data==} to delete data from  ODM</figcaption>
+    <figcaption>Use the endpoint {==GET /api/v1/manage-data/data==} to delete data from  ODM</figcaption>
 
 2. Enter the data object or the data group accession of the data you intend to delete. 
 For this example, we will delete the study GSF1147012, named “Demo version 2”.
@@ -140,6 +140,6 @@ For this example, we will delete the study GSF1147012, named “Demo version 2�
 You can verify the deletion by checking the Groups section in the 
 ODM interface; the "Demo version 2" group should no longer be listed.
 ![Use Case 19](quick-start-images/admin-api-uc-19.png)  
-<figcaption>The outcome 202 indicates that the operation to remove the study <strong>Demo version 2</strong> (ID GSF1147012) has been successful. You can corroborate the action by logging into ODM and searching for the specific study.</figcaption>
+<figcaption>The 202 response indicates that the request to remove the study <strong>Demo version 2</strong> (ID GSF1147012) has been successfully initiated. You can confirm the completion of this operation by logging into ODM and searching for the specific study.</figcaption>
 
 By following these steps, Data Administrators can efficiently manage users and groups within the **ODM** using the API endpoints. 
