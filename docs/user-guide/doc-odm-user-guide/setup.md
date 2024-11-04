@@ -71,6 +71,35 @@ The new window will display a list of available groups in your instance. Click o
 
 You can also add new members to groups or create new groups. See the instructions below for more details.
 
+## Important Limitations on Group Management
+
+To manage groups (create, edit, or delete), you must have the **Manage Groups** permission. Refer to the Available Permissions section for more information about permissions.
+
+The Groups page in ODM provides a list of all groups to which a user belongs. However, user capabilities are restricted based on their assigned permissions. Below are the key limitations depending on user permissions:
+
+1. **Access to Groups:**
+    * **With Manage Groups Permission:** Users can access all groups within the system, irrespective of their membership status.
+    * **Without Manage Groups Permission:** Users can only access groups of which they are members.
+     ![25Limitations.png](doc-odm-user-guide/images/25Limitations.png)
+   <figcaption>View of the Groups page with (A) and without manage permission (B). Without the Manage Groups permission, users can only view and access groups of which they are members</figcaption>
+
+2. **Creating a New Group:** Any user can create a new group through the user interface or via API endpoints.
+   ![26NewGroup.png](doc-odm-user-guide/images/26NewGroup.png)
+   <figcaption>Any user can create a new group via Interface (GUI) or via API endpoints, regardless of their permissions</figcaption>
+
+3. **Adding or Removing Members from a Group:**
+    * **With Manage Groups Permission:** Users can add or remove members from any group.
+    * **Without Manage Groups Permission:** Users can add or remove members and edit roles only within groups they belong to.
+     ![27Users.png](doc-odm-user-guide/images/27Users.png)
+   <figcaption>User can add or remove users from groups. Users without Manage groups permission can only remove and add members of groups which they belong to</figcaption>
+
+4. **Deleting a Group:**
+    * **With Manage Groups Permission:** Any user can delete any group through the interface.
+    * **Without Manage Groups Permission:** Users can only delete groups they are a part of.
+
+![28Delete.png](doc-odm-user-guide/images/28Delete.png)
+<figcaption>Users can delete groups. Users without Manage Groups permission can only delete groups to which they belong.</figcaption>
+
 ### Creating a Group
 
 A new group can be created in ODM in two main ways:
@@ -101,7 +130,7 @@ Following these instructions will allow you to create a group using the GUI. The
 
 #### **Creating Groups Using SCIM API** (Automated Access Management)
 
-In ODM, you can create, update, and delete groups via API endpoints. To manage groups through the API, you must have the **Manage Groups** permission.
+In ODM, you can create, update, and delete groups using API endpoints. While you typically need the **Manage Groups** permission to manage groups you’re not a member of, you can still create or manage your own groups without this permission. For example, a Public user can create, update, and delete groups using endpoints from the scimGroup section. Permissions and access follow the same rules as those in the GUI.
 
 Follow these steps to create a group via API endpoints.
 
@@ -152,34 +181,6 @@ To manage groups in the interface, navigate to the section Groups (instructions 
 ![19Members.png](doc-odm-user-guide/images/19Members.png)
 <figcaption>Edit group members. You can change the roles for the members to either <strong>group member</strong> or <strong>group administrator</strong>. Keep in mind that each group requires at least one admin. You can also remove a member by clicking on the three dots next to the username</figcaption>
 
-## Important Limitations on Group Management
-
-To manage groups (create, edit, or delete), you must have the **Manage Groups** permission. Refer to the Available Permissions section for more information about permissions.
-
-The Groups page in ODM provides a list of all groups to which a user belongs. However, user capabilities are restricted based on their assigned permissions. Below are the key limitations depending on user permissions:
-
-1. **Access to Groups:**
-    * **With Manage Groups Permission:** Users can access all groups within the system, irrespective of their membership status.
-    * **Without Manage Groups Permission:** Users can only access groups of which they are members.
-   ![25Limitations.png](doc-odm-user-guide/images/25Limitations.png)
-   <figcaption>View of the Groups page with (A) and without manage permission (B). Without the Manage Groups permission, users can only view and access groups of which they are members</figcaption>
-
-2. **Creating a New Group:** Any user can create a new group through the user interface or via API endpoints.
-   ![26NewGroup.png](doc-odm-user-guide/images/26NewGroup.png)
-   <figcaption>Any user can create a new group via Interface (GUI) or via API endpoints, regardless of their permissions</figcaption>
-
-3. **Adding or Removing Members from a Group:**
-    * **With Manage Groups Permission:** Users can add or remove members from any group.
-    * **Without Manage Groups Permission:** Users can add or remove members and edit roles only within groups they belong to.
-   ![27Users.png](doc-odm-user-guide/images/27Users.png)
-   <figcaption>User can add or remove users from groups. Users without Manage groups permission can only remove and add members of groups which they belong to</figcaption>
-
-4. **Deleting a Group:**
-    * **With Manage Groups Permission:** Any user can delete any group through the interface.  
-    * **Without Manage Groups Permission:** Users can only delete groups they are a part of.
-
-![28Delete.png](doc-odm-user-guide/images/28Delete.png)
-<figcaption>Users can delete groups. Users without Manage Groups permission can only delete groups to which they belong.</figcaption>
 
 
 ## Curator Group
@@ -223,7 +224,6 @@ To share a study, you must be the study owner (the user who imported it to ODM).
 ![42ShareLim.png](doc-odm-user-guide/images/42ShareLim.png)
 <figcaption>Owners can share studies only with groups they are members of</figcaption>
 
-!!! info
-    If you are not an owner, you can browse the owner and the groups it is shared within **More info** and request the owner to share it. If the owner is unavailable, a new owner can be assigned using a script by an administrator.
+
 
 In ODM, user permissions are a fundamental part of managing access and actions within the system. By carefully assigning these permissions, organizations can control who has access to different functionalities and data. The correct configuration of these permissions not only facilitates smooth workflow but also enhances data security. Understanding the roles, capabilities, and permissions is essential for effective data management and collaboration.
