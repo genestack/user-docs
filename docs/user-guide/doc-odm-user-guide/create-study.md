@@ -7,7 +7,7 @@ To create a new study in the Open Data Manager, follow these steps:
 
 2. **Assign a Name**: Give your study a descriptive name to identify it easily, e.g. “**New Study 2024**”.
 3. **Select the Template**: Choose the template you want to use for your study. Templates define the metadata structure and validation rules for your study. You can create your own template, and there is no limit on the number of templates you can use.
-    1. **Understanding Templates**: For more information about what a template is and how it works, refer to the [Key Concepts section](https://odm.demo.genestack.com/user-docs/user-guide/key-concepts/key-concepts/#group). This section provides definitions and details about templates, including how to create and edit them. Explore the [Templates section](https://odm.demo.genestack.com/user-docs/user-guide/doc-odm-user-guide/template-editor/) if you require more information or need detailed guidance.
+    1. **Understanding Templates**: For more information about what a template is and how it works, refer to the [Key Concepts section](../key-concepts/key-concepts.md)). This section provides definitions and details about templates, including how to create and edit them. Explore the [Templates section](https://odm.demo.genestack.com/user-docs/user-guide/doc-odm-user-guide/template-editor/) if you require more information or need detailed guidance.
 
 ![44NewStudy.png](doc-odm-user-guide/images/44NewStudy.png)
 <figcaption>Steps to assign a name for a new study, and select a template to create a new study</figcaption>
