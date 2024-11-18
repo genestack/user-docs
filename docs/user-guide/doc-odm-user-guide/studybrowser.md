@@ -64,23 +64,23 @@ At the top of the window is the main search bar. You can search by the name of a
 * The facets beneath the search bar allow you to filter search results based on sample data (metadata) fields.
 
 ![10DataClass.png](doc-odm-user-guide/images/10DataClass.png)
-<figcaption>Filter data. Use the filters to narrow the search of studies. For example, select <strong>Data class</strong> and then tick the option <strong>Expression</strong> to find exclusively studies containing gene expression as experimental data (GCT format files)</figcaption>
+<figcaption>Filter data. Use the filters to narrow the search of studies. For example, select <strong>Data Class</strong> and then tick the option <strong>Expression</strong> to find exclusively studies containing gene expression as experimental data (GCT format files)</figcaption>
 
 ## Bookmark studies
 
 * You can save preferred studies for easy access. To the left of a study title is a three-dot link. Click this to open a menu that allows you to share the study (if you are the owner) and save it to bookmarks.
 
 ![11Bookmarks.png](doc-odm-user-guide/images/11Bookmarks.png)
-<figcaption>Bookmark studies. Save preferred studies to access them easily. To do so, click on the three-dot link next to the name of the study and click on <strong>Save to bookmark</strong></figcaption>
+<figcaption>Bookmark studies. Save preferred studies to access them easily. To do so, click on the three-dot link next to the name of the study and click on <strong>Save to bookmarks</strong></figcaption>
 
-* Bookmarked studies are accessible by clicking on the Bookmarks icon. This section allows you to see your studies, those accessible to you (e.g., public studies), or those shared with your user account/group.
+* Bookmarked studies are accessible by clicking on the Bookmarks icon. This section displays your studies and those shared within the groups you belong to, providing access to all studies available to you. Note that studies are not shared with individual users but are instead shared within groups.
 
 ![12Bookmarked2.png](doc-odm-user-guide/images/12Bookmarked2.png)
 <figcaption>Bookmarked studies. Bookmarked studies are accessible by clicking on the button <strong>Saved</strong>. A new window will appear where you can access the saved studies or remove the bookmark if needed</figcaption>
 
 ## Configuring the filter panel
 
-Users with permission (Admins) can customize which metadata fields are available as search facets.
+Users with permission **Configure facets** can customize which metadata fields are available as search facets.
 
 To do this:
 
@@ -101,7 +101,7 @@ You can reorder facets by dragging the icon next to the facet name or delete the
 * Use the shortcut dock in the top left-hand corner of any window to return to the main dashboard.
 * Click on Quick Guide in the top right of your window for reference guides and examples on how to use ODM.
 
-![14Navigation.png](doc-odm-user-guide/images/14Navigation.png)
+![14NavigationUpdated.png](doc-odm-user-guide/images/14NavigationUpdated.png)
 <figcaption>Navigation and help. Click on the left panel to return to the main dashboard. Click on the button Quick Guide on the right to explore Quick User Guides</figcaption>
 
 * On the right side of the board, you can access account details and check the status of any tasks you are running. 
