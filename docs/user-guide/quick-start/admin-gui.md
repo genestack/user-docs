@@ -1,10 +1,21 @@
 # Administrator in the User Interface
 
-If you have **Manage organization** permission, your user account will be marked with **Admin** label. 
-As an Admin, you have the ability to create and deactivate users, change users' passwords, and manage user 
-permissions within the Open Data Manager (ODM). 
+If you have the **Manage organization** permission, your user account will be marked with an **Admin** label. As an Admin, you can create and deactivate users, reset passwords, and manage user permissions within the Open Data Manager (ODM).
 
-To add, update, and delete groups **Manage groups** permission is required.
+To work with groups, the **Manage groups** permission is required. This permission allows users to:
+
+   * View all user groups and their members on the instance via the API and in the **Groups** section in the GUI.
+   * Create new user groups.
+   * Delete any user group, even if they are not a member or admin of that group.
+   * Add or remove members from any group, even without group membership or admin status.
+
+Users **without the Manage groups** permission retain their standard capabilities:
+
+   * They can view and edit only the groups they are members of or own.
+   * They can create new groups and manage them, including editing and deleting their own groups, as they are considered the owners.
+
+This distinction ensures that users with **Manage groups** permission have global access, while others have limited access tied to their group memberships.
+
 This guide will help you navigate these features efficiently.
 
 ## Accessing Your Profile and Permissions
@@ -12,14 +23,14 @@ This guide will help you navigate these features efficiently.
 * Click on Profile to access information regarding your user permissions.
 
     <figure markdown="span">
-    ![Profile button](quick-start-images/2Dashboard.png)
+    ![Dashboard](../doc-odm-user-guide/doc-odm-user-guide/images/2Dashboard.png)
     <figcaption>Main dashboard of the ODM. Click on your profile to access detailed information about your user capabilities</figcaption>
     </figure>
 
 * Admin user will be marked with **Admin** label.
 
 <figure markdown="span">
-![Admin label](quick-start-images/3Profile.png)
+![Admin](../doc-odm-user-guide/doc-odm-user-guide/images/3Admin.png)
 <figcaption>View of the users' profile. This window contains detailed information about the groups you are part of, the capabilities (Admin and Curator), and the active API tokens</figcaption>
 </figure>
 
@@ -36,7 +47,7 @@ Follow these steps to add and edit users, as well as groups
     * Click on the three-line menu button at the top left of the dashboard to access the **Users and permissions** section.
    
      <figure markdown="span">
-     ![Users and permissions](quick-start-images/4Users.png)
+     ![UserAndPermissions](../doc-odm-user-guide/doc-odm-user-guide/images/4UserAndPermissions.png)
      <figcaption>To access User and permissions, click on the three-line menu at the top left of the dashboard. This will display a menu where you can access **Users and permissions**</figcaption>
      </figure>
 
@@ -45,14 +56,14 @@ Follow these steps to add and edit users, as well as groups
     * Click on **+New user**.
 
     <figure markdown="span">
-    ![New Users](quick-start-images/5NewUsers.png) 
+    ![NewUser](../doc-odm-user-guide/doc-odm-user-guide/images/5NewUser.png) 
     <figcaption>The section **Users and Permissions** shows the list of all users in the ODM instance. Click on **+New user** to add a new user</figcaption>
     </figure>
 
     * This action will open a new window where you can type the details for the new user: New User 2024
     
     <figure markdown="span">
-    ![New user](quick-start-images/6AddUsers.png){ width="400" }
+    ![6AddUser.png](../doc-odm-user-guide/doc-odm-user-guide/images/6AddUser.png){ width="400" }
     <figcaption>Type the details of the new user and click Add. The system will detect if a user has been previously added (by the email address)</figcaption>
     </figure>
     
@@ -60,7 +71,7 @@ Follow these steps to add and edit users, as well as groups
     * After adding the details, click **Add** to confirm. The new member will be part of the ODM.
 
 <figure markdown="span">
-![Add Users](quick-start-images/7ConfirmNewUSer.png)
+![7ConfirmUser.png](../doc-odm-user-guide/doc-odm-user-guide/images/7ConfirmUser.png)
 <figcaption>Confirmation the recently added user, New User 2024, is now part of ODM</figcaption>
 </figure>
 
@@ -74,7 +85,7 @@ To set or change user permissions, you need to have the **Manage organization** 
     * On the main dashboard, click on the three-line menu button at the top left.
 
     <figure markdown="span">
-    ![Users](quick-start-images/8Users.png)
+    ![UserAndPermissions](../doc-odm-user-guide/doc-odm-user-guide/images/4UserAndPermissions.png)
     <figcaption>Access the <strong>Users and Permissions</strong> section by clicking on the three-line menu at the top left of the dashboard</figcaption>
     </figure>
 
@@ -83,14 +94,14 @@ To set or change user permissions, you need to have the **Manage organization** 
     * Use the search bar to find users you want to grant or revoke permissions to
 
     <figure markdown="span">
-    ![ViewUsers](quick-start-images/9ViewUsers.png)
+    ![UserPanel](../doc-odm-user-guide/doc-odm-user-guide/images/8UserPanel.png)
     <figcaption>View of the Users and Permissions panel. Tick the boxes to grant or revoke permissions: Manage organization, manage groups, set up templates, access all data, and configure facets. To manage individual permissions, find the user with the search bar</figcaption>
     </figure>
 
 3. Hover over the permissions to view a brief description of the permissions capabilities.
 
 <figure markdown="span">
-![PermissionsView](quick-start-images/10PermissionsView.png)
+![HoverPermissions](../doc-odm-user-guide/doc-odm-user-guide/images/9HoverPermissions.png)
 <figcaption>Hover over the permissions to view their description. For example, hovering over <strong>Manage groups</strong> shows that the permission allows the user: Access and manage of all groups</figcaption>
 </figure>
 
@@ -105,7 +116,7 @@ To edit a user's status, follow these steps:
     * Select **Deactivate** to turn the user inactive immediately. To reactivate a deactivated user, select **Activate**.
 
     <figure markdown="span">
-    ![DeactivateUsers](quick-start-images/11DeactivateUsers.png)
+    ![UserStatus](../doc-odm-user-guide/doc-odm-user-guide/images/10UserStatus.png)
     <figcaption>Edit user status. To activate or deactivate a user, click on the three dots next to the user’s name and select either **Activate** or **Deactivate**. This change will take effect immediately</figcaption>
     </figure>
 
@@ -116,7 +127,7 @@ To edit a user's status, follow these steps:
     * A confirmation window will notify you that the password has been successfully changed.
    
     <figure markdown="span">
-    ![ChangePasswords](quick-start-images/12ChangePasswords.png)
+    ![Passwords](../doc-odm-user-guide/doc-odm-user-guide/images/11Password.png){width=700}
     <figcaption>Change a user’s password. Click on the menu next to the user's name, authenticate yourself as an admin (e.g. Genestack Superuser), and then set a new password for the user (e.g. New User 2024). Ensure the new password complies with security guidelines</figcaption>
     </figure>
 
@@ -130,10 +141,10 @@ To create a new group manually, follow these steps:
    * Click on the three-line menu button at the top left of the dashboard to access the **Groups** section.
 
     !!! info "Important"
-        In order to be able to create, edit and delete groups, the user should have the **Manage organization** permission.
+        To create, edit, and delete **any** group, including those created by other users, the **Manage organization** permission is required. However, users without this permission can still create, edit, and delete the groups they own or belong to.
 
     <figure markdown="span">
-    ![Groups](quick-start-images/13Groups.png)
+    ![Groups](../doc-odm-user-guide/doc-odm-user-guide/images/12Groups.png)
     <figcaption>To access Groups, click on the three-line menu at the top left of the dashboard. This will display a menu where you can access **Groups**.</figcaption>
     </figure>
 
@@ -144,7 +155,7 @@ To create a new group manually, follow these steps:
     * A new window will be displayed showing the new group has been created. By default, the user who creates the new group is assigned as the **Group Admin**. It is important to notice that each group requires at least one group admin.
 
     <figure markdown="span">
-    ![CreateANewGroup](quick-start-images/14CreateNewGroup.png)
+    ![NewGroup](../doc-odm-user-guide/doc-odm-user-guide/images/13NewGroup.png){width=700}
     <figcaption>Create a new group. Access the Groups section. A list of the available groups will be displayed. Click on **+New Group** to create a new group. Select a name for the new group, for example, **Demo ODM**. Click on Create. This action will create a new group named **Demo ODM**. The user who creates the group is automatically assigned as the Group Administrator.
     </figcaption>
     </figure>
@@ -161,7 +172,7 @@ To manage groups in the interface, navigate to the section Groups (instructions 
    * In the new window, you can select members from the list or use the search bar to find specific users.
 
     <figure markdown="span">
-    ![AddMembers](quick-start-images/15AddMembers.png)
+    ![NewMembersGroup](../doc-odm-user-guide/doc-odm-user-guide/images/14NewMembersGroup.png)
     <figcaption>Add new members to the group by clicking on **+New members**. A new window will appear where you can select users from the list or you can use the search bar to find specific users, e.g., **New User 2024**</figcaption>
     </figure>
 
@@ -170,7 +181,7 @@ To manage groups in the interface, navigate to the section Groups (instructions 
    * After selecting the members, click **Add member** to confirm. The group will now display the recently added members.
 
     <figure markdown="span">
-    ![ConfirmMembers](quick-start-images/17ConfirmMembers.png)
+    ![NewMembers](../doc-odm-user-guide/doc-odm-user-guide/images/15NewMember.png)
     <figcaption>Confirm the new members to add by clicking **Add member**. The recently created group, **Demo ODM** for this example, will now show the recently added member, **New User 2024**</figcaption>
     </figure>
 
@@ -188,7 +199,7 @@ To remove a member from a group, follow these steps:
     Only members designated as **Group members** can be removed. If the user you intend to remove is an administrator, you must first ensure that another member is assigned as the group administrator, as each group must have at least one administrator. If you want to remove a user with the role of admin, you need to assign another administrator within the group.
 
 <figure markdown="span">
-![RemoveMembers](quick-start-images/18RemoveMembers.png)
+![GroupDetails](../doc-odm-user-guide/doc-odm-user-guide/images/16GroupDetails.png)
 <figcaption>Remove members. Select the group, such as <strong>Demo ODM version 2</strong>, from which you want to remove members. Click on the three dots next to the member's name and select <strong>Remove member</strong>. Remember, every group requires at least one group administrator. If removing an admin, ensure another administrator is assigned beforehand</figcaption>
 </figure>
 
@@ -197,7 +208,7 @@ To remove a member from a group, follow these steps:
 * You can edit the roles of group members by clicking on their role descriptions. You can change members to administrators or vice versa. Note that each group must have at least one administrator.
 
 <figure markdown="span">
-![EditGroups](quick-start-images/19EditMembers.png){width="500"}
+![EditGroupMembers](../doc-odm-user-guide/doc-odm-user-guide/images/17EditGroupMembers.png){width=800}
 <figcaption>Edit group members. You can change the roles for the members to either <strong>group members</strong> or <strong>group administrators</strong>. Keep in mind that each group requires at least one <strong>admin</strong></figcaption>
 </figure>
 
@@ -209,7 +220,7 @@ To remove a member from a group, follow these steps:
 !!! warning "Delete groups is a permanent action"
 
 <figure markdown="span">
-![DeleteGroup](quick-start-images/20DeleteGroup.png){width=600}
+![DeleteGroups](../doc-odm-user-guide/doc-odm-user-guide/images/18DeleteGroup.png){width=600}
 <figcaption>Delete groups. Navigate to the group you intend to delete, e.g. <strong>Group Demo version 3</strong>. Click on the three dots on the right side and click on <strong>Delete group</strong>. A notification will appear to confirm the deletion of the group. The group will be deleted permanently</figcaption>
 </figure>
 
