@@ -53,7 +53,7 @@ You can upload sample metadata from any experiment (e.g., flow cytometry, gene v
 <figcaption>To import metadata sample files, click the <strong>Edit</strong> button at the bottom, then select the cloud icon to upload tabular files from your local computer</figcaption>
 
 * A new window will pop up. Click **Select tsv file...** and choose your file.
-* Once your file is recognized, click **Import**. Refer to the section [Supported files](https://docs.google.com/document/d/1uF3g11QO3PfyhsSY7u0CPozn0LPRsoblnI2djZydvIs/edit?usp=sharing) to explore details on metadata requirements (e.g., **Sample Source ID** is a mandatory column)
+* Once your file is recognized, click **Import**. Refer to the section [Supported File Formats](supported-formats.md) to explore details on metadata requirements (e.g., **Sample Source ID** is a mandatory column)
 
 ![50ImportSamples.png](doc-odm-user-guide/images/50ImportSamples.png)
 <figcaption>Click <strong>Select tsv file...</strong> to select the desired file from your local computer. Once the file is recognized, click "Import" to upload it</figcaption>
@@ -65,19 +65,19 @@ You can upload sample metadata from any experiment (e.g., flow cytometry, gene v
 <figcaption>Once the sample metadata file has been imported, click <strong>Publish</strong> to save the changes. Save the changes by adding a name to this new version, e.g., <strong>Samples metadata has been added</strong>. The version names can be customized with names, dates, descriptions, etc.</figcaption>
 
 
-## Import Libraries and preparations
+## Import Libraries and Preparations
 
 **Add Libraries and Preparations**:
 
 In addition to sample metadata, you can also add Libraries and Preparations metadata. To do so, click on the tab **\+More** to display both options:
 
 ![52More.png](doc-odm-user-guide/images/52More.png)
-<figcaption>Click on the option <strong>+More</strong> to add Libraries and/or preparation metadata</figcaption>
+<figcaption>Click on the option <strong>+More</strong> to add Libraries and/or Preparations metadata</figcaption>
 
 * To add libraries, click on **Libraries** and select the tabular file to import from your local computer.
 * To add preparations, click on **Preparations** and select the tabular file to import from your local computer.
 
-Both types of files are linked to the samples metadata file (from the Samples tab) via the **SampleSource ID** column. Ensure this column is included in all files to maintain the link between sample metadata, libraries, and preparations.
+Both types of files are linked to the samples metadata file (from the Samples tab) via the **Sample Source ID** column. Ensure this column is included in all files to maintain the link between sample metadata, libraries, and preparations.
 
 ![53LibrariesPreparations.png](doc-odm-user-guide/images/53LibrariesPreparations.png)
 <figcaption>Click on <strong>+More</strong> to add additional metadata to your study, such as Libraries and Preparations metadata. This step is optional</figcaption>
@@ -91,7 +91,7 @@ Both types of files are linked to the samples metadata file (from the Samples ta
 ![54ExamplesImport.png](doc-odm-user-guide/images/54ExamplesImport.png)
 <figcaption>Additional experimental metadata, such as libraries and preparations, can be added and linked. Ensure the appropriate columns, besides <strong>Sample Source ID</strong>, are included to link the data. For libraries, add the <strong>Library ID</strong> column, and for preparations, add the <strong>Preparation ID</strong> column. The data will be shown on the study's main page</figcaption>
 
-Learn more about data types in the [supported formats section](supported-formats.md).
+Learn more about data types in the [Supported File Formats](supported-formats.md) section.
 
 ## Import experimental Data and attach files
 
@@ -146,8 +146,8 @@ You can upload your experimental data, such as bulk transcriptomics, proteomics,
 
 ### **Linking Data**
 
-* **Default Linking**: By default, the data is linked with the Samples file using the **Sample Source ID** column. To ensure proper linking, make sure your file includes a column called **Sample Source ID** with the same IDs used in the Sample Metadata table uploaded previously (see section "Import Samples Metadata").
-* **Custom Linking**: Alternatively you can select a different column to link the **experimental** data, such as **Sample Name**, **Date**, etc. This provides flexibility in how data is associated, but it is recommended to include the **SampleSourceID** column for consistent referencing and linking samples metadata files with additional data types like libraries and preparations. Read the [Supported format files](https://docs.google.com/document/d/1uF3g11QO3PfyhsSY7u0CPozn0LPRsoblnI2djZydvIs/edit?usp=sharing) section for more information.
+* **Default Linking**: By default, the data is linked with the Samples file using the **Sample Source ID** column. To ensure proper linking, make sure your file includes a column called **Sample Source ID** with the same IDs used in the Sample Metadata table uploaded previously.
+* **Custom Linking**: Alternatively you can select a different column to link the **experimental** data, such as **Sample Name**, **Date**, etc. This provides flexibility in how data is associated, but it is recommended to include the **Sample Source ID** column for consistent referencing and linking samples metadata files with additional data types like libraries and preparations. Read the [Supported File Formats](supported-formats.md) section for more information.
 
 ![59LinkData.png](doc-odm-user-guide/images/59LinkData.png)
 <figcaption>Select an experimental data file. The data must include a column to be linked to the sample metadata file (typically the <strong>Sample Source ID</strong>)</figcaption>
@@ -157,7 +157,7 @@ The selected files will be scanned to find an appropriate link (typically the **
 ![60Imported.png](doc-odm-user-guide/images/60Imported.png)
 <figcaption>The selected files will be scanned, and if the format is accepted and the columns contain the reference names to be linked, the files will be indexed and the experimental data will be searchable</figcaption>
 
-After uploading, you can populate the corresponding file metadata, including the necessary details. Please note that each uploaded data file has five mandatory read-only fields that do not belong to your template:
+After uploading, you can populate the corresponding file metadata, including the necessary details. Please note that each uploaded data file has five mandatory read-only fields:
 
 - Genestack:accession
 - Data Class
@@ -166,6 +166,9 @@ After uploading, you can populate the corresponding file metadata, including the
 - Value (numeric)
 
 These fields are implemented to make the content of these files visible and searchable for data science users. We advise against editing these fields in the template editor as it could render these files inaccessible.
+
+![MandatoryFeatures.png](doc-odm-user-guide/images/MandatoryFeatures.png){width=800}
+<figcaption>Mandatory fields are implemented to make the content of the experimental data files searchable</figcaption>
 
 ### Attach a file
 
@@ -198,9 +201,9 @@ Once the files are selected, the upload will begin and the files will be attache
 * Select the entity to which your data will be linked. For example, when uploading a transcriptomics file with gene expression measurements for each sample, link the data to the relevant samples. Specify the ID column from the Samples (or Library, Preparation) tab that will be used to match the samples (or libraries, preparations) in the uploaded file.
 
 !!! note
-    You need to have sample information (metadata) uploaded in the **Samples** tab to enable data import. If no libraries or preparations are associated with the study, **Sample** will be the only available option.
+    You need to have Samples information (metadata) uploaded in the **Samples** tab to enable data import. If no libraries or preparations are associated with the study, **Samples** will be the only available option.
 
-* **Libraries and Preparations**: Libraries and preparations are connected to the samples via the **SampleSource ID** column. Ensure this column is included in all relevant files to maintain the linkage between sample metadata, libraries, and preparations.
+* **Libraries and Preparations**: Libraries and preparations are connected to the samples via the **Sample Source ID** column. Ensure this column is included in all relevant files to maintain the linkage between sample metadata, libraries, and preparations.
 
 * **Number of Feature Attributes**: If your file includes more than one column describing features, specify the number of such columns. You can find more details on this in the format description page. Defining the correct number of feature attributes is essential to avoid upload issues.
 
