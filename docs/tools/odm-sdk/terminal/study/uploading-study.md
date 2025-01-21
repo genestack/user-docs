@@ -40,6 +40,8 @@ odm-import-data -h
     - `-vm, --variant-metadata`: URL of the variants metadata file
     - `-f, --flow-cytometry`: URL of the flow cytometry data file
     - `-fm, --flow-cytometry-metadata`: URL of the flow cytometry metadata file
+    - `-fl, --file`: URL to a file to be attached
+    - `-flm, --file-metadata`: URL to metadata file for this attached file
     - `-tmpl, --template`: accession of a template to validate against, if not specified "template marked as default" is
         used;
 
