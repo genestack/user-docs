@@ -13,3 +13,5 @@ MD024:
 MD033: false
 
 MD046: false
+
+blanks-around-tables: false
