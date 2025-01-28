@@ -187,7 +187,7 @@ to ensure proper recognition and linking of the data.
 ## Upload experimental Data and attach files
 
 In addition to the samples, libraries, and preparations metadata described above, you can upload experimental 
-data such as bulk transcriptomics, lipidomics, single-cell data, and gene variants that are linked to your study
+data, such as bulk transcriptomics, lipidomics, proteomics, single-cell data, gene variants, etc., that are linked to your study
 via sample metadata and libraries/preparations. You can also supplement your study by attaching related research 
 materials like PDFs, XLSX, DOCX, PPTX files, images, and more. 
 
@@ -221,11 +221,11 @@ If the type of data is not listed, select the **Other** option.
 </figure>
 
 * Click **Next.** This will open a window where you can select a file containing experimental data from your 
-local computer or a cloud-based storage system (such as AWS)
+local computer or a from an external storage system (such as AWS)
 
 <figure markdown="span">
 ![Upload Data](quick-start-images/select-data-file.png)
-<figcaption>Select the source for the experimental data. Experimental data can be imported from your local computer or a cloud-based storage system (such as AWS)</figcaption>
+<figcaption>Select the source for the experimental data. Experimental data can be imported from your local computer or from external storage systems</figcaption>
 </figure>
 
 ### Linking Data
@@ -240,7 +240,7 @@ IDs used in the Sample Metadata table uploaded previously (see section "Upload S
 !!! warning "Only template attribute can be used as a custom linking attribute."
 
 This provides flexibility in how data is associated, but it is recommended to 
-include the Sample SourceID column for consistent referencing and linking samples metadata files with additional 
+include the Sample Source ID column for consistent referencing and linking samples metadata files with additional 
 data types like libraries and preparations.
 
 Data can be linked to Library or Preparation metadata by using **Library ID** and **Preparation ID**.
@@ -254,39 +254,54 @@ The selected files will be scanned to find an appropriate link (typically the **
 the uploading will automatically begin.
 
 <figure markdown="span">
-![Link Data](quick-start-images/linking-data-result.png)
+![Linkingdata.png](quick-start-images/Linkingdata.png)
 <figcaption>The selected files will be scanned, and if the format is accepted and the columns contain the reference names to be linked, the files will be indexed and the experimental data will be searchable</figcaption>
 </figure>
 
 ### Attach a file
-In addition, supplement your study by attaching related research materials like PDFs, XLSX, DOCX, PPTX files, 
-images, and more. Note that the contents of these attached files won't be indexed or made searchable.
-Attachment of additional files is different from linked files, allowing you to add files that 
-are part of your research but not directly linked to the samples metadata or experimental data. 
-These files may contain budget reports, manuscripts, presentations, logos, etc. This tool helps you keep 
-all your data in one place.
+Enhance your study by attaching supplementary research materials such as PDFs, XLSX, DOCX, PPTX files, images, and more. These attachments differ from linked files, as they are not directly associated with sample metadata or experimental data. Instead, they serve as complementary materials, such as Budget reports, manuscripts, presentations, logos, etc.
 
 To attach a file:
 
 * Click on **Add data** and then select **Attach a file**. 
 * You can attach any format files such as PDF, PNG, etc. 
+* Select the **Data class** for the file. You can select the data class **Other** if the preferred class is not listed
 * Click **Select file...**. Select the file from your local computer.
 
 <figure markdown="span">
-![Attach file](quick-start-images/attach-file.png)
-<figcaption>The files will be uploaded (upload time will depend on the size of the files). Your files will be displayed in the Data tab under <strong>Attached Files</strong></figcaption>
+![attachData.png](quick-start-images/attachData.png)
+<figcaption>Assign a Data class to the attached files. The files will be uploaded (upload time will depend on the size of the files)</figcaption>
 </figure>
 
-The files will be uploaded (upload time will depend on the size of the files). 
-Your files will be displayed in the Data tab under **Attached Files**.
-
 Once the files are selected, the upload will begin and the files will be attached. Available data will be 
-displayed in the Data tab by type: Experimental (e.g., bulk transcriptomics) and Attached files 
-(e.g., manuscripts, reports).
+displayed in the Data tab by type, e.g. *Proteomics*.
 
 <figure markdown="span">
-![Attachment metadata](quick-start-images/attachment-metadata.png)
-<figcaption>Once attached or linked, files will be shown on the Data tab under their specific category, e.g., <strong>bulk transcriptomics</strong> for experimental data and a manuscript (PDF format) for attached files</figcaption>
+![AttachmentMetadata.png](quick-start-images/AttachmentMetadata.png)
+<figcaption>Once attached or linked, files will be shown on the Data tab under their specific category, e.g., <strong>Proteomics</strong></figcaption>
+</figure>
+
+### Key Differences Between Imported and Attached Data
+
+Users can specify the type of data they are attaching, improving organization and accessibility. Once the file is imported into the ODM, it will be automatically categorized under the appropriate section.
+
+**Imported Data**:
+- Indexed and searchable within the platform.
+- Located under the relevant data type tab (e.g., Bulk Transcriptomics).
+- Visual indicators:
+  - A tick symbol to denote successful indexing.
+  - A legend labeled Indexed Data.
+
+**Attached Data**:
+- Not indexed or searchable.
+- Displayed under the relevant section (e.g., Bulk Transcriptomics) with associated metadata.
+- Metadata is currently not editable.
+
+For example, importing a GCT file linked as experimental data will be listed under **Bulk Transcriptomics**, with visual indicators like a tick symbol and the **Indexed Data** legend. A manuscript in PDF format will appear under the **Bulk Transcriptomics** section with relevant metadata.
+
+<figure markdown="span">
+![Differences.png](quick-start-images/Differences.png)
+<figcaption>Users can specify the type of data they are attaching or importing. The files will be automatically recognised as <strong>Indexed data</strong> or <strong>Attached files</strong></figcaption>
 </figure>
 
 ## Data curation
