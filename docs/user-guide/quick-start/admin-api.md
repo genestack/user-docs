@@ -127,9 +127,9 @@ deleting data, refer to the next section **Delete Data in ODM**.
 **Endpoint:** DELETE `/api/v1/manage-data/data`
 !!! warning "The deletion of data is an irreversible action and it is only available for users with "Manage organization" and "Access all data" permissions."
 
-1. To delete a data object or a data group, use the `GET /api/v1/manage-data/data` endpoint
+1. To delete a data object or a data group, use the `DELETE /api/v1/manage-data/data` endpoint
     ![Use Case 17](quick-start-images/admin-api-uc-17.png)
-    <figcaption>Use the endpoint {==GET /api/v1/manage-data/data==} to delete data from  ODM</figcaption>
+    <figcaption>Use the endpoint {==DELETE /api/v1/manage-data/data==} to delete data from  ODM</figcaption>
 
 2. Enter the data object or the data group accession of the data you intend to delete. 
 For this example, we will delete the study GSF1147012, named “Demo version 2”.

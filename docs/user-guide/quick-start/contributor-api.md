@@ -108,8 +108,7 @@ expression data files, but if desired all mapping files can be queried to return
 Currently, all mapping file operations are carried out via API. For more information please check [Cross-reference Mapping page](../doc-odm-user-guide/xref-mapping.md).
 
 ![Data Model](quick-start-images/data-model-linking.png)
-<figcaption><strong>Uploading and linking data entities in ODM</strong>. The ODM data model includes Libraries and Preparations, which can be linked to <strong>Samples</strong> and used as grouping entities. DataFrames can be linked to Samples, Preparations, or Libraries. Upload your data file and link the corresponding entities to create a study. Samples are the only entity that connects directly to a Study, making the data searchable within the ODM</figcaption>
-
+<figcaption><strong>Uploading and linking data entities in ODM</strong>. The ODM data model includes Libraries and Preparations, which can be linked to <strong>Samples</strong> and used as grouping entities. DataFrames can be linked to Samples, Preparations, or Libraries. Upload your data file and link the corresponding entities to create a study. Samples are the only entity that connects directly to a Study, making the data searchable within the ODM. Additionally, attachments such as PDFs and reports are directly associated with the Study and assigned a unique accession number, even though they are not linked via the Sample Source ID.</figcaption>
 ## Use Case Example: How to create a Study
 
 Let's reproduce the most frequent use case by creating an entire study using the Swagger interface. 
