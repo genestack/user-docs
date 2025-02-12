@@ -196,7 +196,7 @@ To remove a member from a group, follow these steps:
     * Click on the three dots next to the member's name and select **Remove member**.
 
 !!! info "Important Note"
-    Only members designated as **Group members** can be removed. If the user you intend to remove is an administrator, you must first ensure that another member is assigned as the group administrator, as each group must have at least one administrator. If you want to remove a user with the role of admin, you need to assign another administrator within the group.
+    Only members designated as **Group members** can be removed. If the user you intend to remove is an administrator, you must first ensure that another member is assigned as the group administrator, as each group must have at least one administrator.
 
 <figure markdown="span">
 ![GroupDetails](../doc-odm-user-guide/doc-odm-user-guide/images/16GroupDetails.png)
