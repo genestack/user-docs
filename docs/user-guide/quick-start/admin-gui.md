@@ -106,7 +106,7 @@ To set or change user permissions, you need to have the **Manage organization** 
     <figcaption>**Hover over the permissions to view the its description**. For example, hovering over Manage groups shows that the permission allows the user:  Access and manage of all groups</figcaption>
     </figure>
 
-Find more information about users and permissions, and their capabilities in the [User, Roles, Permissions](#Users, Roles, Permissions) section.Find more information about users and permissions, and their capabilities in the Defining User Permissions and Groups in the ODM section.
+Find more information about users and permissions, and their capabilities in the [User, Roles, Permissions](.../docs/user-guide/doc-odm-user-guide/setup.md) section.Find more information about users and permissions, and their capabilities in the Defining User Permissions and Groups in the ODM section.
 
 #### Edit User status
 
