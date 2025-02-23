@@ -51,12 +51,58 @@
 
 ## TSV (Tabular data)
 
+In ODM, you can upload any tabular data formatted as **TSV (tab-separated values)**. 
+As long as your file represents a data frame, ODM can import and index it. A data frame is a data structure that 
+organizes data into a two-dimensional table of **rows** and **columns**, similar to a spreadsheet.
+
+A data frame contains two main elements:
+
+- **Features**: These are the entities measured in an experiment (e.g., genes, proteins, metabolites, 
+pathways, sales regions, etc.).
+- **Measurements (or values)**: These are the actual values recorded for each feature under different 
+conditions (e.g., gene expression values, protein abundance, pathway activity, sales volume, etc.).
+
+### Simple Data Frame 
+
+The example below demonstrates the simplest and most common type of data frame. 
+
+![Data Frame Simple](../doc-odm-user-guide/doc-odm-user-guide/images/data-frame1.png)
+
+Here, the features (genes) 
+are listed in the first column, while the rest of the table contains measurements of gene expression across 
+multiple samples. Each column represents a different sample, with the column name indicating the 
+corresponding dataset of gene expression values.
+
+### Complex Data Frame
+
+![Data Frame Complex](../doc-odm-user-guide/doc-odm-user-guide/images/data-frame2.png)
+
+This format provides a wide range of data types that can be uploaded and indexed in ODM.
+
+For a detailed description and instructions on using TSV, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
+in our **Advanced User Guide**.
+
 ## GCT (Gene xpression)
+
+For a detailed description and instructions on using GCT, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
+in our **Advanced User Guide**.
 
 ## VCF (Variants)
 
+For a detailed description and instructions on using VCF, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
+in our **Advanced User Guide**.
+
 ## HDF5 (e.g. Single Cell)
+
+For a detailed description and instructions on using HDF5, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
+in our **Advanced User Guide**.
 
 ## FACS (Flow Cytometry)
 
+For a detailed description and instructions on using FACS, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
+in our **Advanced User Guide**.
+
 ## Attached Files
+
+For a detailed description and instructions on using Attached Files, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
+in our **Advanced User Guide**.
