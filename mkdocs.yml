@@ -15,6 +15,7 @@ nav:
           - Administrator: user-guide/quick-start/admin-api.md
       - Key Concepts: user-guide/key-concepts/key-concepts.md
       - Users, Roles, Permissions: user-guide/users-roles-permissions/users-roles-permissions.md
+      - Supported Data Formats: user-guide/supported-data/supported-data.md
       - Guides:
             - User Interface Advanced Guide:
                 - user-guide/index.md
