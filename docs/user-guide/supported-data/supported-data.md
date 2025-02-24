@@ -82,7 +82,9 @@ This format provides a wide range of data types that can be uploaded and indexed
 For a detailed description and instructions on using TSV, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
 in our **Advanced User Guide**.
 
-## GCT (Gene xpression)
+## GCT (Gene Expression)
+
+
 
 For a detailed description and instructions on using GCT, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
 in our **Advanced User Guide**.
