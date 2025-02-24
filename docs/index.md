@@ -22,6 +22,11 @@ ODM is a comprehensive system designed to simplify and optimise data management 
 
     User Profile setup and customisation, working with User Groups
 
+- :octicons-number-16:{ .lg .middle } __[Supported Data Formats](user-guide/supported-data/supported-data.md)__
+
+    ---
+    Upload and work with various data files via ODM user interface and API
+
 - :fontawesome-solid-flask-vial:{ .lg .middle } __[User Interface Advanced Guide](user-guide/index.md)__
 
     ---
