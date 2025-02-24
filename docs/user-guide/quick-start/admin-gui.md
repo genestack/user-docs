@@ -7,7 +7,7 @@ permissions within the Open Data Manager (ODM). To add, update, and delete group
 
 This guide will help you navigate these features efficiently.
 
-![Data Model](quick-start-images/UserModelODM.png)
+![User Roles](quick-start-images/UserModelODM.png)
 <figcaption>The Data Administrator user has the permissions granted to Data Consumer and Data Contributor, as well as Managing Organization permissions to add, edit, and delete Users and Groups in ODM</figcaption>
 
 ## Accessing Your Profile and Permissions
