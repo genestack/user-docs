@@ -22,7 +22,7 @@ nav:
       - About Genestack: https://genestack.com/
     - Advanced Guide:
         - user-guide/index.md
-        - Quick Start Guide: user-guide/doc-odm-user-guide/quickstart_user.md
+        - Start: user-guide/doc-odm-user-guide/quickstart_user.md
         - User Setup: user-guide/doc-odm-user-guide/setup.md
         - Create New Study: user-guide/doc-odm-user-guide/create-study.md
         - Import Data on ODM: user-guide/doc-odm-user-guide/import-samples-spreadsheet.md
