@@ -1,9 +1,20 @@
 # Administrator in the User Interface
 
-If you have the **Manage organization** permission, your user account will be marked with **Admin** label. 
+If you have the **Manage organization** permission, your user account will be marked with an **Admin** label. As an Admin, you can create and deactivate users, reset passwords, and manage user permissions within the Open Data Manager (ODM).
 
-As an Admin, you have the ability to create and deactivate users, change users' passwords, and manage user 
-permissions within the Open Data Manager (ODM). To add, update, and delete groups **Manage groups** permission is required.
+To work with groups, the **Manage groups** permission is required. This permission allows users to:
+
+   * View all user groups and their members on the instance via the API and in the **Groups** section in the GUI.
+   * Create new user groups.
+   * Delete any user group, even if they are not a member or admin of that group.
+   * Add or remove members from any group, even without group membership or admin status.
+
+Users **without the Manage groups** permission retain their standard capabilities:
+
+   * They can view and edit only the groups they are members of or own.
+   * They can create new groups and manage them, including editing and deleting their own groups, as they are considered the owners.
+
+This distinction ensures that users with **Manage groups** permission have global access, while others have limited access tied to their group memberships.
 
 This guide will help you navigate these features efficiently.
 
@@ -110,7 +121,10 @@ Find more information about users and permissions, and their capabilities in the
 
 #### Edit User status
 
-As an administrator, you have the ability to manage users' permissions, statuses (active or inactive), and passwords. 
+    <figure markdown="span">
+    ![Dashboard](../doc-odm-user-guide/doc-odm-user-guide/images/2Dashboard.png)
+    <figcaption>Main dashboard of the ODM. Click on your profile to access detailed information about your user capabilities</figcaption>
+    </figure>
 
 To edit a user's status, follow these steps:
 
