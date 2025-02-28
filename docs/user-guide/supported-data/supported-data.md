@@ -129,7 +129,7 @@ VCF files provide essential information for genomic studies, with key fields inc
 For detailed specifications on the VCF format, refer to the official **[VCF documentation](https://samtools.github.io/hts-specs/)**.
 
 ### Using VCF Files in ODM
-VCF files are automatically identified as **Gene Variant** data within ODM, allowing users to:
+The ODM allows users to:
 
 - Import and store genomic variants.
 - Integrate variant data with sample metadata for downstream analysis.
