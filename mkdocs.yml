@@ -20,7 +20,7 @@ nav:
             - User Interface Advanced Guide:
                 - user-guide/index.md
       - About Genestack: https://genestack.com/
-    - Guide:
+    - Advanced Guide:
         - user-guide/index.md
         - Quick Start Guide: user-guide/doc-odm-user-guide/quickstart_user.md
         - User Setup: user-guide/doc-odm-user-guide/setup.md
@@ -76,7 +76,7 @@ nav:
                     - Example: tools/odm-api/r/example.md
                     - Generated:
                         - tools/odm-api/r/generated/README.md
-    - UI:
+    - Trainings:
         - Training Materials: ui/training-materials.md
     - Release notes:
           - v1.60 - v1.69: release-notes/v1.60-v1.69.md
