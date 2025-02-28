@@ -92,12 +92,8 @@ expression values across different samples. ODM automatically recognizes GCT fil
 ODM accepts the following GCT file formats:
 
   * **.gct** – Standard GCT file
-  * **.gct.gz, .gct.zip** – Compressed versions of the standard GCT file
-  * **.gct.tsv, .gct.tsv.gz, .gct.tsv.zip** – GCT files with additional expression metadata
-
-The ODM extracts relevant metadata and expression values, allowing users to analyze and visualize gene expression
-patterns efficiently. If additional metadata (e.g., normalization method, genome version) is available, 
-it can be provided using `.gct.tsv` files.
+  * **.gct.gz, .gct.zip** – Compressed versions of the standard GCT file (available via API)
+  * **.gct.tsv, .gct.tsv.gz, .gct.tsv.zip** – GCT files with additional expression metadata (available via API)
 
 #### Structure of a GCT File
 A GCT file consists of a structured matrix with gene expression values. The key components include:
