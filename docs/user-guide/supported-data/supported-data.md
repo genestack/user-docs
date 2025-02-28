@@ -100,7 +100,7 @@ including single nucleotide polymorphisms (SNPs), insertions, deletions, and str
 ODM accepts the following VCF file formats:
 
    * **.vcf** – Standard uncompressed VCF file
-   * **.vcf.gz, .vcf.zip** – Compressed versions of the standard VCF file 
+   * **.vcf.gz, .vcf.zip** – Compressed versions of the standard VCF file (available via API) 
 
 ### Structure of a VCF File
 A VCF file consists of three main components:
@@ -133,7 +133,7 @@ The ODM allows users to:
 
 - Import and store genomic variants.
 - Integrate variant data with sample metadata for downstream analysis.
-- Apply ODM’s built-in tools for filtering, annotation, and visualization of genetic variants.
+- Searching and filtering of genetic variants.
 - Perform cross-sample comparisons and study variant distributions.
 
 For a detailed description and instructions on ODM capabilities for using VCF, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
