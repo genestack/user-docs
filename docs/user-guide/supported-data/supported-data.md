@@ -91,7 +91,52 @@ in our **Advanced User Guide**.
 
 ## VCF (Variants)
 
-For a detailed description and instructions on using VCF, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
+The ODM supports **VCF (Variant Call Format) files**, a widely used format for storing genetic variation data. 
+VCF files provide a structured, tab-delimited representation of genetic variants and are typically generated 
+as output from variant calling pipelines. These files contain detailed information about sequence variations, 
+including single nucleotide polymorphisms (SNPs), insertions, deletions, and structural variants.
+
+### Supported VCF Formats
+ODM accepts the following VCF file formats:
+
+   * **.vcf** – Standard uncompressed VCF file
+   * **.vcf.gz, .vcf.zip** – Compressed versions of the standard VCF file 
+
+### Structure of a VCF File
+A VCF file consists of three main components:
+
+1. **Meta-information lines (`##`)**
+2. **Header line (`#`)** – The final metadata line, which defines the column names for variant data:
+    * `CHROM` (chromosome)
+    * `POS` (genomic position)
+    * `ID` (variant identifier)
+    * `REF` (reference allele)
+    * `ALT` (alternate allele(s))
+    * `QUAL` (quality score)
+    * `FILTER` (filter status)
+    * `INFO` (additional annotations)
+3. **Data lines** – Each row represents a variant, detailing its position, reference and alternate alleles, 
+quality scores, and annotations.
+
+### Common Fields in VCF Files
+VCF files provide essential information for genomic studies, with key fields including:
+
+- **INFO**: Contains annotations about the variant, such as depth of coverage (`DP`), allele frequency (`AF`), and functional effect (`EFF`).
+- **FILTER**: Specifies whether the variant has passed quality control thresholds (`PASS` or filter conditions like `q10` for quality < 10).
+- **FORMAT**: Defines the structure of genotype-related fields in the sample data.
+- **Sample Columns**: Contain individual genotype information, including genotype (`GT`), depth (`DP`), and phasing status (`PS`).
+
+For detailed specifications on the VCF format, refer to the official **[VCF documentation](https://samtools.github.io/hts-specs/)**.
+
+### Using VCF Files in ODM
+VCF files are automatically identified as **Gene Variant** data within ODM, allowing users to:
+
+- Import and store genomic variants.
+- Integrate variant data with sample metadata for downstream analysis.
+- Apply ODM’s built-in tools for filtering, annotation, and visualization of genetic variants.
+- Perform cross-sample comparisons and study variant distributions.
+
+For a detailed description and instructions on ODM capabilities for using VCF, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
 in our **Advanced User Guide**.
 
 ## HDF5 (e.g. Single Cell)
