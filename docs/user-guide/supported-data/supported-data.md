@@ -4,7 +4,7 @@
     This guide provides a basic overview of file formats and data supported in the ODM.
     For a detailed description and instructions on using various data formats and working with them
     (sorting, filtering, sampling), visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)** 
-    in our **Advanced User Guide**. 
+    in our **Advanced User Guide**.
 
 <div class="grid cards" markdown>
 
@@ -84,7 +84,29 @@ in our **Advanced User Guide**.
 
 ## GCT (Gene Expression)
 
+The ODM supports **GCT (Gene Cluster Text) files**, which are commonly used for storing gene expression 
+datasets, such as microarray and RNA-seq data. These files provide a structured, tab-delimited format for organizing 
+expression values across different samples. ODM automatically recognizes GCT files enabling integration and analysis.
 
+#### Supported GCT Formats
+ODM accepts the following GCT file formats:
+
+  * **.gct** – Standard GCT file
+  * **.gct.gz, .gct.zip** – Compressed versions of the standard GCT file (available via API)
+  * **.gct.tsv, .gct.tsv.gz, .gct.tsv.zip** – GCT files with additional expression metadata (available via API)
+
+#### Structure of a GCT File
+A GCT file consists of a structured matrix with gene expression values. The key components include:
+
+1. **File Version**: The first line always contains the file version, which is `#1.2` for the GCT format.
+2. **Matrix Dimensions**: The second line specifies the number of genes (rows) and the number of samples (columns), excluding metadata columns.
+3. **Header Row**: The third line contains column labels:
+    * `Name` (gene identifier, case insensitive)
+    * `Description` (text description of the gene, case insensitive)
+    * `Sample identifiers` (unique, single-word names without spaces)
+4. **Data Matrix**:
+    * Each row corresponds to a gene, with its identifier and description in the first two columns.
+    * The remaining columns contain expression values for each sample.
 
 For a detailed description and instructions on using GCT, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
 in our **Advanced User Guide**.
