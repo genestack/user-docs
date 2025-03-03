@@ -46,16 +46,21 @@ on the instance.
 ### **Setting and Managing User Permissions**
 
 To set or change user permissions, you need to have the **Manage organization** permission:
+
 1. **Accessing the Permissions Menu:**
-   * On the main dashboard, click on the three-line menu button at the top left. If you have the **Manage organization** 
-   permission, this menu will display the option **Users and Permissions**. If you do not have this permission, 
-   the option will not be available.
+    * On the main dashboard, click on the three-line menu button at the top left. 
+
+    !!! warning "Permissions required"
+        If you have the **Manage organization**
+        permission, this menu will display the option **Users and Permissions**. If you do not have this permission,
+        the option will not be available.
+
 2. **Managing Permissions:**
-   * If you have access, click on **Users and Permissions**. This option will open a new window where you can see all 
-   the users within your organization. You can grant or revoke permissions by ticking the corresponding boxes for 
-   options such as **Manage groups**, **Set up templates**, **Access all data**, and **Configure facets**.
-   * Use the search bar to find users you want to grant or revoke permissions to.
-3. Hover over the permissions to view a brief description of the permissions capabilities.
+    * If you have access, click on **Users and Permissions**. This option will open a new window where you can see all 
+the users within your organization. You can grant or revoke permissions by ticking the corresponding boxes for 
+options such as **Manage groups**, **Set up templates**, **Access all data**, and **Configure facets**.
+    * Use the search bar to find users you want to grant or revoke permissions to. 
+    * Hover over the permissions to view a brief description of the permissions capabilities.
      
 ## Groups
 
