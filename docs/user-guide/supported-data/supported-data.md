@@ -164,7 +164,7 @@ in our **Advanced User Guide**.
 ## HDF5 (e.g. Single Cell)
 
 !!! info "Limitations"
-    HDF5 is supported as Attached File in ODM with ability to observe ans search by File Structure (Contents) only.
+    HDF5 is supported as Attached File in ODM with ability to observe and search by File Structure (Contents) only.
     We are working on full functionality for HDF5 data content parsing, search, and filtering.
 
 **HDF5 (Hierarchical Data Format version 5)** is a widely used data format in genomic research, particularly in 
@@ -182,7 +182,7 @@ files within Studies.
 ### Viewing File Structure (Contents)
 
 - **Access File Contents via GUI**: The ODM displays File Contents on the Data Tab of Metadata Editor. It is 
-    accessible on `Content` button click.
+    accessible on `Contents` button click.
 - **Retrieve File Contents via API**: You can retrieve File Contents for the list of files or by unique 
     Genestack Accession.
 
