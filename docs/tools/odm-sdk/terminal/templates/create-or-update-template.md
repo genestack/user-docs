@@ -7,7 +7,7 @@ Loaded templates are available to all users on the instance.
 ## Requirements
 
 - Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
-- The user should have the "Set up templates" permission and Bearer Token or API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- The user should have the "Set up templates" permission and Bearer Token or API token. See [Getting a Genestack API token](../../../../user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md)
 - A template settings json file, e.g.: [default_ODM_template_settings.json](default_ODM_template_settings.json)
 - A template json file, e.g.: [Default_ODM_Template.json](Default_ODM_Template.json)
 
