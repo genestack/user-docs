@@ -274,8 +274,8 @@ For `id` param provide Group Accession number. Use the following schema to execu
       ```json title="Curl"
       curl -X 'PATCH' \
         'https://instance-name.genestack.com/api/v1/scim/Groups/GSG000060'  //(1)
-        -H 'accept: */*' \
-        -H 'Genestack-API-Token: "your-genestack-token"' \ //(2)
+        -H 'accept: /' \
+        -H 'Genestack-API-Token: your-genestack-token' \ //(2)
         -H 'Content-Type: application/json' \
         -d '{
         "schemas": [
