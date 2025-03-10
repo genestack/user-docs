@@ -19,7 +19,17 @@ section [Getting a Genestack API token](../doc-odm-user-guide/getting-a-genestac
 
 ## Create/Deactivate users
 
-TBD
+1. Proceed to **Users and permissions** page. Here you can observe the list of all users and their permissions
+2. Click on the option **+ New User**.
+3. Fill in the empty fields and click **Add**. The new user will be added.
+
+![Create User](doc-odm-user-guide/gifs/create-user.gif)
+
+In the ODM it is not possible to delete users, however, you can deactivate them from the menu clicking on three dots 
+button to the left from user icon.
+
+To create and update users via API, please use scimUsers endpoints definition. Proceed with `POST /api/v1/scim/Users` and 
+`PATCH /api/v1/scim/Users{id}`.
 
 ## Users and permissions
 
@@ -232,7 +242,7 @@ administrators or vice versa. Note that each group must have at least one admini
    Refer to the section [Getting an Genestack Token](../doc-odm-user-guide/getting-a-genestack-api-token.md)
    to learn more about API tokens and authorization.
 2. Select the **scimGroups** definition to manage groups.
-3. To update a group, choose the endpoint "**Add a new user group**" `PATCH /api/v1/scim/Groups`.
+3. To update a group, choose the endpoint "**Add a new user group**" `PATCH /api/v1/scim/Groups/{id}`.
 4. Prepare the JSON request according to SCIM 2.0 Specification. You can use `add`, `replace`, `remove` operations.
 For `id` param provide Group Accession number. Use the following schema to execute the endpoint:
 
