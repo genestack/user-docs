@@ -22,22 +22,23 @@ nav:
       - About Genestack: https://genestack.com/
     - Advanced Guide:
         - user-guide/index.md
-        - Quick Start Guide: user-guide/doc-odm-user-guide/quickstart_user.md
+        - Start: user-guide/doc-odm-user-guide/quickstart_user.md
         - Users and Groups: user-guide/doc-odm-user-guide/setup.md
-        - Getting a Genestack API token: user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md
-        - Metadata Templates: user-guide/doc-odm-user-guide/template-editor.md
         - Create Study: user-guide/doc-odm-user-guide/create-study.md
-        - Work with Metadata: user-guide/doc-odm-user-guide/metadata-editor.md
-        - Metadata Curation: user-guide/doc-odm-user-guide/curator_guide.md
-        - Metadata Versioning: user-guide/doc-odm-user-guide/versioning.md
-        - Import Data on ODM: user-guide/doc-odm-user-guide/import-samples-spreadsheet.md
+        - Import Data to ODM: user-guide/doc-odm-user-guide/import-samples-spreadsheet.md
         - Import Data Using API: user-guide/doc-odm-user-guide/import-data-using-api.md
         - Import Data Using Python Script: user-guide/doc-odm-user-guide/import-data-using-python-script.md
-        - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
-        - Sharing Studies: user-guide/doc-odm-user-guide/sharing.md
-        - Search via Study Browser: user-guide/doc-odm-user-guide/studybrowser.md
         - Exporting Data: user-guide/doc-odm-user-guide/exporting-data.md
         - Cross-reference Mapping: user-guide/doc-odm-user-guide/xref-mapping.md
+        - Study Browser: user-guide/doc-odm-user-guide/studybrowser.md
+        - Metadata Editor: user-guide/doc-odm-user-guide/metadata-editor.md
+        - Template Editor: user-guide/doc-odm-user-guide/template-editor.md
+        - Curator Guide: user-guide/doc-odm-user-guide/curator_guide.md
+        - Metadata Versioning: user-guide/doc-odm-user-guide/versioning.md
+        - Sharing Studies: user-guide/doc-odm-user-guide/sharing.md
+        - Getting a Genestack API token: user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md
+        - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
+
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md
