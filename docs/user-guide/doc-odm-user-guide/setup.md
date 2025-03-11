@@ -28,9 +28,6 @@ section [Getting a Genestack API token](../doc-odm-user-guide/getting-a-genestac
 In the ODM it is not possible to delete users, however, you can deactivate them from the menu clicking on three dots 
 button to the left from user icon.
 
-To create and update users via API, please use scimUsers endpoints definition. Proceed with `POST /api/v1/scim/Users` and 
-`PATCH /api/v1/scim/Users{id}`.
-
 ## Users and permissions
 
 Understanding the roles, capabilities, and permissions within ODM is crucial for effective data management and 
@@ -80,7 +77,7 @@ User Groups in ODM facilitate collaboration and data sharing, representing depar
 preferred structure.
 
 To view the list of available Groups in your instance, click on the three-line menu at the top left of the dashboard. 
-A menu will appear; select <strong>Groups</strong> This option is available to all users, regardless of their permissions.
+A menu will appear.
 
 The new window will display a list of available groups in your instance. Click on each group to view its members. This
 window also shows the primary roles within each group: the **Group Administrator**, who can add members, assign roles, 
@@ -98,21 +95,15 @@ based on their assigned permissions. Below are the key limitations depending on 
 1. **Access to Groups:**
     * With Manage Groups permission: Users can access all groups within the system, irrespective of their membership status.
     * Without permission: Users can only access groups of which they are members.
-2. **Creating a New Group:** Any user can create a new group through the user interface or via API endpoints.
+2. **Creating a New Group:** Any user can create a new group through the user interface.
 3. **Adding or Removing Members from a Group:**
     * With Manage Groups permission: Users can add or remove members from any group.
-    * Without permission: Users can add or remove members and edit roles only within groups they belong to.
+    * Without permission: Group Admin can add or remove members and edit roles only within groups they belong to.
 4. **Deleting a Group:**
     * With Manage Groups permission: Any user can delete any group through the interface.
-    * Without permission: Users can only delete groups they are a part of.
+    * Without permission: Group Admin can only delete groups they are a part of.
 
 ### Creating a Group
-
-A new group can be created in ODM in two main ways:
-1. **Manually via the interface**
-2. **Using API endpoints**
-
-#### Creating a Group Manually via the Interface
 
 To create a new group manually, follow these steps:
 
@@ -128,92 +119,9 @@ group is assigned as the **Group Admin**. It is important to notice that each gr
 
 ![Create Group](../doc-odm-user-guide/doc-odm-user-guide/gifs/group-creation.gif)
 
-#### Creating Groups Using SCIM API (Automated Access Management)
-
-In ODM, you can create, update, and delete groups using API endpoints. While you typically need the **Manage Groups** 
-permission to manage groups you’re not a member of, you can still create or manage your own groups without this 
-permission. For example, a Public user can create, update, and delete groups using endpoints from the scimGroup 
-section. Permissions and access follow the same rules as those in the GUI.
-
-Follow these steps to create a group via API endpoints.
-
-1. Familiarize yourself with the API endpoints and ensure you have an active token. 
-Refer to the section [Getting an Genestack Token](../doc-odm-user-guide/getting-a-genestack-api-token.md) 
-to learn more about API tokens and authorization.
-2. Select the **scimGroups** definition to manage groups.
-3. To create a new group, choose the endpoint "**Add a new user group**" `POST /api/v1/scim/Groups`.
-4. Prepare the JSON request according to SCIM 2.0 Specification. Specify the name of the new group. Provide Groups Name in `"displayName"` parameter. 
-Use the following schema to execute the endpoint:
-
-      ```json title="Request POST /api/v1/scim/Groups"
-      {
-        "displayName": "displayName", //(1)
-        "schemas": [
-          "urn:ietf:params:scim:schemas:core:2.0:Group",
-        ]
-      }
-      ```
-   
-      1. Provide desired name of your Group here
-
-5. From terminal you can use the following curl:
-
-      ```json title="Curl"
-      curl -X 'POST' \
-         'https://instance-name.genestack.com/api/v1/scim/Groups' \ //(1)
-         -H 'accept: application/scim+json' \
-         -H 'Genestack-API-Token: "your-genestack-token"' \ //(3)
-         -H 'Content-Type: application/json' \
-         -d '{
-         "displayName": "displayName", //(2)
-         "schemas": [
-           "urn:ietf:params:scim:schemas:core:2.0:Group",
-           "urn:ietf:params:scim:schemas:core:2.0:Group"
-           ]
-      }'
-      ```
-      
-      1. Your instance name here before `.genestack.com/api/v1/scim/Groups`
-      2. Provide desired name of your Group here
-      3. Your Genestack API Token here
-
-6. The response will confirm that the group has been successfully created, including details such as the group's ID
-   and creation date:
-
-      ```json title="Responce from POST /api/v1/scim/Groups"
-      {
-       "schemas": [
-        "urn:ietf:params:scim:schemas:core:2.0:Group"
-       ],
-       "id": "autogenerated-genestack:accession", //(5)
-       "meta": {
-         "resourceType": "Group",
-         "created": 1741631396000, //(1)
-         "lastModified": 1741631396000 //(2)
-        },
-        "displayName": "groupName", //(3)
-        "members": [
-          {
-            "value": "1",
-            "display": "your-userName", //(4)
-            "$ref": "/Users/1"
-          }
-        ]
-      } 
-      ```
-
-      1. Date and time of Group creation
-      2. Date and time of Group last modification
-      3. The name of the Group that you have placed to the request 
-      4. Your ODM profile name
-      5. Autogerated Group Accession (genestack:accession)
-
-7. Verify that the group is active in ODM by searching for it in the Groups section. 
-8. By default, the user who created the group is the only member and admin. Additional members can be added as needed.
-
 ## Managing Groups
 
-Once you have created groups, you can edit details such as members, role members (group admin or group members), 
+Once you have created groups, you can edit details such as members, members' roles (group admin or group members), 
 and delete groups.
 
 To manage groups in the interface, navigate to the section Groups (instructions described above) and select the group 
@@ -235,91 +143,6 @@ administrators or vice versa. Note that each group must have at least one admini
 * To remove a member, click on the three dots next to their username.
 
 ![Modify Group](doc-odm-user-guide/gifs/modify-group.gif)
-
-### Update Group via SCIM API
-
-1. Familiarize yourself with the API endpoints and ensure you have an active token.
-   Refer to the section [Getting an Genestack Token](../doc-odm-user-guide/getting-a-genestack-api-token.md)
-   to learn more about API tokens and authorization.
-2. Select the **scimGroups** definition to manage groups.
-3. To update a group, choose the endpoint "**Add a new user group**" `PATCH /api/v1/scim/Groups/{id}`.
-4. Prepare the JSON request according to SCIM 2.0 Specification. You can use `add`, `replace`, `remove` operations.
-For `id` param provide Group Accession number. Use the following schema to execute the endpoint:
-
-      ```json title="Request PATCH /api/v1/scim/Groups"
-      {
-        "schemas": [
-          "urn:ietf:params:scim:api:messages:2.0:PatchOp"
-        ],
-        "Operations": [
-          {
-            "op": "add", //(1)
-            "path": "members",
-            "value": [
-              {
-                "value": "10" //(2)
-              }
-            ]
-          },
-          {
-            "op": "remove", //(3)
-            "path": "members",
-            "value": [
-              {
-                "value": "26" //(4)
-              }
-            ]
-          }
-        ]
-      }
-      ```
-   
-      1. Add a user to your Group
-      2. User ID can be found by using SCIM API endpoint definition **scimUsers** with `GET /api/v1/scim/Users`
-      3. Remove a user from your Group
-      4. User ID can be found by using SCIM API endpoint definition **scimUsers** with `GET /api/v1/scim/Users`
-
-5. From terminal you can use the following curl:
-
-      ```json title="Curl"
-      curl -X 'PATCH' \
-        'https://instance-name.genestack.com/api/v1/scim/Groups/GSG000060'  //(1)
-        -H 'accept: /' \
-        -H 'Genestack-API-Token: your-genestack-token' \ //(2)
-        -H 'Content-Type: application/json' \
-        -d '{
-        "schemas": [
-          "urn:ietf:params:scim:api:messages:2.0:PatchOp"
-        ],
-        "Operations": [
-          {
-            "op": "add", //(3)
-            "path": "members",
-            "value": [
-              {
-                "value": "10" //(4)
-              }
-            ]
-          },
-          {
-            "op": "remove", //(5)
-            "path": "members",
-            "value": [
-              {
-                "value": "26" //(6)
-              } 
-            ]
-          }
-        ]
-      }'
-      ```
-
-      1. Your instance name here before `.genestack.com/api/v1/scim/Groups` + Group Accession (genestack:accession) starts grom `GSG`
-      2. Your Genestack API Token here
-      3. Add a user to your Group
-      4. User ID can be found by using SCIM API endpoint definition **scimUsers** with `GET /api/v1/scim/Users`
-      5. Remove a user from your Group
-      6. User ID can be found by using SCIM API endpoint definition **scimUsers** with `GET /api/v1/scim/Users`
 
 ## Curator Group
 
