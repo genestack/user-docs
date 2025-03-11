@@ -4,7 +4,7 @@ On this page we briefly show main pages of the ODM: Dashboard, Study Browser, Me
 
 For more details about Study Browser and Metadata Editor functionality refer to corresponding guide page. 
 
-![StartGIF](doc-odm-user-guide/gif/start.gif)
+![StartGIF](doc-odm-user-guide/gifs/start.gif)
 
 The first thing you see when logging in to Open Data Manager is the Dashboard:
 
@@ -34,12 +34,12 @@ The search is also aware of controlled dictionary/ontology and will expand resul
 extension to include child terms. 
 Click on the question mark next to the search bar to open `Help` with more details about advanced search functionality.
 
-![SearchHelpGIF](doc-odm-user-guide/gif/search_help.gif)
+![SearchHelpGIF](doc-odm-user-guide/gifs/search_help.gif)
 
 The facets on the left side allow you to filter down the results of a search based on the metadata fields that 
 are presented in your results.
 
-![FacetsGIF](doc-odm-user-guide/gif/facets.gif)
+![FacetsGIF](doc-odm-user-guide/gifs/facets.gif)
 
 You can find more about Search functionality on [Study Browser](../doc-odm-user-guide/studybrowser.md) page 
 of this guide.

@@ -17,15 +17,15 @@ nav:
       - Users, Roles, Permissions: user-guide/users-roles-permissions/users-roles-permissions.md
       - Supported Data Formats: user-guide/supported-data/supported-data.md
       - Guides:
-            - User Interface Advanced Guide:
+            - Advanced User Guide:
                 - user-guide/index.md
       - About Genestack: https://genestack.com/
     - Advanced Guide:
         - user-guide/index.md
         - Start: user-guide/doc-odm-user-guide/quickstart_user.md
-        - User Setup: user-guide/doc-odm-user-guide/setup.md
-        - Create New Study: user-guide/doc-odm-user-guide/create-study.md
-        - Import Data on ODM: user-guide/doc-odm-user-guide/import-samples-spreadsheet.md
+        - Users and Groups: user-guide/doc-odm-user-guide/setup.md
+        - Create Study: user-guide/doc-odm-user-guide/create-study.md
+        - Import Data to ODM: user-guide/doc-odm-user-guide/import-samples-spreadsheet.md
         - Import Data Using API: user-guide/doc-odm-user-guide/import-data-using-api.md
         - Import Data Using Python Script: user-guide/doc-odm-user-guide/import-data-using-python-script.md
         - Exporting Data: user-guide/doc-odm-user-guide/exporting-data.md
@@ -38,6 +38,7 @@ nav:
         - Sharing Studies: user-guide/doc-odm-user-guide/sharing.md
         - Getting a Genestack API token: user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md
         - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
+
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md
