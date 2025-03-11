@@ -211,5 +211,40 @@ in our **Advanced User Guide**.
 
 ## Attached Files
 
+The ODM allows users to upload and manage any attachments related to their Studies.
+Attachments can be uploaded via the GUI or API, and for every uploaded file **must be assigned a Data Class** to ensure 
+proper organization within catalogue and retrieval.
+
+### Uploading Attachments
+
+Users can upload any file type through the GUI, the `POST /api/v1/jobs/import/file` endpoint in `job` endpoints definition, or the `import_odm_data.py` script. 
+All uploaded attachments are stored in S3 and reflected in the system but are not indexed. 
+To maintain structured catalogue, each attachment must be assigned a Data Class.
+
+!!! danger "Limitation"
+    S3 bucket is mandatory to upload and work with Attached files functionality in the ODM.
+
+### Managing and Viewing Attachments
+
+Attachments are displayed in the appropriate Data Class group on the `Data` tab in User Interface. 
+Users can view and manage uploaded files, ensuring they are correctly categorized and accessible within their Studies. 
+Metadata can be added, edited, and customized for attachments, and additional non-template attributes can be specified.
+
+### Searching for Attachments
+
+The Study Browser and API allows users to find Studies by Attached file metadata. Study Browser also allows to search for Studies
+by Data Class assigned to Attached files.
+
+### API Support
+
+The API provides endpoints to manage attachments:
+
+1. Upload Attached files.
+2. Find all Attached files metadata.
+3. Find metadata of particular Attached file. 
+4. Find Studies by Attached file id or metadata.
+5. Download Attached file. 
+6. Delete Attached files.
+
 For a detailed description and instructions on using Attached Files, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
 in our **Advanced User Guide**.
