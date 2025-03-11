@@ -212,12 +212,12 @@ in our **Advanced User Guide**.
 ## Attached Files
 
 The ODM allows users to upload and manage any attachments related to their Studies.
-Attachments can be uploaded via the GUI or API, and every uploaded file **must be assigned a Data Class** to ensure 
+Attachments can be uploaded via the GUI or API, and for every uploaded file **must be assigned a Data Class** to ensure 
 proper organization within catalogue and retrieval.
 
 ### Uploading Attachments
 
-Users can upload any file type through the GUI, the POST API, or the `import_odm_data.py` script. 
+Users can upload any file type through the GUI, the `POST /api/v1/jobs/import/file` endpoint in `job` endpoints definition, or the `import_odm_data.py` script. 
 All uploaded attachments are stored in S3 and reflected in the system but are not indexed. 
 To maintain structured catalogue, each attachment must be assigned a Data Class.
 
