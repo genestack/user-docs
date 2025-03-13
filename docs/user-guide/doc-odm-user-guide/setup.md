@@ -1,81 +1,165 @@
-# User setup
+# Users and Groups
 
-## Profile
+## Accessing Your Profile and Permissions
 
-To explore and customize your account, click on your username (your email address)
-in the top-right corner of the page and, then, select the menu item **Profile**.
+Explore and customize your account by accessing the profile section.
 
-![image](doc-odm-user-guide/images/profile-1.png)
+1. Log into the ODM:
+    - Navigate to the ODM homepage.
+    - Click on your profile (top right of the main page)
+2. Explore Permissions:
+    - Click on Profile to access information regarding your user permissions.
+3. A new window will display indicating if you are an admin and the groups you are part of. 
+This window also allows you to change your password and edit details.
+4. View Existing Tokens and **Create a New Token**. You will see any previously created tokens that 
+you can rename or delete if needed. Click on **Create a New Token** to create a new one. Refer to the 
+section [Getting a Genestack API token](../doc-odm-user-guide/getting-a-genestack-api-token.md) for more information.
 
-On the opening page you’ll find the following sections:
+![User Profile](../doc-odm-user-guide/doc-odm-user-guide/gifs/user-profile.gif)
 
-![image](doc-odm-user-guide/images/odm_profile.png)
+## Create/Deactivate users
 
-- The first section contains your personal information, whether you are an admin and/or a curator user and which groups you belong to. You can click the group name to taken directly to the group in the Manage Users application.
-- The  **API tokens** section is where you can download an access-token which allows the use of scripts/APIs. Learn more about how to generate Genestack REST API tokens in the section [Getting a Genestack API token](getting-a-genestack-api-token.md#token-label).
+1. Proceed to **Users and permissions** page. Here you can observe the list of all users and their permissions
+2. Click on the option **+ New User**.
+3. Fill in the empty fields and click **Add**. The new user will be added.
 
-After you click **Generate new token** an email is sent to your email address. To generate the API token,
-follow the link specified in the email. You can rename or delete previously generated tokens in your profile.
+![Create User](doc-odm-user-guide/gifs/create-user.gif)
 
-![image](doc-odm-user-guide/images/token.png)
+In the ODM it is not possible to delete users, however, you can deactivate them from the menu clicking on three dots 
+button to the left from user icon.
 
 ## Users and permissions
 
-The **Users and permissions** page allows you to get an overview of the existing users in your organisation,
-to create new users and assign permissions to manage the organization, templates and facet configuration. This page is accessible only if you have permission to manage the organization.
+Understanding the roles, capabilities, and permissions within ODM is crucial for effective data management and 
+collaboration. Each permission defines specific actions users can perform, such as creating, editing, or deleting 
+groups, and managing templates. Users must have the appropriate permissions to carry out these actions, ensuring a 
+secure and well-organized data environment.
 
-In order to open the application, you can use the shortcut menu and select **Users and permissions**.
+### Available Permissions
 
-![image](doc-odm-user-guide/images/shortcut_1_37.png)
+There are five permissions available in the system. Descriptions of the permissions are displayed when you 
+hover over the mouse.
 
-On the page you can change passwords of the users by clicking the three dots icon, control if the account is active, has permission to manage the organization (add/deactivate users, manage their permissions), whether they can edit and manage templates, including setting the default template, and whether they can configure the facets that appear in the study browser.  “Manage groups” permission allows users to access and manage all existing groups, even if you are neither an admin nor a member of the group. It is recommended for integration purposes. “Access all data” provides access to all studies in the system including the private ones which have not been shared. The permission is recommended for integration purposes.
+1. **Manage organization**: Create and deactivate users, change their passwords, and grant permissions.
+2. **Manage groups**: Access and manage all existing groups, even if you are neither an admin nor a member of the group. 
+This permission is particularly recommended for integration purposes, where centralized management of group 
+permissions across systems is required
+3. **Set up templates**: Create and modify templates.
+4. **Access all data**: Access all studies in the system. This permission is recommended for integration purposes, 
+enabling comprehensive data access for system-wide operations and integrations.
+5. **Configure facets**: Set the desired list and order of filtering facets in the Study Browser for all users 
+on the instance.
 
-![image](doc-odm-user-guide/images/new-user_1_23.png)
+### **Setting and Managing User Permissions**
 
-To create a new user, click on the **+ New user** button. In the pop-up window specify their name, email and starting password.
+To set or change user permissions, you need to have the **Manage organization** permission:
 
-![image](doc-odm-user-guide/images/new-user_1_233.png)
+1. **Accessing the Permissions Menu:**
+    * On the main dashboard, click on the three-line menu button at the top left. 
 
-After the user is created they can log in using the specified credentials.
+    !!! warning "Permissions required"
+        If you have the **Manage organization**
+        permission, this menu will display the option **Users and Permissions**. If you do not have this permission,
+        the option will not be available.
 
+2. **Managing Permissions:**
+    * If you have access, click on **Users and Permissions**. This option will open a new window where you can see all 
+the users within your organization. You can grant or revoke permissions by ticking the corresponding boxes for 
+options such as **Manage groups**, **Set up templates**, **Access all data**, and **Configure facets**.
+    * Use the search bar to find users you want to grant or revoke permissions to. 
+    * Hover over the permissions to view a brief description of the permissions capabilities.
+
+![Set permissions](../doc-odm-user-guide/doc-odm-user-guide/gifs/set-permissions.gif)
+     
 ## Groups
 
-**Groups** are used to share studies with other users, so that they are accessible for all members
-of that group. Any user can create one or several groups and invite their collaborators.
+User Groups in ODM facilitate collaboration and data sharing, representing departments, project teams, or any other
+preferred structure.
 
-Depending on the role a users has, they can have different privileges in sharing process and managing the group, namely:
+To view the list of available Groups in your instance, click on the three-line menu at the top left of the dashboard. 
+A menu will appear.
 
-- *Group member* — have an access to the shared files but also can share data (only if the user is the study owner);
-- *Group admin* — in addition to the sharing user rights, can invite or remove users and change their privileges.
+The new window will display a list of available groups in your instance. Click on each group to view its members. This
+window also shows the primary roles within each group: the **Group Administrator**, who can add members, assign roles, 
+and share data with the group, and **Group Members**, who can share data with the group.
 
-By default, you’ll be a group administrator of any group that is created by your user.
+You can also add new members to groups or create new groups. See the instructions below for more details.
 
-For more information on using groups and sharing files, see the section [Sharing Studies](sharing.md#sharing-label).
+### Permission limitations
+!!! warning "Permissions required"
+    To manage groups (create, edit, or delete), you must have the **Manage Groups** permission.
 
-The **Groups** page lets you to view the list of groups you are a member of as well as their other members,
-and manage them according to your privileges.
+The Groups page in ODM provides a list of all groups to which a user belongs. However, user capabilities are restricted 
+based on their assigned permissions. Below are the key limitations depending on user permissions:
 
-Click **Groups** in the short-cut menu to navigate to the Groups page.
+1. **Access to Groups:**
+    * With Manage Groups permission: Users can access all groups within the system, irrespective of their membership status.
+    * Without permission: Users can only access groups of which they are members.
+2. **Creating a New Group:** Any user can create a new group through the user interface.
+3. **Adding or Removing Members from a Group:**
+    * With Manage Groups permission: Users can add or remove members from any group.
+    * Without permission: Group Admin can add or remove members and edit roles only within groups they belong to.
+4. **Deleting a Group:**
+    * With Manage Groups permission: Any user can delete any group through the interface.
+    * Without permission: Group Admin can only delete groups they are a part of.
 
-![image](doc-odm-user-guide/images/shortcut_1_37.png)
+### Creating a Group
 
-If you are an administrator of your organisation, you’ll see a group “Curator” automatically created for you.
-“Curator” group is a special group granting edit permissions to its members. Members of the Curator group can import new studies and edit any study shared with them.
+To create a new group manually, follow these steps:
 
-If a user is not a member of the “Curator” group they are considered as researchers and are able to browse available studies and retrieve data, but not contribute to it.
+1. **Access the Groups Section**
+    * Click on the three-line menu button at the top left of the dashboard to access the `Groups` section.
 
-![image](doc-odm-user-guide/images/groups.png)
+2. **Create a New Group:**
+    * In the Groups window, click on the **\+New Group** button at the top of the window.
+    * Enter a name for the new group in the new window that appears.
+    * Click "Create" to finalize the creation of the group.
+    * A new window will be displayed showing the new group has been created. By default, the user who creates the new 
+group is assigned as the **Group Admin**. It is important to notice that each group requires at least one group admin.
 
-Regardless of your role in your organisation, if you have no groups yet, you can create one by clicking **+ New group**.
-In the pop-up window that appears you’ll be asked to give the group a name.
+![Create Group](../doc-odm-user-guide/doc-odm-user-guide/gifs/group-creation.gif)
 
-![image](doc-odm-user-guide/images/new-group.png)
+## Managing Groups
 
-After the new group is created you can invite other users to join by clicking on **New members**.
-You can also delete the created group by clicking on **Remove group**. If a group contains members you need to remove the members from the group before you can delete it.
+Once you have created groups, you can edit details such as members, members' roles (group admin or group members), 
+and delete groups.
 
-![image](doc-odm-user-guide/images/add-members.png)
+To manage groups in the interface, navigate to the section Groups (instructions described above) and select the group 
+you want to manage.
 
-In the dialog that appears, you’ll be prompted for the new member email.
+### Add New Members via Interface
 
-By default new users are added to the group as group members. You will be able to change their role to group admin.
+* Click on the **\+New members** button to add members to the group.
+* In the new window, you can select members from the list or use the search bar to find specific users.
+
+**Confirm New Members:**
+
+* After selecting the members, click **Add member** to confirm. The group will now display the recently added members.
+  
+### Edit Group Details
+
+* You can edit the roles of group members by clicking on their role descriptions. You can change members to 
+administrators or vice versa. Note that each group must have at least one administrator.
+* To remove a member, click on the three dots next to their username.
+
+![Modify Group](doc-odm-user-guide/gifs/modify-group.gif)
+
+## Curator Group
+
+The Curator group is a special group granting edit permissions to its members. Curators can import new studies and 
+edit any study shared with them.
+
+Only Administrators can add or remove members to the Curator Group. To Add new members, simply follow the instructions 
+described in previous sections and select the User to add.
+
+1. Briefly, navigate to the Groups section. Select the group **Curator**.
+2. Click on **+New member** and select the member to add.
+3. Confirm the changes.
+4. Once the user is added, the title will be displayed on its profile.
+
+Curators can explore, edit, and curate data. However, some limitations are set based on their permissions:
+
+* **Curators with Manage Groups permissions**: Members of the Curator group with full edit permissions. 
+Users can add or remove members of the Curator Group.
+
+!!! danger "It is not advisable to delete the **Curator Group**, since Users need to be aware of potential changes"

@@ -65,7 +65,7 @@ Want to know more? Learn more by watching our videos below.
 
 ## In Depth User Guide Articles
 
-* [User Quick Start Guide](doc-odm-user-guide/quickstart_user.md)
+* [Start](doc-odm-user-guide/quickstart_user.md)
     * [Dashboard](doc-odm-user-guide/quickstart_user.md#dashboard)
     * [Study Browser](doc-odm-user-guide/quickstart_user.md#study-browser)
     * [Metadata Editor](doc-odm-user-guide/quickstart_user.md#metadata-editor)

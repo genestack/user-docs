@@ -10,7 +10,7 @@ assist in the matching process.
 ## Requirements
 
 - Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
-- The user should be a member of Curator group and have Bearer Token or API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- The user should be a member of Curator group and have Bearer Token or API token. See [Getting a Genestack API token](../../../../user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md)
 - File with curation rules. How to correctly write such file is described [below](#metadata-mapping-rules).
 
     **Example**: [rules.json](curation-script/rules.json) written for sample metadata [samples.tsv](curation-script/samples.tsv).
