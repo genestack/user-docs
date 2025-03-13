@@ -206,6 +206,55 @@ in our **Advanced User Guide**.
 
 ## FACS (Flow Cytometry)
 
+### Data Overview
+
+- The FACS format in the ODM represents processed (post-gating) flow cytometry data for human-readable analysis and integration.
+
+![FACS file](facs.png)
+
+1. **Key Columns:**
+
+    * **Sample:**
+        * A string representing the sample name without additional extraction.
+
+    * **CellPopulation:**
+        - Describes cell subtypes in a hierarchical, path-like structure (e.g., `CD45+, live/CD45+, CD3+/CD4`).
+        - Counts at parent levels equal the sum of their children, but marker-specific counts may not add up due to cells expressing multiple markers.
+
+    * **ReadoutType:**
+        - Defines the type of value recorded:
+        - **Median**: Median intensity of a fluorophore (decimal).
+        - **Count**: Number of cells (integer).
+        - **Percentage**: Proportion relative to the parent population.
+
+    * **Marker:**
+        - Identifies proteins or fluorophores on the cell surface (e.g., `PD-1`, `GZB`, `BV786`).
+        - Some markers may have different names but refer to the same entity.
+
+2. **Considerations:**
+
+    - Cell populations are hierarchical, and cells may carry multiple markers simultaneously.
+    - Marker counts do not fully represent the total population due to overlapping markers.
+
+### Using FACS in ODM
+
+ODM indexes FACS files and provide API endpoints to search via them:
+
+1. Find FACS objects and groups by its metadata and data:
+    - Run
+    - Readout Type
+    - Population
+    - Marker
+    - Value
+
+2. Find objects and groups by its Genestack Accession.
+
+3. Find objects and groups by entities:
+    - Study
+    - Samples
+
+4. Update FACS group metadata by object id.
+
 For a detailed description and instructions on using FACS, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
 in our **Advanced User Guide**.
 
