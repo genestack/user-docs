@@ -208,7 +208,7 @@ in our **Advanced User Guide**.
 
 ### Data Overview
 
-- The FCS format in Open Data Manager (ODM) represents processed (post-gating) flow cytometry data for human-readable analysis and integration.
+- The FФCS format in the ODM represents processed (post-gating) flow cytometry data for human-readable analysis and integration.
 
 ![FACS file](facs.png)
 
@@ -253,7 +253,7 @@ ODM indexes FACS files and provide API endpoints to search via them:
     - Study
     - Samples
 
-4. Update FACS objects.
+4. Update FACS group metadata by object id.
 
 For a detailed description and instructions on using FACS, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
 in our **Advanced User Guide**.
