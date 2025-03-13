@@ -15,7 +15,7 @@
     Upload and manage tabular data (TSV files) seamlessly within the ODM. Work with Samples, 
     Libraries, Preparations, Expression data, and more.
 
-- :fontawesome-solid-signal:{ .lg .middle } __[GCT (Gene Expression)](../supported-data/supported-data.md/#gct-gene-xpression)__ 
+- :fontawesome-solid-signal:{ .lg .middle } __[GCT (Gene Expression)](../supported-data/supported-data.md/#gct-gene-expression)__ 
 
     ---
 
@@ -29,7 +29,7 @@
     Upload and work with VCF (Variant Call Format) files to search, filter, retrieve, and analyze 
     genetic variants in the ODM.
 
-- :fontawesome-solid-disease:{ .lg .middle } __[HDF5 (e.g. Single Cell)](../supported-data/supported-data.md/#hdf5-single-cell)__
+- :fontawesome-solid-disease:{ .lg .middle } __[HDF5 (e.g. Single Cell)](../supported-data/supported-data.md/#hdf5-eg-single-cell)__
 
     ---
     Upload and store HDF5 (Hierarchical Data Format 5) files as attachments in the ODM. Future releases will enable 
