@@ -208,7 +208,7 @@ in our **Advanced User Guide**.
 
 ### Data Overview
 
-- The FФCS format in the ODM represents processed (post-gating) flow cytometry data for human-readable analysis and integration.
+- The FACS format in the ODM represents processed (post-gating) flow cytometry data for human-readable analysis and integration.
 
 ![FACS file](facs.png)
 
