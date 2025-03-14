@@ -1,15 +1,15 @@
 
 To create a new study in the Open Data Manager, follow these steps:
 
-1. Click on **Create new study**: Start by selecting the option to create a New Study on the main dashboard (a) or from 
-the menu in the top left corner, then click on “Create a New Study” (b).
+1. Click on **Create new study**: Start by selecting the option to create a New Study on the main dashboard or from 
+the menu in the top left corner, then click on “Create New Study”.
 2. **Assign a Name**: Give your study a descriptive name to identify it easily.
 3. **Select the Template**: Choose the template you want to use for your study. Templates define the metadata structure 
 and validation rules for your study. You can create your own template, and there is no limit on the number of templates you can use.
 
 !!! tip "Understanding Templates"
     For more information about what a template is and how it works, refer to 
-    the [Key Concepts section](../key-concepts/key-concepts.md/#templates)). This section provides definitions and details about templates, including how to 
+    the [Key Concepts section](../key-concepts/key-concepts.md/#templates). This section provides definitions and details about templates, including how to 
     create and edit them. Explore the [Templates section](../doc-odm-user-guide/template-editor.md) if you require more information or need detailed guidance.
 
 ![create-study.gif](../doc-odm-user-guide/doc-odm-user-guide/gifs/create-study.gif)
@@ -33,7 +33,7 @@ The study will open in a new tab, where the following tabs can be explored:
 In addition, a unique accession number is automatically generated for each study in the ODM. The accession number allows 
 you to identify the specific study and to further work with the study via API endpoints.
 
-![study-accession.gif](doc-odm-user-guide%2Fgifs%2Fstudy-accession.gif)
+![study-accession.gif](doc-odm-user-guide/gifs/study-accession.gif)
 
 ## Edit Study Metadata
 
@@ -43,4 +43,4 @@ you to identify the specific study and to further work with the study via API en
 
 * Click **Publish** to save the changes. You can customize the name for the version you are updating by clicking the **Publish** button at the bottom of the screen. A new window will pop up, allowing you to customize the version name. 
 
-![study-edit.gif](doc-odm-user-guide%2Fgifs%2Fstudy-edit.gif)
+![study-edit.gif](doc-odm-user-guide/gifs/study-edit.gif)
