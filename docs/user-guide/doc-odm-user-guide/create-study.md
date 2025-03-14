@@ -10,7 +10,7 @@ and validation rules for your study. You can create your own template, and there
 !!! tip "Understanding Templates"
     For more information about what a template is and how it works, refer to 
     the [Key Concepts section](../key-concepts/key-concepts.md)). This section provides definitions and details about templates, including how to 
-    create and edit them. Explore the [Templates section](https://odm.demo.genestack.com/user-docs/user-guide/doc-odm-user-guide/template-editor/) if you require more information or need detailed guidance.
+    create and edit them. Explore the [Templates section](../doc-odm-user-guide/template-editor.md) if you require more information or need detailed guidance.
 
 ![create-study.gif](../doc-odm-user-guide/doc-odm-user-guide/gifs/create-study.gif)
 
