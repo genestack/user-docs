@@ -143,7 +143,7 @@ You can upload your experimental data, such as bulk transcriptomics, proteomics,
 * Click "Next." This will open a window where you can select a file containing experimental data from your local computer or external storage.
 
 ![58ImportData2.png](doc-odm-user-guide/images/58ImportData2.png)
-<figcaption>Select the source for the experimental data. Experimental data can be imported from your local computer or a cloud-based storage system (such as AWS)</figcaption>
+<figcaption>Select the source for the experimental data. Experimental data can be imported from your local computer or external storage</figcaption>
 
 ### **Linking Data**
 
