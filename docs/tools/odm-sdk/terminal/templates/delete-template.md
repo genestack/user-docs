@@ -5,7 +5,7 @@ This article describes how to delete templates in ODM.
 ## Requirements
 
 - Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
-- The user should have the "Manage organisation" permission and have Bearer Token or API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- The user should have the "Manage organisation" permission and have Bearer Token or API token. See [Getting a Genestack API token](../../../../user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md)
 
 !!!warning
 
