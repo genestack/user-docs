@@ -159,7 +159,7 @@ The selected files will be scanned to find an appropriate link (typically the **
 
 After uploading, you can populate the corresponding file metadata, including the necessary details. Please note that each uploaded data file has five mandatory read-only fields:
 
-- Genestack:accession
+- genestack:accession
 - Data Class
 - Features (string)
 - Features (numeric)
