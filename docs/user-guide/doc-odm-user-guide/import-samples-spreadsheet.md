@@ -100,26 +100,27 @@ In addition to the samples, libraries, and preparations metadata described above
 **Data Type (Data Class)**: Identify the data type you want to upload. Multiple types are supported:
 
 - Bulk transcriptomics - Supports data provided in TSV or GCT 1.2 format.
-- Single cell transcriptomics - Supports data provided in TSV format.
-- Differential abundance (FC, pval, etc.) - TSV format.
-- Pathway analysis - TSV format.
-- Proteomics - TSV format.
-- Single cell proteomics - Supports data provided in TSV format. 
-- Metabolomics - TSV format.
-- Lipidomics - TSV format.
-- Epigenomics - TSV format.
-- DNA methylation - TSV format.
-- Chemoinformatics - TSV format.
-- Imaging features - TSV format.
-- Gene panel data - TSV format.
-- Biomarker data - TSV format.
-- Physical measures - TSV format.
-- Blood counts - TSV format.
-- Other body fluid counts - TSV format.
-- Nanopore - TSV format.
-- Gene variant (VCF) - VCF format.
-- Flow Cytometry - FACS format.
-- Other - TSV format.
+- Single cell transcriptomics
+- Differential abundance (FC, pval, etc.)
+- Pathway analysis 
+- Proteomics 
+- Single cell proteomics 
+- Metabolomics 
+- Lipidomics 
+- Epigenomics 
+- DNA methylation
+- Chemoinformatics 
+- Imaging features
+- Gene panel data 
+- Biomarker data 
+- Physical measures 
+- Blood counts 
+- Other body fluid counts 
+- Nanopore 
+- Gene variant (VCF) - VCF format
+- Flow Cytometry - FACS format
+- Document
+- Other 
 
 
 To upload experimental data or attach files, navigate to the **Data Tab**
