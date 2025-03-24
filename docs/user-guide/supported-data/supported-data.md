@@ -201,9 +201,6 @@ Users can search via GUI and API for:
     - By File Contents fields/pathways.
     - By File Genestack Accession.
 
-For a detailed description and instructions on using HDF5, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
-in our **Advanced User Guide**.
-
 ## FACS (Flow Cytometry)
 
 ### Data Overview
@@ -255,9 +252,6 @@ ODM indexes FACS files and provide API endpoints to search via them:
 
 4. Update FACS group metadata by object id.
 
-For a detailed description and instructions on using FACS, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
-in our **Advanced User Guide**.
-
 ## Attached Files
 
 The ODM allows users to upload and manage any attachments related to their Studies.
@@ -271,7 +265,9 @@ All uploaded attachments are stored in S3 and reflected in the system but are no
 To maintain structured catalogue, each attachment must be assigned a Data Class.
 
 !!! danger "Limitation"
-    S3 bucket is mandatory to upload and work with Attached files functionality in the ODM.
+    1. S3 bucket is mandatory to upload and work with Attached files functionality in the ODM.
+    2. **Export:** If attachment's metadata was updated and got a new version, attached file cannot be exported itself from the ODM. 
+    **Workaround:** export is available from exporting whole Study. We are working on improvements for this functionality in 1.61 release.
 
 ### Managing and Viewing Attachments
 
@@ -294,6 +290,3 @@ The API provides endpoints to manage attachments:
 4. Find Studies by Attached file id or metadata.
 5. Download Attached file. 
 6. Delete Attached files.
-
-For a detailed description and instructions on using Attached Files, visit the **[Supported Data Formats page](../doc-odm-user-guide/supported-formats.md)**
-in our **Advanced User Guide**.

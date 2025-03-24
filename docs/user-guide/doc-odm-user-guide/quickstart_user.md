@@ -10,8 +10,6 @@ The first thing you see when logging in to Open Data Manager is the Dashboard:
 
 ## Dashboard
 
-![image](doc-odm-user-guide/images/quickstart_user_dashboard.png)
-
 As a regular user the main tasks of interest are searching and browsing studies. Clicking on the **Browse studies**
 link from the dashboard takes you to the Study Browser to help you do this.
 
