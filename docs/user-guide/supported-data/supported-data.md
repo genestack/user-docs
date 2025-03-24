@@ -265,7 +265,9 @@ All uploaded attachments are stored in S3 and reflected in the system but are no
 To maintain structured catalogue, each attachment must be assigned a Data Class.
 
 !!! danger "Limitation"
-    S3 bucket is mandatory to upload and work with Attached files functionality in the ODM.
+    1. S3 bucket is mandatory to upload and work with Attached files functionality in the ODM.
+    2. **Export:** If attachment's metadata was updated and got a new version, attached file cannot be exported itself from the ODM. 
+    **Workaround:** export is available from exporting whole Study. We are working on improvements for this functionality in 1.61 release.
 
 ### Managing and Viewing Attachments
 
