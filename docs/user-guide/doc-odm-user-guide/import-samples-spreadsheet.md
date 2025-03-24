@@ -1,4 +1,4 @@
-# Import Data in ODM
+# Import Data to ODM
 
 This guide provides a detailed overview of how to import data into the Open Data Manager (ODM).
 
@@ -40,30 +40,17 @@ To import sample information, ensure the following:
 **Import Samples Metadata**:
 
 * To upload sample metadata, click on the **Samples** tab on the main screen of the study.
-
-![48Samples.png](doc-odm-user-guide/images/48Samples.png)
-<figcaption>Click on the Samples tab to access details about the samples' metadata</figcaption>
-
 * Click on **Edit** at the bottom left of your sample table.
 * Select the tabular files (TSV) by clicking on the cloud symbol in the top right of your sample table.
 
 You can upload sample metadata from any experiment (e.g., flow cytometry, gene variant, transcriptomics) as long as the file is in a tabular format (TSV).
 
-![49Import.png](doc-odm-user-guide/images/49Import.png)
-<figcaption>To import metadata sample files, click the <strong>Edit</strong> button at the bottom, then select the cloud icon to upload tabular files from your local computer</figcaption>
-
 * A new window will pop up. Click **Select tsv file...** and choose your file.
 * Once your file is recognized, click **Import**. Refer to the section [Supported File Formats](supported-formats.md) to explore details on metadata requirements (e.g., **Sample Source ID** is a mandatory column)
-
-![50ImportSamples.png](doc-odm-user-guide/images/50ImportSamples.png)
-<figcaption>Click <strong>Select tsv file...</strong> to select the desired file from your local computer. Once the file is recognized, click "Import" to upload it</figcaption>
-
 * Ensure the changes are saved by clicking **Publish**.
-* In the resulting pop-up box, enter the preferred name, label, or description for the activity you just performed to add it to the version log, e.g., **Sample Metadata has been added**. Refer to the section [Metadata Versioning](versioning.md) to learn more about versioning. 
+* In the resulting pop-up box, enter the preferred name, label, or description for the activity you just performed to add it to the version log, e.g., **Sample Metadata has been added**. Refer to the section [Metadata Versioning](versioning.md) to learn more about versioning.
 
-![51Publish.png](doc-odm-user-guide/images/51Publish.png)
-<figcaption>Once the sample metadata file has been imported, click <strong>Publish</strong> to save the changes. Save the changes by adding a name to this new version, e.g., <strong>Samples metadata has been added</strong>. The version names can be customized with names, dates, descriptions, etc.</figcaption>
-
+![Import Samples](../doc-odm-user-guide/doc-odm-user-guide/gifs/import-samples.gif)
 
 ## Import Libraries and Preparations
 
