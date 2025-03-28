@@ -14,7 +14,7 @@ If something does not work please feel free to contact with developers.
 
 ## Development
 
-Install venv
+Install `venv`
 
 ```shell
 rm -rf venv
