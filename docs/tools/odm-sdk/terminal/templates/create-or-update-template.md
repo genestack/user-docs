@@ -74,17 +74,11 @@ The template json file is validated in ODM against an internal schema: [template
 
     Expression (both Transcriptomics and Proteomics): `dataType = "genestack:transcriptomicsParent"`
 
-3. The `Accession` property is mandatory for each type of object. The following values should be set for each dataType section:
+3. Some technical fields will be automatically added for certain object types.
+    For example, `"genestack:accession"` will be added for all object types, and
+    `"Data Class"` will be added for transcriptomics, genomics, and facs parents.
 
-    ```text
-    name = "genestack:accession",
-    metainfoType = "com.genestack.api.metainfo.StringValue",
-    isRequired = true,
-    isReadOnly = true
-    ```
-
-    It is recommended to include properties having `isRequired = true` into the template file. Please also check out
-    the `description` property attribute: some properties might be required for certain functionality.
+    It is recommended to include properties having `isRequired = true` in the template file.
 
 4. The values accepted for each metadata attribute are given by the `metainfoType` key, and must be one of the following values:
 
