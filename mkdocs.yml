@@ -38,6 +38,7 @@ nav:
         - Sharing Studies: user-guide/doc-odm-user-guide/sharing.md
         - Getting a Genestack API token: user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md
         - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
+        - Working with Reference Genome: user-guide/doc-odm-user-guide/variants.md   
 
     - Tools:
         - odm-sdk:
