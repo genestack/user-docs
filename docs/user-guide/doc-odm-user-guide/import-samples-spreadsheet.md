@@ -63,7 +63,7 @@ You can find a detailed description of the supported file formats [Tabular data]
 
 To add data, open a Study and navigate to the Data tab. Click the “Add data” button situated in the top left corner of the Data tab.
 
-![image](doc-odm-user-guide/images/add_data-button.png)
+![add-data.gif](doc-odm-user-guide/gifs/add-data.gif)
 
 In the subsequent dialog window, several parameters need to be defined:
 
