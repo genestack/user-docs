@@ -2,7 +2,7 @@
 
 To export data from a study either click the three buttons icon next to the study title from the Study Browser or click the study name in the Metadata editor and select **Export data**.
 
-![image](doc-odm-user-guide/images/export-data-menu.png)
+![export-data-study-browser.gif](doc-odm-user-guide/gifs/export-data-study-browser.gif)
 
 You can also click the Export button near the top right of any Metadata editor tab.
 
@@ -16,4 +16,4 @@ Previous export links that have been generated will be listed at the bottom of t
 
 It is possible to export just one dataset of interest. For doing it navigate to a tab with analysis of interest and click on the “Download data” button. The data file with the corresponding metadata file and the description will be compressed into an archive and available via the link.
 
-![image](doc-odm-user-guide/images/add_data-button.png)
+![download-file-metadata-editor.gif](doc-odm-user-guide/gifs/download-file-metadata-editor.gif)
