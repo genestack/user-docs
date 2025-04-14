@@ -55,8 +55,9 @@ ODM enables you to add any data to your study. There are two main ways to associ
 - Import a Data Frame: Import data files in tabular format. ODM extracts pertinent information stored in your file (e.g., gene expression measurements, gene variants, pathway activity scores, metabolite abundance, sales data) and writes it in the ODM database to enable searchability.
 - Attach a File: Add various research materials related to your study, such as PDF, XLSX, DOCX, PPTX, images, and more. All users with access to the study can download these attached files. However, unlike the “Import Data” option, attached files’ content is not indexed or searchable.
 
-!!! note "File size limitation"
-    Data uploading through the user interface is currently in BETA stage. The current version supports file uploading of up to 5GB. Future releases will enhance its functionality and flexibility.
+
+!!! note "Important"
+     Uploading large files via the user interface may take some time. The duration depends on your network speed, so please plan accordingly.
 
 You can find a detailed description of the supported file formats [Tabular data](supported-formats.md#format-label).
 
@@ -70,8 +71,8 @@ In the subsequent dialog window, several parameters need to be defined:
 
 **Choose Import or Attachment**: Select if you want to import your data or attach a file.
 
-### Data type options
-**Data Type (Data Class)**: Identify the data type you want to upload. Multiple types are supported:
+### Data type (Data Class)
+Identify the data type you want to upload. Multiple types are supported:
 
 - Bulk transcriptomics - Supports data provided in TSV or GCT 1.2 format.
 - Single cell transcriptomics - Supports data provided in TSV format. Note: the support of the Single Cell data is limited in the BETA and the TSV uploading is recommended via the API specifying “Skip Zeros” parameter in the acttached metadata file.
@@ -107,6 +108,9 @@ In the subsequent dialog window, several parameters need to be defined:
     In the BETA version, you need to have sample information (metadata) created/uploaded on the Samples tab to enable data import. If no Libraries or Preparations exist for the Study, ‘Sample’ is the only available option.
 
 **Link By**: Choose the ID column at the Sample (Library, Preparation) tab that will be used to identify Sample (Library, Preparation) names in the uploaded file. This column (attribute) must be in the template assigned to this study.
+!!! note "Important"
+    For samples, data can be linked to either the default attribute Sample Source ID or another attribute defined in the template.
+    For libraries and preparations, data must be linked to the default attributes: Library ID or Preparation ID.
 
 ### Feature Attributes Specification
 **Number of Feature Attributes**: If your file includes more than one column describing the feature, specify the number of such columns (you can find more information about this on the format description page). It’s crucial to indicate the correct number of feature attributes to prevent potential issues during file upload.
