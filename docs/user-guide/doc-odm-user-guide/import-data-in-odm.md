@@ -55,10 +55,6 @@ ODM enables you to add any data to your study. There are two main ways to associ
 - Import a Data Frame: Import data files in tabular format. ODM extracts pertinent information stored in your file (e.g., gene expression measurements, gene variants, pathway activity scores, metabolite abundance, sales data) and writes it in the ODM database to enable searchability.
 - Attach a File: Add various research materials related to your study, such as PDF, XLSX, DOCX, PPTX, images, and more. All users with access to the study can download these attached files. However, unlike the “Import Data” option, attached files’ content is not indexed or searchable.
 
-!!! note "File size limitation"
-    Data uploading through the user interface is currently in BETA stage. The current version supports file uploading of up to 5GB. Future releases will enhance its functionality and flexibility.
-
-
 You can find a detailed description of the supported file formats [Tabular data](supported-formats.md#format-label).
 
 To add data, open a Study and navigate to the Data tab. Click the “Add data” button situated in the top left corner of the Data tab.
