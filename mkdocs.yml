@@ -25,7 +25,7 @@ nav:
         - Start: user-guide/doc-odm-user-guide/quickstart_user.md
         - Users and Groups: user-guide/doc-odm-user-guide/setup.md
         - Create Study: user-guide/doc-odm-user-guide/create-study.md
-        - Import Data to ODM: user-guide/doc-odm-user-guide/import-samples-spreadsheet.md
+        - Import Data to ODM: user-guide/doc-odm-user-guide/import-data-in-odm.md
         - Import Data Using API: user-guide/doc-odm-user-guide/import-data-using-api.md
         - Import Data Using Python Script: user-guide/doc-odm-user-guide/import-data-using-python-script.md
         - Exporting Data: user-guide/doc-odm-user-guide/exporting-data.md

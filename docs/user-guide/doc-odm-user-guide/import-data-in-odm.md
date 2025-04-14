@@ -55,9 +55,9 @@ ODM enables you to add any data to your study. There are two main ways to associ
 - Import a Data Frame: Import data files in tabular format. ODM extracts pertinent information stored in your file (e.g., gene expression measurements, gene variants, pathway activity scores, metabolite abundance, sales data) and writes it in the ODM database to enable searchability.
 - Attach a File: Add various research materials related to your study, such as PDF, XLSX, DOCX, PPTX, images, and more. All users with access to the study can download these attached files. However, unlike the “Import Data” option, attached files’ content is not indexed or searchable.
 
-#### NOTE
 
-Data uploading through the user interface is currently in BETA stage. The current version supports file uploading of up to 5GB. Future releases will enhance its functionality and flexibility.
+!!! note "Important"
+     Uploading large files via the user interface may take some time. The duration depends on your network speed, so please plan accordingly.
 
 You can find a detailed description of the supported file formats [Tabular data](supported-formats.md#format-label).
 
@@ -71,7 +71,8 @@ In the subsequent dialog window, several parameters need to be defined:
 
 **Choose Import or Attachment**: Select if you want to import your data or attach a file.
 
-**Data Type (Data Class)**: Identify the data type you want to upload. Multiple types are supported:
+### Data type (Data Class)
+Identify the data type you want to upload. Multiple types are supported:
 
 - Bulk transcriptomics - Supports data provided in TSV or GCT 1.2 format.
 - Single cell transcriptomics - Supports data provided in TSV format. Note: the support of the Single Cell data is limited in the BETA and the TSV uploading is recommended via the API specifying “Skip Zeros” parameter in the acttached metadata file.
@@ -93,28 +94,34 @@ In the subsequent dialog window, several parameters need to be defined:
 - Nanopore - TSV format.
 - Gene variant (VCF) - VCF format.
 - Flow Cytometry - FACS format.
+- Flow Cytometry - FCS format.
+- Document
 - Other - TSV format.
 
-#### NOTE
+!!! note "Data Type options"
+    In the BETA the list of the Data Type options is fixed. Make sure you chose the right data class for your dataset. The ability to add custom data classes as well as change the selected data class for the uploaded data will be added in future releases.
 
-In the BETA the list of the Data Type options is fixed. Make sure you chose the right data class for your dataset. The ability to add custom data classes as well as change the selected data class for the uploaded data will be added in future releases.
-
+### Linking data
 **Link With**: Choose the entity you wish to link your data to. For instance, if you’re uploading a transcriptomics file with gene expression measurements for each sample, you should link your data to the samples.
 
-#### NOTE
+!!! note "Sample Metadata Requirement"
+    In the BETA version, you need to have sample information (metadata) created/uploaded on the Samples tab to enable data import. If no Libraries or Preparations exist for the Study, ‘Sample’ is the only available option.
 
-In the BETA version, you need to have sample information (metadata) created/uploaded on the Samples tab to enable data import. If no Libraries or Preparations exist for the Study, ‘Sample’ is the only available option.
+**Link By**: Choose the ID column at the Sample (Library, Preparation) tab that will be used to identify Sample (Library, Preparation) names in the uploaded file. This column (attribute) must be in the template assigned to this study.
+!!! note "Important"
+    For samples, data can be linked to either the default attribute Sample Source ID or another attribute defined in the template.
+    For libraries and preparations, data must be linked to the default attributes: Library ID or Preparation ID.
 
-**Link By**: Choose the ID column at the Sample (Library, Preparation) tab that will be used to identify Sample (Library, Preparation) names in the uploaded file.
-
-#### NOTE
-
-In the BETA version, the only option to link your data is through the ‘Sample Source ID’ column you must provide at the Sample (Library or Preparation tab). To link by any Sample/Library/Preparion metadata column, you’ll need to use the API.
-
+### Feature Attributes Specification
 **Number of Feature Attributes**: If your file includes more than one column describing the feature, specify the number of such columns (you can find more information about this on the format description page). It’s crucial to indicate the correct number of feature attributes to prevent potential issues during file upload.
 
-**Advanced Options** - Allow Importing the Same File Twice: This option allows you to re-upload the same file from third-party storage platforms (like AWS S3) using the same link. If you’re uploading the same file from your local computer, this option isn’t necessary.
+### Advanced options
+#### Allow Importing the Same File Twice
+ This option allows you to re-upload the same file from third-party storage platforms (like AWS S3) using the same link. If you’re uploading the same file from your local computer, this option isn’t necessary.
 
+#### Skip zeroes (Sparse Data Matrix)
+Enable this parameter if your data table contains many cells with '0' values, common in single cell technology datasets. Activating it improves performance for uploading, indexing, and searching within these data.
+ 
 If your file includes more than one measurement per Sample (Library or Preparation), e.g., Fold Change and P-value, the system will automatically recognize it based on the following criteria:
 
 - Measurement Separator Symbol in Column Name: Each column name should contain a symbol (or symbols combination), separating sample (library or preparation) name from measurement type, e.g., it would be a dot for ‘Sample1.p-value’. If a column name has more than one measurement separator (for instance, ‘Sample1.p.value’), the first one will be used for separation.
@@ -122,10 +129,11 @@ If your file includes more than one measurement per Sample (Library or Preparati
 - Presence of Measurement Separator Symbol: Every column must include a measurement separator.
 - Consistency of Measurement Types: All samples (libraries or preparations) must have the same types of measurements in the file. For example, if you have three samples and each has measurements for Intensity and Quality Pass, your file should have six columns named: ‘Sample1.Intensity’, ‘Sample1.QualityPass’, ‘Sample2.Intensity’, ‘Sample2.QualityPass’, ‘Sample3.Intensity’, ‘Sample3.QualityPass’.
 
+### Local or External data source
 In the second step, you’ll need to choose the file you wish to upload. There are two options:
 
-- **Local Computer**: Select the file located on your computer. Please note: this option is only available if your ODM version is coupled with AWS S3 storage (provided by default). If this option isn’t functioning properly, please get in touch with Genestack’s customer care team.
-- **External Link**: Upload the file by supplying a link to the file’s location. Keep in mind that while this option is intended to support any external location, in its BETA version, it only supports links from AWS S3 storage. If you encounter any issues with this feature, please reach out to Genestack’s customer care team.
+- **Local Computer**: Select the file located on your computer. Please note: this option is only available if your ODM version is coupled with AWS S3 storage (provided by default). If this option isn’t functioning properly, please get in touch with Genestack’s [Сustomer Support](https://genestack.atlassian.net/servicedesk/customer/portals) team.
+- **External Link**: Upload the file by supplying a link to the file’s location. Keep in mind that while this option is intended to support any external location, in its BETA version, it only supports links from AWS S3 storage. If you encounter any issues with this feature, please reach out to Genestack’s [Сustomer Support](https://genestack.atlassian.net/servicedesk/customer/portals) team.
 
 ![image](doc-odm-user-guide/images/import-data-from-file.png)
 
@@ -133,14 +141,23 @@ Once the data is chosen, the upload will begin. The duration can vary from a few
 
 After the upload completes, the corresponding data will be visible in the ‘Data’ tab. All files are grouped by the chosen ‘Data Class’ parameter on the left panel, which includes attached files as well.
 
-After uploading, you can populate the corresponding file metadata, including the necessary details. Please note that each uploaded data file has five mandatory read-only fields that do not belong to your template:
+After uploading, you can populate the corresponding file metadata, including the necessary details. 
 
-- Genestack:accession
+### Mandatory fields
+Please note that each uploaded data file has five mandatory read-only fields that do not belong to your template:
+
+- genestack:accession
 - Data Class
 - Features (string)
 - Features (numeric)
 - Value (numeric)
 
+!!! note "Important"
+    Features (string), Features (numeric) and Value (numeric) are related only to tabular data files.
+
 These fields are implemented to make the content of these files visible and searchable for data science users. We advise against editing these fields in the template editor as it could render these files inaccessible.
 
-If a file has issues that prevent ODM from processing it correctly, an error message detailing the problem will appear. Such issues are typically related to file format inconsistencies. For further assistance, refer to the [Tabular data](supported-formats.md#format-label) page or contact Genestack’s customer care team. Failed file uploads will be displayed for seven days before automatic deletion occurs. Future releases will include the feature to manually delete these files.
+### Error Handling
+If a file has issues that prevent ODM from processing it correctly, an error message detailing the problem will appear. Such issues are typically related to file format inconsistencies.
+
+ For further assistance, refer to the [Tabular data](supported-formats.md#format-label) page or contact Genestack’s [Сustomer Support](https://genestack.atlassian.net/servicedesk/customer/portals) team. Failed file uploads will be displayed for seven days before automatic deletion occurs. Future releases will include the feature to manually delete these files.
