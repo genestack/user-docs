@@ -23,11 +23,11 @@ In addition to browsing, exploring, and visualizing studies, you can also export
 
 * Additionally, a text file named **file_descriptions** (in a plain text format) will be included, summarizing the information of the downloaded files.
 
-![3Contents.png](doc-odm-user-guide/images/3Contents.png)
+![3_Contents.png](doc-odm-user-guide/images/3_Contents.png)
 <figcaption>Downloaded files. The downloaded folder contains all the data and metadata associated with the study. In addition, a plain text file called <strong>file_descriptions</strong> is automatically created and contains detailed information about the data that has been downloaded</figcaption>
 
 ## Exporting a Specific Dataset
-* You can export a specific dataset of interest. To do this, navigate to the tab containing the desired analysis and click the **Download file** button. 
+* You can export a specific dataset of interest, but this functionality is only available from the **Data** tab. To do this, navigate to the Data tab containing the desired analysis and click the **Download file** button. Please note that it is not currently possible to export only sample metadata or study metadata separately. 
 * The dataset, along with its corresponding metadata and description, will be compressed into an archive and made available via a download link.
 
 ![4OtherDataSets.png](doc-odm-user-guide/images/4OtherDataSets.png)
