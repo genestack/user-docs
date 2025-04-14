@@ -110,8 +110,12 @@ In the subsequent dialog window, several parameters need to be defined:
 **Number of Feature Attributes**: If your file includes more than one column describing the feature, specify the number of such columns (you can find more information about this on the format description page). It’s crucial to indicate the correct number of feature attributes to prevent potential issues during file upload.
 
 ### Advanced options
-**Advanced Options** - Allow Importing the Same File Twice: This option allows you to re-upload the same file from third-party storage platforms (like AWS S3) using the same link. If you’re uploading the same file from your local computer, this option isn’t necessary.
+#### Allow Importing the Same File Twice
+ This option allows you to re-upload the same file from third-party storage platforms (like AWS S3) using the same link. If you’re uploading the same file from your local computer, this option isn’t necessary.
 
+#### Skip zeroes (Sparse Data Matrix)
+Enable this parameter if your data table contains many cells with '0' values, common in single cell technology datasets. Activating it improves performance for uploading, indexing, and searching within these data.
+ 
 If your file includes more than one measurement per Sample (Library or Preparation), e.g., Fold Change and P-value, the system will automatically recognize it based on the following criteria:
 
 - Measurement Separator Symbol in Column Name: Each column name should contain a symbol (or symbols combination), separating sample (library or preparation) name from measurement type, e.g., it would be a dot for ‘Sample1.p-value’. If a column name has more than one measurement separator (for instance, ‘Sample1.p.value’), the first one will be used for separation.
