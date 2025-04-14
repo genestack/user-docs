@@ -57,7 +57,7 @@ ODM enables you to add any data to your study. There are two main ways to associ
 
 !!! note "File size limitation"
     Data uploading through the user interface is currently in BETA stage. The current version supports file uploading of up to 5GB. Future releases will enhance its functionality and flexibility.
-    
+
 You can find a detailed description of the supported file formats [Tabular data](supported-formats.md#format-label).
 
 To add data, open a Study and navigate to the Data tab. Click the “Add data” button situated in the top left corner of the Data tab.
@@ -93,6 +93,8 @@ In the subsequent dialog window, several parameters need to be defined:
 - Nanopore - TSV format.
 - Gene variant (VCF) - VCF format.
 - Flow Cytometry - FACS format.
+- Flow Cytometry - FCS format.
+- Document
 - Other - TSV format.
 
 !!! note "Data Type options"
@@ -104,10 +106,7 @@ In the subsequent dialog window, several parameters need to be defined:
 !!! note "Sample Metadata Requirement"
     In the BETA version, you need to have sample information (metadata) created/uploaded on the Samples tab to enable data import. If no Libraries or Preparations exist for the Study, ‘Sample’ is the only available option.
 
-**Link By**: Choose the ID column at the Sample (Library, Preparation) tab that will be used to identify Sample (Library, Preparation) names in the uploaded file.
-
-!!! note "Data Linking via Sample Source ID"
-    In the BETA version, the only option to link your data is through the ‘Sample Source ID’ column you must provide at the Sample (Library or Preparation tab). To link by any Sample/Library/Preparion metadata column, you’ll need to use the API.
+**Link By**: Choose the ID column at the Sample (Library, Preparation) tab that will be used to identify Sample (Library, Preparation) names in the uploaded file. This column (attribute) must be in the template assigned to this study.
 
 ### Feature Attributes Specification
 **Number of Feature Attributes**: If your file includes more than one column describing the feature, specify the number of such columns (you can find more information about this on the format description page). It’s crucial to indicate the correct number of feature attributes to prevent potential issues during file upload.
@@ -129,8 +128,8 @@ If your file includes more than one measurement per Sample (Library or Preparati
 ### Local or External data source
 In the second step, you’ll need to choose the file you wish to upload. There are two options:
 
-- **Local Computer**: Select the file located on your computer. Please note: this option is only available if your ODM version is coupled with AWS S3 storage (provided by default). If this option isn’t functioning properly, please get in touch with Genestack’s customer care team.
-- **External Link**: Upload the file by supplying a link to the file’s location. Keep in mind that while this option is intended to support any external location, in its BETA version, it only supports links from AWS S3 storage. If you encounter any issues with this feature, please reach out to Genestack’s customer care team.
+- **Local Computer**: Select the file located on your computer. Please note: this option is only available if your ODM version is coupled with AWS S3 storage (provided by default). If this option isn’t functioning properly, please get in touch with Genestack’s [Сustomer Support](https://genestack.atlassian.net/servicedesk/customer/portals) team.
+- **External Link**: Upload the file by supplying a link to the file’s location. Keep in mind that while this option is intended to support any external location, in its BETA version, it only supports links from AWS S3 storage. If you encounter any issues with this feature, please reach out to Genestack’s [Сustomer Support](https://genestack.atlassian.net/servicedesk/customer/portals) team.
 
 ![image](doc-odm-user-guide/images/import-data-from-file.png)
 
@@ -143,11 +142,14 @@ After uploading, you can populate the corresponding file metadata, including the
 ### Mandatory fields
 Please note that each uploaded data file has five mandatory read-only fields that do not belong to your template:
 
-- Genestack:accession
+- genestack:accession
 - Data Class
 - Features (string)
 - Features (numeric)
 - Value (numeric)
+
+!!! note "Important"
+    Features (string), Features (numeric) and Value (numeric) are related only to tabular data files.
 
 These fields are implemented to make the content of these files visible and searchable for data science users. We advise against editing these fields in the template editor as it could render these files inaccessible.
 
