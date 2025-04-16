@@ -5,8 +5,7 @@ In addition to browsing, exploring, and visualizing studies, you can also export
 1. In your study window click on the **Export Button**
 * The **Export** button can be accessed from the right side of the dashboard or by clicking on the study title, which will reveal a dropdown menu with the option to export data. The menu can also be accessed by clicking on the three dots next to the option Export on the right side of the screen.
 
-
-![1ExportDataUpdated.png](doc-odm-user-guide/images/1ExportDataUpdated.png)
+![export-data-study-browser.gif](doc-odm-user-guide/gifs/export-data-study-browser.gif)
 <figcaption>Export the data by clicking on the <strong>Export</strong> option at the top right, the menu next to it, or by clicking on the menu at the top of the page</figcaption>
 
 * Clicking the **Export** button will open a new window where all the files associated with the study will be compressed.
@@ -32,3 +31,5 @@ In addition to browsing, exploring, and visualizing studies, you can also export
 
 ![4OtherDataSets.png](doc-odm-user-guide/images/4OtherDataSets.png)
 <figcaption>Download specific Datasets by selecting them and click on <strong>Download file</strong></figcaption>
+![download-file-metadata-editor.gif](doc-odm-user-guide/gifs/download-file-metadata-editor.gif)
+

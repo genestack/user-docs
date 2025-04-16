@@ -113,7 +113,7 @@ File meta-information is included after the ## string and must be key=value pair
 
 The header line names the 8 fixed, mandatory columns. These columns are as follows:
 
-1. #CHROM
+1. CHROM
 2. POS
 3. ID
 4. REF

@@ -7,7 +7,7 @@ Loaded templates are available to all users on the instance.
 ## Requirements
 
 - Configured odm-sdk. See [Configured odm-sdk](../../configuration.md)
-- The user should have the "Set up templates" permission and Bearer Token or API token. See [Getting a Genestack API token](https://odm-user-guide.readthedocs.io/en/latest/doc-odm-user-guide/getting-a-genestack-api-token.html#token-label)
+- The user should have the "Set up templates" permission and Bearer Token or API token. See [Getting a Genestack API token](../../../../user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md)
 - A template settings json file, e.g.: [default_ODM_template_settings.json](default_ODM_template_settings.json)
 - A template json file, e.g.: [Default_ODM_Template.json](Default_ODM_Template.json)
 
@@ -74,17 +74,11 @@ The template json file is validated in ODM against an internal schema: [template
 
     Expression (both Transcriptomics and Proteomics): `dataType = "genestack:transcriptomicsParent"`
 
-3. The `Accession` property is mandatory for each type of object. The following values should be set for each dataType section:
+3. Some technical fields will be automatically added for certain object types.
+    For example, `"genestack:accession"` will be added for all object types, and
+    `"Data Class"` will be added for transcriptomics, genomics, and facs parents.
 
-    ```text
-    name = "genestack:accession",
-    metainfoType = "com.genestack.api.metainfo.StringValue",
-    isRequired = true,
-    isReadOnly = true
-    ```
-
-    It is recommended to include properties having `isRequired = true` into the template file. Please also check out
-    the `description` property attribute: some properties might be required for certain functionality.
+    It is recommended to include properties having `isRequired = true` in the template file.
 
 4. The values accepted for each metadata attribute are given by the `metainfoType` key, and must be one of the following values:
 

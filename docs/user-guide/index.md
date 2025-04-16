@@ -65,7 +65,7 @@ Want to know more? Learn more by watching our videos below.
 
 ## In Depth User Guide Articles
 
-* [User Quick Start Guide](doc-odm-user-guide/quickstart_user.md)
+* [Start](doc-odm-user-guide/quickstart_user.md)
     * [Dashboard](doc-odm-user-guide/quickstart_user.md#dashboard)
     * [Study Browser](doc-odm-user-guide/quickstart_user.md#study-browser)
     * [Metadata Editor](doc-odm-user-guide/quickstart_user.md#metadata-editor)
@@ -74,10 +74,10 @@ Want to know more? Learn more by watching our videos below.
     * [Users and permissions](doc-odm-user-guide/setup.md#users-and-permissions)
     * [Groups](doc-odm-user-guide/setup.md#groups)
 * [Create new study](doc-odm-user-guide/create-study.md)
-* [Import Data in ODM](doc-odm-user-guide/import-samples-spreadsheet.md)
-    * [What Can Be Imported?](doc-odm-user-guide/import-samples-spreadsheet.md#what-can-be-imported)
-    * [Importing Sample Information (Metadata)](doc-odm-user-guide/import-samples-spreadsheet.md#importing-sample-information-metadata)
-    * [Import Data [BETA]](doc-odm-user-guide/import-samples-spreadsheet.md#import-data-beta)
+* [Import Data in ODM](doc-odm-user-guide/import-data-in-odm.md)
+    * [What Can Be Imported?](doc-odm-user-guide/import-data-in-odm.md#what-can-be-imported)
+    * [Importing Sample Information (Metadata)](doc-odm-user-guide/import-data-in-odm.md#importing-sample-information-metadata)
+    * [Import Data [BETA]](doc-odm-user-guide/import-data-in-odm.md#import-data-beta)
 * [Import Data Using API](doc-odm-user-guide/import-data-using-api.md)
     * [What can I import?](doc-odm-user-guide/import-data-using-api.md#what-can-i-import)
     * [Can I capture the relationships between studies, samples, and data?](doc-odm-user-guide/import-data-using-api.md#can-i-capture-the-relationships-between-studies-samples-and-data)

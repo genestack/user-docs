@@ -6,8 +6,6 @@ The Template Editor application allows you to create, customize, and update temp
 
 To get started, click **Set up templates** on the Dashboard:
 
-![image](doc-odm-user-guide/images/quickstart_user_dashboard.png)
-
 Or use the shortcut dock and select **Template Editor**:
 
 ![image](doc-odm-user-guide/images/shortcut_1_37.png)
