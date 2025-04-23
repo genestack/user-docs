@@ -45,16 +45,38 @@ However, the current **BETA** version has some limitations on the file content. 
 
 - All columns must have names.
 - All feature columns must be consecutive on the left side of the file. You need to explicitly specify the number of feature columns during the uploading process.
-- **Recommended**: for a file with more than one feature column; to enable faster search when the file is uploaded, we recommend put the most importnat feature (any sort of ID, e.g., Gene Name, Protein Name, etc.) as the first column.
+
+!!! note "File with more than one feature column"
+    To enable faster search when the file is uploaded, we recommend put the most important feature (any sort of ID, e.g., Gene Name, Protein Name, etc.) as the first column.
+
 - Missing values: If your file intentionally contains missing data/values, ensure such values are coded as one of the following: “ “ (as a space symbol), empty (no symbol between two tabs), “NaN”, “null”, “N/A”, “NA”, “NA”, “filtered”, “Inf”, “-Inf”.
 - The system automatically identifies all feature columns as either string value or numeric value columns. If a column that should be numeric contains at least one value with a non-numeric character (except for the missing value coded as indicated above), it will be considered a string value column, disabling the ranged search capabilities.
 - Columns with measurements must contain only either numeric values or missing values (as specified above).
-- If your file contains more than one measurement per Sample (Library or Preparation), e.g., Fold Change and P-value, the system will automatically recognize it using the following criteria:
 
-> - The column name contains a special symbol (or their combination) as a separator between the Sample (Library or Preparation) name and the measurement type. If the column name contains more than one measurement separator (e.g., Sample1.p.value contains two dots), the first one will be used for separation.
-> - The separator must be explicitly specified on data upload request either through API or GUI.
-> - All columns must contain the separator.
-> - All samples (libraries or preparations) must have the same types of measurements in the file. For example, if you have three samples and measure Intensity and Quality Pass, then your file must have six columns named: Sample1.Intensity, Sample1.QualityPass, Sample2.Intensity, Sample2.QualityPass, Sample3.Intensity, Sample3.QualityPass.
+If your file contains more than one measurement per Sample (Library or Preparation), such as **Fold Change** and **P-value**, the system will automatically recognize and organize them based on the following rules:
+
+- **Separator in Column Name**  
+   The column name must contain a special symbol (or a combination of symbols) as a separator between the Sample name and the measurement type.  
+   **Example:** `Sample1.p.value` → uses `.` as a separator.
+   If multiple separators exist in the name, only the **first** one is used for parsing.
+
+- **Separator Specification**  
+   You must specify the separator explicitly when uploading the data — either through the API or the GUI.
+
+- **Consistency in Column Headers**  
+   All columns in the file must include the separator.
+
+- **Uniform Measurement Types**  
+   Every sample (Library or Preparation) must include the **same set of measurement types**.
+
+   ✅ For example, if you have three samples and you measure **Intensity** and **Quality Pass**, then your column headers must look like:
+
+| Sample1.Intensity | Sample1.QualityPass | Sample2.Intensity | Sample2.QualityPass | Sample3.Intensity | Sample3.QualityPass |
+|-------------------|---------------------|-------------------|---------------------|-------------------|---------------------|
+|        5.4        |         Pass        |        7.8        |         Pass        |        6.2        |         Fail        |
+|        4.9        |         Fail        |        8.1        |         Pass        |        5.7        |         Pass        |
+
+
 
 ## Expression data in GCT (transcriptomics)
 
@@ -272,3 +294,92 @@ Libraries metadata is a TSV file with information about how samples were prepare
 - [Test_RM.preparations.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.preparations.tsv), a TSV file with information about sample preparations
 
 Preparations metadata follows the same format as libraries above, but containing proteomics specific metadata. **Sample Source ID** and **Preparation ID** are required headings.
+
+## Searching for Imported Data via API
+
+ODM allows you to add data, which conceptually falls into two categories:
+
+- **Imported data**
+
+- **Attached files**
+
+These represent different object and data types in ODM, each with its own set of API endpoints
+
+### Imported Data Endpoints
+These are files imported via the GUI or API and linked with entities like samples, libraries etc. Once successfully imported and indexed, they are marked with a checkmark and labeled as “indexed data” in GUI.
+
+✅ This data can be searched and queried using run’s, values, metadata, or parent group metadata. For each specific type of data you will need to use different endpoints, such as:
+
+- **Expression data**  
+  `GET /api/v1/as-user/omics/expression/data`
+
+- **Flow cytometry data**  
+  `GET /api/v1/as-user/omics/flow-cytometry/data`
+
+- **Variant data**  
+  `GET /api/v1/as-user/omics/variant/data`
+
+### Attached Files Endpoints
+
+Attached Files
+These are files attached to a study.
+
+⚠️ These files can be searched and queried using only metadata, since they are not indexed. 
+
+- `GET /api/v1/as-user/files`
+- `GET /api/v1/as-user/integration/link/files/by/study/{id}`
+
+!!! note "Importing vs. Attaching"
+    You can attach a valid expression matrix to a study. However, it will not be initialized. "Attachment" is a completely different workflow, and such files cannot be accessed using expression endpoints since they are not indexed.
+
+### Example: Listing Attached Files
+
+To list all attached files for a study, use the following endpoint:
+
+```default
+curl -X 'GET' \
+  'https://<HOST>/api/v1/as-user/integration/link/files/by/study/GSF1280195?includeContents=false' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>'
+```
+The response will contain all *attached files* for the study.
+
+
+!!! note "Permissions"
+    To search for attached files, the study must be public or shared with you. If there are no attached files, the response will be an empty array: [].
+
+
+### Example: Searching for Imported Expression Data
+To find imported (indexed) expression data linked to a particular study, use:
+
+```default
+curl -X 'GET' \
+  'https://<HOST>/api/v1/as-user/integration/link/expression/group/by/study/GSF986326' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>'
+```
+
+The response will include all *imported expression data* associated with the study:
+
+```default
+[
+  {
+    "itemId": "GSF1002671",
+    "metadata": {
+      "Experimental Platform": null,
+      "Features (numeric)": null,
+      "Data Processing Method": null,
+      "Genome Version": null,
+      "Scale": null,
+      "Values (numeric)": null,
+      "Data Class": "Bulk transcriptomics",
+      "Pipeline ID": null,
+      "Data Species": null,
+      "Import Source URL": null,
+      "Features (string)": null,
+      "Data Files / Processed": null,
+      "Data Files / Raw": null
+    }
+  }
+]
+```
