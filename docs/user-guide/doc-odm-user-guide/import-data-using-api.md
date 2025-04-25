@@ -43,7 +43,8 @@ this data type. Then they are sequentially linked in the Integration layer.
 
 ## Where can I import the data from?
 
-API allows loading files hosted at FTP or HTTP web addresses or contained in a mounted ODM NFS storage.
+API allows loading files hosted at HTTP/HTTPS URLs, S3 URIs, and NFS paths for files stored in mounted ODM storage.
+
 !!! note "Important"
     In order to be able to import data from the local storage, this storage must be mounted to the environment where ODM is deployed. If it is not mounted, you can use GUI to import the data from the local computer. The ability to load data from the local machine using API will be added in the future releases.
 
@@ -149,8 +150,7 @@ There are specific endpoints to import specific data types, as listed in the **S
 
 ![api-navigate-swagger.gif](doc-odm-user-guide/gifs/api-navigate-swagger.gif)
 
-For studies,
-you should go to the *job* endpoint, use the **POST /api/v1/jobs/import/study** method, and supply the file URL:
+For data import, you should go to the job section and choose the endpoint relevant for the specific data type. For studies, use the **POST /api/v1/jobs/import/study** method, and supply the file URL:
 
 ![api-add-study.gif](doc-odm-user-guide/gifs/api-add-study.gif)
 
@@ -161,7 +161,7 @@ you should go to the *job* endpoint, use the **POST /api/v1/jobs/import/study** 
 ```
 
 !!! note "templateId"
-    By the default "templateId" is included in the call, it specifies  the template that will be assigned to your new study. If you are not sure what is the correct template accession - you can remove this field from the call, the default template will be assigned to your study. To specify the template that you would like to use - you will need to supply the correct template accession, that can be aquired in the Template Editor. You can change the assigned template in the Metadata Editor.
+    You can include an optional parameter **"templateId"** to specify which template should be associated with the loaded data. You will need to provide the accession of the desired template, which can be obtained the Template Editor. If the "templateId" parameter is not specified, the default template set for the instance will be used.
 
 Example of the curl call:
 ```default
@@ -196,7 +196,7 @@ owned by you:
 ![image](doc-odm-user-guide/images/empty_study.png)
 
 #### Working with the jobExecId
-The following endpoints allow you to manage and inspect jobs using the jobExecId, which is returned after initiating an import or other asynchronous task.
+The following endpoints allow you to manage and inspect jobs using the jobExecId, which is returned after initiating an asynchronous import task.
 
 **GET /api/v1/jobs/{jobExecId}/info**
 Retrieves the current status and metadata of a specific job execution.
@@ -291,8 +291,7 @@ However, you won’t see the samples in the Study Browser yet, because no sample
 
 ### Link samples to study
 
-You can link samples to study using the integration endpoint **POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}**, specifying the accessions of the pair of objects to be
-linked. The following call will link samples that we imported in the previous step (with accession GSF1283530) to the study
+You can link samples to study using the integration endpoint **POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}**, specifying the accessions of the study and the accession of the sample group. This will link all samples from the imported file to the study. The following call will link samples that we imported in the previous step (with accession GSF1283530) to the study
 (with accession GSF1283528):
 
 ```default
@@ -308,7 +307,8 @@ to your study has changed from ‘-’ to ‘4’:
 
 ![sample_added.gif](doc-odm-user-guide/gifs/sample_added.gif)
 
-You can link other samples in the same way. This example demonstrates a simple procedure for linking two entities, which can serve as a foundation for building automated import pipelines.  
+Samples from other files can be loaded in the same way. They will be displayed in the Metadata Editor on a separate tab.
+
 !!! note "Data Import using Python script"
     If your goal is to perform a one-time import and create a single study, we recommend using our provided [API script](import-data-using-python-script.md) for simplicity and efficiency.
 
@@ -401,7 +401,7 @@ As response you will get all the information, including the metadata, for the ex
 }
 ```
 
-You can then link this expression either by group (link expression group to sample group) or object to object (expression object to specific sample). 
+You can then link this expression by group (link expression group to sample group).
 
 The call bellow will link the **expression group to the sample group** (that's been linked to the study in the previous step) using the **POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}** endpoint:
 
@@ -428,7 +428,7 @@ Expression data is now succesfuly linked and visible in the GUI.
 
 ### Import and link variant data to samples
 
-Let’s repeat the previous step. This time, for variant data, so that the same sample group is linked to both expression and variant data.
+Let's repeat the previous step, this time for variant data, ensuring that both expression and variant data are linked to the samples, reinforcing the data model hierarchy where samples are linked to a study, and data types (expression and variant) are linked to samples
 
 To import the variant data we will use **/api/v1/jobs/import/variant** endpoint:
 
