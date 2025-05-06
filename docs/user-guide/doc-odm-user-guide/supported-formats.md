@@ -20,6 +20,24 @@ Samples metadata is supplied in TSV format file. There needs to be a **Sample So
 | 1003 Genomes Project | HG00176            | Homo sapiens | F     | Finnish      |
 > <a id="format-label"></a>
 
+## Libraries file
+
+- [Test_RM.libraries.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.libraries.tsv), a a TSV file with information about sample preparations
+
+Libraries metadata is a TSV file with information about how samples were prepared. It contains data related to the quality of samples, barcodes and library properties (single-end vs pair-end). Each sample can have more than 1 corresponding library. Multiple samples can be pooled into the same library, e.g. pooling female and male samples to remove gender-specific signals in the sequencing output (unrelated to multiplexing of libraries with barcodes). **Sample Source ID** and **Library ID** are required headings.
+
+| Sample Source ID   |   Library ID | Library barcode   | Library pool   |
+|--------------------|--------------|-------------------|----------------|
+| 1                  |            1 | A                 |                |
+| 2                  |            2 | B                 |                |
+| 1|2                |            3 | A + B             | 1|2            |
+
+## Preparations file
+
+- [Test_RM.preparations.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.preparations.tsv), a TSV file with information about sample preparations
+
+Preparations metadata follows the same format as libraries above, but containing proteomics specific metadata. **Sample Source ID** and **Preparation ID** are required headings.
+
 ## Tabular data
 
 In ODM, you can upload any tabular data that is formatted in **TSV (tab-separated values)**. As long as your file represents a data frame, ODM can import and index it. A data frame is a data structure that organizes data into a 2-dimensional table of rows and columns, similar to a spreadsheet.
@@ -277,31 +295,14 @@ A cross-reference mapping file can be imported. This is a TSV file consisting of
 | ENST00000438176.2 | ENSG00000231103.2 |
 | ENST00000445563.2 | ENSG00000226662.2 |
 
-## Libraries file
-
-- [Test_RM.libraries.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.libraries.tsv), a a TSV file with information about sample preparations
-
-Libraries metadata is a TSV file with information about how samples were prepared. It contains data related to the quality of samples, barcodes and library properties (single-end vs pair-end). Each sample can have more than 1 corresponding library. Multiple samples can be pooled into the same library, e.g. pooling female and male samples to remove gender-specific signals in the sequencing output (unrelated to multiplexing of libraries with barcodes). **Sample Source ID** and **Library ID** are required headings.
-
-| Sample Source ID   |   Library ID | Library barcode   | Library pool   |
-|--------------------|--------------|-------------------|----------------|
-| 1                  |            1 | A                 |                |
-| 2                  |            2 | B                 |                |
-| 1|2                |            3 | A + B             | 1|2            |
-
-## Preparations file
-
-- [Test_RM.preparations.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.preparations.tsv), a TSV file with information about sample preparations
-
-Preparations metadata follows the same format as libraries above, but containing proteomics specific metadata. **Sample Source ID** and **Preparation ID** are required headings.
 
 ## Searching for Imported Data via API
 
 ODM allows you to add data, which conceptually falls into two categories:
 
-- **Imported data**
+- **Indexed data (Expression, Variants, Flow Cytometry)**
 
-- **Attached files**
+- [**Attached files**](../../../user-guide/supported-data/supported-data/#attached-files)
 
 These represent different object and data types in ODM, each with its own set of API endpoints
 
@@ -319,38 +320,8 @@ These are files imported via the GUI or API and linked with entities like sample
 - **Variant data**  
   `GET /api/v1/as-user/omics/variant/data`
 
-### Attached Files Endpoints
-
-Attached Files
-These are files attached to a study.
-
-⚠️ These files can be searched and queried using only metadata, since they are not indexed. 
-
-- `GET /api/v1/as-user/files`
-- `GET /api/v1/as-user/integration/link/files/by/study/{id}`
-
-!!! note "Importing vs. Attaching"
-    You can attach a valid expression matrix to a study. However, it will not be initialized. "Attachment" is a completely different workflow, and such files cannot be accessed using expression endpoints since they are not indexed.
-
-### Example: Listing Attached Files
-
-To list all attached files for a study, use the following endpoint:
-
-```default
-curl -X 'GET' \
-  'https://<HOST>/api/v1/as-user/integration/link/files/by/study/GSF1280195?includeContents=false' \
-  -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <TOKEN>'
-```
-The response will contain all *attached files* for the study.
-
-
-!!! note "Permissions"
-    To search for attached files, the study must be public or shared with you. If there are no attached files, the response will be an empty array: [].
-
-
 ### Example: Searching for Imported Expression Data
-To find imported (indexed) expression data linked to a particular study, use:
+To find imported (indexed) expression data linked to a particular study, use **GET /api/v1/as-user/integration/link/expression/group/by/study/{id}** endpoint:
 
 ```default
 curl -X 'GET' \
@@ -361,7 +332,7 @@ curl -X 'GET' \
 
 The response will include all *imported expression data* associated with the study:
 
-```default
+```json
 [
   {
     "itemId": "GSF1002671",
@@ -383,3 +354,32 @@ The response will include all *imported expression data* associated with the stu
   }
 ]
 ```
+
+### Attached Files Endpoints
+
+These are any non-indexed attachment like PDF, PPT etc.
+
+⚠️ These files can be searched and queried using only metadata, since they are not indexed. 
+
+- `GET /api/v1/as-user/files`
+- `GET /api/v1/as-user/integration/link/files/by/study/{id}`
+
+!!! note "Importing vs. Attaching"
+    You can attach a valid expression matrix to a study. However, it will not be initialized. Attachment has a completely different workflow, and such files cannot be accessed using expression endpoints since they are not indexed.
+
+### Example: Listing Attached Files
+
+To list all attached files for a study, use the following endpoint:
+
+```default
+curl -X 'GET' \
+  'https://<HOST>/api/v1/as-user/integration/link/files/by/study/GSF1280195?includeContents=false' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>'
+```
+The response will contain all *attached files* for the study.
+
+
+!!! note "Permissions"
+    To search for attached files, the study must be shared with you. If there are no attached files, the response will be an empty array: [].
+
