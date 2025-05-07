@@ -369,7 +369,7 @@ These are any non-indexed attachment like PDF, PPT etc.
 
 ### Example: Listing Attached Files
 
-To list all attached files for a study, use the following endpoint:
+To list all attached files for a study, use **GET /api/v1/as-user/integration/link/files/by/study/{id}** endpoint:
 
 ```default
 curl -X 'GET' \
@@ -379,7 +379,15 @@ curl -X 'GET' \
 ```
 The response will contain all *attached files* for the study.
 
-
+```json
+[
+  {
+    "genestack:accession": "GSF1283030",
+    "genestack:name": "AsnicarF_2017_sample.pdf",
+    "Data Class": "Other"
+  }
+]
+```
 !!! note "Permissions"
     To search for attached files, the study must be shared with you. If there are no attached files, the response will be an empty array: [].
 
