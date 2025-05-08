@@ -18,7 +18,7 @@ Samples metadata is supplied in TSV format file. There needs to be a **Sample So
 | 1001 Genomes Project | HG00121            | Homo sapiens | F     | British      |
 | 1002 Genomes Project | HG00183            | Homo sapiens | M     | Finnish      |
 | 1003 Genomes Project | HG00176            | Homo sapiens | F     | Finnish      |
-> <a id="format-label"></a>
+
 
 ## Libraries file
 
@@ -26,11 +26,11 @@ Samples metadata is supplied in TSV format file. There needs to be a **Sample So
 
 Libraries metadata is a TSV file with information about how samples were prepared. It contains data related to the quality of samples, barcodes and library properties (single-end vs pair-end). Each sample can have more than 1 corresponding library. Multiple samples can be pooled into the same library, e.g. pooling female and male samples to remove gender-specific signals in the sequencing output (unrelated to multiplexing of libraries with barcodes). **Sample Source ID** and **Library ID** are required headings.
 
-| Sample Source ID   |   Library ID | Library barcode   | Library pool   |
-|--------------------|--------------|-------------------|----------------|
-| 1                  |            1 | A                 |                |
-| 2                  |            2 | B                 |                |
-| 1|2                |            3 | A + B             | 1|2            |
+| Sample Source ID        |   Library ID | Library barcode   | Library pool   |
+|-------------------------|--------------|-------------------|----------------|
+| SRR6441195              |         LIB1 | A                 |                |
+| SRR6441196              |         LIB2 | B                 |                |
+| SRR6441197              |         LIB3 | A + B             | 1|2            |
 
 ## Preparations file
 
@@ -302,12 +302,11 @@ ODM allows you to add data, which conceptually falls into two categories:
 
 - **Indexed data (Expression, Variants, Flow Cytometry)**
 
-- [**Attached files**](../../../user-guide/supported-data/supported-data/#attached-files)
+- [**Attached files (non-indexed, like PDF, PPT etc.)**](../../../user-guide/supported-data/supported-data/#attached-files)
 
 These represent different object and data types in ODM, each with its own set of API endpoints
 
 ### Imported Data Endpoints
-These are files imported via the GUI or API and linked with entities like samples, libraries etc. Once successfully imported and indexed, they are marked with a checkmark and labeled as “indexed data” in GUI.
 
 ✅ This data can be searched and queried using run’s, values, metadata, or parent group metadata. For each specific type of data you will need to use different endpoints, such as:
 
@@ -356,8 +355,6 @@ The response will include all *imported expression data* associated with the stu
 ```
 
 ### Attached Files Endpoints
-
-These are any non-indexed attachment like PDF, PPT etc.
 
 ⚠️ These files can be searched and queried using only metadata, since they are not indexed. 
 
