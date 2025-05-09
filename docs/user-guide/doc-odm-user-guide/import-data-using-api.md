@@ -1,4 +1,4 @@
-!!! warning "Advanced Content – API Data Import"
+!!! abstract "About this guide"
 
     This article provides a detailed and technically in-depth guide to loading data into the platform via API.  
     It is intended for users with experience in working with RESTful APIs and programmatic workflows.
@@ -17,24 +17,31 @@ you can try. Please note that you need to be a member of the curator group in OD
 
 You can import studies, samples, and any data in the tabular format:
 
-- *Study*: the context of an experiment, such as the aim and statistical design.
-- *Sample*: the biological attributes of a sample, such as tissue, disease, and treatment.
-- *Data*: Includes transcriptomics, proteomics, gene variant, flow cytometry data, and more. You can import the metadata (e.g. genome version, normalization
+- **Study**: the context of an experiment, such as the aim and statistical design.
+- **Sample**: the biological attributes of a sample, such as tissue, disease, and treatment.
+- **Data**: Includes transcriptomics, proteomics, gene variant, flow cytometry data, and more. You can import the metadata (e.g. genome version, normalization
   method, and the locations of raw/processed data in your storage) together with the processed data (e.g. expression counts, genotypes).
+- **Cross-reference mapping**: a list of transcript and gene ids and how they map to each other.
+- **Libraries metadata**: metadata describing sequencing libraries or other indexable data types, including information like library type, protocol, and platform.
+- **Preparations metadata**: metadata describing how samples were prepared prior to data generation, applicable to proteomics, transcriptomics, and other data types.
+- **Attached Files**: Supplement your study by attaching related research materials like PDF, XLSX, DOCX, PPTX files, images, and more. Please note, contents of these attached files won't be indexed or made searchable.
 
 Once imported, studies, samples, and data metadata will be queryable and editable from both the User Interface and APIs, whilst the signal data will only queryable via APIs.
 
-You can optionally also import:
-
-- *Cross-reference mapping*: a list of transcript and gene ids and how they map to each other.
-- *Libraries metadata*: metadata about sample library preparation for transcriptomics data.
-- *Preparations metadata*: metadata about sample preparation for proteomics data.
-- *Files*: Supplement your study by attaching related research materials like PDF, XLSX, DOCX, PPTX files, images, and more. Please note, contents of these attached files won't be indexed or made searchable.
 
 ## Can I capture the relationships between studies, samples, and data?
 
-Importing data has two stages. First, you import studies, samples, and data separately. Then, you link them
-together: a study can be linked to multiple samples and a sample can be linked to multi-omics or other types of data. The **Sample Source ID** is used as the default linking key. You can choose another attribute from the template for linking data to samples. The data model and how it looks in the User Interface is shown below:
+Importing data has two stages. First, you import studies, samples, and data separately. Then, you link them together: a study can be linked to multiple samples, and a sample can be linked to multi-omics or other types of data. The **Sample Source ID** is used as the default linking key. You can choose another attribute from the template for linking data to samples. The data model and how it looks in the User Interface is shown below.
+
+In addition to core data types, **libraries** and **preparations** require special handling. Unlike omics data, they cannot be linked using arbitrary attributes — they must include their own unique ID that corresponds to the **Sample Source ID**.
+
+The correct order of linking follows the system logic and available endpoints:
+
+- **Samples** are linked to a **study**
+- **Libraries** and **preparations** are linked to **samples**
+- **Omics data** (e.g. transcriptomics, proteomics) are linked to **samples**, or to **libraries/preparations** depending on the data type
+- **Attached files** are linked directly to a **study**
+
 
 ![image](doc-odm-user-guide/images/data-model+metainfo-editor.png)
 ## Data Loading via APIs
@@ -45,8 +52,10 @@ this data type. Then they are sequentially linked in the Integration layer.
 
 API allows loading files hosted at HTTP/HTTPS URLs, S3 URIs, and NFS paths for files stored in mounted ODM storage.
 
-!!! note "Important"
-    In order to be able to import data from the local storage, this storage must be mounted to the environment where ODM is deployed. If it is not mounted, you can use GUI to import the data from the local computer. The ability to load data from the local machine using API will be added in the future releases.
+!!! danger "Limitation"
+    1. S3 bucket is mandatory to upload and work with Attached files functionality in the ODM
+    2. **Export**: if attachment's metadata was updated and got a new version, attached file cannot be exported itself from the ODM.
+    **Workaround**: export is available from exporting whole Study. We are working on improvements for this functionality in the 1.61 release.
 
 ## Sample-Based Import Workflow
 
@@ -146,7 +155,7 @@ curl -H "Authorization: Bearer <your Access Token>" ...
 
 ### Import a study
 
-There are specific endpoints to import specific data types, as listed in the **Swagger API documentation**. 
+There are specific endpoints to import specific data types, as listed in the [**Swagger API documentation**](/swagger/helper/). 
 
 ![api-navigate-swagger.gif](doc-odm-user-guide/gifs/api-navigate-swagger.gif)
 
@@ -161,7 +170,7 @@ For data import, you should go to the job section and choose the endpoint releva
 ```
 
 !!! note "templateId"
-    You can include an optional parameter **"templateId"** to specify which template should be associated with the loaded data. You will need to provide the accession of the desired template, which can be obtained the Template Editor. If the "templateId" parameter is not specified, the default template set for the instance will be used.
+    You can include an optional parameter **"templateId"** to specify which template should be associated with the loaded data. You will need to provide the accession of the desired template, which can be obtained from Template Editor. If the "templateId" parameter is not specified, the default template set for the instance will be used.
 
 Example of the curl call:
 ```default
@@ -177,7 +186,7 @@ curl -X 'POST' \
 
 If successful, you should see the **jobExecId** that can be used to monitor the status of the import task
 
-```default
+```json
 {
   "jobExecId": 2115,
   "startedBy": "your_namel@genestack.com",
@@ -239,19 +248,47 @@ Retrieves the output of a completed job, including the accession of the generate
 Restarts a job that has failed or was stopped before completion.
 
 - **Use case**: If a job failed due to a temporary issue, you can restart it using its `jobExecId`.
-- **Endpoint**: `/api/v1/jobs/{jobExecId}/restart`
+
 ---
 
 **PUT /api/v1/jobs/{jobExecId}/stop**
 Stops a job that is currently running.
 
 - **Use case**: Use this when you need to cancel a long-running or stuck job.
-- **Endpoint**: `/api/v1/jobs/{jobExecId}/stop`
 
+---
+
+#### Behavior details by file type
+
+Different file types are handled differently during job execution. The stop/restart functionality works depending on the file category:
+
+**Metadata files** (study, libraries, preparations, samples):
+
+- The job splits the file into chunks (based on `itemChunkSize`, tuned for each metadata type).
+
+- If the job is stopped while running, the current chunk finishes, but the next one is not started.
+
+- Progress is tracked in the job execution context using the `lineCount` variable.
+
+- On restart, already processed lines are skipped automatically using the `readHeader` method.
+
+- The job then continues normally until completion.
+
+**Signal files** (expression, flow cytometry, variant):
+
+- Only the header row is used during processing to extract and link sample names.
+
+- The actual processing step is a fast HTTP call that completes too quickly for stopping to be meaningful.
+
+**Attachment files**:
+
+- These files are processed in a single chunk.
+
+- As a result, stop and restart functionalities are not applicable to this type.
 
 ### Import samples
 
-To import samples, you should use a different endpoint, **/api/v1/jobs/import/samples**:
+To import samples, you should use a different endpoint, **POST /api/v1/jobs/import/samples**:
 ![api-add-samples.gif](doc-odm-user-guide/gifs/api-add-samples.gif)
 
 ```default
@@ -267,7 +304,7 @@ curl -X 'POST' \
 
 Similar to the previous step, you should see the **jobExecId** in the response:
 
-```default
+```json
 {
   "jobExecId": 2117,
   "startedBy": "job@genestack.com",
@@ -278,7 +315,7 @@ Similar to the previous step, you should see the **jobExecId** in the response:
 ```
 As soon as the import process will be completed, you will be able to get the sample **groupAccession** by querying the **jobExecId** in **/api/v1/jobs/{jobExecId}/output** endpoint:
 
-```default
+```json
 {
   "status": "COMPLETED",
   "result": {
@@ -307,7 +344,7 @@ to your study has changed from ‘-’ to ‘4’:
 
 ![sample_added.gif](doc-odm-user-guide/gifs/sample_added.gif)
 
-Samples from other files can be loaded in the same way. They will be displayed in the Metadata Editor on a separate tab.
+Samples from other files can be loaded in the same way. They will be displayed in the Metadata Editor on a separate subtab.
 
 !!! note "Data Import using Python script"
     If your goal is to perform a one-time import and create a single study, we recommend using our provided [API script](import-data-using-python-script.md) for simplicity and efficiency.
@@ -326,7 +363,6 @@ curl -X 'POST' \
   -d '{
   "metadataLink": "https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct.tsv",
   "dataLink": "https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct",
-  "numberOfFeatureAttributes": 2,
   "dataClass": "Bulk transcriptomics"
 }'
 ```
@@ -334,16 +370,17 @@ The example call in Swagger contain multiple additional fields, that we do not r
 
 !!! note "Available Parameters"
     - **metadataLink** - link to a file that contains metadata (.tsv)
-    - **dataLink** - link to a file that contains the data. (.gct)
+    - **dataLink** - link to a file that contains the data.
     - **templateId** - (optional) accession of the template
     - **previousVersion** - (optional) accession of the previous version of the file. Used to update the existing version of the file.
-    - **numberOfFeatureAttributes** - The number of metadata columns describing each feature (e.g., gene).
-    - **dataClass** - Specify a data class that suits the data set you are importing. You can use [Data Class](import-data-in-odm.md) list as a reference.
-    - **measurementSeparator**
+    - **numberOfFeatureAttributes** - This field indicates how many columns in your file are related to the measured features (for example, Gene Names, Protein Names, Description, Metabolite Names, M/Z ratio, Retention Time, etc.). Please provide the correct number. Automatic recognition of this field will be added in future updates.
+    - **dataClass** - Specify a data class that suits the data set you are importing. You can use [Data Class](import-data-in-odm.md#import-data-beta) list as a reference.
+    - **measurementSeparator** - This parameter distinguishes the sample, library, or preparation name from various measurement types in your file's column headers (if applicable). For each sample, you might have different measurements like gene expression level, quality flag, sequencing depth, or p-value. This separator is crucial when your file contains columns for multiple such measurements. Supported separators include ., ,, :, ;, _, -, /, \, |, and multi-character separators are also allowed. Leave it blank if not applicable.
 
 
 If successful, you will get the response that contain the **jobExecId** that we will use to get the **groupAccession** using **GET /api/v1/jobs/{jobExecId}/output** endpoint.
-```default
+
+```json
 {
   "status": "COMPLETED",
   "result": {
@@ -362,7 +399,7 @@ curl -X 'GET' \
 ```
 As response you will get all the information, including the metadata, for the expression file we have succesfully imported.
 
-```default
+```json
 {
   "data": [
     {
@@ -401,9 +438,15 @@ As response you will get all the information, including the metadata, for the ex
 }
 ```
 
-You can then link this expression by group (link expression group to sample group).
+There are two supported approaches for linking entities in the system:
 
-The call bellow will link the **expression group to the sample group** (that's been linked to the study in the previous step) using the **POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}** endpoint:
+**Group-to-group linking**:
+
+Use this approach when you want to link one group of objects (e.g., samples, libraries, or data entities) to another group. 
+
+The call below links a source group to a target group using the following endpoint:
+
+**POST /api/v1/as-curator/integration/link/{sourceType}/group/{sourceId}/to/{targetType}/group/{targetId}**
 
 ```default
 curl -X 'POST' \
@@ -413,7 +456,13 @@ curl -X 'POST' \
   -d ''
 ```
 
-The call below will link the **expression object GSF282812 to the sample HG00119** using the **POST /api/v1/as-curator/integration/link/expression/{sourceId}/to/sample/{targetId}** endpoint:
+**Object-to-object linking**:
+
+Use this approach to link individual objects directly — for example, linking a specific data object to a specific sample.
+
+The call below links a single source object to a single target object using the following endpoint:
+
+**POST /api/v1/as-curator/integration/link/{sourceType}/{sourceId}/to/{targetType}/{targetId}**
 
 ```default
 curl -X 'POST' \
@@ -428,9 +477,9 @@ Expression data is now succesfuly linked and visible in the GUI.
 
 ### Import and link variant data to samples
 
-Let's repeat the previous step, this time for variant data, ensuring that both expression and variant data are linked to the samples, reinforcing the data model hierarchy where samples are linked to a study, and data types (expression and variant) are linked to samples
+Let's repeat the previous step, this time for variant data, ensuring that both expression and variant data are linked to the samples, reinforcing the data model hierarchy where samples are linked to a study, and data types (expression and variant) are linked to samples.
 
-To import the variant data we will use **/api/v1/jobs/import/variant** endpoint:
+To import the variant data we will use **POST /api/v1/jobs/import/variant** endpoint:
 
 ```default
 curl -X 'POST' \
@@ -456,7 +505,7 @@ curl -X 'GET' \
 ```
 Response will contain the variant data that we imported:
 
-```default
+```json
 {
   "data": [
     {
@@ -555,41 +604,9 @@ We will go through the following steps:
 7. **Check that you can query the relationships between objects**
 
 ### Authorization Token
+!!! note "[Authorization Token](import-data-using-api/#authorization-token)"
+    Described in the “Authorization Token” section above. Please ensure you use a valid token.
 
-When using the APIs, you need to provide a token for authentication.
-
-> 1.a **Generate an API token**
-
-You can generate a Genestack API token by going to your profile, which can be found by clicking your username at the top right corner
-of the User Interface, or from the Dashboard.
-
-![image](doc-odm-user-guide/images/dashboard.png)
-
-The API token is permanent — there is no expiration date. However, you can revoke it at any time and have multiple
-tokens.
-
-> 1.b **Use Access Token**
-
-Alternatively authorisation via Access token from Identity provider, e.g. Azure AD can be used. To specify the Access token use the “Authorisation” header, to specify the Genestack
-API token use the “Genestack-Api-Token” header.
-
-!!! note "Token Priority" 
-    Access token takes precedence, meaning that if both tokens are supplied, the access token will be used for processing the request.
-
-!!! note "Token compatibility" 
-    The solution has been tested with the Azure AD access tokens only. For other providers pretesting is recommended.
-
-You could also be provided with an Access Token. To use it, in the follow examples replace the authorization header part
-
-```default
-curl -H "Genestack-API-Token: <your API token>" ...
-```
-
-with
-
-```default
-curl -H "Authorization: Bearer <your Access Token>" ...
-```
 
 ### Import a study
 
@@ -626,7 +643,7 @@ curl -X 'GET' \
   -H 'Genestack-API-Token: <TOKEN>'
 
 ```
-```default
+```json
 {
   "status": "COMPLETED",
   "result": {
@@ -664,7 +681,7 @@ curl -X 'GET' \
   -H 'accept: application/json' \
   -H 'Genestack-API-Token: <TOKEN>'
 ```
-```default
+```json
 {
   "status": "COMPLETED",
   "result": {
@@ -709,7 +726,7 @@ curl -X 'POST' \
 ```
 
 This returns similarly to the samples import - [jobExecId](#working-with-the-jobexecid), using the **GET /api/v1/jobs/{jobExecId}/output** endpoint we will get the groupAccession. 
-```default
+```json
 {
   "status": "COMPLETED",
   "result": {
@@ -763,7 +780,7 @@ The example call in Swagger contain multiple additional fields, that we do not r
     - **measurementSeparator**
 
 If successful, you will get the response that contain the jobExecId that we will use to get the groupAccession using GET /api/v1/jobs/{jobExecId}/output endpoint.
-```default
+```json
 {
   "status": "COMPLETED",
   "result": {
@@ -779,7 +796,7 @@ curl -X 'GET' \
   -H 'Genestack-API-Token: <TOKEN>'
 ```
 
-```default
+```json
 {
   "data": [
     {
@@ -977,7 +994,7 @@ curl -X 'GET' \
 }
 ```
 
-You can then link this expression group object to the library object. :
+You can then link expression group to library group:
 
 ```default
 curl -X 'POST' \
@@ -1006,7 +1023,7 @@ curl -X 'GET' \
 
 Which will return:
 
-```default
+```json
 {
   "meta": {
     "pagination": {
