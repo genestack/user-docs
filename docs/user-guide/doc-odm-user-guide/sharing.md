@@ -23,3 +23,52 @@ Members of this group will now be able to view this study using the **Shared wit
 Sharing from the Metadata Editor is similar to the above, except that to access the sharing menu you must click on the name of the study/folder icon at the top of the page:
 
 ![image](doc-odm-user-guide/images/Metainfo_sharing.png)
+
+<a id="changing-permissions"></a>
+
+##  Changing Permissions Without Ownership
+
+Only the **study owner** can modify sharing permissions in ODM. At the moment, **changing the ownership of a study is not natively supported** through the user interface.
+
+However, this guide provides a soft workaround using administrative access.
+
+###  Prerequisites
+
+- An account with **“Manage Organization”** permissions (e.g., the `root` user).
+- This account **must not** use **SSO** as the login method — since ODM prompts for a password when resetting another user's password.  
+  If SSO is used, the account has no set password and **cannot** be used for this workaround. Use the root account instead.
+
+###  Step-by-Step Workaround
+
+1. **Log in as an Admin**  
+   Sign in to ODM using an account with **“Manage Organization”** rights.
+
+2. **Access User Management**  
+   Open the admin panel:  
+   `https://<HOST>/ui/admin/users`
+
+3. **Reset the Study Owner’s Password**  
+    - Find the user who owns the study.  
+    - Click the ⋮ menu next to their name.  
+    - Select **“Change password”**, and set a temporary one.
+
+4. **Ensure the Study Owner is Active**  
+   If the user is deactivated:  
+    - Open the ⋮ menu again.  
+    - Select **“Activate”**.
+
+5. **Log in as the Study Owner**  
+    - Log out of the admin account.  
+    - Log in with the study owner's credentials using the temporary password.
+
+6. **Access the Study**  
+   Open the study either via:  
+    - The **Study Browser**, or  
+    - A **direct URL**, if known.
+
+7. **Adjust Permissions**  
+    - Click the green folder and study name (top-left).  
+    - Select **“Share”**.  
+    - Modify permissions as needed in the pop-up window.
+
+>  _Note: Once sharing settings are updated, you may choose to inform the original owner or reset their password again._
