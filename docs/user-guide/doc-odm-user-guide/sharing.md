@@ -28,7 +28,7 @@ Sharing from the Metadata Editor is similar to the above, except that to access 
 
 ##  Changing Permissions Without Ownership
 
-Only the **study owner** can modify sharing permissions in ODM. At the moment, **changing the ownership of a study is not natively supported** through the user interface.
+Only the **study owner** can share/unshare study in ODM. At the moment, **changing the ownership of a study is not natively supported** through the user interface. 
 
 However, this guide provides a soft workaround using administrative access.
 
@@ -69,6 +69,6 @@ However, this guide provides a soft workaround using administrative access.
 7. **Adjust Permissions**  
     - Click the green folder and study name (top-left).  
     - Select **“Share”**.  
-    - Modify permissions as needed in the pop-up window.
+    - Share/unshare study as needed in the pop-up window.
 
 >  _Note: Once sharing settings are updated, you may choose to inform the original owner or reset their password again._
