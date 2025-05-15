@@ -22,7 +22,7 @@ You can import studies, samples, and any data in the tabular format:
 - **Data**: Includes transcriptomics, proteomics, gene variant, flow cytometry data, and more. You can import the metadata (e.g. genome version, normalization
   method, and the locations of raw/processed data in your storage) together with the processed data (e.g. expression counts, genotypes).
 - **Cross-reference mapping**: a list of transcript and gene ids and how they map to each other.
-- **Libraries metadata**: metadata describing sequencing libraries or other indexable data types, including information like library type, protocol, and platform.
+- **Libraries metadata**: TSV file describing sequencing libraries or other indexable data types. It includes information on library preparation, type (e.g., single-end or paired-end), protocol, barcodes, and platform.
 - **Preparations metadata**: metadata describing how samples were prepared prior to data generation, applicable to proteomics, transcriptomics, and other data types.
 - **Attached Files**: Supplement your study by attaching related research materials like PDF, XLSX, DOCX, PPTX files, images, and more. Please note, contents of these attached files won't be indexed or made searchable.
 
@@ -30,6 +30,21 @@ Once imported, studies, samples, and data metadata will be queryable and editabl
 
 
 ## Can I capture the relationships between studies, samples, and data?
+
+
+Importing data has two stages. First, you import studies, samples, and data separately. Then, you link them together: multiple samples can be linked to a study, and multi-omics or other types of data can be linked to the samples. 
+The Sample Source ID is used as the default linking key. You can choose another attribute from the template for linking data to samples, except the cases when you are linking data to libs/preps since currently only the default attribute can be used. 
+The data model and how it looks in the User Interface is shown below.
+
+In addition to core data types, libraries and preparations require special handling and must contain *Sample Source ID* attribute. Unlike omics data, they cannot be linked using arbitrary attributes — they must include *Sample Source ID*, which will be used during the linking process.
+
+The correct order of linking follows the system logic and available endpoints:
+
+- Samples are linked to a study
+- Libraries and preparations are linked to samples
+- Omics data (e.g. transcriptomics, proteomics) are linked to samples
+- Expression can be linked to library or preparations
+- Attached files are linked directly to a study
 
 Importing data has two stages. First, you import studies, samples, and data separately. Then, you link them together: a study can be linked to multiple samples, and a sample can be linked to multi-omics or other types of data. The **Sample Source ID** is used as the default linking key. You can choose another attribute from the template for linking data to samples. The data model and how it looks in the User Interface is shown below.
 
@@ -57,7 +72,15 @@ API allows loading files hosted at HTTP/HTTPS URLs, S3 URIs, and NFS paths for f
     2. **Export**: if attachment's metadata was updated and got a new version, attached file cannot be exported itself from the ODM.
     **Workaround**: export is available from exporting whole Study. We are working on improvements for this functionality in the 1.61 release.
 
-## Sample-Based Import Workflow
+## Prerequisites
+### Authorization Token
+
+To authenticate when using the APIs, you need to provide a valid authorization token.
+
+For instructions on how to generate a token, refer to the [Quick Start guide](../../quick-start/consumer-api/#generate-a-token).
+
+
+## Core Data Import Workflow
 
 ### Files Used in This Workflow
 In this example, we will import tiny subset of data from the 1000 Genomes Project, consisting of the following files:
@@ -69,105 +92,52 @@ In this example, we will import tiny subset of data from the 1000 Genomes Projec
 |----------------------|--------------------------------|------------------|
 | 1000 Genomes Project | Subset of 1000 Genomes Project | Healthy          |
 
-- [Test_1000g.samples.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv), a tab-delimited file of sample attributes.
 
-| Sample Source        | Sample Source ID   | Species      | Sex   | Population   |
-|----------------------|--------------------|--------------|-------|--------------|
-| 1000 Genomes Project | HG00119            | Homo sapiens | M     | British      |
-| 1001 Genomes Project | HG00121            | Homo sapiens | F     | British      |
-| 1002 Genomes Project | HG00183            | Homo sapiens | M     | Finnish      |
-| 1003 Genomes Project | HG00176            | Homo sapiens | F     | Finnish      |
+- [Test_samples.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_samples.tsv), a tab-delimited file of sample attributes.
 
-- [Test_1000g.gct](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct), a [GCT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29) file of expression data from multiple sequencing runs
+| Sample Source        | Sample Source ID   | Sex   | Population   |
+|----------------------|--------------------|-------|--------------|
+| 1000 Genomes Project | HG00119            | M     | British      |
+| 1001 Genomes Project | HG00121            | F     | British      |
+| 1002 Genomes Project | HG00183            | M     | Finnish      |
+| 1003 Genomes Project | HG00176            | F     | Finnish      |
 
-| Name            | Description   |   HG00119 |   HG00121 |   HG00183 |   HG00176 |
-|-----------------|---------------|-----------|-----------|-----------|-----------|
-| ENSG00000077044 |               |      14.7 |      16.8 |      17.2 |      19.5 |
-| ENSG00000085982 |               |       4.2 |       7.1 |       5.5 |       6.8 |
 
-- [Test_1000g.gct.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct.tsv), a tab-separated file that describes the expression data
+- [Test_libraries.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_libraries.tsv), a tab-delimited file of library metadata.
 
-| Expression Source    | Normalization Method   | Genome Version   |
-|----------------------|------------------------|------------------|
-| 1000 Genomes Project | RPKM                   | GRCh38.91        |
+| Library ID   | Sample Source ID      | Preparation Protocol   | Library Type      |
+|--------------|-----------------------|------------------------|-------------------|
+| LIB1         | HG00119|HG00121       | NGS                    | Spatial RNA-Seq-1 |
+| LIB2         | HG00183               | NGS                    | RNA-Seq-1         |
+| LIB3         | HG00176               | NGS                    | RNA-Seq-1         |
 
-- [Test_1000g.vcf](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf), a [VCF](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file of variant data from multiple sequencing runs
 
-|   #CHROM |       POS | ID          | REF   | ALT   |   QUAL | FILTER   | INFO    | FORMAT   | HG00119   | HG00121   | HG00183   | HG00176   |
-|----------|-----------|-------------|-------|-------|--------|----------|---------|----------|-----------|-----------|-----------|-----------|
-|        2 | 233364596 | rs838705    | G     | A     |    100 | PASS     | AF=0.64 | GT       | 0|0       | 0|1       | 1|0       | 1|1       |
-|        2 | 233385915 | rs201966773 | T     | TTC   |    987 | PASS     | AF=0.86 | GT       | 0|0       | 0|1       | 1|1       | 1|1       |
+- [Test_preparations.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_preparations.tsv), a tab-delimited file of preparation metadata.
 
-- [Test_1000g.vcf.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf.tsv), a tab-separated file that describes the variant data
+ Sample Source ID      | Digestion              | Preparation ID    |
+-----------------------|------------------------|-------------------|
+ HG00119|HG00121       | Trypsin                | PREP1             |
+ HG00183               | Trypsin                | PREP2             |
+ HG00176               | Trypsin                | PREP3             |
 
-| Variant Source       | Genome Version   |
-|----------------------|------------------|
-| 1000 Genomes Project | GRCh38.91        |
 
-We will go through the following steps:
+### Import Study
 
-1. **Authorization Token**
-    - a. Generate an API token
-    - b. Use Access Token
-2. **Import a study**
-3. **Import samples** 
-4. **Link samples to study**
-5. **Import and link expression data to samples**
-6. **Import and link variant data to samples**
-7. **Check that you can query the relationships between objects**
-
-### Authorization Token
-
-When using the APIs, you need to provide a token for authentication.
-
-> 1.a **Generate an API token**
-
-You can generate a Genestack API token by going to your profile, which can be found by clicking your username at the top right corner
-of the User Interface, or from the Dashboard.
-
-![image](doc-odm-user-guide/images/dashboard.png)
-
-The API token is permanent — there is no expiration date. However, you can revoke it at any time and have multiple
-tokens.
-
-> 1.b **Use Access Token**
-
-Alternatively authorisation via Access token from Identity provider, e.g. Azure AD can be used. To specify the Access token use the “Authorisation” header, to specify the Genestack
-API token use the “Genestack-Api-Token” header.
-
-!!! note "Token Priority" 
-    Access token takes precedence, meaning that if both tokens are supplied, the access token will be used for processing the request.
-
-!!! note "Token compatibility" 
-    The solution has been tested with the Azure AD access tokens only. For other providers pretesting is recommended.
-
-You could also be provided with an Access Token. To use it, in the follow examples replace the authorization header part
-
-```default
-curl -H "Genestack-API-Token: <your API token>" ...
-```
-
-with
-
-```default
-curl -H "Authorization: Bearer <your Access Token>" ...
-```
-
-### Import a study
-
-There are specific endpoints to import specific data types, as listed in the [**Swagger API documentation**](/swagger/helper/). 
+There are specific endpoints to import specific data types, as listed in the [**Swagger API documentation**](/swagger/?urls.primaryName=job). 
 
 ![api-navigate-swagger.gif](doc-odm-user-guide/gifs/api-navigate-swagger.gif)
 
 For data import, you should go to the job section and choose the endpoint relevant for the specific data type. For studies, use the **POST /api/v1/jobs/import/study** method, and supply the file URL:
-
-![api-add-study.gif](doc-odm-user-guide/gifs/api-add-study.gif)
 
 ```default
 {
   "metadataLink": "https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.study.tsv"
 }
 ```
+
+
+![api-add-study.gif](doc-odm-user-guide/gifs/api-add-study.gif)
+
 
 !!! note "templateId"
     You can include an optional parameter **"templateId"** to specify which template should be associated with the loaded data. You will need to provide the accession of the desired template, which can be obtained from Template Editor. If the "templateId" parameter is not specified, the default template set for the instance will be used.
@@ -204,10 +174,179 @@ owned by you:
 
 ![image](doc-odm-user-guide/images/empty_study.png)
 
-#### Working with the jobExecId
+
+### Import Samples
+
+To import samples, you should use a different endpoint, `POST /api/v1/jobs/import/samples`:
+![api-add-samples.gif](doc-odm-user-guide/gifs/api-add-samples.gif)
+
+```default
+curl -X 'POST' \
+  'https://<HOST>>/api/v1/jobs/import/samples?allow_dups=false' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "metadataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_samples.tsv"
+}'
+```
+
+Similar to the previous step, you should see the **jobExecId** in the response:
+
+```json
+{
+  "jobExecId": 2117,
+  "startedBy": "job@genestack.com",
+  "jobName": "IMPORT_SAMPLES_TSV",
+  "status": "STARTING",
+  "createTime": "2025-04-16 13:47:17"
+}
+```
+As soon as the import process will be completed, you will be able to get the sample **groupAccession** by querying the **jobExecId** in `GET /api/v1/jobs/{jobExecId}/output` endpoint:
+
+```json
+{
+  "status": "COMPLETED",
+  "result": {
+    "groupAccession": "GSF1283530"
+  }
+}
+```
+
+However, you won't see the samples in the Study Browser yet, because no samples have been linked to the study.
+
+### Import Libraries
+
+The next step is to import a library metadata file . First we import the library file using a `POST /api/v1/jobs/import/libraries` endpoint:
+
+!!! note "Mandatory attribute for libraries: Sample Source ID"
+    In **libraries** files, the `Sample Source ID` column is mandatory. It must contain the identifiers used to link each library to its corresponding sample.
+
+
+```default
+curl -X 'POST' \
+  'https://<HOST>/api/v1/jobs/import/libraries?allow_dups=false' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "metadataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_libraries.tsv"
+}'
+```
+
+This returns similarly to the samples import - [jobExecId](#working-with-the-jobexecid), using the `GET /api/v1/jobs/{jobExecId}/output` endpoint we will get the groupAccession. 
+
+```json
+{
+  "status": "COMPLETED",
+  "result": {
+    "groupAccession": "GSF1283547"
+  }
+}
+```
+### Import Preparations
+
+To import preparations, you will need to use `POST /api/v1/jobs/import/preparations` endpoint:
+
+!!! note "Mandatory attribute for preparations: Sample Source ID"
+    In **preparations** files, the `Sample Source ID` column is mandatory. It must contain the identifiers used to link each preparation to its corresponding sample.
+
+
+```default
+curl -X 'POST' \
+  'https://<HOST>/api/v1/jobs/import/preparations?allow_dups=false' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "metadataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_preparations.tsv"
+}'
+```
+
+Similar to the previous step, you should see the **jobExecId** in the response:
+
+```json
+{
+  "jobExecId": 2238,
+  "startedBy": "job@genestack.com",
+  "jobName": "IMPORT_PREPARATIONS_TSV",
+  "status": "STARTING",
+  "createTime": "2025-05-14 09:52:26"
+}
+```
+As soon as the import process will be completed, you will be able to get the preparations **groupAccession** by querying the **jobExecId** in `GET /api/v1/jobs/{jobExecId}/output` endpoint:
+
+```json
+{
+  "status": "COMPLETED",
+  "result": {
+    "groupAccession": "GSF1284256"
+  }
+}
+```
+### Linking entities
+
+#### Samples to study
+
+You can link samples to study using the integration endpoint `POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}`, specifying the accessions of the study and the accession of the sample group. This will link all samples from the imported file to the study. The following call will link samples that we imported in the previous step (with accession GSF1283530) to the study
+(with accession GSF1283528):
+
+```default
+curl -X 'POST' \
+  'https://<HOST>/api/v1/as-curator/integration/link/sample/group/GSF1283530/to/study/GSF1283528' \
+  -H 'accept: */*' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -d ''
+```
+
+If successful, in the Study Browser you should see that the number of samples next
+to your study has changed from '-' to '4':
+
+![sample_added.gif](doc-odm-user-guide/gifs/sample_added.gif)
+
+Samples from other files can be loaded in the same way. They will be displayed in the Metadata Editor on a separate subtab.
+
+!!! note "Data Import using Python script"
+    If your goal is to perform a one-time import and create a single study, we recommend using our provided [API script](import-data-using-python-script.md) for simplicity and efficiency.
+
+#### Libraries to Samples
+
+You can link the **library group file** to the **samples group** using the endpoint `POST /api/v1/as-curator/integration/link/library/group/{sourceId}/to/sample/group/{targetId}`, along with the **accession** returned when importing the samples.
+
+```default
+curl -X 'POST' \
+  'https://<HOST>/api/v1/as-curator/integration/link/library/group/GSF1283547/to/sample/group/GSF1283541' \
+  -H 'accept: */*' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -d ''
+```
+
+If successful you will see a library tab appear in the Metadata Editor:
+
+![image](doc-odm-user-guide/images/library-added.png)
+
+#### Preparations to Samples
+
+You can link the **preparation group file** to the **samples group** using the endpoint `POST /api/v1/as-curator/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}`, along with the **accession** returned when importing the samples.
+
+```default
+curl -X 'POST' \
+  'https://<HOST>/api/v1/as-curator/integration/link/preparation/group/GSF1284256/to/sample/group/GSF1284456' \
+  -H 'accept: */*' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -d ''
+```
+If successful you will see a preparation tab appear in the Metadata Editor:
+
+![image](doc-odm-user-guide/images/preparation-added.png)
+
+### Working with the jobExecId
 The following endpoints allow you to manage and inspect jobs using the jobExecId, which is returned after initiating an asynchronous import task.
 
+#### Monitoring job status
+
 **GET /api/v1/jobs/{jobExecId}/info**
+
 Retrieves the current status and metadata of a specific job execution.
 
 - **Use case**: Use this to monitor the progress of an import job using its `jobExecId`.
@@ -226,6 +365,7 @@ Retrieves the current status and metadata of a specific job execution.
 ---
 
 **GET /api/v1/jobs/{jobExecId}/output**
+
 Retrieves the output of a completed job, including the accession of the generated study.
 
 - **Use case**: Use this after a job has completed to get the final result and study accession.
@@ -245,6 +385,7 @@ Retrieves the output of a completed job, including the accession of the generate
 ---
 
 **PUT /api/v1/jobs/{jobExecId}/restart**
+
 Restarts a job that has failed or was stopped before completion.
 
 - **Use case**: If a job failed due to a temporary issue, you can restart it using its `jobExecId`.
@@ -252,106 +393,40 @@ Restarts a job that has failed or was stopped before completion.
 ---
 
 **PUT /api/v1/jobs/{jobExecId}/stop**
+
 Stops a job that is currently running.
 
 - **Use case**: Use this when you need to cancel a long-running or stuck job.
 
 ---
 
-#### Behavior details by file type
+!!! note "Behavior by file type"
+    The behavior of stop and restart actions depends on the type of file being processed:
 
-Different file types are handled differently during job execution. The stop/restart functionality works depending on the file category:
+    - **Metadata files** (studies, libraries, preparations, samples): Stop and restart are supported. The job resumes from where it left off.
+    - **Signal files** (expression, flow cytometry, variant): These are processed very quickly, so stopping and restarting has limited practical use.
+    - **Attachment files** (e.g., documents, images): These are handled as a single unit, so stop and restart are not applicable.
 
-**Metadata files** (study, libraries, preparations, samples):
+## Signal Data Import
 
-- The job splits the file into chunks (based on `itemChunkSize`, tuned for each metadata type).
+### Expression data
 
-- If the job is stopped while running, the current chunk finishes, but the next one is not started.
+- [Test_expression.gct](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_expression.gct), a [GCT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29) file of expression data from multiple sequencing runs. Note in this example the GCT file is using library IDs for linking.
 
-- Progress is tracked in the job execution context using the `lineCount` variable.
+| Name            | Description   |   LIB1 |   LIB2 |
+|-----------------|---------------|--------|--------|
+| ENSG00000077044 |               |   21.9 |   19.9 |
+| ENSG00000085982 |               |   23.7 |   24.9 |
 
-- On restart, already processed lines are skipped automatically using the `readHeader` method.
+- [Test_expression.gct.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_expression.gct.tsv), a tab-separated file that describes the expression data
 
-- The job then continues normally until completion.
+| Normalization Method   | Genome Version   |
+|------------------------|------------------|
+| RPKM                   | GRCh38.91        |
 
-**Signal files** (expression, flow cytometry, variant):
+#### Import process
 
-- Only the header row is used during processing to extract and link sample names.
-
-- The actual processing step is a fast HTTP call that completes too quickly for stopping to be meaningful.
-
-**Attachment files**:
-
-- These files are processed in a single chunk.
-
-- As a result, stop and restart functionalities are not applicable to this type.
-
-### Import samples
-
-To import samples, you should use a different endpoint, **POST /api/v1/jobs/import/samples**:
-![api-add-samples.gif](doc-odm-user-guide/gifs/api-add-samples.gif)
-
-```default
-curl -X 'POST' \
-  'https://<HOST>>/api/v1/jobs/import/samples?allow_dups=false' \
-  -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <TOKEN>' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "metadataLink": "https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv"
-}'
-```
-
-Similar to the previous step, you should see the **jobExecId** in the response:
-
-```json
-{
-  "jobExecId": 2117,
-  "startedBy": "job@genestack.com",
-  "jobName": "IMPORT_SAMPLES_TSV",
-  "status": "STARTING",
-  "createTime": "2025-04-16 13:47:17"
-}
-```
-As soon as the import process will be completed, you will be able to get the sample **groupAccession** by querying the **jobExecId** in **/api/v1/jobs/{jobExecId}/output** endpoint:
-
-```json
-{
-  "status": "COMPLETED",
-  "result": {
-    "groupAccession": "GSF1283530"
-  }
-}
-```
-
-However, you won’t see the samples in the Study Browser yet, because no samples have been linked to the study.
-
-### Link samples to study
-
-You can link samples to study using the integration endpoint **POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}**, specifying the accessions of the study and the accession of the sample group. This will link all samples from the imported file to the study. The following call will link samples that we imported in the previous step (with accession GSF1283530) to the study
-(with accession GSF1283528):
-
-```default
-curl -X 'POST' \
-  'https://<HOST>/api/v1/as-curator/integration/link/sample/group/GSF1283530/to/study/GSF1283528' \
-  -H 'accept: */*' \
-  -H 'Genestack-API-Token: <TOKEN>' \
-  -d ''
-```
-
-If successful, in the Study Browser you should see that the number of samples next
-to your study has changed from ‘-’ to ‘4’:
-
-![sample_added.gif](doc-odm-user-guide/gifs/sample_added.gif)
-
-Samples from other files can be loaded in the same way. They will be displayed in the Metadata Editor on a separate subtab.
-
-!!! note "Data Import using Python script"
-    If your goal is to perform a one-time import and create a single study, we recommend using our provided [API script](import-data-using-python-script.md) for simplicity and efficiency.
-
-### Import and link expression data to samples
-
-This time, we’re going to import expression data, supplying two files, one for the metadata, and another for the
+This time, we're going to import expression data, supplying two files, one for the metadata, and another for the
 processed data:
 
 ```default
@@ -361,12 +436,12 @@ curl -X 'POST' \
   -H 'Genestack-API-Token: <TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-  "metadataLink": "https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct.tsv",
-  "dataLink": "https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct",
+  "metadataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_expression.gct.tsv",
+  "dataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_expression.gct",
   "dataClass": "Bulk transcriptomics"
 }'
 ```
-The example call in Swagger contain multiple additional fields, that we do not require to be able to import the data. In order to be able to load the data, we will only use *metadataLink*, *dataLink*, *numberOfFeatureAttributes* and *dataClass*.
+The example call in Swagger contain multiple additional fields, that we do not require to be able to import the data. In order to be able to load the data, we will only use *metadataLink*, *dataLink* and *dataClass*.
 
 !!! note "Available Parameters"
     - **metadataLink** - link to a file that contains metadata (.tsv)
@@ -378,7 +453,7 @@ The example call in Swagger contain multiple additional fields, that we do not r
     - **measurementSeparator** - This parameter distinguishes the sample, library, or preparation name from various measurement types in your file's column headers (if applicable). For each sample, you might have different measurements like gene expression level, quality flag, sequencing depth, or p-value. This separator is crucial when your file contains columns for multiple such measurements. Supported separators include ., ,, :, ;, _, -, /, \, |, and multi-character separators are also allowed. Leave it blank if not applicable.
 
 
-If successful, you will get the response that contain the **jobExecId** that we will use to get the **groupAccession** using **GET /api/v1/jobs/{jobExecId}/output** endpoint.
+If successful, you will get the response that contain the **jobExecId** that we will use to get the **groupAccession** using `GET /api/v1/jobs/{jobExecId}/output` endpoint.
 
 ```json
 {
@@ -389,7 +464,7 @@ If successful, you will get the response that contain the **jobExecId** that we 
 }
 ```
 
-We can use the aquired **groupAccession** to get the expression data using **as-curator/omics/expression/data** endpoint:
+We can use the aquired **groupAccession** to get the expression data using `GET as-curator/omics/expression/data` endpoint:
 
 ```default
 curl -X 'GET' \
@@ -437,16 +512,26 @@ As response you will get all the information, including the metadata, for the ex
     Shortened for readability — 7 more items are not shown.
 }
 ```
+#### Linking to Samples/Libraries/Preparations
+
+In this example, we link an expression group to a sample group using `POST /api/v1/as-curator/integration/link/{sourceType}/group/{sourceId}/to/{targetType}/group/{targetId}`. 
+
+Alternatively, you can link to a libraries or preparations group using one of these endpoints:
+
+- `POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}`
+- `POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}`
+
+!!! note "Linking via Sample Source ID"
+    When linking signal data to preparations or libraries, the linking must be made through the default attribute `Sample Source ID`.
 
 There are two supported approaches for linking entities in the system:
 
-**Group-to-group linking**:
+##### Group-to-group linking
 
 Use this approach when you want to link one group of objects (e.g., samples, libraries, or data entities) to another group. 
 
 The call below links a source group to a target group using the following endpoint:
-
-**POST /api/v1/as-curator/integration/link/{sourceType}/group/{sourceId}/to/{targetType}/group/{targetId}**
+`POST /api/v1/as-curator/integration/link/{sourceType}/group/{sourceId}/to/{targetType}/group/{targetId}`
 
 ```default
 curl -X 'POST' \
@@ -456,13 +541,12 @@ curl -X 'POST' \
   -d ''
 ```
 
-**Object-to-object linking**:
+##### Object-to-object linking
 
 Use this approach to link individual objects directly — for example, linking a specific data object to a specific sample.
 
 The call below links a single source object to a single target object using the following endpoint:
-
-**POST /api/v1/as-curator/integration/link/{sourceType}/{sourceId}/to/{targetType}/{targetId}**
+`POST /api/v1/as-curator/integration/link/{sourceType}/{sourceId}/to/{targetType}/{targetId}`
 
 ```default
 curl -X 'POST' \
@@ -475,11 +559,26 @@ curl -X 'POST' \
 Expression data is now succesfuly linked and visible in the GUI.
 ![api-expression-data-linked.png](doc-odm-user-guide/images/api-expression-data-linked.png)
 
-### Import and link variant data to samples
+### Variant data 
+
+- [Test_variant.vcf](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_variant.vcf), a [VCF](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file of variant data from multiple sequencing runs
+
+|   #CHROM |       POS | ID          | REF   | ALT   |   QUAL | FILTER   | INFO    | FORMAT   | HG00119   | HG00121   | HG00183   | HG00176   |
+|----------|-----------|-------------|-------|-------|--------|----------|---------|----------|-----------|-----------|-----------|-----------|
+|        2 | 233364596 | rs838705    | G     | A     |    100 | PASS     | AF=0.64 | GT       | 0|0       | 0|1       | 1|0       | 1|1       |
+|        2 | 233385915 | rs201966773 | T     | TTC   |    987 | PASS     | AF=0.86 | GT       | 0|0       | 0|1       | 1|1       | 1|1       |
+
+- [Test_variant.vcf.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_variant.vcf.tsv), a tab-separated file that describes the variant data
+
+| Experimental Platform  |
+|------------------------|
+| IonTorrent Proton      |
+
+#### Import process
 
 Let's repeat the previous step, this time for variant data, ensuring that both expression and variant data are linked to the samples, reinforcing the data model hierarchy where samples are linked to a study, and data types (expression and variant) are linked to samples.
 
-To import the variant data we will use **POST /api/v1/jobs/import/variant** endpoint:
+To import the variant data we will use `POST /api/v1/jobs/import/variant` endpoint:
 
 ```default
 curl -X 'POST' \
@@ -488,14 +587,14 @@ curl -X 'POST' \
   -H 'Genestack-API-Token: <TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-  "metadataLink": "https://bio-test-data.s3.amazonaws.com/odm/Test_1000g/Test_1000g.vcf.tsv",
-  "dataLink": "https://bio-test-data.s3.amazonaws.com/odm/Test_1000g/Test_1000g.vcf"
+  "metadataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_variant.vcf.tsv",
+  "dataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_variant.vcf"
 }'
 ```
 
 As with the previous job endpoints, the response will include a *jobExecId*, which can be passed to the *job/output* endpoint to retrieve the variant group accession "GSF1283539".
 
-Which we can use to query the data using the **GET /api/v1/as-curator/omics/variant/data** endpoint:
+Which we can use to query the data using the `GET /api/v1/as-curator/omics/variant/data` endpoint:
 
 ```default
 curl -X 'GET' \
@@ -535,8 +634,9 @@ Response will contain the variant data that we imported:
   "cursor": "2-233385915-T-TC-856321"
 }
 ```
+#### Linking to Samples
 
-To link the variant group (GSF1283539) with the sample group (GSF1283530) we will use **POST /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}** endpoint.
+To link the variant group (GSF1283539) with the sample group (GSF1283530) we will use `POST /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}` endpoint.
 
 ```default
 curl -X 'POST' \
@@ -546,469 +646,96 @@ curl -X 'POST' \
   -d ''
 ```
 
-### Check that you can query the relationships between objects
+Variant data is now succesfuly linked and visible in the GUI.
+![variant_added.png](doc-odm-user-guide/images/variant_added.png)
 
-Once you’ve created and linked the study, sample, expression, and variant objects, you can do integration-aware query via both the User Interface and APIs.
+### Flow Cytometry Data
 
-## Library-Based Import Workflow
+- [Test_FACS_Signals.facs](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_FACS_Signals.facs), a tab-separated file that contains signal readouts from FACS experiments per cell population and sample.
 
-This example is similar to the previous one, but demonstrates using library/preparation file objects. In this case expression/proteomics data files are linked to library/preparations files rather than samples.
+| Sample   | CellPopulation                               | ReadoutType | Color/Marker | Value   |
+|----------|----------------------------------------------|-------------|--------------|---------|
+| HG00119  | Total events                                 | Counts      |              | 189031  |
+| HG00119  | Total events/Lymphocytes                     | Counts      |              | 182557  |
+| HG00119  | Total events/Lymphocytes                     | Percentage  |              | 96.6    |
+| HG00119  | Total events/Lymphocytes/Single Cells        | Counts      |              | 177879  |
+| HG00119  | Total events/Lymphocytes/Single Cells        | Percentage  |              | 97.4    |
 
-### Files Used in This Workflow
+- [Test_FACS_Signals.facs.csv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_FACS_Signals.facs.csv), a comma-separated file that describes metadata for FACS data, including source and field definitions.
 
-- [Test_RM.study.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.study.tsv), a tab-delimited file of the study attributes
-
-| Study Source         | Study Description              |
-|----------------------|--------------------------------|
-| 1000 Genomes Project | Subset of 1000 Genomes Project |
-
-- [Test_RM.samples.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.samples.tsv), a tab-delimited file of sample attributes.
-
-| Sample Source        | Sample Source ID   | Sex   | Population   |
-|----------------------|--------------------|-------|--------------|
-| 1000 Genomes Project | SRR6441195         | M     | British      |
-| 1001 Genomes Project | SRR6441188         | F     | British      |
-| 1002 Genomes Project | SRR6441196         | M     | Finnish      |
-| 1003 Genomes Project | SRR6441197         | F     | Finnish      |
-
-- [Test_RM.libraries.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.libraries.tsv), a tab-delimited file of library metadata.
-
-| Library ID   | Sample Source ID      | Preparation Protocol   | Library Type      |
-|--------------|-----------------------|------------------------|-------------------|
-| LIB1         | SRR6441195|SRR6441188 | NGS                    | Spatial RNA-Seq-1 |
-| LIB2         | SRR6441196            | NGS                    | RNA-Seq-1         |
-
-- [Test_RM_g.gct](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM_g.gct), a [GCT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29) file of expression data from multiple sequencing runs. Note in this example the GCT file is using library IDs for linking.
-
-| Name      | Description   |   LIB1 |   LIB2 |
-|-----------|---------------|--------|--------|
-| ENSG00777 |               |   21.9 |   19.9 |
-| ENSG00888 |               |   23.7 |   24.9 |
-
-- [Test_RM_g.gct.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM_g.gct.tsv), a tab-separated file that describes the expression data
-
-| Normalization Method   | Genome Version   |
-|------------------------|------------------|
-| RPKM                   | GRCh38.91        |
-
-We will go through the following steps:
-
-1. **Authorization Token**
-    - a. Generate an API token
-    - b. Use Access Token
-2. **Import a study**
-3. **Import samples** 
-4. **Link samples to study**
-5. **Import and link library metadata file to samples**
-6. **Import and link expression data to the library file (note linking to library file instead of samples)**
-7. **Check that you can query the relationships between objects**
-
-### Authorization Token
-!!! note "[Authorization Token](import-data-using-api/#authorization-token)"
-    Described in the “Authorization Token” section above. Please ensure you use a valid token.
+| Experimental Platform  |
+|------------------------|
+| FACS                   |
 
 
-### Import a study
+#### Import Process
 
-There are specific endpoints to import specific data types, as listed in the **Swagger API documentation**. 
-
-![api-navigate-swagger.gif](doc-odm-user-guide/gifs/api-navigate-swagger.gif)
-
-For studies,
-you should go to the *job* endpoint, use the **POST /api/v1/jobs/import/study** method, and supply the file URL:
-
-![api-add-study.gif](doc-odm-user-guide/gifs/api-add-study.gif)
+To import the Flow Cytometry data we will use `POST /api/v1/jobs/import/flow-cytometry` endpoint.
 
 ```default
 curl -X 'POST' \
-  'https://<HOST>/api/v1/jobs/import/study' \
+  'https://<HOST>/api/v1/jobs/import/flow-cytometry?allow_dups=false' \
   -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <your API token>' \
+  -H 'Genestack-API-Token: <token>' \
   -H 'Content-Type: application/json' \
   -d '{
-  "metadataLink": "https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.study.tsv"
-```
-
-If successful, you should see the [**jobExecId**](#working-with-the-jobexecid) that we will use to get the accession of the study, using the **GET /api/v1/jobs/{jobExecId}/output8** endpoint.
-
-!!! note "jobExecId"
-    The response returns a jobExecId, which can be used to monitor and fetch the status of the import. Learn more about [working with jobID](#working-with-the-jobexecid).
-    
-Use the **GET /api/v1/jobs/{jobExecId}/output** endpoint to get the accession of the study we created:
-
-```default
-curl -X 'GET' \
-  'https://<HOST>/api/v1/jobs/<jobExecId>/output' \
-  -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <TOKEN>'
-
-```
-```json
-{
-  "status": "COMPLETED",
-  "result": {
-    "accession": "GSF1283540"
-  }
-}
-```
-
-
-You can also confirm this visually, by going to the **Study Browser** and check that a new study has been created,
-owned by you:
-
-![image](doc-odm-user-guide/images/empty-RM-study.png)
-
-### Import samples
-
-To import samples, you should use a different job endpoint, **/api/v1/jobs/import/samples**:
-
-```default
-curl -X 'POST' \
-  'https://<HOST>/api/v1/jobs/import/samples?allow_dups=false' \
-  -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <TOKEN>' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "metadataLink": "https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.samples.tsv"
+  "dataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_FACS_Signals.facs"
 }'
 ```
 
-Similar to the previous step, you should see the [jobExecId](#working-with-the-jobexecid) that we are going to use in **GET /api/v1/jobs/{jobExecId}/output** in order to get the groupAccession of the samples we just imported.
+The response will include a *jobExecId*, which can be passed to the *job/output* endpoint to retrieve the Flow Cytometry group accession "GSF1284463".
+
+
+#### Linking to Samples
+
+To link the Flow Cytometry group (GSF1284463) with the sample group (GSF1283530) we will use `POST /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}` endpoint.
 
 ```default
-curl -X 'GET' \
-  'https://<HOST>/api/v1/jobs/<jobExecId>/output' \
-  -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <TOKEN>'
-```
-```json
-{
-  "status": "COMPLETED",
-  "result": {
-    "groupAccession": "GSF1283541"
-  }
-}
-```
-
-However, you won’t see the samples in the Study Browser yet, because no samples have been linked to the study.
-
-### Link samples to study
-
-You can link samples to study using the integration endpoint **POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}**, specifying the accessions of the pair of objects to be
-linked. The following call will link the samples group GSF1283541 to the study GSF1283540:
-
-```default
-curl -H "Genestcurl -X 'POST' \
-  'https://<HOST>/api/v1/as-curator/integration/link/sample/group/GSF1283541/to/study/GSF1283540' \
+curl -X 'POST' \
+  'https://<HOST>/api/v1/as-curator/integration/link/flow-cytometry/group/GSF1284463/to/sample/group/GSF1284464' \
   -H 'accept: */*' \
   -H 'Genestack-API-Token: <TOKEN>' \
   -d ''
 ```
 
-If successful, in the Study Browser you should see (after refreshing the page) that the number of samples next
-to your study has changed from ‘-’ to ‘4’:
+Flow Cytometry data is now succesfuly linked and visible in the GUI.
+![facs_added.png](doc-odm-user-guide/images/facs_added.png)
 
-![image](doc-odm-user-guide/images/sample-RM-added.png)
+### Attached Files
 
-### Import and link library metadata file to samples
+- [test_file_metadata.pdf](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/test_file_metadata.pdf), a PDF file containing a test table.
 
-The next step is to import a library metadata file and link it to the samples file. First we import the library file using a **POST /api/v1/jobs/import/libraries** endpoint:
+| File Name         | Sample ID | File Type | Checksum  | Description                            |
+|-------------------|-----------|-----------|-----------|----------------------------------------|
+| file_001.bam      | SMPL001   | BAM       | abc12345  | BAM file for whole genome sequencing   |
+| file_002.vcf      | SMPL002   | VCF       | def67890  | VCF file with called variants          |
+| file_003.fastq.gz | SMPL003   | FASTQ     | ghe98765  | Raw sequencing reads                   |
+
+#### Import process
+
+To import and link attached file to a study we will use `POST /api/v1/jobs/import/file` endpoint.
+
+The example call contain link to a file, accession of a study that the file will be linked to and a file type for the imported file.
 
 ```default
 curl -X 'POST' \
-  'https://<HOST>/api/v1/jobs/import/libraries?allow_dups=false' \
+  'https://<HOST>/api/v1/jobs/import/file' \
   -H 'accept: application/json' \
   -H 'Genestack-API-Token: <TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
-  "metadataLink": "https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.libraries.tsv"
+  "dataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/test_file_metadata.pdf",
+  "studyAccession": "GSF1284490",
+  "dataClass": "Document"
 }'
 ```
 
-This returns similarly to the samples import - [jobExecId](#working-with-the-jobexecid), using the **GET /api/v1/jobs/{jobExecId}/output** endpoint we will get the groupAccession. 
-```json
-{
-  "status": "COMPLETED",
-  "result": {
-    "groupAccession": "GSF1283547"
-  }
-}
-```
-You can then link the libraries group file to the samples group using the **POST /api/v1/as-curator/integration/link/library/group/{sourceId}/to/sample/group/{targetId}** endpoints and the accession we got back from importing samples:
-
-
-```default
-curl -X 'POST' \
-  'https://<HOST>/api/v1/as-curator/integration/link/library/group/GSF1283547/to/sample/group/GSF1283541' \
-  -H 'accept: */*' \
-  -H 'Genestack-API-Token: <TOKEN>' \
-  -d ''
-```
-
-If successful you will see a library tab appear in the Metadata Editor:
-
-![image](doc-odm-user-guide/images/library-added.png)
-
-### Import and link gene expression data to libraries
-
-Now we’ll import expression data, supplying two files, one for the metadata, and another for the
-processed data, and this time link them to the libraries file:
-
-```default
-curl -X 'POST' \
-  'https://<HOST>/api/v1/jobs/import/expression?allow_dups=false' \
-  -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <TOKEN>' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "metadataLink": "https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM_g.gct.tsv",
-  "dataLink": "https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM_g.gct",
-  "numberOfFeatureAttributes": 3,
-  "dataClass": "Bulk transcriptomics"
-}'
-```
-
-The example call in Swagger contain multiple additional fields, that we do not require to be able to import the data. In order to be able to load the data, we will only use metadataLink, dataLink, numberOfFeatureAttributes and dataClass.
-
-!!! note "Available Parameters"
-    - **metadataLink** - link to a file that contains metadata (.tsv)
-    - **dataLink** - link to a file that contains the data. (.gct)
-    - **templateId** - (optional) accession of the template
-    - **previousVersion** - (optional) accession of the previous version of the file. Used to update the existing version of the file.
-    - **numberOfFeatureAttributes** - The number of metadata columns describing each feature (e.g., gene).
-    - **dataClass** - Specify a data class that suits the data set you are importing. You can use [Data Class](import-data-in-odm.md) list as a reference.
-    - **measurementSeparator**
-
-If successful, you will get the response that contain the jobExecId that we will use to get the groupAccession using GET /api/v1/jobs/{jobExecId}/output endpoint.
-```json
-{
-  "status": "COMPLETED",
-  "result": {
-    "groupAccession": "GSF1283553"
-  }
-}
-```
-We can use the aquired **groupAccession** to get the expression data using **as-curator/omics/expression/data** endpoint. You will get four run-level expression objects, corresponding to the four columns in the expression matrix, and an expression group accession (groupID) that represents the group of expression objects:
-```default
-curl -X 'GET' \
-  'https://<HOST>/api/v1/as-curator/omics/expression/data?exFilter=genestack%3Aaccession%20%3D%20GSF1283553' \
-  -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <TOKEN>'
-```
-
-```json
-{
-  "data": [
-    {
-      "itemId": "856322-ENSG00777",
-      "itemOrigin": {
-        "runSourceId": "LIB1",
-        "runId": "856322",
-        "groupId": "GSF1283553"
-      },
-      "metadata": {
-        "Experimental Platform": null,
-        "Features (numeric)": null,
-        "Data Processing Method": null,
-        "Genome Version": "Gene-level-gct",
-        "Scale": null,
-        "Normalization Method": "RPKM",
-        "Values (numeric)": null,
-        "Data Class": "Bulk transcriptomics",
-        "Pipeline ID": null,
-        "Data Species": null,
-        "Import Source URL": null,
-        "Features (string)": null,
-        "Data Files / Processed": null,
-        "Data Files / Raw": null
-      },
-      "feature": {
-        "feature": "ENSG00777"
-      },
-      "value": {
-        "value": 21.9905991310986
-      },
-      "relationships": null
-    },
-    {
-      "itemId": "856322-ENSG00888",
-      "itemOrigin": {
-        "runSourceId": "LIB1",
-        "runId": "856322",
-        "groupId": "GSF1283553"
-      },
-      "metadata": {
-        "Experimental Platform": null,
-        "Features (numeric)": null,
-        "Data Processing Method": null,
-        "Genome Version": "Gene-level-gct",
-        "Scale": null,
-        "Normalization Method": "RPKM",
-        "Values (numeric)": null,
-        "Data Class": "Bulk transcriptomics",
-        "Pipeline ID": null,
-        "Data Species": null,
-        "Import Source URL": null,
-        "Features (string)": null,
-        "Data Files / Processed": null,
-        "Data Files / Raw": null
-      },
-      "feature": {
-        "feature": "ENSG00888"
-      },
-      "value": {
-        "value": 23.7829330428661
-      },
-      "relationships": null
-    },
-    {
-      "itemId": "856323-ENSG00777",
-      "itemOrigin": {
-        "runSourceId": "LIB2",
-        "runId": "856323",
-        "groupId": "GSF1283553"
-      },
-      "metadata": {
-        "Experimental Platform": null,
-        "Features (numeric)": null,
-        "Data Processing Method": null,
-        "Genome Version": "Gene-level-gct",
-        "Scale": null,
-        "Normalization Method": "RPKM",
-        "Values (numeric)": null,
-        "Data Class": "Bulk transcriptomics",
-        "Pipeline ID": null,
-        "Data Species": null,
-        "Import Source URL": null,
-        "Features (string)": null,
-        "Data Files / Processed": null,
-        "Data Files / Raw": null
-      },
-      "feature": {
-        "feature": "ENSG00777"
-      },
-      "value": {
-        "value": 19.9906155628591
-      },
-      "relationships": null
-    },
-    {
-      "itemId": "856323-ENSG00888",
-      "itemOrigin": {
-        "runSourceId": "LIB2",
-        "runId": "856323",
-        "groupId": "GSF1283553"
-      },
-      "metadata": {
-        "Experimental Platform": null,
-        "Features (numeric)": null,
-        "Data Processing Method": null,
-        "Genome Version": "Gene-level-gct",
-        "Scale": null,
-        "Normalization Method": "RPKM",
-        "Values (numeric)": null,
-        "Data Class": "Bulk transcriptomics",
-        "Pipeline ID": null,
-        "Data Species": null,
-        "Import Source URL": null,
-        "Features (string)": null,
-        "Data Files / Processed": null,
-        "Data Files / Raw": null
-      },
-      "feature": {
-        "feature": "ENSG00888"
-      },
-      "value": {
-        "value": 24.9960622157148
-      },
-      "relationships": null
-    },
-    {
-      "itemId": "856324-ENSG00777",
-      "itemOrigin": {
-        "runSourceId": "LIB3",
-        "runId": "856324",
-        "groupId": "GSF1283553"
-      },
-      "metadata": {
-        "Experimental Platform": null,
-        "Features (numeric)": null,
-        "Data Processing Method": null,
-        "Genome Version": "Gene-level-gct",
-        "Scale": null,
-        "Normalization Method": "RPKM",
-        "Values (numeric)": null,
-        "Data Class": "Bulk transcriptomics",
-        "Pipeline ID": null,
-        "Data Species": null,
-        "Import Source URL": null,
-        "Features (string)": null,
-        "Data Files / Processed": null,
-        "Data Files / Raw": null
-      },
-      "feature": {
-        "feature": "ENSG00777"
-      },
-      "value": {
-        "value": 21.3196300774432
-      },
-      "relationships": null
-    },
-    {
-      "itemId": "856324-ENSG00888",
-      "itemOrigin": {
-        "runSourceId": "LIB3",
-        "runId": "856324",
-        "groupId": "GSF1283553"
-      },
-      "metadata": {
-        "Experimental Platform": null,
-        "Features (numeric)": null,
-        "Data Processing Method": null,
-        "Genome Version": "Gene-level-gct",
-        "Scale": null,
-        "Normalization Method": "RPKM",
-        "Values (numeric)": null,
-        "Data Class": "Bulk transcriptomics",
-        "Pipeline ID": null,
-        "Data Species": null,
-        "Import Source URL": null,
-        "Features (string)": null,
-        "Data Files / Processed": null,
-        "Data Files / Raw": null
-      },
-      "feature": {
-        "feature": "ENSG00888"
-      },
-      "value": {
-        "value": 24.4322973830799
-      },
-      "relationships": null
-    }
-  ],
-  "resultsExhausted": true,
-  "log": [
-    "There are no restrictions related with library/preparation/sample/study query"
-  ],
-  "cursor": "856324-ENSG00888"
-}
-```
-
-You can then link expression group to library group:
-
-```default
-curl -X 'POST' \
-  'https://<HOST>/api/v1/as-curator/integration/link/expression/group/GSF1283553/to/library/group/GSF1283547' \
-  -H 'accept: */*' \
-  -H 'Genestack-API-Token: <TOKEN>' \
-  -d ''
-```
-
-If successful, in the Metadata Editor you should see (after refreshing the page) that the loaded file is displayed on the Data tab.
+Attached file is now succesfuly linked and visible in the GUI.
+![attached-file.png](doc-odm-user-guide/images/attached-file.png)
 
 ### Check that you can query the relationships between objects
 
-Once you’ve created and linked the study, sample, library and expression objects you can do integration-aware queries via both the User Interface and APIs.
+Once you've created and linked the study, sample, library and expression objects you can do integration-aware queries via both the User Interface and APIs.
 
 In the User Interface, you should be able to find your imported study using the study, sample, and signal filters.
 
