@@ -286,7 +286,7 @@ As soon as the import process will be completed, you will be able to get the pre
 ```
 ### Linking entities
 
-#### Samples to study
+#### Samples to Study
 
 You can link samples to study using the integration endpoint `POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}`, specifying the accessions of the study and the accession of the sample group. This will link all samples from the imported file to the study. The following call will link samples that we imported in the previous step (with accession GSF1283530) to the study
 (with accession GSF1283528):
@@ -320,6 +320,7 @@ curl -X 'POST' \
   -H 'Genestack-API-Token: <TOKEN>' \
   -d ''
 ```
+
 
 If successful you will see a library tab appear in the Metadata Editor:
 
@@ -418,7 +419,18 @@ Stops a job that is currently running.
 | ENSG00000077044 |               |   21.9 |   19.9 |
 | ENSG00000085982 |               |   23.7 |   24.9 |
 
-- [Test_expression.gct.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_expression.gct.tsv), a tab-separated file that describes the expression data
+- [Test_generic_expression.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_generic_expression.tsv),  a tabular dataset in TSV (tab-separated values) format. 
+
+| Text Feature One | Text Feature Two | Numeric Feature One | Numeric Feature Two | HG00119.m1 | HG00121.m1 | HG00183.m1 | HG00176.m1 |
+|------------------|------------------|----------------------|----------------------|-------------|-------------|-------------|-------------|
+| f1_1             | f2_1             | 1.069                | 2.218                | 0.804       | 0.350       | 0.591       | 7.260       |
+| f1_2             | f2_2             | 4.845                | 0.391                | 0.729       | 5.657       |11.730       |11.007       |
+| f1_3             | f2_3             | 1.427                | 0.147                | 1.588       | 8.145       | 1.480       | 2.718       |
+| f1_4             | f2_4             | 4.854                | 3.723                | 0.645       | 4.493       | 0.862       | 1.370       |
+| f1_5             | f2_5             |10.563                | 4.217                | 1.102       | 1.627       | 3.157       | 4.393       |
+
+
+- [Test_expression.gct.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_expression.gct.tsv), a tab-separated file that describes the expression data.
 
 | Normalization Method   | Genome Version   |
 |------------------------|------------------|
@@ -442,6 +454,23 @@ curl -X 'POST' \
 }'
 ```
 The example call in Swagger contain multiple additional fields, that we do not require to be able to import the data. In order to be able to load the data, we will only use *metadataLink*, *dataLink* and *dataClass*.
+
+Alternatively, we can import the generic expression data file, which has features and dot separated measurements.
+
+```default
+curl -X 'POST' \
+  'https://<TOKEN>/api/v1/jobs/import/expression?allow_dups=false' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "dataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_generic_expression.tsv",
+  "numberOfFeatureAttributes": 4,
+  "dataClass": "Proteomics",
+  "measurementSeparator": "."
+}'
+```
+Please note, that in this example `numberOfFeatureAttributes` and `measurementSeparator` are mandatory. To learn more about this data type and mandatory fields please see [this page](../supported-formats/#tabular-data).
 
 !!! note "Available Parameters"
     - **metadataLink** - link to a file that contains metadata (.tsv)
@@ -661,7 +690,7 @@ Variant data is now succesfuly linked and visible in the GUI.
 | HG00119  | Total events/Lymphocytes/Single Cells        | Counts      |              | 177879  |
 | HG00119  | Total events/Lymphocytes/Single Cells        | Percentage  |              | 97.4    |
 
-- [Test_FACS_Signals.facs.csv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_FACS_Signals.facs.csv), a comma-separated file that describes metadata for FACS data, including source and field definitions.
+- [Test_FACS_Signals.facs.csv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_FACS_Signals.facs.csv),a tab-separated file that describes the FACS data.
 
 | Experimental Platform  |
 |------------------------|
@@ -683,16 +712,57 @@ curl -X 'POST' \
 }'
 ```
 
-The response will include a *jobExecId*, which can be passed to the *job/output* endpoint to retrieve the Flow Cytometry group accession "GSF1284463".
+The response will include a *jobExecId*, which can be passed to the *job/output* endpoint to retrieve the Flow Cytometry group accession "GSF1284512".
 
+Which we can use to query the data using the `GET /api/v1/as-user/flow-cytometries` endpoint:
+
+```default
+curl -X 'GET' \
+  'https://<HOST>/api/v1/as-user/flow-cytometries?query=genestack%3Aaccession%20%3D%20GSF1284512' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>'
+```
+
+Response will contain the Flow Cytometry data we have imported:
+```json
+{
+  "data": [
+    {
+      "itemId": "856561-1",
+      "itemOrigin": {
+        "runSourceId": "HG00119",
+        "runId": "856561",
+        "groupId": "GSF1284512"
+      },
+      "metadata": {
+        "Data Class": "Flow Cytometry (FACS)",
+        "Experimental Platform": null,
+        "Pipeline ID": null,
+        "Data Processing Method": null,
+        "Processed Data Files": null,
+        "Import Source URL": null,
+        "Scale": null,
+        "Raw Data Files": null,
+        "Name": null
+      },
+      "feature": {
+        "readoutType": "Counts",
+        "cellPopulation": "Total events",
+        "marker": ""
+      },
+      "value": {
+        "value": 189031
+      }
+    },
+```
 
 #### Linking to Samples
 
-To link the Flow Cytometry group (GSF1284463) with the sample group (GSF1283530) we will use `POST /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}` endpoint.
+To link the Flow Cytometry group (GSF1284512) with the sample group (GSF1283530) we will use `POST /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}` endpoint.
 
 ```default
 curl -X 'POST' \
-  'https://<HOST>/api/v1/as-curator/integration/link/flow-cytometry/group/GSF1284463/to/sample/group/GSF1284464' \
+  'https://<HOST>/api/v1/as-curator/integration/link/flow-cytometry/group/GSF1284512/to/sample/group/GSF1284464' \
   -H 'accept: */*' \
   -H 'Genestack-API-Token: <TOKEN>' \
   -d ''
@@ -715,7 +785,12 @@ Flow Cytometry data is now succesfuly linked and visible in the GUI.
 
 To import and link attached file to a study we will use `POST /api/v1/jobs/import/file` endpoint.
 
-The example call contain link to a file, accession of a study that the file will be linked to and a file type for the imported file.
+The example call contains a link to a file, the accession of the study the file will be linked to, and a Data Class for the imported file. You can use any available Data Class for the Attached file.
+
+!!! note "Mandatory fields"
+    Please note that `dataLink`, `studyAccession` and `dataClass` are mandatory fields and cannot be skipped.
+     
+
 
 ```default
 curl -X 'POST' \
@@ -735,11 +810,11 @@ Attached file is now succesfuly linked and visible in the GUI.
 
 ### Check that you can query the relationships between objects
 
-Once you've created and linked the study, sample, library and expression objects you can do integration-aware queries via both the User Interface and APIs.
+Once you've created and linked the study, sample, library, preparations and expression objects you can do integration-aware queries via both the User Interface and APIs.
 
-In the User Interface, you should be able to find your imported study using the study, sample, and signal filters.
+In the User Interface, you should be able to find your imported study using the study, sample, library, preparations and signal filters.
 
-To do this via APIs, you can use the integration/omics endpoint to filter across studies, samples, libraries and signals,and retrieve a specific object type. For example, to get metadata about the samples associated with library LIB1:
+To do this via APIs, you can use the integration/omics endpoint to filter across studies, samples, libraries, preparations and signals, and retrieve a specific object type. For example, to get metadata about the samples associated with library LIB1:
 
 ```default
 curl -X 'GET' \
@@ -802,3 +877,47 @@ Which will return:
   ]
 }
 ```
+
+To get the preparation metadata objects which are linked to sample metadata we can use `GET /api/v1/as-curator/integration/link/preparations/by/samples` endpoint.
+
+
+```default
+curl -X 'GET' \
+  'https://<HOST>/api/v1/as-curator/integration/link/preparations/by/samples?filter=%22Sample%20Source%20ID%22%20%3D%20HG00119' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>'
+```
+
+Example response:
+
+```json
+{
+  "meta": {
+    "pagination": {
+      "count": 1,
+      "total": 1,
+      "offset": 0,
+      "limit": 2000
+    }
+  },
+  "data": [
+    {
+      "genestack:accession": "GSF1284503",
+      "Preparation ID": "PREP1",
+      "Sample Source ID": [
+        "HG00119",
+        "HG00121"
+      ],
+      "Kit Reagent": null,
+      "Incubation Time": null,
+      "Date Performed": null,
+      "Method Protocol": null,
+      "Preparation Step": null,
+      "Volume Concentration": null,
+      "Volume Unit": null,
+      "groupId": "GSF1284502"
+    }
+  ]
+}
+```
+
