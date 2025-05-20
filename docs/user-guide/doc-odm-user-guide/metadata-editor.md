@@ -6,8 +6,16 @@ The Metadata Editor allows you to explore study, sample, data information, and a
 
 To open the Metadata Editor, click on **Browse Studies** and select the study of interest. You can apply filters or use keywords to search for specific studies.
 
-![1StudyBrowser.png](doc-odm-user-guide/images/1StudyBrowser.png)
-<figcaption>Access the available studies in ODM (based on your permissions) by clicking Browse studies on the main dashboard (A), or by clicking on the top left menu and selecting Study Browser</figcaption>
+![quickstart_user_dashboard.gif](doc-odm-user-guide/gifs/quickstart_user_dashboard.gif)
+
+You can also get to the Metadata Editor when you click **Create a new study** button on the Dashboard. The Metadata Editor app will open and it suggests you specify a metadata template (by default, the Default template is applied).
+You can explore each template by hovering over it’s name and clicking **Explore** link.
+By default, new study contains two tabs, namely Study and Sample providing metadata for Study and Samples, respectively.
+
+![image](doc-odm-user-guide/images/open-me.png)
+
+Note that users not included in the **“Curator” group** do not have permissions to make changes (update metadata, change
+templates etc.) to any experiments.
 
 ## Exploring the Metadata Editor
 

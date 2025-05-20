@@ -31,7 +31,7 @@ python3 -m pip install -r requirements.txt
 Set credentials to Nexus
 
 ```shell
-export NEXUS_USER="your-google-password-without-@genestack.com"
+export NEXUS_USER="your-google-username-without-@genestack.com"
 export NEXUS_PASSWORD="your-google-password"
 ```
 
