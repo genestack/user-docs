@@ -26,7 +26,7 @@ You can import studies, samples, and any data in the tabular format:
 - **Preparations metadata**: metadata describing how samples were prepared prior to data generation, applicable to proteomics, transcriptomics, and other data types.
 - **Attached Files**: Supplement your study by attaching related research materials like PDF, XLSX, DOCX, PPTX files, images, and more. Please note, contents of these attached files won't be indexed or made searchable.
 
-Once imported, studies, samples, and data metadata will be queryable and editable from both the User Interface and APIs, whilst the signal data will only queryable via APIs.
+Once imported, studies, samples, and data metadata will be queryable and editable from both the User Interface and APIs, whilst the signal data will only be queryable via APIs.
 
 
 ## Can I capture the relationships between studies, samples, and data?
@@ -478,7 +478,7 @@ curl -X 'POST' \
 
 !!! note "Available Parameters"
     - **dataLink** - link to a file that contains the data.
-    - **dataClass** - Specify a data class that suits the data set you are importing. You can use [Data Class](import-data-in-odm.md#import-data-beta) list as a reference.
+    - **dataClass** - Specify a data class that suits the data set you are importing. You can use [Data Class](../import-data-in-odm/#data-type-data-class) list as a reference.
     - **metadataLink** - (optional) link to a file that contains metadata (.tsv)
     - **templateId** - (optional) accession of the template
     - **previousVersion** - (optional) accession of the previous version of the file. Used to update the existing version of the file.
@@ -707,7 +707,7 @@ Variant data is now succesfuly linked and visible in the GUI.
 | HG00119  | Total events/Lymphocytes/Single Cells        | Counts      |              | 177879  |
 | HG00119  | Total events/Lymphocytes/Single Cells        | Percentage  |              | 97.4    |
 
-- [Test_FACS_Signals.facs.csv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_FACS_Signals.facs.csv),a tab-separated file that describes the FACS data.
+- [Test_FACS_Signals.facs.csv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_FACS_Signals.facs.csv), a tab-separated file that describes the FACS data.
 
 | Experimental Platform  |
 |------------------------|
