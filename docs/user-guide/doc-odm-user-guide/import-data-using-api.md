@@ -94,7 +94,7 @@ In this example, we will import tiny subset of data from the 1000 Genomes Projec
 
 | Library ID   | Sample Source ID      | Preparation Protocol   | Library Type      |
 |--------------|-----------------------|------------------------|-------------------|
-| LIB1         | HG00119|HG00121       | NGS                    | Spatial RNA-Seq-1 |
+| LIB1         | HG00119`|`HG00121       | NGS                    | Spatial RNA-Seq-1 |
 | LIB2         | HG00183               | NGS                    | RNA-Seq-1         |
 | LIB3         | HG00176               | NGS                    | RNA-Seq-1         |
 
@@ -103,7 +103,7 @@ In this example, we will import tiny subset of data from the 1000 Genomes Projec
 
  Sample Source ID      | Digestion              | Preparation ID    |
 -----------------------|------------------------|-------------------|
- HG00119|HG00121       | Trypsin                | PREP1             |
+ HG00119`|`HG00121       | Trypsin                | PREP1             |
  HG00183               | Trypsin                | PREP2             |
  HG00176               | Trypsin                | PREP3             |
 
@@ -134,7 +134,7 @@ Example of the curl call:
 curl -X 'POST' \
   'https://<HOST>/api/v1/jobs/import/study' \
   -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <your API token>' \
+  -H 'Genestack-API-Token: <TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
   "metadataLink": "https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.study.tsv"
@@ -169,7 +169,7 @@ To import samples, you should use a different endpoint, `POST /api/v1/jobs/impor
 
 ```default
 curl -X 'POST' \
-  'https://<HOST>>/api/v1/jobs/import/samples?allow_dups=false' \
+  'https://<HOST>/api/v1/jobs/import/samples?allow_dups=false' \
   -H 'accept: application/json' \
   -H 'Genestack-API-Token: <TOKEN>' \
   -H 'Content-Type: application/json' \
@@ -644,7 +644,7 @@ Which we can use to query the data using the `GET /api/v1/as-curator/omics/varia
 
 ```default
 curl -X 'GET' \
-  '<HOST>/api/v1/as-curator/omics/variant/data?vxFilter=genestack%3Aaccession%20%3D%20GSF1283539' \
+  'https://<HOST>/api/v1/as-curator/omics/variant/data?vxFilter=genestack%3Aaccession%20%3D%20GSF1283539' \
   -H 'accept: application/json' \
   -H 'Genestack-API-Token: <TOKEN>'
 ```
@@ -722,7 +722,7 @@ To import the Flow Cytometry data we will use `POST /api/v1/jobs/import/flow-cyt
 curl -X 'POST' \
   'https://<HOST>/api/v1/jobs/import/flow-cytometry?allow_dups=false' \
   -H 'accept: application/json' \
-  -H 'Genestack-API-Token: <token>' \
+  -H 'Genestack-API-Token: <TOKEN>' \
   -H 'Content-Type: application/json' \
   -d '{
   "dataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_FACS_Signals.facs"
