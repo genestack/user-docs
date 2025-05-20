@@ -419,6 +419,16 @@ Stops a job that is currently running.
 | f1_5             | f2_5             |10.563                | 4.217                | 1.102       | 1.627       | 3.157       | 4.393       |
 
 
+- [Test_generic_expression_lib.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_generic_expression_lib.tsv), a tabular dataset in TSV (tab-separated values) format. This file is structured to be **linked to Libraries**.
+
+| Text Feature One | Text Feature Two | Numeric Feature One | Numeric Feature Two | LIB1.m1 | LIB2.m1 | LIB3.m1 |
+|------------------|------------------|----------------------|----------------------|---------|---------|---------|
+| f1_2             | f2_2             | 4.845                | 0.391                | 0.729   | 5.657   |11.730   |
+| f1_3             | f2_3             | 1.427                | 0.147                | 1.588   | 8.145   | 1.480   |
+| f1_4             | f2_4             | 4.854                | 3.723                | 0.645   | 4.493   | 0.862   |
+| f1_5             | f2_5             |10.563                | 4.217                | 1.102   | 1.627   | 3.157   |
+
+
 - [Test_expression.gct.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_expression.gct.tsv), a tab-separated file that describes the expression data.
 
 | Normalization Method   | Genome Version   |
@@ -537,11 +547,9 @@ As response you will get all the information, including the metadata, for the ex
 ```
 #### Linking to Samples/Libraries/Preparations
 
-In this example, we link an expression group to a sample group using `POST /api/v1/as-curator/integration/link/{sourceType}/group/{sourceId}/to/{targetType}/group/{targetId}`. 
+In this example, we link an expression group to a sample group using `POST /api/v1/as-curator/integration/link/{sourceType}/group/{sourceId}/to/{targetType}/group/{targetId}`and we will link another expression group to a library group using `POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}`.
 
-Alternatively, you can link to a libraries or preparations group using one of these endpoints:
-
-- `POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}`
+Alternatively, you can link to a preparations group using this endpoint:
 - `POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}`
 
 !!! note "Linking library\preparation"
@@ -556,8 +564,8 @@ There are two supported approaches for linking entities in the system:
 
 Use this approach when you want to link one group of objects (e.g., samples, libraries, or data entities) to another group. 
 
-The call below links a source group to a target group using the following endpoint:
-`POST /api/v1/as-curator/integration/link/{sourceType}/group/{sourceId}/to/{targetType}/group/{targetId}`
+The call below links an expresison group to a sample group using the following endpoint:
+`POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}`
 
 ```default
 curl -X 'POST' \
@@ -566,6 +574,18 @@ curl -X 'POST' \
   -H 'Genestack-API-Token: <TOKEN>' \
   -d ''
 ```
+
+The call below links an expression group to a library group using the following endpoint:
+`POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}`
+
+```default
+curl -X 'POST' \
+  'https://<HOST>/api/v1/as-curator/integration/link/expression/group/GSF1284946/to/library/group/GSF1284497' \
+  -H 'accept: */*' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -d ''
+```
+
 
 ##### Object-to-object linking
 
