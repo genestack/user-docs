@@ -31,31 +31,18 @@ Once imported, studies, samples, and data metadata will be queryable and editabl
 
 ## Can I capture the relationships between studies, samples, and data?
 
+Importing data has two stages. First, you import studies, samples, and data separately. Then, you link them together: samples are linked to a study, libraries and preparations are linked to samples, and omics data (e.g., transcriptomics, proteomics) are linked to samples or to libraries/preparations depending on the data type. Attached files are linked directly to a study. 
 
-Importing data has two stages. First, you import studies, samples, and data separately. Then, you link them together: multiple samples can be linked to a study, and multi-omics or other types of data can be linked to the samples. 
-The Sample Source ID is used as the default linking key. You can choose another attribute from the template for linking data to samples, except the cases when you are linking data to libs/preps since currently only the default attribute can be used. 
-The data model and how it looks in the User Interface is shown below.
+The **Sample Source ID** is used as the default linking key. You can choose another attribute from the template for linking data to samples. The data model and how it looks in the User Interface is shown below.
 
-In addition to core data types, libraries and preparations require special handling and must contain *Sample Source ID* attribute. Unlike omics data, they cannot be linked using arbitrary attributes — they must include *Sample Source ID*, which will be used during the linking process.
-
-The correct order of linking follows the system logic and available endpoints:
-
-- Samples are linked to a study
-- Libraries and preparations are linked to samples
-- Omics data (e.g. transcriptomics, proteomics) are linked to samples
-- Expression can be linked to library or preparations
-- Attached files are linked directly to a study
-
-Importing data has two stages. First, you import studies, samples, and data separately. Then, you link them together: a study can be linked to multiple samples, and a sample can be linked to multi-omics or other types of data. The **Sample Source ID** is used as the default linking key. You can choose another attribute from the template for linking data to samples. The data model and how it looks in the User Interface is shown below.
-
-In addition to core data types, **libraries** and **preparations** require special handling. Unlike omics data, they cannot be linked using arbitrary attributes — they must include their own unique ID that corresponds to the **Sample Source ID**.
+In addition to core data types, **Libraries** and **Preparations** require special handling. These files must include the **Sample Source ID**, which is used to link them to the appropriate samples. 
 
 The correct order of linking follows the system logic and available endpoints:
 
-- **Samples** are linked to a **study**
-- **Libraries** and **preparations** are linked to **samples**
-- **Omics data** (e.g. transcriptomics, proteomics) are linked to **samples**, or to **libraries/preparations** depending on the data type
-- **Attached files** are linked directly to a **study**
+- **Samples** are linked to a **Study**
+- **Libraries** and **Preparations** are linked to **Samples**
+- **Omics data** (e.g. transcriptomics, proteomics) are linked to **Samples**, or to **Libraries/Preparations** depending on the data type
+- **Attached files** are linked directly to a **Study**
 
 
 ![image](doc-odm-user-guide/images/data-model+metainfo-editor.png)
@@ -127,7 +114,7 @@ There are specific endpoints to import specific data types, as listed in the [**
 
 ![api-navigate-swagger.gif](doc-odm-user-guide/gifs/api-navigate-swagger.gif)
 
-For data import, you should go to the job section and choose the endpoint relevant for the specific data type. For studies, use the **POST /api/v1/jobs/import/study** method, and supply the file URL:
+For data import, you should go to the job section and choose the endpoint relevant for the specific data type. For studies, use the `POST /api/v1/jobs/import/study` method, and supply the file URL:
 
 ```default
 {
@@ -311,7 +298,7 @@ Samples from other files can be loaded in the same way. They will be displayed i
 
 #### Libraries to Samples
 
-You can link the **library group file** to the **samples group** using the endpoint `POST /api/v1/as-curator/integration/link/library/group/{sourceId}/to/sample/group/{targetId}`, along with the **accession** returned when importing the samples.
+You can link the **library group** to the **samples group** using the endpoint `POST /api/v1/as-curator/integration/link/library/group/{sourceId}/to/sample/group/{targetId}`, along with the **accession** returned when importing the samples.
 
 ```default
 curl -X 'POST' \
@@ -328,7 +315,7 @@ If successful you will see a library tab appear in the Metadata Editor:
 
 #### Preparations to Samples
 
-You can link the **preparation group file** to the **samples group** using the endpoint `POST /api/v1/as-curator/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}`, along with the **accession** returned when importing the samples.
+You can link the **preparation group** to the **samples group** using the endpoint `POST /api/v1/as-curator/integration/link/preparation/group/{sourceId}/to/sample/group/{targetId}`, along with the **accession** returned when importing the samples.
 
 ```default
 curl -X 'POST' \
@@ -351,7 +338,7 @@ The following endpoints allow you to manage and inspect jobs using the jobExecId
 Retrieves the current status and metadata of a specific job execution.
 
 - **Use case**: Use this to monitor the progress of an import job using its `jobExecId`.
-- **Endpoint**: `/api/v1/jobs/{jobExecId}/info`
+- **Endpoint**: `GET /api/v1/jobs/{jobExecId}/info`
 
 ![api-get-job-info.gif](doc-odm-user-guide/gifs/api-get-job-info.gif)
 
@@ -370,7 +357,7 @@ Retrieves the current status and metadata of a specific job execution.
 Retrieves the output of a completed job, including the accession of the generated study.
 
 - **Use case**: Use this after a job has completed to get the final result and study accession.
-- **Endpoint**: `/api/v1/jobs/{jobExecId}/output`
+- **Endpoint**: `GET /api/v1/jobs/{jobExecId}/output`
 
 ![api-get-job-output.gif](doc-odm-user-guide/gifs/api-get-job-output.gif)
 
@@ -390,6 +377,7 @@ Retrieves the output of a completed job, including the accession of the generate
 Restarts a job that has failed or was stopped before completion.
 
 - **Use case**: If a job failed due to a temporary issue, you can restart it using its `jobExecId`.
+- **Endpoint**: `PUT /api/v1/jobs/{jobExecId}/restart`
 
 ---
 
@@ -398,6 +386,7 @@ Restarts a job that has failed or was stopped before completion.
 Stops a job that is currently running.
 
 - **Use case**: Use this when you need to cancel a long-running or stuck job.
+- **Endpoint**: `PUT /api/v1/jobs/{jobExecId}/stop`
 
 ---
 
@@ -455,7 +444,8 @@ curl -X 'POST' \
 ```
 The example call in Swagger contain multiple additional fields, that we do not require to be able to import the data. In order to be able to load the data, we will only use *metadataLink*, *dataLink* and *dataClass*.
 
-Alternatively, we can import the generic expression data file, which has features and dot separated measurements.
+Alternatively, we can import the generic data file, which has features and dot separated measurements.
+Please note, that in this example `numberOfFeatureAttributes` and `measurementSeparator` are mandatory. To learn more about this data type and mandatory fields please see [this page](../supported-formats/#tabular-data).
 
 ```default
 curl -X 'POST' \
@@ -470,15 +460,19 @@ curl -X 'POST' \
   "measurementSeparator": "."
 }'
 ```
-Please note, that in this example `numberOfFeatureAttributes` and `measurementSeparator` are mandatory. To learn more about this data type and mandatory fields please see [this page](../supported-formats/#tabular-data).
+
+!!! note "Data Class Rules for GCT vs TSV Files"
+    - **GCT files** must always be imported with a `"dataClass": "Bulk transcriptomics"`.
+    
+    - **TSV files** are more flexible. You are not restricted to a single data class and can use any available one (e.g., *Proteomics*, *Metabolomics*, etc.) depending on the content. TSV imports support additional parameters such as `numberOfFeatureAttributes` and `measurementSeparator`, allowing you to define how features and measurements are organized within the file.
 
 !!! note "Available Parameters"
-    - **metadataLink** - link to a file that contains metadata (.tsv)
     - **dataLink** - link to a file that contains the data.
+    - **dataClass** - Specify a data class that suits the data set you are importing. You can use [Data Class](import-data-in-odm.md#import-data-beta) list as a reference.
+    - **metadataLink** - (optional) link to a file that contains metadata (.tsv)
     - **templateId** - (optional) accession of the template
     - **previousVersion** - (optional) accession of the previous version of the file. Used to update the existing version of the file.
     - **numberOfFeatureAttributes** - This field indicates how many columns in your file are related to the measured features (for example, Gene Names, Protein Names, Description, Metabolite Names, M/Z ratio, Retention Time, etc.). Please provide the correct number. Automatic recognition of this field will be added in future updates.
-    - **dataClass** - Specify a data class that suits the data set you are importing. You can use [Data Class](import-data-in-odm.md#import-data-beta) list as a reference.
     - **measurementSeparator** - This parameter distinguishes the sample, library, or preparation name from various measurement types in your file's column headers (if applicable). For each sample, you might have different measurements like gene expression level, quality flag, sequencing depth, or p-value. This separator is crucial when your file contains columns for multiple such measurements. Supported separators include ., ,, :, ;, _, -, /, \, |, and multi-character separators are also allowed. Leave it blank if not applicable.
 
 
@@ -550,8 +544,11 @@ Alternatively, you can link to a libraries or preparations group using one of th
 - `POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/library/group/{targetId}`
 - `POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/preparation/group/{targetId}`
 
-!!! note "Linking via Sample Source ID"
-    When linking signal data to preparations or libraries, the linking must be made through the default attribute `Sample Source ID`.
+!!! note "Linking library\preparation"
+    When signal data is linked to **Libraries** or **Preparations**, the system uses a default attribute automatically:
+
+    - For **Libraries**, the default linking attribute is `Library ID`
+    - For **Preparations**, the default linking attribute is `Preparation ID`
 
 There are two supported approaches for linking entities in the system:
 
