@@ -37,23 +37,13 @@ only queryable via APIs.
 
 ## Linking using sample source ID
 
-By default linking is done via the **Sample Source ID** key, so this needs to
-be consistent in the above files for linking to occur.
+By default linking is done via the **Sample Source ID** key, so this needs to be consistent in the above files for linking to occur. You can read about linking core data types [here](../import-data-using-api/#linking-entities) and more details about signal data linking on [this page](../import-data-using-api/#linking-to-sampleslibrariespreparations)
 
 ## Getting a Genestack API token
 
 Before you begin you will need a genestack API token.
 
-To obtain a token, sign in to ODM via a web browser, click on your email
-address in the top right and select “Profile”
-
-![image](doc-odm-user-guide/images/import_data_script_profile.png)
-
-Then click the “Create new token” button under API tokens:
-
-![image](doc-odm-user-guide/images/odm_profile.png)
-
-You will then be emailed a link to download your token as plain text. Use this token as required below.
+For instructions on how to generate a token, refer to the [Quick Start guide](../../quick-start/consumer-api/#generate-a-token).
 
 ## Script usage
 
@@ -97,6 +87,32 @@ Optionally include data files by appending any or all of the following to the ab
 ```default
 --preparations [URL]
 ```
+## Importing Multiple Tabular Files
+
+In order to import the data set, that has multiple Tabular data files in TSV (tab-separated values) you need to specify the `numberOfFeatureAttributes` for each file.
+The example call below will import the dataset that contain a Study, Samples and 2 Tabular datasets. 
+
+Each Tabular dataset has different number of Feature Attributes, that we set via `-nfa` parameter. 
+
+
+```default
+odm-import-data \
+--token <TOKEN> \
+--server <HOST> \
+--study https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.study.tsv \
+--samples https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_samples.tsv \
+--expression https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_basic_generic_expression.tsv \
+-nfa 4 \
+-dc "Lipidomics" \
+--expression https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_basic_generic_expression_3nfa.tsv \
+-nfa 3
+```
+
+!!! abstract "Data Class Behavior"
+    In the example above, we use the `-dc` parameter to set the data class for one data set, while omitting it for the other.  
+    If no data class is specified, it will default to `"Other"`.
+ 
+
 
 ## Updating data files
 
