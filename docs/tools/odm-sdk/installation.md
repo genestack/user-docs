@@ -30,6 +30,7 @@ python3 -m pip show --verbose odm-sdk
 ```shell
 python3 -m pip uninstall odm-sdk
 ```
+
 ## Troubleshooting
 
 ### Version mismatch
@@ -60,6 +61,7 @@ Or to see the actual path of the installed SDK:
 ```bash
 pip show odm-sdk
 ```
+
 Look for the line:
 
 ```bash
@@ -67,6 +69,7 @@ Location: /path/to/site-packages
 ```
 
 #### Windows
+
 Open Command Prompt or PowerShell and run:
 
 ```bash
@@ -74,9 +77,11 @@ py -m site
 ```
 
 Or check the SDK location directly:
+
 ```bash
 pip show odm-sdk
 ```
+
 This helps verify whether the SDK was installed in the correct Python environment (e.g. system Python, virtualenv, conda, etc.).
 
 ### Python environment not visible in `ENV`
@@ -98,6 +103,7 @@ Or for pip:
 ```bash
 which pip3
 ```
+
 This shows the full path of the active Python interpreter or pip binary (e.g., /usr/local/bin/python3).
 
 ##### Windows
@@ -118,7 +124,7 @@ This returns the full path to the installed Python executable (e.g., C:\Users\yo
 
 #### Add it to your PATH manually
 
-##### macOS / Linux:
+##### macOS / Linux
 
 Edit your `~/.bash_profile`, `~/.zshrc`, or `~/.bashrc`:
 
@@ -132,7 +138,7 @@ Then apply the changes:
 source ~/.zshrc  # or source the correct file for your shell
 ```
 
-##### Windows:
+##### Windows
 
 1- Open System Properties > Environment Variables
 
