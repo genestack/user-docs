@@ -138,7 +138,7 @@ source ~/.zshrc  # or source the correct file for your shell
 
 2 - Under System variables, select Path and click Edit
 
-3 - Click New and add the path to your Python or Scripts folder (e.g., C:\Python310\Scripts\)
+3 - Click New and add the path to your Python or Scripts folder (e.g., C:\Python310\Scripts)
 
 4 - Click OK and restart your terminal or IDE
 
