@@ -58,15 +58,12 @@ You can upload sample metadata from any experiment (e.g., flow cytometry, gene v
 
 In addition to sample metadata, you can also add Libraries and Preparations metadata. To do so, click on the tab **\+More** to display both options:
 
-![52More.png](doc-odm-user-guide/images/52More.png)
-<figcaption>Click on the option <strong>+More</strong> to add Libraries and/or Preparations metadata</figcaption>
-
 * To add libraries, click on **Libraries** and select the tabular file to import from your local computer.
 * To add preparations, click on **Preparations** and select the tabular file to import from your local computer.
 
 Both types of files are linked to the samples metadata file (from the Samples tab) via the **Sample Source ID** column. Ensure this column is included in all files to maintain the link between sample metadata, libraries, and preparations.
 
-![53LibrariesPreparations.png](doc-odm-user-guide/images/53LibrariesPreparations.png)
+![import-libraries.gif](doc-odm-user-guide/gifs/import-libraries.gif)
 <figcaption>Click on <strong>+More</strong> to add additional metadata to your study, such as Libraries and Preparations metadata. This step is optional</figcaption>
 
 **Link Metadata Files:**
