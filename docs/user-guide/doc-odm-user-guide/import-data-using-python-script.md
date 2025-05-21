@@ -89,6 +89,27 @@ Optionally include data files by appending any or all of the following to the ab
 ```
 ## Importing Multiple Tabular Files
 
+- [Test_basic_generic_expression.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_basic_generic_expression.tsv), a tab-separated file containing tabular expression data with two text features and two numeric features, followed by expression values for four samples.
+
+| Text Feature One | Text Feature Two | Numeric Feature One | Numeric Feature Two | HG00119 | HG00121 | HG00183 | HG00176 |
+|------------------|------------------|----------------------|----------------------|---------|---------|---------|---------|
+| f1_1             | f2_1             | 1.069                | 2.218                | 0.804   | 0.350   | 0.591   | 7.260   |
+| f1_2             | f2_2             | 4.845                | 0.391                | 0.729   | 5.657   |11.730   |11.007   |
+| f1_3             | f2_3             | 1.427                | 0.147                | 1.588   | 8.145   | 1.480   | 2.718   |
+| f1_4             | f2_4             | 4.854                | 3.723                | 0.645   | 4.493   | 0.862   | 1.370   |
+| f1_5             | f2_5             |10.563                | 4.217                | 1.102   | 1.627   | 3.157   | 4.393   |
+
+- [Test_basic_generic_expression_3nfa.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_basic_generic_expression_3nfa.tsv), a tab-separated file with **three feature attributes** (1 text + 2 numeric columns). This format requires setting `"numberOfFeatureAttributes": 3` during import. The remaining columns represent sample-level expression values.
+
+| Text Feature Two | Numeric Feature One | Numeric Feature Two | HG00119 | HG00121 | HG00183 | HG00176 |
+|------------------|----------------------|----------------------|---------|---------|---------|---------|
+| f2_1             | 1.069                | 2.218                | 0.804   | 0.350   | 0.591   | 7.260   |
+| f2_2             | 4.845                | 0.391                | 0.729   | 5.657   |11.730   |11.007   |
+| f2_3             | 1.427                | 3.147                | 1.588   | 8.145   | 1.480   | 2.718   |
+| f2_4             | 4.854                | 3.723                | 0.645   | 4.493   | 0.862   | 1.370   |
+| f2_5             |10.563                | 4.217                | 1.102   | 1.627   | 3.157   | 4.393   |
+
+
 In order to import the data set, that has multiple Tabular data files in TSV (tab-separated values) you need to specify the `numberOfFeatureAttributes` for each file.
 The example call below will import the dataset that contain a Study, Samples and 2 Tabular datasets. 
 
