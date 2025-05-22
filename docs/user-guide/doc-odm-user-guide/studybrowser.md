@@ -3,11 +3,11 @@
 The Study Browser is the main interface to quickly search and discover studies of interest. 
 
 !!! Important
-    You can only access the studies if you have the required permissions (Access all data). Refer to the section [User Setup](setup.md) to learn more about users and permissions.
+    Without **Access all data** permission you can access only studies created by you or shared with a group you belong to. You can access all studies in the ODM with **Access all data** permission. Refer to the section [User Setup](setup.md) to learn more about users and permissions.
 
 ## Getting to the Study Browser
 
-You can access the studies menu by clicking on **Browse Studies** from the dashboard, or by clicking at the top left menu and selecting **Study Browser**.
+You can access the list of available studies by clicking on **Browse Studies** from the dashboard, or by clicking at the top left menu and selecting **Study Browser**.
 
 ![1StudyBrowser.png](doc-odm-user-guide/images/1StudyBrowser.png)
 <figcaption>Access the available studies in ODM (based on your permissions) by clicking <strong>Browse studies</strong> on the main dashboard (A), or by clicking on the top left menu and selecting <strong>Study Browser</strong> (B).</figcaption>
@@ -29,7 +29,7 @@ At the top of the window is the main search bar. You can search by the name of a
 * Use question marks (?) to match any character.
 
 ![4SearchForData.png](doc-odm-user-guide/images/4SearchForData.png)
-<figcaption>Search for data. User question marks to match any missing characters. For example, if  you type the word <strong>c?ncer</strong>, the system will suggest studies containing the word <strong>cancer</strong></figcaption>
+<figcaption>Search for data. Use question marks to match any missing characters. For example, if  you type the word <strong>c?ncer</strong>, the system will suggest studies containing the word <strong>cancer</strong></figcaption>
 
 * Use asterisks (\*) to allow any number of wildcard characters.
 
@@ -39,7 +39,7 @@ At the top of the window is the main search bar. You can search by the name of a
 * Use quotes (“ ”) to search for an exact phrase.
 
 ![6SearchForData.png](doc-odm-user-guide/images/6SearchForData.png)
-<figcaption>Search for data. Use quotes to search for an exact phrase or word. For example, if you type <strong>“single cell”</strong>, the system will display studies that contain the words single cell in any of its components (metadata or experimental data)</figcaption>
+<figcaption>Search for data. Use quotes to search for an exact phrase or word. For example, if you type <strong>“single cell”</strong>, the system will display studies that contain the words single cell in metadata</figcaption>
 
 * Terms can be joined with the **AND** operator (by default the OR operator is used), and they can be excluded with a preceding **NOT**.
 
@@ -61,7 +61,7 @@ At the top of the window is the main search bar. You can search by the name of a
 
 * By default, all studies you have permission to access are displayed. Given the potential number of studies, search and filtering options in the left-hand panel of the **Study Browser** help you find specific studies of interest. 
 * You can search by study name, accession number, or any relevant metadata field. 
-* The facets beneath the search bar allow you to filter search results based on sample data (metadata) fields.
+* The facets beneath the search bar allow you to filter search results based on sample metadata fields.
 
 ![10DataClass.png](doc-odm-user-guide/images/10DataClass.png)
 <figcaption>Filter data. Use the filters to narrow the search of studies. For example, select <strong>Data Class</strong> and then tick the option <strong>Expression</strong> to find exclusively studies containing gene expression as experimental data (GCT format files)</figcaption>
@@ -80,6 +80,9 @@ At the top of the window is the main search bar. You can search by the name of a
 
 ## Configuring the filter panel
 
+!!! Important
+    You can only access the Configure facets option if you have the **Configure facets** permissions. For access, an admin must edit the settings. Refer to the [User Setup](setup.md) section for more information.
+
 Users with permission **Configure facets** can customize which metadata fields are available as search facets.
 
 To do this:
@@ -93,20 +96,16 @@ You can reorder facets by dragging the icon next to the facet name or delete the
 ![13Facets.png](doc-odm-user-guide/images/13Facets.png)
 <figcaption>Configure facets. Reorder the facets to display for searching studies. Click on <strong>Configure facets</strong> at the bottom left of the page. A new window will open where you can add, rename, delete or drag facets. The changes will apply after clicking on <strong>Save</strong></figcaption>
 
-!!! Important
-    You can only access the Configure facets option if you have the necessary permissions. For access, an admin must edit the settings. Refer to the [User Setup](setup.md) section for more information.
-
 ## Navigation and Help
 
 * Use the shortcut dock in the top left-hand corner of any window to return to the main dashboard.
 * Click on Quick Guide in the top right of your window for reference guides and examples on how to use ODM.
 
 ![14NavigationUpdated.png](doc-odm-user-guide/images/14NavigationUpdated.png)
-<figcaption>Navigation and help. Click on the left panel to return to the main dashboard. Click on the button Quick Guide on the right to explore Quick User Guides</figcaption>
+<figcaption>Navigation and help. Click on the left panel to return to the main dashboard. Click on the button to explore Quick Guide</figcaption>
 
 * On the right side of the board, you can access account details and check the status of any tasks you are running. 
 * Click the question mark next to the search bar to open the search help section for more details about advanced search functionality.
 
 ![15Help.png](doc-odm-user-guide/images/15Help.png)
 <figcaption>Navigation and help. Click on the question mark symbol <strong>(?)</strong> to open the search bar help section including operators, ontologies, and wildcards. Click on the <strong>Tasks</strong> option to visualize the status of any task you are running. Click on <strong>View all</strong> to visualize the last tasks you have run and their status (running, done, failed, etc.).</figcaption>
-
