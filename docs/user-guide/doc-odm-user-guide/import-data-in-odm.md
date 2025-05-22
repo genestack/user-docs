@@ -109,12 +109,9 @@ In addition to the samples, libraries, and preparations metadata described above
 
 To upload experimental data or attach files, navigate to the **Data Tab**
 
-![55Data.png](doc-odm-user-guide/images/55Data.png)
-<figcaption>Click on the Data tab to access options for uploading experimental data and attaching additional files</figcaption>
-
 * On the Data tab, click on the **Add data** button. This will open a new window where you can select the action to perform: import data or attach a file.
 
-![56AddImport.png](doc-odm-user-guide/images/56AddImport.png)
+![import-data-button.gif](doc-odm-user-guide/gifs/import-data-button.gif)
 <figcaption>Click on the <strong>Add data</strong> button to choose between importing experimental data or attaching additional files to your study</figcaption>
 
 ### Import Experimental Data
@@ -167,17 +164,14 @@ Attachment of additional files is different from linked files, allowing you to a
 To attach a file:
 
 * Click on **Add data** and then select **Attach a file**.
+* Select **Data class** from the list.
 * You can attach any format files such as PDF, PNG, etc.
-* Click **Select file...**. Select the file from your local computer
+* Click **Next** and **Select file...**. Select the file from your local computer
 
-![61Attach.png](doc-odm-user-guide/images/61Attach.png)
-<figcaption>The files will be uploaded (upload time will depend on the size of the files). Your files will be displayed in the Data tab under <strong>Attached Files</strong>.</figcaption>
+![attach-file.png](doc-odm-user-guide/gifs/attach-file.gif)
 
-Once the files are selected, the upload will begin and the files will be attached. Available data will be displayed in the Data tab by type: **Experimental** (e.g., bulk transcriptomics) and **Attached files** (e.g., manuscripts, reports).
-
-![62Attached.png](doc-odm-user-guide/images/62Attached.png)
-<figcaption>Once attached or linked, files will be shown on the Data tab under their specific category, e.g., <strong>bulk transcriptomics</strong> for experimental data and a manuscript (PDF format) for attached files</figcaption>
-
+Once the files are selected, the upload will begin and the files will be attached. 
+Available data will be displayed in the Data tab under corresponding data class.
 
 ## Important Considerations for Data Import
 
