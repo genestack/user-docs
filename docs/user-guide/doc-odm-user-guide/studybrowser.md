@@ -12,6 +12,13 @@ You can access the list of available studies by clicking on **Browse Studies** f
 ![1StudyBrowser.png](doc-odm-user-guide/images/1StudyBrowser.png)
 <figcaption>Access the available studies in ODM (based on your permissions) by clicking <strong>Browse studies</strong> on the main dashboard (A), or by clicking on the top left menu and selecting <strong>Study Browser</strong> (B).</figcaption>
 
+* Under the study title there is a summary of the metadata that is associated with the study. 
+This displays information such as the organism, tissue, cell-type, disease and so on and is pulled straight from the metadata fields of the samples in the study. 
+* You can hover over any name in the summary column and the name of the metadata field where the data comes from will appear. 
+* There is also information of who imported the study into ODM and when.
+* To the right of the study title you can see how many samples are present in the study and which Data Classes are associated with it.
+
+
 ## Search for Data
 
 At the top of the window is the main search bar. You can search by the name of a study, the accession number, sample or signal object, or any text within any metadata field across all data visible to you.
@@ -64,7 +71,7 @@ At the top of the window is the main search bar. You can search by the name of a
 * The facets beneath the search bar allow you to filter search results based on sample metadata fields.
 
 ![10DataClass.png](doc-odm-user-guide/images/10DataClass.png)
-<figcaption>Filter data. Use the filters to narrow the search of studies. For example, select <strong>Data Class</strong> and then tick the option <strong>Expression</strong> to find exclusively studies containing gene expression as experimental data (GCT format files)</figcaption>
+<figcaption>Filter data. Use the filters to narrow the search of studies. For example, select <strong>Data Class</strong> and then tick the option <strong>Single-cell transcriptomics</strong> to find exclusively studies containing single-cell data</figcaption>
 
 ## Bookmark studies
 
