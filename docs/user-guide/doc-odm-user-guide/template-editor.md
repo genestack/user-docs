@@ -34,6 +34,24 @@ Templates include the following metadata options:
 
 ![image](doc-odm-user-guide/images/template-example.png)
 
+!!! abstract "Mandatory Attributes"
+    All templates contain mandatory technical fields that are **grayed out** in the user interface and cannot be edited or removed.  
+
+    **Common field:**
+
+    - `genestack:accession`
+
+    **Tabular data fields:**
+
+    - `Features (string)`
+
+    - `Features (numeric)`
+
+    - `Values (numeric)`
+
+    - `Data Class` (for Tabular, Variants, and Flow Cytometry data)
+
+
 ## Create and edit template
 
 If you have the permission to edit/manage templates you can click on the template name and select **Duplicate** to create your own editable copy of a template and modify it if needed.
@@ -67,3 +85,15 @@ From the **Metadata Editor**, click the study name, then **Apply another** and s
 the template of interest from the list of suggested files. Click **Explore** to open it with the Template Editor.
 
 ![image](doc-odm-user-guide/images/change-template-me.png)
+
+## Template validity checks
+
+When you apply or modify templates, a **validity check** is automatically triggered to ensure consistency between the template and associated studies.
+
+- **When changing a template assigned to a study:**  
+  The validity check is run **only for that specific study**.
+
+- **When editing a field in a template:**  
+  The validity check is triggered for **all studies that use this template**.
+
+
