@@ -6,7 +6,7 @@ The **Metadata Editor** allows you to explore study, sample and data information
 
 To open an existing experiment with Metadata Editor, click on the study name in the search results in the Study Browser application.
 
-![image](doc-odm-user-guide/images/quickstart_user_dashboard.png)
+![quickstart_user_dashboard.gif](doc-odm-user-guide/gifs/quickstart_user_dashboard.gif)
 
 You can also get to the Metadata Editor when you click **Create a new study** button on the Dashboard. The Metadata Editor app will open and it suggests you specify a metadata template (by default, the Default template is applied).
 You can explore each template by hovering over it’s name and clicking **Explore** link.

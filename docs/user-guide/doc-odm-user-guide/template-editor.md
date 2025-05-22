@@ -6,8 +6,6 @@ The Template Editor application allows you to create, customize, and update temp
 
 To get started, click **Set up templates** on the Dashboard:
 
-![image](doc-odm-user-guide/images/quickstart_user_dashboard.png)
-
 Or use the shortcut dock and select **Template Editor**:
 
 ![image](doc-odm-user-guide/images/shortcut_1_37.png)
@@ -35,6 +33,24 @@ Templates include the following metadata options:
 - *Description* - description for the attribute that will be shown during curation as a hint.
 
 ![image](doc-odm-user-guide/images/template-example.png)
+
+!!! abstract "Mandatory Attributes"
+    All templates contain mandatory technical fields that are **grayed out** in the user interface and cannot be edited or removed.  
+
+    **Common field:**
+
+    - `genestack:accession`
+
+    **Tabular data fields:**
+
+    - `Features (string)`
+
+    - `Features (numeric)`
+
+    - `Values (numeric)`
+
+    - `Data Class` (for Tabular, Variants, and Flow Cytometry data)
+
 
 ## Create and edit template
 
@@ -69,3 +85,15 @@ From the **Metadata Editor**, click the study name, then **Apply another** and s
 the template of interest from the list of suggested files. Click **Explore** to open it with the Template Editor.
 
 ![image](doc-odm-user-guide/images/change-template-me.png)
+
+## Template validity checks
+
+When you apply or modify templates, a **validity check** is automatically triggered to ensure consistency between the template and associated studies.
+
+- **When changing a template assigned to a study:**  
+  The validity check is run **only for that specific study**.
+
+- **When editing a field in a template:**  
+  The validity check is triggered for **all studies that use this template**.
+
+

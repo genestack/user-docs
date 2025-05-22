@@ -42,10 +42,7 @@
         "type": "string",
         "enum": [
           "study",
-          "genestack:facsObject",
-          "genestack:genomicsObject",
           "genestack:sampleObject",
-          "genestack:transcriptomicsObject",
           "genestack:libraryObject",
           "genestack:preparationObject",
           "genestack:facsParent",
@@ -55,14 +52,6 @@
       },
       "dictionaryName": {
         "description": "Name of the dictionary which should already be loaded and shared in ODM",
-        "type": "string"
-      },
-      "dictionaryPath": {
-        "description": "Deprecated",
-        "type": "string"
-      },
-      "referencedKeyName": {
-        "description": "Deprecated",
         "type": "string"
       }
     },
