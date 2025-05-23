@@ -6,7 +6,7 @@ The Study Browser is the main interface to quickly search and discover studies o
 
 Click ‘Browse studies’ on the dashboard after you sign in to launch the Study Browser.
 
-![image](doc-odm-user-guide/images/quickstart_user_dashboard.png)
+![image](doc-odm-user-guide/gifs/start.gif)
 
 You can also use the short cut dock in the top lefthand corner of any window.
 

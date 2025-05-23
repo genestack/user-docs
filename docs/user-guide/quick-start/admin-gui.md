@@ -117,14 +117,15 @@ To set or change user permissions, you need to have the **Manage organization** 
     <figcaption>**Hover over the permissions to view the its description**. For example, hovering over Manage groups shows that the permission allows the user:  Access and manage of all groups</figcaption>
     </figure>
 
-Find more information about users and permissions, and their capabilities in the [User, Roles, Permissions](.../docs/user-guide/doc-odm-user-guide/setup.md) section.Find more information about users and permissions, and their capabilities in the Defining User Permissions and Groups in the ODM section.
+Find more information about users and permissions, and their capabilities in the [User, Roles, Permissions](../../doc-odm-user-guide/setup) section. Find more information about users and permissions, and their capabilities in the Defining User Permissions and Groups in the ODM section.
 
 #### Edit User status
 
-    <figure markdown="span">
-    ![Dashboard](../doc-odm-user-guide/doc-odm-user-guide/images/2Dashboard.png)
-    <figcaption>Main dashboard of the ODM. Click on your profile to access detailed information about your user capabilities</figcaption>
-    </figure>
+<figure markdown="span">
+![Dashboard](../../doc-odm-user-guide/doc-odm-user-guide/gifs/user-profile.gif)
+<figcaption>Main dashboard of the ODM. Click on your profile to access detailed information about your user capabilities</figcaption>
+</figure>
+
 
 To edit a user's status, follow these steps:
 

@@ -29,13 +29,9 @@ When you click on the study name, a drop-down menu will appear allowing you to:
 
 ![image](doc-odm-user-guide/images/share.png)
 
-- **Export** data by creating a link that can be used to download data and can be shared with your colleagues
+- **Export** data by creating a link that can be used to download data and can be shared with your colleagues. You can also click the Export button near the top right of any Metadata editor tab.
 
-![image](doc-odm-user-guide/images/export-data-link.png)
-
-You can also click the Export button near the top right of any Metadata editor tab.
-
-![image](doc-odm-user-guide/images/export_button.png)
+![image](doc-odm-user-guide/gifs/export-study-from-me.gif)
 
 - **Rename** study
 
