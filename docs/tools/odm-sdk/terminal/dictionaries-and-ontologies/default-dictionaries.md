@@ -30,11 +30,11 @@ Below you can see a table with description of ODM dictionaries:
 
 There are several dictionaries generated inside ODM:
 
-- [Bio counts](units-dictionaries/units_bio_counts.csv)
-- [Dose](units-dictionaries/units_dose.csv)
-- [Energy](units-dictionaries/units_energy.csv)
-- [Length](units-dictionaries/units_length.csv)
-- [Time](units-dictionaries/units_time.csv)
+- [Units - Biological Counts](units-dictionaries/units_bio_counts.csv)
+- [Units - Dose/Mass/Volume](units-dictionaries/units_dose.csv)
+- [Units - Temperature/Energy release](units-dictionaries/units_energy.csv)
+- [Units - Length](units-dictionaries/units_length.csv)
+- [Units - Time/Frequency](units-dictionaries/units_time.csv)
 
 The most recent dictionary versions, used in ODM, are located under s3 bucket and available via http link.
 Example: [https://odm-init.s3.amazonaws.com/dictionaries/cellosaurus.obo](https://odm-init.s3.amazonaws.com/dictionaries/cellosaurus.obo)
