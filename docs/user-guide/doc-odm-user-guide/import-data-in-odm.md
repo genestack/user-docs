@@ -1,29 +1,33 @@
-# Import Data in ODM
+# Import Data to ODM
 
-This page offers a comprehensive guide to data importation in the Open Data Manager (ODM). Please note that importation and editing of data is exclusively available to members of the curator group in ODM.
+This guide provides a detailed overview of how to import data into the Open Data Manager (ODM).
+
+!!! info
+    Data import and editing permissions are restricted to users who are part of the **Curator** group within ODM.
 
 ## What Can Be Imported?
 
-ODM supports the import of studies, samples, and data in tabular format, or the attachment of any file relevant to your study:
+ODM supports the import of the following entities, either as structured data or as attached files relevant to your study:
 
-- *Study* descritption: This refers to the context of an experiment, including the aim and statistical design.
-- *Sample* information (sometimes referred as Metadata): This pertains to the biological attributes of a sample, such as tissue type, disease, and treatment.
-- *Data*: Includes transcriptomics, proteomics, gene variant, flow cytometry data, and more.
-- *Files*: You can attach any file that is relevant to your study (reports, presentations, documents, images, scientific publications, etc.).
-- *Libraries* and *Preparations*: These can only be uploaded via the API at present. GUI functionality will be introduced in future releases.
+- **Study**: The foundational unit where you define the context, objectives, and statistical design of your experiment.
+- **Sample** (Metadata): Detailed documentation of the biological attributes of your samples, such as tissue type, disease status, and treatment conditions.
+- **Experimental Data Metadata**: Information about data processing, including normalization methods, instrumentation, and data formats (e.g., GCT, VCF).
+- **Experimental Data**: The actual data generated from your study, typically provided in tabular formats.
+- **Files**: You can attach any files related to your study, including reports, presentations, documents, images, or scientific publications.
+- **Libraries** and **Preparations**: Information regarding the sample preparation methods and libraries used in your experiment, if applicable.
 
-If your study doesn’t already have samples metadata with linked data (for example you have just created a new study) it is possible to import a spreadsheet of samples metadata through the interface. This functionality is available in the Metadata Editor, on the samples tab.
+If you have created a new study that does not yet contain sample metadata or linked data, you can upload a spreadsheet of sample metadata via the user interface. This feature is accessible in the **Metadata Editor** under the **Samples** tab.
 
-The data uploading happens in Metadata Editor when you open (or create) a Study.
+Data upload takes place within the Metadata Editor after you open or create a Study.
 
 ## Importing Sample Information (Metadata)
 
-You need a study which has no previously uploaded sample information that is linked to data.
+To import sample information, ensure the following:
 
-You need a TSV format file (with a filename extension of .tsv) containing sample information. The first row of the table is a list of the metadata attribute names, which must not be duplicated.
-See the example below:
+* The study should not have any previously uploaded sample information linked to data.
+* You will need a TSV format file (with a “.tsv” file extension) containing the sample information. The first row should list the metadata attribute names, ensuring that there are no duplicates. See the example below:
 
-- [Test_1000g.samples.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv), a tab-delimited file of sample attributes.
+[Test_1000g.samples.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv), a tab-delimited file of sample attributes.
 
 | Sample Source        | Sample Source ID   | Species      | Sex   | Population   |
 |----------------------|--------------------|--------------|-------|--------------|
@@ -32,119 +36,110 @@ See the example below:
 | 1002 Genomes Project | HG00183            | Homo sapiens | M     | Finnish      |
 | 1003 Genomes Project | HG00176            | Homo sapiens | F     | Finnish      |
 
-To import samples via the GUI you need to go to the Metadata Editor and then the samples tab. Each new study will be populated with some dummy sample entries but these will be deleted when you import a samples file.
 
-Click on the cloud icon to the right of the samples tab:
+**Import Samples Metadata**:
 
-![image](doc-odm-user-guide/images/import-sample-icon.png)
+* To upload sample metadata, click on the **Samples** tab on the main screen of the study.
+* Click on **Edit** at the bottom left of your sample table.
+* Select the tabular files (TSV) by clicking on the cloud symbol in the top right of your sample table.
 
-This will open a dialogue box that prompts you to select a local TSV file.
+You can upload sample metadata from any experiment (e.g., flow cytometry, gene variant, transcriptomics) as long as the file is in a tabular format (TSV).
 
-![image](doc-odm-user-guide/images/import-dialogue.png)
+* A new window will pop up. Click **Select tsv file...** and choose your file.
+* Once your file is recognized, click **Import**. Refer to the section [Supported File Formats](supported-formats.md) to explore details on metadata requirements (e.g., **Sample Source ID** is a mandatory column)
+* Ensure the changes are saved by clicking **Publish**.
+* In the resulting pop-up box, enter the preferred name, label, or description for the activity you just performed to add it to the version log, e.g., **Sample Metadata has been added**. Refer to the section [Metadata Versioning](versioning.md) to learn more about versioning.
 
-Once you have selected a .tsv file a preview of the import is shown:
+![Import Samples](../doc-odm-user-guide/doc-odm-user-guide/gifs/import-samples.gif)
 
-![image](doc-odm-user-guide/images/import-sample-preview.png)
+## Import Libraries and Preparations
 
-Click the Import button and the samples will now be visible in the samples tab. Any previous sample metadata will be deleted.
+**Add Libraries and Preparations**:
 
-## Import Data [BETA]
+In addition to sample metadata, you can also add Libraries and Preparations metadata. To do so, click on the tab **\+More** to display both options:
 
-ODM enables you to add any data to your study. There are two main ways to associate a file related to your research:
+* To add libraries, click on **Libraries** and select the tabular file to import from your local computer.
+* To add preparations, click on **Preparations** and select the tabular file to import from your local computer.
 
-- Import a Data Frame: Import data files in tabular format. ODM extracts pertinent information stored in your file (e.g., gene expression measurements, gene variants, pathway activity scores, metabolite abundance, sales data) and writes it in the ODM database to enable searchability.
-- Attach a File: Add various research materials related to your study, such as PDF, XLSX, DOCX, PPTX, images, and more. All users with access to the study can download these attached files. However, unlike the “Import Data” option, attached files’ content is not indexed or searchable.
+Both types of files are linked to the samples metadata file (from the Samples tab) via the **Sample Source ID** column. Ensure this column is included in all files to maintain the link between sample metadata, libraries, and preparations.
 
+![import-libraries.gif](doc-odm-user-guide/gifs/import-libraries.gif)
+<figcaption>Click on <strong>+More</strong> to add additional metadata to your study, such as Libraries and Preparations metadata. This step is optional</figcaption>
 
-!!! note "Important"
-     Uploading large files via the user interface may take some time. The duration depends on your network speed, so please plan accordingly.
+**Link Metadata Files:**
 
-You can find a detailed description of the supported file formats [Tabular data](supported-formats.md#format-label).
+* Ensure that the **Sample Source ID** column is included in all files to maintain the link between sample metadata, libraries, and preparations.
+* Additionally, include the **Library ID** column for libraries and the **Preparation ID** column for preparations to ensure proper recognition and linking of the data.
+* Once the data is recognized and linked via these columns, the new metadata tabs will display the recently added data
 
-To add data, open a Study and navigate to the Data tab. Click the “Add data” button situated in the top left corner of the Data tab.
+![54ExamplesImport.png](doc-odm-user-guide/images/54ExamplesImport.png)
+<figcaption>Additional experimental metadata, such as libraries and preparations, can be added and linked. Ensure the appropriate columns, besides <strong>Sample Source ID</strong>, are included to link the data. For libraries, add the <strong>Library ID</strong> column, and for preparations, add the <strong>Preparation ID</strong> column. The data will be shown on the study's main page</figcaption>
 
-![add-data.gif](doc-odm-user-guide/gifs/add-data.gif)
+Learn more about data types in the [Supported File Formats](supported-formats.md) section.
 
-In the subsequent dialog window, several parameters need to be defined:
+## Import experimental Data and attach files
 
-![image](doc-odm-user-guide/images/define-your-data.png)
+In addition to the samples, libraries, and preparations metadata described above, you can upload experimental data that is linked to your study via sample metadata and libraries/preparations. You can also supplement your study by attaching related research materials like PDFs, XLSX, DOCX, PPTX files, images, and more. Please note, the contents of these attached files won't be indexed or made searchable.
 
-**Choose Import or Attachment**: Select if you want to import your data or attach a file.
-
-### Data type (Data Class)
-Identify the data type you want to upload. Multiple types are supported:
+**Data Type (Data Class)**: Identify the data type you want to upload. Multiple types are supported:
 
 - Bulk transcriptomics - Supports data provided in TSV or GCT 1.2 format.
-- Single cell transcriptomics - Supports data provided in TSV format. Note: the support of the Single Cell data is limited in the BETA and the TSV uploading is recommended via the API specifying “Skip Zeros” parameter in the acttached metadata file.
-- Differential abundance (FC, pval, etc.) - TSV format.
-- Pathway analysis - TSV format.
-- Proteomics - TSV format.
-- Single cell proteomics - Supports data provided in TSV format. Note: the support of the Single Cell data is limited in the BETA and the TSV uploading is recommended via the API specifying “Skip Zeros” parameter in the acttached metadata file.
-- Metabolomics - TSV format.
-- Lipidomics - TSV format.
-- Epigenomics - TSV format.
-- DNA methylation - TSV format.
-- Chemoinformatics - TSV format.
-- Imaging features - TSV format.
-- Gene panel data - TSV format.
-- Biomarker data - TSV format.
-- Physical measures - TSV format.
-- Blood counts - TSV format.
-- Other body fluid counts - TSV format.
-- Nanopore - TSV format.
-- Gene variant (VCF) - VCF format.
-- Flow Cytometry - FACS format.
-- Flow Cytometry - FCS format.
+- Single cell transcriptomics
+- Differential abundance (FC, pval, etc.)
+- Pathway analysis 
+- Proteomics 
+- Single cell proteomics 
+- Metabolomics 
+- Lipidomics 
+- Epigenomics 
+- DNA methylation
+- Chemoinformatics 
+- Imaging features
+- Gene panel data 
+- Biomarker data 
+- Physical measures 
+- Blood counts 
+- Other body fluid counts 
+- Nanopore 
+- Gene variant (VCF) - VCF format
+- Flow Cytometry - FACS format
 - Document
-- Other - TSV format.
+- Other 
 
-!!! note "Data Type options"
-    In the BETA the list of the Data Type options is fixed. Make sure you chose the right data class for your dataset. The ability to add custom data classes as well as change the selected data class for the uploaded data will be added in future releases.
 
-### Linking data
-**Link With**: Choose the entity you wish to link your data to. For instance, if you’re uploading a transcriptomics file with gene expression measurements for each sample, you should link your data to the samples.
+To upload experimental data or attach files, navigate to the **Data Tab**
 
-!!! note "Sample Metadata Requirement"
-    In the BETA version, you need to have sample information (metadata) created/uploaded on the Samples tab to enable data import. If no Libraries or Preparations exist for the Study, ‘Sample’ is the only available option.
+* On the Data tab, click on the **Add data** button. This will open a new window where you can select the action to perform: import data or attach a file.
 
-**Link By**: Choose the ID column at the Sample (Library, Preparation) tab that will be used to identify Sample (Library, Preparation) names in the uploaded file. This column (attribute) must be in the template assigned to this study.
-!!! note "Important"
-    For samples, data can be linked to either the default attribute Sample Source ID or another attribute defined in the template.
-    For libraries and preparations, data must be linked to the default attributes: Library ID or Preparation ID.
+![import-data-button.gif](doc-odm-user-guide/gifs/import-data-button.gif)
+<figcaption>Click on the <strong>Add data</strong> button to choose between importing experimental data or attaching additional files to your study</figcaption>
 
-### Feature Attributes Specification
-**Number of Feature Attributes**: If your file includes more than one column describing the feature, specify the number of such columns (you can find more information about this on the format description page). It’s crucial to indicate the correct number of feature attributes to prevent potential issues during file upload.
+### Import Experimental Data
 
-### Advanced options
-#### Allow Importing the Same File Twice
- This option allows you to re-upload the same file from third-party storage platforms (like AWS S3) using the same link. If you’re uploading the same file from your local computer, this option isn’t necessary.
+You can upload your experimental data, such as bulk transcriptomics, proteomics, chemoinformatics, and more, in a supported tabular format like TSV, GCT, VCF, or FACS. The contents of the uploaded file will be indexed and searchable.
 
-#### Skip zeroes (Sparse Data Matrix)
-Enable this parameter if your data table contains many cells with '0' values, common in single cell technology datasets. Activating it improves performance for uploading, indexing, and searching within these data.
- 
-If your file includes more than one measurement per Sample (Library or Preparation), e.g., Fold Change and P-value, the system will automatically recognize it based on the following criteria:
+![57ImportData.png](doc-odm-user-guide/images/57ImportData.png)
+<figcaption>Import experimental data linked to your study by clicking on the <strong>Add data</strong> button, then selecting <strong>Data class</strong> to choose the type of data to import. If the type of data is not listed, select the <strong>Other</strong> option</figcaption>
 
-- Measurement Separator Symbol in Column Name: Each column name should contain a symbol (or symbols combination), separating sample (library or preparation) name from measurement type, e.g., it would be a dot for ‘Sample1.p-value’. If a column name has more than one measurement separator (for instance, ‘Sample1.p.value’), the first one will be used for separation.
-- Measurement Separator Symbol on upload request: The separator must be explicitly specified on data upload request either through API or GUI.
-- Presence of Measurement Separator Symbol: Every column must include a measurement separator.
-- Consistency of Measurement Types: All samples (libraries or preparations) must have the same types of measurements in the file. For example, if you have three samples and each has measurements for Intensity and Quality Pass, your file should have six columns named: ‘Sample1.Intensity’, ‘Sample1.QualityPass’, ‘Sample2.Intensity’, ‘Sample2.QualityPass’, ‘Sample3.Intensity’, ‘Sample3.QualityPass’.
+* Click "Next." This will open a window where you can select a file containing experimental data from your local computer or external storage.
 
-### Local or External data source
-In the second step, you’ll need to choose the file you wish to upload. There are two options:
+![58ImportData2.png](doc-odm-user-guide/images/58ImportData2.png)
+<figcaption>Select the source for the experimental data. Experimental data can be imported from your local computer or external storage</figcaption>
 
-- **Local Computer**: Select the file located on your computer. Please note: this option is only available if your ODM version is coupled with AWS S3 storage (provided by default). If this option isn’t functioning properly, please get in touch with Genestack’s [Сustomer Support](https://genestack.atlassian.net/servicedesk/customer/portals) team.
-- **External Link**: Upload the file by supplying a link to the file’s location. Keep in mind that while this option is intended to support any external location, in its BETA version, it only supports links from AWS S3 storage. If you encounter any issues with this feature, please reach out to Genestack’s [Сustomer Support](https://genestack.atlassian.net/servicedesk/customer/portals) team.
+### **Linking Data**
 
-![image](doc-odm-user-guide/images/import-data-from-file.png)
+* **Default Linking**: By default, the data is linked with the Samples file using the **Sample Source ID** column. To ensure proper linking, make sure your file includes a column called **Sample Source ID** with the same IDs used in the Sample Metadata table uploaded previously.
+* **Custom Linking**: Alternatively you can select a different column to link the **experimental** data, such as **Sample Name**, **Date**, etc. This provides flexibility in how data is associated, but it is recommended to include the **Sample Source ID** column for consistent referencing and linking samples metadata files with additional data types like libraries and preparations. Read the [Supported File Formats](supported-formats.md) section for more information.
 
-Once the data is chosen, the upload will begin. The duration can vary from a few seconds to more, depending on the size of the original file.
+![59LinkData.png](doc-odm-user-guide/images/59LinkData.png)
+<figcaption>Select an experimental data file. The data must include a column to be linked to the sample metadata file (typically the <strong>Sample Source ID</strong>)</figcaption>
 
-After the upload completes, the corresponding data will be visible in the ‘Data’ tab. All files are grouped by the chosen ‘Data Class’ parameter on the left panel, which includes attached files as well.
+The selected files will be scanned to find an appropriate link (typically the **Sample Source ID** column) and the uploading will automatically begin.
 
-After uploading, you can populate the corresponding file metadata, including the necessary details. 
+![60Imported.png](doc-odm-user-guide/images/60Imported.png)
+<figcaption>The selected files will be scanned, and if the format is accepted and the columns contain the reference names to be linked, the files will be indexed and the experimental data will be searchable</figcaption>
 
-### Mandatory fields
-Please note that each uploaded data file has five mandatory read-only fields that do not belong to your template:
+After uploading, you can populate the corresponding file metadata, including the necessary details. Please note that each uploaded data file has five mandatory read-only fields:
 
 - genestack:accession
 - Data Class
@@ -152,12 +147,60 @@ Please note that each uploaded data file has five mandatory read-only fields tha
 - Features (numeric)
 - Value (numeric)
 
-!!! note "Important"
-    Features (string), Features (numeric) and Value (numeric) are related only to tabular data files.
-
 These fields are implemented to make the content of these files visible and searchable for data science users. We advise against editing these fields in the template editor as it could render these files inaccessible.
 
-### Error Handling
-If a file has issues that prevent ODM from processing it correctly, an error message detailing the problem will appear. Such issues are typically related to file format inconsistencies.
+![MandatoryFeatures.png](doc-odm-user-guide/images/MandatoryFeatures.png){width=800}
+<figcaption>Mandatory fields are implemented to make the content of the experimental data files searchable</figcaption>
 
- For further assistance, refer to the [Tabular data](supported-formats.md#format-label) page or contact Genestack’s [Сustomer Support](https://genestack.atlassian.net/servicedesk/customer/portals) team. Failed file uploads will be displayed for seven days before automatic deletion occurs. Future releases will include the feature to manually delete these files.
+### Attach a file
+
+In addition, supplement your study by attaching related research materials like PDFs, XLSX, DOCX, PPTX files, images, and more.
+
+Attachment of additional files is different from linked files, allowing you to add files that are part of your research but not directly linked to the samples metadata or experimental data. These files may contain budget reports, manuscripts, presentations, logos, etc. This tool helps you keep all your data in one place.
+
+!!! note
+    The contents of the attached files will not be indexed or made searchable
+
+To attach a file:
+
+* Click on **Add data** and then select **Attach a file**.
+* Select **Data class** from the list.
+* You can attach any format files such as PDF, PNG, etc.
+* Click **Next** and **Select file...**. Select the file from your local computer
+
+![attach-file.png](doc-odm-user-guide/gifs/attach-file.gif)
+
+Once the files are selected, the upload will begin and the files will be attached. 
+Available data will be displayed in the Data tab under corresponding data class.
+
+## Important Considerations for Data Import
+
+* **Choose the Correct Data Class**: Ensure you select the appropriate data class for your dataset. The ability to add custom data classes and modify the selected data class after upload will be available in future releases.
+
+* Select the entity to which your data will be linked. For example, when uploading a transcriptomics file with gene expression measurements for each sample, link the data to the relevant samples. Specify the ID column from the Samples (or Library, Preparation) tab that will be used to match the samples (or libraries, preparations) in the uploaded file.
+
+!!! note
+    You need to have Samples information (metadata) uploaded in the **Samples** tab to enable data import. If no libraries or preparations are associated with the study, **Samples** will be the only available option.
+
+* **Libraries and Preparations**: Libraries and preparations are connected to the samples via the **Sample Source ID** column. Ensure this column is included in all relevant files to maintain the linkage between sample metadata, libraries, and preparations.
+
+* **Number of Feature Attributes**: If your file includes more than one column describing features, specify the number of such columns. You can find more details on this in the format description page. Defining the correct number of feature attributes is essential to avoid upload issues.
+
+* **Advanced Options** – **Allow Re-importing the Same File**: This option allows you to re-upload the same file from external storage platforms (e.g., AWS S3) using the same link. If uploading the file from a local computer, enabling this option is unnecessary.
+
+* **Multiple Measurements per Sample**: If your file contains multiple measurements per sample (or library, preparation), such as fold change and p-value, the system will automatically recognize this based on the following criteria:
+
+	•	**Measurement Separator Symbol in Column Name**: Each column name must contain a symbol (or symbol combination) that separates the sample (or library, preparation) name from the measurement type. For example, a dot in ‘Sample1.p-value’. If there are multiple separators (e.g., ‘Sample1.p.value’), the first one will be used for separation.
+
+	•	**Measurement Separator Symbol on Upload Request**: This separator must be explicitly specified during the upload request, either via API or GUI.
+
+	•	**Presence of the Separator Symbol**: All column names must include the measurement separator.
+
+	•	**Consistency of Measurement Types**: Ensure all samples (or libraries, preparations) have consistent measurement types. For instance, if you have three samples and each has measurements for intensity and quality pass, your file should contain columns such as: ‘Sample1.Intensity’, ‘Sample1.QualityPass’, ‘Sample2.Intensity’, ‘Sample2.QualityPass’, etc.
+
+* **File Upload Errors**: If the file contains issues preventing ODM from processing it correctly, an error message will provide details about the problem. These errors are often related to file format inconsistencies. For more assistance, refer to the [Supported File Formats](supported-formats.md) section or contact Genestack team. 
+* Failed file uploads will remain visible for seven days before automatic deletion.
+
+Following these guidelines will help ensure a smooth and error-free data import process. Pay careful attention to the data class, linking strategy, and file format requirements to avoid common issues.
+
+If you encounter any problems or need additional support, don’t hesitate to consult the relevant sections of the User Guide or reach out to Genestack team for assistance.  
