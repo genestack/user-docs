@@ -4,157 +4,284 @@ This guide explains how to import, manage, and extract VCF files using ODM APIs,
 reference genomes. ODM is a flexible platform that allows users to work with various species by importing custom 
 reference genomes.
 
-## Understanding Reference Genomes
+## **Variant files and Reference Genomes**
 
-A reference genome is a standardized representation of a species' genome, used as a comparative framework to identify 
-genetic variations. When analyzing genetic variants, sequencing data is aligned to a reference genome, enabling 
-researchers to determine mutations, structural changes, and variant effects.
+### **Description of VCF files**
 
-By default, ODM uses the human genome (**GRCh38**) as the reference genome. Any VCF file uploaded without specifying 
-a reference genome will be mapped against GRCh38. However, researchers working with non-human species, such as plants, 
-animals, or model organisms, require custom reference genomes for accurate data interpretation. ODM supports the import 
-of alternative reference genomes, ensuring flexibility for diverse research applications.
+VCF (Variant Call Format) is a standardized file format for storing DNA sequence variations detected in genomic sequencing data. It is both human-readable and machine-parsable, making it widely adopted in genomics.
 
-## VCF Format Overview
+A VCF file includes:
 
-The Variant Call Format (VCF) is a widely used file format for storing genetic variation data from sequencing experiments. 
-It is designed to be both human-readable and machine-parsable, making it ideal for bioinformatics applications. 
+* **Header**: Contains metadata, including the reference genome, version, and description of each column.
+* **Body**: Contains the actual variant data. Each row represents a variant.
 
-A typical VCF file consists of two main sections: the header and the body.
+#### **Important Columns in the VCF Body:**
 
-**Key Features of the VCF Format:**
+* **CHROM**: Chromosome of the variant
+* **POS**: Genomic coordinate
+* **ID**: Variant identifier (e.g., dbSNP ID)
+* **REF**: Reference base(s)
+* **ALT**: Alternative base(s)
+* **QUAL**: Confidence score of the variant
+* **FILTER**: Filter status
+* **INFO**: Additional annotations (e.g., allele frequency)
+* **FORMAT & Sample Data**: Genotype details for each sample
 
-* **Header**: Contains metadata such as the VCF version, reference genome, and column descriptions.  
-* **Body**: Lists variant data, where each row represents a single variant.
+![VCF_File.png](doc-odm-user-guide/images/variants/VCF_File.png)
+<figcaption>The VCF format contains detailed information about the variants, positions, and genotypes</figcaption>
 
-### **Important Columns in the VCF Body:**
+For more details and examples of VCF files, refer to the section [Supported File Formats](docs/user-guide/doc-odm-user-guide/supported-formats.md)
 
-* **CHROM**: Chromosome where the variant is located.  
-* **POS**: Genomic position of the variant.  
-* **ID**: Identifier (e.g., dbSNP ID).  
-* **REF**: Reference base(s) at the variant position.  
-* **ALT**: Alternative base(s) observed at the variant position.  
-* **QUAL**: Variant quality score.  
-* **FILTER**: Quality control filter status.  
-* **INFO**: Additional metadata, such as allele frequency.  
-* **FORMAT**: Defines genotype fields for samples.  
-* **Sample Data**: Genotype information for individual samples.
+### **Reference Genomes**
 
-![VCF file](../doc-odm-user-guide/doc-odm-user-guide/images/variants/vcf-file.jpg)
+A reference genome is a representative example of a species’ DNA sequence that serves as a baseline for comparing and interpreting sequencing data. In variant analysis, sequencing reads are aligned to the reference genome to identify differences such as single-nucleotide polymorphisms (SNPs), insertions, deletions, and structural variations.
 
-## Importing Reference Genomes into ODM
+In ODM, the reference genome plays a crucial role during the import of variant files (e.g., VCF). It is used to **index variants**, map their positions to specific genomic regions, and annotate them with gene information when available. This indexing enables advanced features such as:
 
-To enable proper variant mapping, users can import new reference genomes into ODM. These reference genomes must be in 
-Gene Transfer Format (**GTF**), which contains details about gene features such as exons, introns, and coding regions.
+* **Gene-based variant search**: Users can search for variants by specifying gene names, even if the original VCF file does not include gene annotations.
+* **Accurate interpretation of genomic intervals**: Variants can be analyzed in the context of known gene structures (exons, introns, UTRs, etc.).
 
-New reference genomes can be sourced from public repositories such as Ensembl or custom datasets.
+By default, ODM uses the **GRCh38** human reference genome. However, users can:
 
-### Steps to Import a New Reference Genome via API
+* **Import other versions of human reference genomes** (e.g., GRCh37) if needed for compatibility with legacy datasets.
+* **Add custom reference genomes** in **GTF (Gene Transfer Format)** for non-human organisms, enabling similar search and annotation functionality.
 
-1. Use the `POST /api/v1/reference-genomes` endpoint to import a new reference genome.
-2. Provide the required details, including:  
-   * **annotationUrl**: URL to the GFT file of the genome annotation file (compressed in .gtf.gz format).  
-   * **organism**: Scientific name of the species (e.g., *Zea mays*).  
-   * **assembly**: Genome assembly version (e.g., Zm-B73-REFERENCE-NAM-5.0).  
-   * **release**: Minor version of the reference genome.  
-   * **name**: A custom title for the reference genome, typically derived from species, assembly, and release details
+## **Importing Custom Reference Genomes**
 
-**Example request:**
+Users can import their reference genomes into ODM using the API to work with species-specific or non-standard genomic data. This is particularly useful for non-human studies or for datasets aligned to alternative versions of a genome.
 
-``` json
-{
-  "annotationUrl": "https://ftp.ebi.ac.uk/ensemblgenomes/pub/release-60/plants/gtf/zea_mays/Zea_mays.Zm-B73-REFERENCE-NAM-5.0.60.chr.gtf.gz",
-  "organism": "Zea Mays",
-  "assembly": "Zm-B73-REFERENCE-NAM-5.0",
-  "release": "113.8",
-  "name": "Zea mays (maize) Zm-B73"
-}
-```
+Before importing a new reference genome, users are encouraged to **check which reference genomes are already available** in the system. This helps avoid duplication and ensures consistency across datasets. Users can:
 
-**Example response:**
+* Browse existing reference genomes in the **File Browser** (under the Reference Genomes category), or
+* Use the API endpoint: `GET /api/v1/reference-genomes.` This returns a list of reference genomes currently registered in the system.
 
-``` json
-{
-  "genestack:accession": "GSF1278535"
-}
-```
+![ImportRG.png](doc-odm-user-guide/images/variants/ImportRG.png){width=70%}
+<figcaption>Users can explore the existing Reference genomes by opening the File Manager in the GUI or via the endpoint <code>GET /api/v1/reference-genomes</code></figcaption>
 
-The response confirms successful import, assigning a unique accession number. Users can locate the imported genome 
-in ODM’s **File Manager** using this identifier:
+### **Required File Format**
 
-![Genome in FM](../doc-odm-user-guide/doc-odm-user-guide/images/variants/file-manager-genome.jpg)
+If the reference genome needed is not listed in the **File Browser** or returned by the `GET /api/v1/reference-genomes` endpoint, users can import a custom reference genome into ODM to support their dataset.
 
-Once the genome is available, it can be used as a reference for variant files.
+Custom reference genomes must be provided in **Gene Transfer Format (GTF)** and compressed as **.gtf.gz**. This format includes essential gene structure information such as:
 
-## Importing Gene Variant Files
+* Exons
+* Introns
+* Coding regions
+* Transcription start and end sites
 
-To import VCF files and link them to a specific reference genome, users must specify the reference genome ID in the metadata.
+### **Source for Reference Genomes**
 
-### Steps to Import Gene Variant Files
+Custom genomes can be obtained from:
 
-1. Use the `POST /api/v1/jobs/import/variant` endpoint to upload a VCF file.
-2. Create a metadata file in tabular format specifying the reference genome for the VCF file.
-   ![Metadata for Ref Genome](../doc-odm-user-guide/doc-odm-user-guide/images/variants/reference-metadata.jpg) 
-   A metadata file in tabular format ensures the VCF file is linked to the correct reference genome.
+* **Ensembl**
+* **NCBI**
+* **Custom in-house assemblies**
 
-3. Include the metadata file link and the VCF file link in the API request.
+### **Import Steps**
 
-**Example Request to Import VCF:**
+1. Use the endpoint: `POST /api/v1/reference-genomes`
+
+2. Provide the required details, including:
+    * **annotationUrl**: URL to the GFT file of the genome annotation file (compressed in .gtf.gz format).
+    * **organism**: Scientific name of the species (e.g., *Mus musculus*).
+    * **assembly**: Genome assembly version (e.g., Zm-B73-REFERENCE-NAM-5.0).
+    * **release**: Minor version of the reference genome.
+    * **name**: A custom title for the reference genome, typically derived from species, assembly, and release details
+
+![postRG.png](doc-odm-user-guide/images/variants/postRG.png)
+<figcaption>The <code>POST /api/v1/reference-genomes</code> endpoint allows users to upload custom reference genomes into ODM</figcaption>
+
+**Request Example**:
 
 ``` json
 {
-  "source": "S3",
-  "metadataLink": "s3://my_instance/SRL_GenVariant/Metadata_RefGen2.tsv",
-  "dataLink": "s3://my_instance/SRL_GenVariant/Zea_mays_example.vcf",
-  "templateId": "GSF1150101"
+  "annotationUrl": "https://ftp.ensembl.org/pub/release-114/gtf/mus_musculus/Mus_musculus.GRCm39.114.gtf.gz",
+  "organism": "Mus musculus",
+  "assembly": "GRCm39",
+  "release": "114",
+  "name": "Mouse GRCm39 Ensembl 114"
 }
 ```
 
-**Example response:**
+**Response Example**:
 
 ``` json
 {
-  "jobExecId": 2005,
-  "startedBy": "sharon.ruiz.lopez@genestack.com",
-  "jobName": "IMPORT_VARIANT_VCF",
-  "status": "STARTING",
-  "createTime": "14-03-2025 06:11:48"
+  "genestack:accession": "GSF1284255"
 }
 ```
 
-The response indicates that the job has started. Users can track progress using the endpoint: 
+This response confirms successful import and provides a unique **accession ID**.
 
-`GET /api/v1/jobs/{jobExecId}/output`
+The newly imported reference genome is now available in ODM and visible in the File Manager.
+
+![file_manager.png](doc-odm-user-guide/images/variants/file_manager.png){Width=90%}
+<figcaption>The File Manager displays imported reference genomes along with other files in the ODM instance</figcaption>
+
+## **Importing VCF Files with custom Reference Genomes into ODM**
+
+Once the reference genome is imported, users can upload VCF files and link them to the appropriate genome.
+
+### **Preparing Metadata**
+
+To upload VCF files, you must also provide a metadata file in TSV (tab-separated values) format. This file should include at least the following fields:
+
+* **Genome Version**: The exact name of the reference genome as it appears in ODM
+* **Organism**: The species associated with the genome
+
+| Genome Version                | Organism      |
+|------------------------------|---------------|
+| Mouse GRCm39 Ensembl 114     | Mus musculus  |
+
+Additional optional fields, such as **Version**, **Accession**, or **User**, may also be included and will not interfere with the upload. The system is flexible and accepts metadata files with varying numbers of columns.
+
+??? note "Note"
+
+    Here are examples of metadata files with different numbers of features (columns).
+
+    - **3 columns**: [Metadata_Mm_3columns.tsv (S3 link)](s3://bio-test-data/Metadata_Mm_3columns.tsv), [Download via HTTPS](https://bio-test-data.s3.us-east-1.amazonaws.com/Metadata_Mm_3columns.tsv)
+    - **5 columns**: [Metadata_Mm_5columns.tsv (S3 link)](s3://bio-test-data/Metadata_Mm_5columns.tsv), [Download via HTTPS](https://bio-test-data.s3.us-east-1.amazonaws.com/Metadata_Mm_5columns.tsv)
+    - **11 columns**: [Metadata_Mm_11columns.tsv (S3 link)](s3://bio-test-data/Metadata_Mm_11columns.tsv), [Download via HTTPS](https://bio-test-data.s3.us-east-1.amazonaws.com/Metadata_Mm_11columns.tsv)
+
+
+A metadata file in tabular format ensures the VCF file is linked to the correct reference genome  
+
+### **API Upload Procedure**
+
+To upload VCF files into ODM, use the same **standard import endpoint** employed for other bulk data types such as transcriptomics, libraries, samples, and flow cytometry.
+
+Use the endpoint: `POST /api/v1/jobs/import/variant`
+
+![Import_variants.png](doc-odm-user-guide/images/variants/Import_variants.png){width=80%}
+<figcaption>The <code>POST /api/v1/jobs/import/variant</code> endpoint is used to import gene variant files</figcaption>
+
+**Request Example**:
+
+``` json
+{
+  "metadataLink": "s3://MyBucket/SRL_ReferenceGenomes/Metadata_Mm_5columns.tsv",
+  "dataLink": "s3://MyBucket/SRL_ReferenceGenomes/Test_gVCF_Mm.vcf",
+  "templateId": "GSF1574668"
+}
+```
+
+As with other data types, the request should include:
+
+* A **metadata file** with information about the reference genome and organism
+* A **VCF file** compressed **.vcf.gz** or plain **.vcf** (See example of a [VCF file](https://bio-test-data.s3.us-east-1.amazonaws.com/gVCF_Mm_Demo.vcf))
+* A **link structure** connecting the data to samples, libraries, or preparations
+
+!!! note "Important" 
+    Unlike transcriptomics or flow cytometry data, **a reference genome must be specified** when importing VCF files. If no metadata is provided, the system defaults to using the **human reference genome (GRCh38)**. To use a different genome, you must include a metadata file where the **Genome Version** matches the name of a **previously imported custom reference genome** in your ODM instance.
+
+### **Tracking Job Status**
+
+Once submitted, you can track the import job status via:
+
+Endpoint: `GET /api/v1/jobs/{jobExecId}/output`
+
+![Output.png](doc-odm-user-guide/images/variants/Output.png){Width=80%}
+<figcaption>The endpoint <code>GET /api/v1/jobs/{jobExecId}/output</code> retrieves job execution details</figcaption>
+
+### **Completion and Accession ID**
 
 Once completed, the system assigns an accession number to the imported file.
 
-**Expected response**:
+**Response Example**:
 
 ``` json
 {
   "status": "COMPLETED",
   "result": {
-    "groupAccession": "GSF1278671"
+    "groupAccession": "GSF1574797"
   }
 }
+
 ```
 
-This confirms that the VCF file has been successfully imported and linked to the specified reference genome.
+## **Verifying the Reference Genome Used for Variant Indexing**
 
-## Linking Gene Variant Files to Sample Metadata
+After uploading a VCF file, users may want to confirm which reference genome was used during indexing, especially important when working with **custom reference genomes**.
 
-After importing a VCF file, it must be linked to its corresponding sample metadata. This is done via the following API endpoint:
+**How to Check the Reference Genome**
+
+Use the following API endpoint to retrieve details about the indexed variant group:
+
+Endpoint: `GET /api/v1/as-user/variants/group/{id}`
+
+![endpointVariants.png](doc-odm-user-guide/images/variants/endpointVariants.png)
+<figcaption>Use the endpoint <code>GET /api/v1/as-user/variants/group/{id}</code> to retrieve information about variant groups</figcaption>
+
+Replace **{id}** with the **group accession** of your imported VCF file (e.g., GSF1278671).
+
+The response includes metadata about the variant group. Scroll to the bottom of the response to find the referenceGenome section, which provides full details:
+
+![varianRF.png](doc-odm-user-guide/images/variants/varianRF.png){Width=80%}
+<figcaption>The endpoint displays details of the variant files, including the reference genome</figcaption>
+
+#### **Key Fields to Review**
+
+* **name**: Name of the reference genome used
+* **organism**, **assembly**, **release**: Core genome attributes
+* **annotationUrl**: Link to the annotation file used (e.g., GTF from Ensembl)
+* **genestack:accession**: ODM accession for the reference genome
+* **initializationStatus**: Should be COMPLETE if the genome is ready for use
+
+This information helps ensure that the variant data was indexed against the correct reference genome, particularly when working across multiple organisms or custom genome builds.
+
+## **Linking VCF Files to Sample Metadata**
+
+Once the VCF file is imported, it needs to be linked to the corresponding sample metadata records to make the variant data accessible and meaningful in the ODM interface.
+
+The linking process is **identical** regardless of whether the file uses a **custom** or **default** reference genome.
+
+To link the variant file to samples, follow the **standard linkage procedure** used for other data types. For detailed steps, see [*Linking Data to Samples*](user-guide/quick-start/contributor-api.md#linking-your-entities).
+
+**API Endpoint:**
 
 `POST /api/v1/as-curator/integration/link/variant/group/{sourceId}/to/sample/group/{targetId}`
 
-![Post to link](../doc-odm-user-guide/doc-odm-user-guide/images/variants/post-link-variants.jpg) 
-Users can link VCF files to sample metadata by providing both accession numbers
+You will need to provide:
 
-Once linked, the variant data becomes accessible in the Gene Variant Data section of ODM.
+* **Source ID**: the accession of the VCF file group (e.g., GSF1278671)
+* **Target ID**: the accession of the sample metadata group (e.g., GSF1278546)
 
-![Ref Genome in ME](../doc-odm-user-guide/doc-odm-user-guide/images/variants/variant-me-data.jpg)
-Successfully imported and linked VCF files can be explored in ODM’s Gene Variant Data section
+### **Confirming a Successful Link**
 
-ODM provides a flexible and scalable solution for working with VCF files, supporting multiple reference genomes beyond 
-the default human genome. By leveraging these capabilities, users can efficiently import, manage, and link genetic 
-variant data across different species, enhancing their data analysis workflows.
+Once the VCF file is linked to the sample metadata, the variant data becomes accessible both in the **ODM interface** and via the **API**.
+
+#### **In the ODM Interface**
+
+You can explore the data in the **Gene Variant Data** section of ODM. If the file is successfully linked, you’ll see the variants associated with your samples, organized by gene or genomic feature.
+
+![confirmLinkGUI.png](doc-odm-user-guide/images/variants/confirmLinkGUI.png){Width=80%}
+<figcaption>Successfully imported and linked VCF files can be explored in ODM’s Gene Variant Data section</figcaption>
+
+#### **Using the API**
+
+To confirm that your variant data is correctly indexed and linked to a gene from your **custom reference genome**, you can query the API directly.
+
+**Endpoint:**
+
+`GET /api/v1/as-user/variants`
+
+Use the variantInfo parameter to filter results by gene or feature. For example:
+
+```
+variantInfo
+info.GENE=Il2ra
+```
+
+This query retrieves all variant records associated with the gene **Il2ra** (interleukin 2 receptor, alpha chain), based on the annotation from your custom reference genome.
+
+The response will include:
+
+* Variant positions
+* Genotypes
+* Associated sample IDs
+* Additional metadata from the VCF file
+
+![variant_response.gif](doc-odm-user-guide/images/variants/variant_response.gif)
+<figcaption>Example query using variantInfo, info.GENE=Il2ra showing the resulting variant data</figcaption>
+
+ODM streamlines the management of genetic variant data by supporting custom reference genomes, VCF file import, and metadata linkage. Whether you’re working with human or non-human species, ODM ensures that variant data is well-organized and ready for analysis.
