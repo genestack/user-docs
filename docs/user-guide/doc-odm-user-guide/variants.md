@@ -30,7 +30,7 @@ A VCF file includes:
 ![VCF_File.png](doc-odm-user-guide/images/variants/VCF_File.png)
 <figcaption>The VCF format contains detailed information about the variants, positions, and genotypes</figcaption>
 
-For more details and examples of VCF files, refer to the section [Supported File Formats](docs/user-guide/doc-odm-user-guide/supported-formats.md)
+For more details and examples of VCF files, refer to the section [Supported File Formats](../doc-odm-user-guide/supported-formats.md)
 
 ### **Reference Genomes**
 
