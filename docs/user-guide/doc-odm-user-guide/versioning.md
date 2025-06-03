@@ -14,7 +14,9 @@ To change to Edit mode (curators only) click the **Edit** button in the bottom l
 
 ![image](doc-odm-user-guide/images/versioning-edit-button.png)
 
-Edit mode allows curators to change the metadata. Changes are saved on the fly but held in a draft (unpublished) copy until a new version is created by publishing. If a tab contains unpublished metadata it is marked with a blue dot. Only curators can see unpublished metadata, non-curators will continue to see the most recently published version though they can view previous versions and the change history by clicking on the clock icon.
+Edit mode allows curators to change the metadata. Changes are saved on the fly but held in a draft (unpublished) copy until a new version is created by publishing. If a tab contains unpublished metadata it is marked with a <span style="color:blue;">●</span> blue dot. 
+
+Only curators can see unpublished metadata, non-curators will continue to see the most recently published version though they can view previous versions and the change history by clicking on the clock icon.
 
 ![image](doc-odm-user-guide/images/versioning-pending-tabs.png)
 
@@ -51,6 +53,12 @@ Restoring a previous version does not delete subsequent versions but instead cre
 ## Adding/deleting/importing sample objects
 
 Using the buttons in the Metadata Editor to create new samples, delete sample rows, or import a samples table from a local file, all result in unpublished changes being made, so curators need to publish as above for non-curators to see the changes. These changes to sample objects can similarly be reverted via the restore previous version methodology above.
+
+!!! abstract "Import Blocked by Existing Links"
+    Please be aware that you won't be able to import a new sample sheet if the current samples are linked to omics data, libraries, or preparations
+
+    ![image](doc-odm-user-guide/images/disabled-import.png)
+
 
 ## Exporting data
 

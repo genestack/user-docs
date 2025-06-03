@@ -6,7 +6,7 @@ This guide is for users who have uploaded data to ODM and now wish to curate it 
 
 From the Dashboard where you first log in, select “Browse studies” to enter the Study Browser:
 
-![image](doc-odm-user-guide/images/quickstart_user_dashboard.png)
+![image](doc-odm-user-guide/gifs/start.gif)
 
 ## Study Browser
 
