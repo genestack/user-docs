@@ -21,11 +21,13 @@ Templates include the following metadata options:
 
 To access the Template Editor:
 
+
 1. Click **Set Up Templates** on the Dashboard.
 2. Alternatively, click on the menu in the top-left corner and select **Template Editor**.
 
 ![1TemplateEditor.png](doc-odm-user-guide/images/1TemplateEditor.png)
 <figcaption>Access the Template Editor by clicking <strong>Set up templates</strong> on the dashboard (A) or by clicking the three lines at the top left corner of the dashboard and selecting <strong>Template Editor</strong> (B)</figcaption>
+
 
 ## Template Editor Overview
 
@@ -158,7 +160,26 @@ Incorporating dictionaries and ontologies into your metadata curation process of
 
 ### Steps in validation
 
+
 * **Template-Based Validation**: Metadata fields are checked against a designated template. Templates are designed to include rules for each type of data object, such as Study, Sample, and experimental data. They specify required fields and acceptable values.
+
+!!! abstract "Mandatory Attributes"
+    All templates contain mandatory technical fields that are **grayed out** in the user interface and cannot be edited or removed.  
+
+    **Common field:**
+
+    - `genestack:accession`
+
+    **Tabular data fields:**
+
+    - `Features (string)`
+
+    - `Features (numeric)`
+
+    - `Values (numeric)`
+
+    - `Data Class` (for Tabular, Variants, and Flow Cytometry data)
+
 
 ![13Validation.png](doc-odm-user-guide/images/13Validation.png)
 <figcaption>Metadata fields are validated against dictionaries and ontologies set in templates</figcaption>
