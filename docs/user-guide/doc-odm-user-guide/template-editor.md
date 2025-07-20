@@ -6,7 +6,7 @@ The Template Editor in ODM enables users to create, customize, and update templa
 
 A **Template** in ODM is a structured framework that defines metadata attributes for data objects, ensuring that terms and values are harmonized and validated according to predefined rules. Templates specify the required fields, data types, validation dictionaries, and descriptions, providing consistency in how metadata is managed across studies, samples, and experimental data.
 
-Each data object (e.g., Study, Sample, Expression, Variant, Flow Cytometry) uses a separate template.
+Each data object (e.g., Study, Sample, Tabular Data Group, Variant, Flow Cytometry) uses a separate template.
 
 Templates include the following metadata options:
 
@@ -22,7 +22,7 @@ Templates include the following metadata options:
 To access the Template Editor:
 
 
-1. Click **Set Up Templates** on the Dashboard.
+1. Click **Set up templates** on the Dashboard.
 2. Alternatively, click on the menu in the top-left corner and select **Template Editor**.
 
 ![1TemplateEditor.png](doc-odm-user-guide/images/1TemplateEditor.png)
@@ -59,12 +59,12 @@ Click on any template to open it in a new window and explore its features. This 
 * Sample
 * Library
 * Preparation
-* Expression
+* Tabular Data Group
 * Variant
 * Flow Cytometry
 
 ![4Explore.png](doc-odm-user-guide/images/4Explore.png)
-<figcaption>View of the templates and their features. Explore templates, including sections such as samples metadata, library preparation, etc.</figcaption>
+<figcaption>View of the templates and their features. Explore templates, including sections such as samples metadata, library, preparation, etc.</figcaption>
 
 Alternatively, access the Template Editor from a study by opening the study, clicking on the study title in the top bar, then clicking on the template title and selecting **Explore**.
 
@@ -104,13 +104,9 @@ Within the Template Editor, specify metadata fields and their properties:
 
 ## Creating a New Template
 
-Users with appropriate permissions can create new templates. Refer to the section User Setup for more on user roles and permissions. Templates can be created via:
+Users with appropriate permissions can create new templates. Refer to the section [Users and Groups](../doc-odm-user-guide/setup.md) for more on user roles and permissions. Templates can be created via:
 
-* **Python Script**: Import a new template using JSON files. Follow the instructions in the [Create a new template](https://github.com/genestack/user-docs/blob/develop/docs/tools/odm-sdk/terminal/templates/create-or-update-template.md)  section on the ODM GitHub page.
-
-![10Create.png](doc-odm-user-guide/images/10Create.png)
-<figcaption>Import a new template using JSON files. Follow the instructions in the <a href="https://github.com/genestack/user-docs/blob/develop/docs/tools/odm-sdk/terminal/templates/create-or-update-template.md">Create a new template</a> section</figcaption>
-
+* **Python Script**: Import a new template using JSON files. Follow the instructions in the [Create a new template](/tools/odm-sdk/terminal/templates/create-or-update-template/)
 * **Graphical User Interface**: Duplicate an existing template, rename it, and customize the metadata fields as needed. To create a new template, navigate to the template editor to see the list of templates. Then select any template and click on the option **Duplicate**, and select a new name for this template.
 
 !!! note
@@ -197,15 +193,10 @@ Incorporating dictionaries and ontologies into your metadata curation process of
 * **Customizable dictionaries and ontologies**. Users have the flexibility to choose or load their dictionaries within the templates, which allows for specialized metadata curation and harmonization. This feature supports the use of standardized and unified terms, making the data more consistent and interoperable.
 
 !!! note "Important" 
-    Uploading dictionaries is an advanced feature and it is done via a Python script. Follow the instructions on the [GitHub pages](https://github.com/genestack/user-docs/blob/develop/docs/tools/odm-sdk/terminal/dictionaries-and-ontologies/creating-new-dictionary.md)
+    Uploading dictionaries is an advanced feature and it is done via a Python script. [Follow the instructions](/tools/odm-sdk/terminal/dictionaries-and-ontologies/creating-new-dictionary/)
 
 ![16ChangeOntologies.png](doc-odm-user-guide/images/16ChangeOntologies.png)
 <figcaption>Change ontologies in the template editor by selecting a new option. To change the current ontologies, open the template editor, select the metadata field to change, click on the triangle, and select the new ontology</figcaption>
-
-* **Changing Templates**: The specific template applied to a dataset can be changed if necessary. To do this, users can click on the **Apply another.**.. option from the study title drop-down menu. This allows for dynamic adjustment of validation rules to fit different data curation needs.
-
-![17ApplyOther.png](doc-odm-user-guide/images/17ApplyOther.png)
-<figcaption>Change templates. On the study view, click on the title of the study (top bar) and select the template. Click on Apply another to change the template. This action will change the template (and its current metadata field) automatically</figcaption>
 
 ### **Importance of Validation**
 
