@@ -135,16 +135,14 @@ To upload VCF files, you must also provide a metadata file in TSV (tab-separated
 
 Additional optional fields, such as **Version**, **Accession**, or **User**, may also be included and will not interfere with the upload. The system is flexible and accepts metadata files with varying numbers of columns.
 
-??? note "Note"
-
+!!! note "Metadata file examples"
     Here are examples of metadata files with different numbers of features (columns).
+    
+    * **3 columns**: [Metadata_Mm_3columns.tsv](https://s3.amazonaws.com/bio-test-data/odm/user-guide/Metadata_Mm_3columns.tsv) 
+    * **5 columns**: [Metadata_Mm_5columns.tsv](https://s3.amazonaws.com/bio-test-data/odm/user-guide/Metadata_Mm_5columns.tsv)
+    * **11 columns**: [Metadata_Mm_11columns.tsv](https://s3.amazonaws.com/bio-test-data/odm/user-guide/Metadata_Mm_11columns.tsv)
 
-    - **3 columns**: [Metadata_Mm_3columns.tsv (S3 link)](s3://bio-test-data/Metadata_Mm_3columns.tsv), [Download via HTTPS](https://bio-test-data.s3.us-east-1.amazonaws.com/Metadata_Mm_3columns.tsv)
-    - **5 columns**: [Metadata_Mm_5columns.tsv (S3 link)](s3://bio-test-data/Metadata_Mm_5columns.tsv), [Download via HTTPS](https://bio-test-data.s3.us-east-1.amazonaws.com/Metadata_Mm_5columns.tsv)
-    - **11 columns**: [Metadata_Mm_11columns.tsv (S3 link)](s3://bio-test-data/Metadata_Mm_11columns.tsv), [Download via HTTPS](https://bio-test-data.s3.us-east-1.amazonaws.com/Metadata_Mm_11columns.tsv)
-
-
-A metadata file in tabular format ensures the VCF file is linked to the correct reference genome  
+A metadata file in tabular format ensures the VCF file is linked to the correct reference genome.  
 
 ### **API Upload Procedure**
 
@@ -168,7 +166,7 @@ Use the endpoint: `POST /api/v1/jobs/import/variant`
 As with other data types, the request should include:
 
 * A **metadata file** with information about the reference genome and organism
-* A **VCF file** compressed **.vcf.gz** or plain **.vcf** (See example of a [VCF file](https://bio-test-data.s3.us-east-1.amazonaws.com/gVCF_Mm_Demo.vcf))
+* A **VCF file** compressed **.vcf.gz** or plain **.vcf** (See example of a [VCF file](https:///s3.amazonaws.com/bio-test-data/gVCF_Mm_Demo.vcf))
 * A **link structure** connecting the data to samples, libraries, or preparations
 
 !!! note "Important" 
@@ -235,7 +233,7 @@ Once the VCF file is imported, it needs to be linked to the corresponding sample
 
 The linking process is **identical** regardless of whether the file uses a **custom** or **default** reference genome.
 
-To link the variant file to samples, follow the **standard linkage procedure** used for other data types. For detailed steps, see [*Linking Data to Samples*](user-guide/quick-start/contributor-api.md#linking-your-entities).
+To link the variant file to samples, follow the **standard linkage procedure** used for other data types. For detailed steps, see [*Linking Data to Samples*](../quick-start/contributor-api.md/#linking-your-entities).
 
 **API Endpoint:**
 
