@@ -135,6 +135,7 @@ Want to know more? Learn more by watching our videos below.
     * [Sharing from the Metadata Editor](doc-odm-user-guide/sharing.md#sharing-from-the-metainfo-editor)
 * [Getting a Genestack API token](doc-odm-user-guide/getting-a-genestack-api-token.md)
     * [Generate API token via Genestack software](doc-odm-user-guide/getting-a-genestack-api-token.md#generate-api-token-via-genestack-software)
+    * [Getting Access Token (Azure)](doc-odm-user-guide/getting-access-token-azure.md)
 * [Supported File Formats](doc-odm-user-guide/supported-formats.md)
     * [Study metadata file](doc-odm-user-guide/supported-formats.md#study-metadata-file)
     * [Samples metadata file](doc-odm-user-guide/supported-formats.md#samples-metadata-file)
