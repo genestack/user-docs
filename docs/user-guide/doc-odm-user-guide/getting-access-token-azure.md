@@ -41,8 +41,8 @@ After logging in, request an access token with:
 
 ```bash
 az account get-access-token \
-  --query accessToken \
-  --scope "api://<APPLICATION_ID>/default"
+  --scope "api://<APPLICATION_ID>/default" \
+  --query accessToken
 ```
 
 This will return a long JWT string (the **Bearer token**), for example:
