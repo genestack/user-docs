@@ -13,22 +13,18 @@ Before starting, ensure you have the following:
    Follow the official installation guide:
    👉 [Install the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 
-2. **IDs required for login**
+2. **ID required for login**
 
-   * **Tenant ID**: identifies the Azure Active Directory tenant.
    * **Application (Client) ID**: identifies the registered application you’re requesting a token for.
-
-You must have **both IDs** available before proceeding.
 
 ---
 
 ## 1. Login to Azure with Required Scope
 
-Run the following command to log in with your **Tenant ID** and **Application (Client) ID** scope:
+Run the following command to log in with your **Application (Client) ID** scope:
 
 ```bash
 az login \
-  --tenant "<TENANT_ID>" \
   --scope "api://<APPLICATION_ID>/default" \
   --allow-no-subscriptions
 ```
@@ -98,7 +94,7 @@ If authentication is successful, you’ll receive a valid JSON response from the
 ## Summary
 
 1. **Install Azure CLI** from the [official guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
-2. Have your **Tenant ID** and **Application (Client) ID** ready.
-3. **Login** with `az login --tenant <TENANT_ID> --scope api://<APPLICATION_ID>/default`.
-4. **Get token** using `az account get-access-token`.
+2. Have your **Application (Client) ID** ready.
+3. **Login** with `az login --scope api://<APPLICATION_ID>/default`.
+4. **Get token** using `az account get-access-token --scope api://<APPLICATION_ID>/default`.
 5. **Send requests** with `Authorization: Bearer <token>` header.
