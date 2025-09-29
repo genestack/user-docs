@@ -1,6 +1,6 @@
 # Getting Access Token (Azure)
 
-This guide explains how to authenticate against an API protected by Azure AD using a **Bearer token**.
+This guide explains how to authenticate against the ODM API protected by Azure AD using a **Bearer token**.
 We’ll walk through installing the Azure CLI, obtaining the token, and then passing it in request headers.
 
 ---
@@ -9,13 +9,13 @@ We’ll walk through installing the Azure CLI, obtaining the token, and then pas
 
 Before starting, ensure you have the following:
 
-1. **Azure CLI installed**
+1. **Azure CLI installed**  
    Follow the official installation guide:
    👉 [Install the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 
-2. **ID required for login**
-
-   * **Application (Client) ID**: identifies the registered application you’re requesting a token for.
+2. **Application ID required for login**  
+   It identifies the registered application you're requesting a token for.
+   It is recommended to get this ID from your ODM Administrator.
 
 ---
 
@@ -55,9 +55,9 @@ This will return a long JWT string (the **Bearer token**), for example:
 
 ---
 
-## 3. Use the Bearer Token in API Calls
+## 3. Use the Bearer Token in ODM API Calls
 
-Pass the token in the `Authorization` header when making API requests.
+Pass the token in the `Authorization` header when making ODM API requests.
 Here’s an example using `curl`:
 
 ```bash
@@ -67,11 +67,7 @@ curl -X GET \
   -H "Authorization: Bearer <YOUR_ACCESS_TOKEN>"
 ```
 
-Replace `<YOUR_ACCESS_TOKEN>` with the value returned from the previous step.
-
----
-
-## 4. Example Response
+Replace `<ODM_HOST>` with the actual ODM address, `<YOUR_ACCESS_TOKEN>` with the value returned from the previous step.
 
 If authentication is successful, you’ll receive a valid JSON response from the API. Example:
 
@@ -88,13 +84,3 @@ If authentication is successful, you’ll receive a valid JSON response from the
   "data": []
 }
 ```
-
----
-
-## Summary
-
-1. **Install Azure CLI** from the [official guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
-2. Have your **Application (Client) ID** ready.
-3. **Login** with `az login --scope api://<APPLICATION_ID>/default`.
-4. **Get token** using `az account get-access-token --scope api://<APPLICATION_ID>/default`.
-5. **Send requests** with `Authorization: Bearer <token>` header.
