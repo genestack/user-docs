@@ -14,7 +14,7 @@ Before starting, ensure you have the following:
    👉 [Install the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)
 
 2. **Application ID required for login**  
-   It identifies the registered application you're requesting a token for.
+   It identifies the registered application you're requesting a token for.  
    It is recommended to get this ID from your ODM Administrator.
 
 ---
