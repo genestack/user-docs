@@ -73,6 +73,18 @@ At the top of the window is the main search bar. You can search by the name of a
 ![10DataClass.png](doc-odm-user-guide/images/10DataClass.png)
 <figcaption>Filter data. Use the filters to narrow the search of studies. For example, select <strong>Data Class</strong> and then tick the option <strong>Single-cell transcriptomics</strong> to find exclusively studies containing single-cell data</figcaption>
 
+### Metadata validity status
+
+To filter Studies that contain invalid metadata (e.g., Study metadata, Sample metadata, etc.), use the Metadata validity
+facet.
+This facet displays both fully valid Studies and those with invalid metadata fields.
+
+Please note that any changes made to a Study can affect its metadata validity, such as changing the Study template,
+updating validation rules in the current template, or adding/removing metadata groups (Samples, Libraries,
+Preparations, Data).
+
+![MetadataValidityFacet](doc-odm-user-guide/gifs/metadata-validity-facet.gif)
+
 ## Bookmark studies
 
 * You can save preferred studies for easy access. To the left of a study title is a three-dot link. Click this to open a menu that allows you to share the study (if you are the owner) and save it to bookmarks.
