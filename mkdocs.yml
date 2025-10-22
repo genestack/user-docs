@@ -39,6 +39,7 @@ nav:
         - Getting a Genestack API token: user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md
         - Getting Access Token (Azure): user-guide/doc-odm-user-guide/getting-access-token-azure.md
         - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
+        - Working with Single Cell Data: user-guide/doc-odm-user-guide/single-cell.md
 
     - Tools:
         - odm-sdk:
