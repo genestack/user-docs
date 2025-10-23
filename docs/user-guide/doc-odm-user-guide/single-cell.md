@@ -10,8 +10,10 @@ Cell metadata can be imported into ODM using the `job` endpoints and [import_ODM
 Only TSV file format is supported to upload cell metadata.
 
 ### Uploading via API endpoints
+For data import, you should go to the job section and choose the endpoint relevant for the specific data type. 
+For Cell metadata use the following endpoints:
 
-* Upload from dataLink
+* Supply the file URL via dataLink
 
     Path: POST `/api/v1/jobs/import/cells`
 
@@ -28,6 +30,7 @@ Example response:
 "groupAccession": "GSF1234567"
 }
 ```
+Learn more about [uploading data to ODM via API here](../doc-odm-user-guide/import-data-using-api.md).
 
 ### Uploading via script
 
@@ -65,6 +68,8 @@ Cells can be imported and linked in several hierarchical contexts, depending on 
 
 Note that Cell metadata will be linked to the nearest metadata group mentioned above in the script.
 
+Learn more about [uploading data to ODM using the script here](../doc-odm-user-guide/import-data-using-python-script.md).
+
 ### Common rules for TSV files with Cell metadata
 
 #### Stored attributes and limitations
@@ -97,6 +102,39 @@ Warnings (ignored values):
 * Invalid data type for attribute
 
 ### Linking Cell metadata to Samples, Libraries, Preparations
+
+#### Common rules
+
+To link Cell metadata to other metadata groups use the following endpoints: 
+
+* Link to Samples
+
+    Path: POST `/api/v1/as-curator/integration/link/cell/group/{sourceId}/to/sample/group/{targetId}`
+
+* Link to Libraries
+
+    Path: POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/library/group/{targetId}`
+
+* Link to Preparations
+
+    Path: POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/preparation/group/{targetId}`
+
+For `sourceId` field provide accession of your Cell metadata group.
+For `targetId` field provide accession of selected Sample, Library, or Preparation group where Cell metadata should be linked.
+
+Cell metadata will be linked if there are matches between `batch` values in Cell metadata and `Sample Source ID` for Samples,
+`Library ID` for Libraries, and `Preparation ID` for Preparations. 
+
+#### Validation
+
+Fail conditions:
+
+* There is no Sample Source/Library/Preparation ID in Sample/Library/Preparation metadata group.
+* There are no matches between `batch` in Cell metadata and Sample Source/Library/Preparation IDs.
+* Cell metadata group is already linked to another metadata group.
+
+The amount of successfully created links between Cells and Samples/Libraries/Preparations will be shown in response 
+message if linkage is successful. 
 
 ## Cell expression in ODM 
 
