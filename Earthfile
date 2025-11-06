@@ -5,7 +5,7 @@ ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM python:3.13.7-alpine
-    DO github.com/genestack/earthly-libs+PYTHON_PREPARE
+    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
 
     COPY requirements.txt .
     RUN \
