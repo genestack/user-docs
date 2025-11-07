@@ -27,7 +27,7 @@ To gain additional rights, users must be added to groups:
 * On a fresh **installation** of ODM, a small number of **technical user accounts** are created automatically.
 * These accounts support **integration, automated testing, and system configuration**.
 They are not intended for day-to-day user activity.
-* Passwords for technical users can be changed at any time for **security reasons**.
+* Passwords for technical users can be changed at any time for security reasons.
 
 | User                           | State        | Role                                               |
 |--------------------------------|--------------|----------------------------------------------------|
