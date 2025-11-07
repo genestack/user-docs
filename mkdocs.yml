@@ -42,6 +42,7 @@ nav:
     - Access Control:
         - Users: access-control/users.md
         - Permissions: access-control/permissions.md
+        - Groups: access-control/groups.md
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md
