@@ -39,7 +39,9 @@ nav:
         - Getting a Genestack API token: user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md
         - Getting Access Token (Azure): user-guide/doc-odm-user-guide/getting-access-token-azure.md
         - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
-
+    - Access Control:
+        - Users: access-control/users.md
+        - Permissions: access-control/permissions.md
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md
