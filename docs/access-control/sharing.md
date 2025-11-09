@@ -21,5 +21,5 @@
 * If a study owner becomes unavailable, administrators can assign a new owner.
 * Ownership transfers are:
     * Permission-aware (only permitted roles can transfer).
-        * Fully auditable (tracked in the system).
+    * Fully auditable (tracked in the system).
 * The current owner may also initiate a transfer voluntarily.

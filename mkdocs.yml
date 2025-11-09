@@ -45,6 +45,7 @@ nav:
         - Groups: access-control/groups.md
         - Access Management via SCIM APIs: access-control/scim.md
         - Data Sharing: access-control/sharing.md
+        - Authorisation via an Access Token: access-control/authorisation.md
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md

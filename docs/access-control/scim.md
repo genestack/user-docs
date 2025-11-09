@@ -19,8 +19,8 @@ Ensures reliable and efficient user lifecycle management across the organisation
 management.
 * Administrators manage users in AD, where they can:
     * Create users and groups.
-        * Add or remove users from groups.
-        * Deactivate users.
+    * Add or remove users from groups.
+    * Deactivate users.
 * Changes are automatically propagated to ODM on a scheduled sync configured in AD.
 
 ## Flexibility

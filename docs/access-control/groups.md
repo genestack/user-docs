@@ -13,7 +13,7 @@ Manage groups permission can browse and manage all groups available in the syste
 
 * Groups can be created in two ways:
     * **Manually** in the ODM graphical user interface.
-        * **Automatically** via the SCIM API for integration with identity providers.
+    * **Automatically** via the SCIM API for integration with identity providers.
 
 * Prerequisites: None. Any user can create a group and invite other members.
   
