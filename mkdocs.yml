@@ -43,6 +43,7 @@ nav:
         - Users: access-control/users.md
         - Permissions: access-control/permissions.md
         - Groups: access-control/groups.md
+        - Access Management via SCIM APIs: access-control/scim.md
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md
