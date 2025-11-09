@@ -19,7 +19,15 @@ nav:
       - Guides:
             - Advanced User Guide:
                 - user-guide/index.md
-            - Access Control: access-control/users.md
+            - Access Control:
+                - Users: access-control/users.md
+                - Permissions: access-control/permissions.md
+                - Groups: access-control/groups.md
+                - Access Management via SCIM APIs: access-control/scim.md
+                - Data Sharing: access-control/sharing.md
+                - Authorisation via an Access Token: access-control/authorisation.md
+                - Data Governance: access-control/governance.md
+                - Platform Security: access-control/security.md
       - About Genestack: https://genestack.com/
     - Advanced Guide:
         - user-guide/index.md
