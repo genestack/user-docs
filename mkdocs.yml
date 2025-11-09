@@ -47,6 +47,7 @@ nav:
         - Data Sharing: access-control/sharing.md
         - Authorisation via an Access Token: access-control/authorisation.md
         - Data Governance: access-control/governance.md
+        - Platform Security: access-control/security.md
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md
