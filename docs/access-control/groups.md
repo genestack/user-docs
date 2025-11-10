@@ -6,6 +6,10 @@
 * Groups can represent locations, departments, or project teams, ensuring data is shared only with the relevant people.
 * Users see only the groups they are members of, unless they hold the **Manage groups** permission.
 
+Suggested groups structure:
+
+![Group Structure](groups-structure.png)
+
 The list of all groups you are a member of can be browsed on the Groups page. A user with
 Manage groups permission can browse and manage all groups available in the system.
 
