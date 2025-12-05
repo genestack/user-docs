@@ -6,7 +6,7 @@ to be able to import and edit data in ODM.
 
 ## Requirements
 
-Read the full list of requirements [here](https://github.com/genestack/public-odm-docs/blob/develop/04.%20Working%20with%20study/Uploading%20a%20study/README.md)
+Read the full list of requirements [here](../../tools/odm-sdk/terminal/study/uploading-study/#requirements)
 
 ## Optional experimental (signal) data files
 
