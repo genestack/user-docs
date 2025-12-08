@@ -6,7 +6,7 @@ to be able to import and edit data in ODM.
 
 ## Requirements
 
-Read the full list of requirements [here](../../tools/odm-sdk/terminal/study/uploading-study/#requirements)
+Read the full list of requirements [here](../../../tools/odm-sdk/terminal/study/uploading-study/#requirements)
 
 ## Optional experimental (signal) data files
 
