@@ -106,7 +106,7 @@ In addition to the samples, libraries, and preparations metadata described above
 - Spatial transcriptomics
 - Phenomics
 - Copy number alterations
-- Microbiome / metagenomics
+- Microbiome / Metagenomics
 - Genetic screens (CRISPR / RNAi)
 - Cell imaging
 - Document
