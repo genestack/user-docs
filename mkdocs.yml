@@ -19,6 +19,15 @@ nav:
       - Guides:
             - Advanced User Guide:
                 - user-guide/index.md
+            - Access Control:
+                - Users: access-control/users.md
+                - Permissions: access-control/permissions.md
+                - Groups: access-control/groups.md
+                - Access Management via SCIM APIs: access-control/scim.md
+                - Data Sharing: access-control/sharing.md
+                - Authorisation via an Access Token: access-control/authorisation.md
+                - Data Governance: access-control/governance.md
+                - Platform Security: access-control/security.md
       - About Genestack: https://genestack.com/
     - Advanced Guide:
         - user-guide/index.md
@@ -41,6 +50,15 @@ nav:
         - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
         - Working with Single Cell Data: user-guide/doc-odm-user-guide/single-cell.md
 
+    - Access Control:
+        - Users: access-control/users.md
+        - Permissions: access-control/permissions.md
+        - Groups: access-control/groups.md
+        - Access Management via SCIM APIs: access-control/scim.md
+        - Data Sharing: access-control/sharing.md
+        - Authorisation via an Access Token: access-control/authorisation.md
+        - Data Governance: access-control/governance.md
+        - Platform Security: access-control/security.md
     - Tools:
         - odm-sdk:
             - Installation: tools/odm-sdk/installation.md

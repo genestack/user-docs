@@ -100,12 +100,17 @@ In addition to the samples, libraries, and preparations metadata described above
 - Physical measures 
 - Blood counts 
 - Other body fluid counts 
-- Nanopore 
+- Long-read sequencing (Nanopore, PacBio) 
 - Gene variant (VCF) - VCF format
 - Flow Cytometry - FACS format
+- Spatial transcriptomics
+- Phenomics
+- Copy number alterations
+- Microbiome / Metagenomics
+- Genetic screens (CRISPR / RNAi)
+- Cell imaging
 - Document
-- Other 
-
+- Other
 
 To upload experimental data or attach files, navigate to the **Data Tab**
 

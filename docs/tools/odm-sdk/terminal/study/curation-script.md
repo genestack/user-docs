@@ -506,7 +506,7 @@ Multiple curation rules were detected for the attribute X.
 [//]: # "script”` will be used to name new metadata versions."
 [//]: # "In order to provide custom version message an optional parameter `--version-message` can be used. Users can specify"
 [//]: # '`--version-message “<version-message>”` to set a custom message, e.g. `"Curate treatment attribute”`.'
-[//]: # "Alternatively, the user can set `--do-not-publish`, so that curation script will only change staging version without"
+[//]: # "Alternatively, the user can set `--do-not-publish`, so that curation script will only change draft (unpublished) version without"
 [//]: # "publishing new metadata versions. This cannot be used at the same time as `--version-message`.  If the user provides an"
 [//]: # "empty `--version-message` - the script will throw an error."
 

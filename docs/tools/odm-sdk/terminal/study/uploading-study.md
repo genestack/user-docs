@@ -67,7 +67,7 @@ Additional optional parameters:
     sample/library/preparation name from the measurement name in column headers: `-ms ':'`
     or `--measurement-separator ':'`
 - to specify the uploaded data as a data class `C`: `-dc 'C'` or `--data-class 'C'`
-    - The following options are available: `Bulk transcriptomics`, `Single cell transcriptomics`, `Differential abundance (FC, pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single cell proteomics`, `Metabolomics`, `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body fluid counts`, `Nanopore`, `Gene variant (VCF)`, `Flow Cytometry`, `Other`
+    - The following options are available: `Bulk transcriptomics`, `Single cell transcriptomics`, `Differential abundance (FC, pval, etc.)`, `Pathway analysis`, `Proteomics`, `Single cell proteomics`, `Metabolomics`, `Lipidomics`, `Epigenomics`, `DNA methylation`, `Chemoinformatics`, `Imaging features`, `Gene panel data`, `Biomarker data`, `Physical measures`, `Blood counts`, `Other body fluid counts`, `Long-read sequencing (Nanopore, PacBio)`, `Gene variant (VCF)`, `Flow Cytometry`, `Spatial transcriptomics`, `Phenomics`, `Copy number alterations`, `Microbiome / Metagenomics`, `Genetic screens (CRISPR / RNAi)`, `Cell imaging`, `Document`, `Other`
 
 ---
 

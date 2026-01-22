@@ -4,8 +4,8 @@ ARG --global --required HARBOR_DOCKER_REGISTRY
 ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
-    FROM python:3.13.7-alpine
-    DO github.com/genestack/earthly-libs+PYTHON_PREPARE
+    FROM python:3.14.2-alpine
+    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
 
     COPY requirements.txt .
     RUN \
@@ -30,7 +30,7 @@ build:
     SAVE ARTIFACT site
 
 image:
-    FROM nginxinc/nginx-unprivileged:1.29.2-alpine
+    FROM nginxinc/nginx-unprivileged:1.29.3-alpine
     COPY fs /
     COPY --pass-args +build/site/ /usr/share/nginx/html/
 
