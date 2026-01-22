@@ -5,7 +5,7 @@ cell population, uncovering differences in gene expression, epigenetic states, o
 ODM now supports the Cell entity to store and manage metadata and expression for individual cells in Single Cell datasets.
 Each cell record belongs to a Cell Group, which represents a single cell table (group).
 
-## Cell metadata in ODM
+## Cell metadata and Cell expression in ODM
 Cell metadata can be imported into ODM using the `job` endpoints and [import_ODM_data script](../../tools/odm-sdk/terminal/study/uploading-study.md). 
 Only TSV file format is supported to upload cell metadata.
 
@@ -20,6 +20,18 @@ For Cell metadata use the following endpoints:
 * Upload directly from TSV file 
 
     Path: POST `/api/v1/jobs/import/cells/multipart`
+
+For Cell expression use the following endpoints:
+
+* Supply the file URL via dataLink
+
+    Path: POST `/api/v1/jobs/import/expression`
+
+* Upload directly from TSV file
+
+    Path: POST `/api/v1/jobs/import/expression/multipart`
+    
+    **It is recommended to use TSV files archived in `.br` or `lz4` extensions for Cell expression.**
 
 When the import job finishes successfully, the resulting Cell Group accession can be retrieved with the following endpoint:  
 GET `/api/v1/jobs/{jobExecId}/output`.
@@ -50,19 +62,21 @@ The script supports optional parameter for Cell metadata: `-c` `--cell`
 | **Multiple imports** | Supported in one run                             |
 | **Error handling**   | Aligned with Cell import endpoint                |
 
+For uploading Cell expression please use regular `-e` `--expression` parameters.
+
 #### Supported Import Scenarios
 
 Cells can be imported and linked in several hierarchical contexts, depending on your dataset structure. There are few examples:
 
-1. **Study → Samples → Cells** 
+1. **Study → Samples → Cells → Expression** 
 
     Used when cells are directly associated with samples.
 
-2. **Study → Samples → Library → Cells** / **Study → Samples → Preparation → Library → Cells**
+2. **Study → Samples → Library → Cells → Expression** / **Study → Samples → Preparation → Library → Cells → Expression**
 
     Used when cells originate from library-level data.
 
-3. **Study → Samples → Preparations → Cells** / **Study → Samples → Library → Preparation → Cells**
+3. **Study → Samples → Preparations → Cells → Expression** / **Study → Samples → Library → Preparation → Cells → Expression**
 
     Used when cells originate from preparation-level data.
 
@@ -88,6 +102,7 @@ All other values presented in Cell metadata file will be stored as custom attrib
 | percentMito    | float          | % mitochondrial gene expression                                                                              |          |
 | umap           | float          | Dimensionality reduction results (Uniform Manifold Approximation and Projection). Up to 3 values are stored. |          |
 | pca            | float          | Dimensionality reduction results (Principal Component Analysis results). Up to 100 values are stored.        |          |
+| tsne           | float          | Up to 3 values are stored.                                                                                   |          |
 
 #### Validation
 
@@ -134,20 +149,226 @@ Fail conditions:
 * Cell metadata group is already linked to another metadata group.
 
 The amount of successfully created links between Cells and Samples/Libraries/Preparations will be shown in response 
-message if linkage is successful. 
-
-## Cell expression in ODM 
-
-### Uploading Cell expression
+message if linkage is successful.
 
 ### Linking Cell expression to Cell metadata
 
-## Analytics
+To link Cell expression to Cell metadata group use the following endpoint:
+
+Path: POST `/api/v1/as-curator/integration/link/expression/group/{sourceId}/to/cell/group/{targetId}`
+
+For `sourceId` field provide accession of your Cell expression group.
+
+For `targetId` field provide accession of selected Cell metadata group which Cell expression should be linked to.
+
+A Cell expression group can be linked to one Cell metadata group only.
+
+## [BETA] Analytics
 
 ### Cell ratio
+Compute cell ratio statistics across groups or metadata attributes in single-cell data.
+This endpoint calculates cell ratio statistics based on single-cell metadata. 
+It quantifies the proportion of cells that meet specific criteria (`countSelected`, e.g., expression 
+threshold, cell type, or cluster) relative to a defined reference group or the total cell population 
+(`countAvailable`) defined by study, samples, library, or preparation metadata.
 
+Path: POST `/api/v1/as-curator/omics/cells/analytics/cell-ratio`
+
+The Cell Ratio endpoint computes a simple proportion:
+
+* `countSelected` = number of cells that match all provided criteria (study/sample/library/preparation + cell metadata + optional expression constraints)
+* `countAvailable` = number of cells in the reference population defined **only** by study/sample/library/preparation queries & filters 
+* `ratio` = `countSelected` / `countAvailable`
+
+This endpoint returns **counters only** (no cell records).
+
+Use it when you want to answer questions like:
+
+* “What fraction of cells in `Study X` are `Monocytes`?” 
+* “Within samples matching `Clozapine`, what proportion of cells have expression in a given range?” 
+* “Among cells from a specific library/preparation, what fraction match a cell metadata definition?”
+
+Request example:
+```json
+{
+  "cellGroup": {
+    "studyFilter": "\"Study Source\"=ArrayExpress",
+    "studyQuery": "RNA-Seq of human dendritic cells",
+    "sampleFilter": "\"Species or strain\"=\"Homo sapiens\"",
+    "sampleQuery": "Clozapine",
+    "libraryFilter": "\"Library Type\"=RNA-Seq-1",
+    "libraryQuery": "illumina HiSeq500",
+    "preparationFilter": "Digestion=Trypsin",
+    "preparationQuery": "reversed-phase liquid chromatography",
+    "cellQuery": "cellType=Macrophage,Monocyte",
+    "searchSpecificTerms": false
+  },
+  "exQuery": "-3 < value < 3"
+}
+```
+Response example:
+```json
+{
+  "countSelected": 1243393,
+  "countAvailable": 9234945,
+  "ratio": 0.13465
+}
+```
 ### Gene summary
+The Gene Summary endpoint returns **descriptive statistics and distribution summaries** for expression values of up to 
+**100 genes** across a filtered set of single cells.
+
+You use it when you want quick “what does this gene look like in these cells?” metrics: 
+mean/median, spread, quantiles, min/max, and a histogram-style density summary.
+
+Path: POST `/api/v1/as-curator/omics/cells/analytics/gene-summary`
+
+For each requested gene, the response includes:
+
+* `geneId`: gene identifier (e.g., Ensembl ID)
+* `cellCount`: number of cells with measurable expression for the gene under the applied filters 
+* `mean`: average expression value 
+* `median`: median expression value 
+* `stdDev`: standard deviation (dispersion)
+* `min` / `max`: observed range of expression values 
+* `quantiles`: expression percentiles (configurable set of percentiles; returned as an ordered list of values)
+* `histogram` (density): binned distribution summary suitable for plotting expression density
+
+Request example:
+```json
+{
+  "cellGroup": {
+    "studyFilter": "\"Study Source\"=ArrayExpress",
+    "studyQuery": "RNA-Seq of human dendritic cells",
+    "sampleFilter": "\"Species or strain\"=\"Homo sapiens\"",
+    "sampleQuery": "Clozapine",
+    "libraryFilter": "\"Library Type\"=RNA-Seq-1",
+    "libraryQuery": "illumina HiSeq500",
+    "preparationFilter": "Digestion=Trypsin",
+    "preparationQuery": "reversed-phase liquid chromatography",
+    "cellQuery": "cellType=Macrophage,Monocyte",
+    "searchSpecificTerms": false
+  },
+  "geneNames": [
+    "ENSG00000230368",
+    "ENSG00000188976",
+    "ENSG00000188982"
+  ],
+  "exQuery": "-3 < value < 3"
+}
+```
+Response example:
+```json
+{
+  "resultsPerGene": [
+    {
+      "geneId": "ENSG00000111640",
+      "cellCount": 8968167,
+      "mean": 7.747614311820911,
+      "median": 7,
+      "stdDev": 6.499314669429827,
+      "min": 1,
+      "max": 496,
+      "quantiles": [
+        1,
+        1,
+        2,
+        3,
+        5,
+        7,
+        10,
+        12,
+        15,
+        27,
+        192
+      ],
+      "histogram": "[(1, 15.50289002318, 7686678.375), (15.50289002318, 35.49570418233824, 1229164),\n(35.49570418233824, 56.93121325335453, 36531.25), (56.93121325335453, 77.21467372919479, 6910.625)]\n"
+    }
+  ]
+}
+```
 
 ### Differential expression
+The Differential Expression endpoint compares gene expression between two cell populations: 
+a `Case` group and a `Control` group. It returns per-gene metrics that quantify how strongly expression
+differs between the two groups, including **fold change** and **Mann–Whitney U test** results.
 
-## Delete Cell metadata and expression
+Path: POST `/api/v1/as-curator/omics/cells/analytics/differential-expression`
+
+Use it to answer questions like:
+
+* “Which genes are upregulated in `Monocytes` vs all other cells?” 
+* “Which genes differ between case samples and control samples within the same study?” 
+* “What changes under a treatment condition vs untreated controls?”
+
+Calculations for each returned `geneId`:
+
+* `caseCellCount`: number of case cells contributing measurable expression for that gene 
+* `controlCellCount`: number of control cells contributing measurable expression for that gene 
+* `caseAvgExpression`: mean expression across contributing case cells 
+* `controlAvgExpression`: mean expression across contributing control cells 
+* `expressionDifference`: `caseAvgExpression` - `controlAvgExpression` 
+* `foldChange`: `caseAvgExpression` / `controlAvgExpression` 
+* `mannWhitneyU` / `pValue`: Mann–Whitney U test outputs (as implemented by ClickHouse mannwhitneyutest)
+
+If you apply exQuery expression thresholds, only cells/expression values that satisfy those rules contribute to the counts and averages.
+
+Request example:
+```json
+{
+  "caseGroup": {
+    "studyFilter": "\"Study Source\"=ArrayExpress",
+    "studyQuery": "RNA-Seq of human dendritic cells",
+    "sampleFilter": "\"Species or strain\"=\"Homo sapiens\"",
+    "sampleQuery": "Clozapine",
+    "libraryFilter": "\"Library Type\"=RNA-Seq-1",
+    "libraryQuery": "illumina HiSeq500",
+    "preparationFilter": "Digestion=Trypsin",
+    "preparationQuery": "reversed-phase liquid chromatography",
+    "cellQuery": "cellType=Macrophage,Monocyte",
+    "searchSpecificTerms": false
+  },
+  "controlGroup": {
+    "studyFilter": "\"Study Source\"=ArrayExpress",
+    "studyQuery": "RNA-Seq of human dendritic cells",
+    "sampleFilter": "\"Species or strain\"=\"Homo sapiens\"",
+    "sampleQuery": "Clozapine",
+    "libraryFilter": "\"Library Type\"=RNA-Seq-1",
+    "libraryQuery": "illumina HiSeq500",
+    "preparationFilter": "Digestion=Trypsin",
+    "preparationQuery": "reversed-phase liquid chromatography",
+    "cellQuery": "cellType=Macrophage,Monocyte",
+    "searchSpecificTerms": false
+  },
+  "exQuery": "feature=ENSG00000230368,ENSG00000188976",
+  "limit": 2000,
+  "offset": 0
+}
+```
+Response example:
+```json
+{
+  "resultsPerGene": [
+    {
+      "geneId": "ENSG00000230368",
+      "caseCellCount": 8450,
+      "controlCellCount": 8123,
+      "caseAvgExpression": 1.24,
+      "controlAvgExpression": 0.62,
+      "expressionDifference": 0.62,
+      "foldChange": 2,
+      "mannWhitneyU": 1.5,
+      "pValue": 0.95
+    }
+  ],
+  "pagination": {
+    "currentResultsCount": 1,
+    "limit": 2000,
+    "offset": 0
+  }
+}
+```
+
+## Delete Cell metadata and Cell expression
+
+Please use [manage-data/data endpoint](/user-guide/quick-start/admin-api/#use-case-example-delete-data-in-odm) to delete Cell metadata or Cell expression group.
