@@ -371,4 +371,4 @@ Response example:
 
 ## Delete Cell metadata and Cell expression
 
-Please use [manage-data/data endpoint](../../user-guide/quick-start/admin-api.md/#use-case-example-delete-data-in-odm) to delete Cell metadata or Cell expression group.
+Please use [manage-data/data](../../user-guide/quick-start/admin-api.md/#use-case-example-delete-data-in-odm) endpoint to delete Cell metadata or Cell expression group.
