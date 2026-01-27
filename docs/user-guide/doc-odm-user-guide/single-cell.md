@@ -128,7 +128,7 @@ Cells can be imported and linked in several hierarchical contexts, depending on 
 
 Note that Cell metadata will be linked to the nearest metadata group mentioned above in the script.
 
-#### Script example
+#### Script example (Study → Samples → Cells → Expression)
 
 ```
 odm-import-data \
