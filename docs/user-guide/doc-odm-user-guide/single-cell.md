@@ -10,7 +10,44 @@ Cell metadata can be imported into ODM using the `job` endpoints and [import_ODM
 Only TSV file format is supported to upload cell metadata.
 
 ### Uploading via API endpoints
-For data import, you should go to the `job` section and choose the endpoint relevant for the specific data type. 
+
+Let's upload a new Study with Samples, Cell metadata, and Cell expression. For data import, you should go to the `job` 
+section and choose the endpoint relevant for the specific data type.
+
+In this example we will upload the following files:
+
+[Study_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/study_metadata.tsv),
+a tab-delimited file of the study attributes:
+
+| Study Source | Study Source ID | Study Title                         |
+|--------------|-----------------|-------------------------------------|
+| S3           | EXP_S_9988      | Single Cell Expression Data Search  |
+
+Import study as [described here](../doc-odm-user-guide/import-data-using-api.md/#import-study).
+
+[Samples_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/samples.tsv),
+a tab-delimited file of sample attributes:
+
+| Sample Name | Sample Source ID | Sample Source | Sex    | Age | Cell Type   | Disease  |
+|-------------|------------------|---------------|--------|-----|-------------|----------|
+| EXP_SN_8801 | EXP_SSID_8801    | S3            | female | 28  | EXP_CT_8801 | diabetes |
+| EXP_SN_8802 | EXP_SSID_8802    | S3            | male   | 29  | EXP_CT_8802 | melanoma |
+| ...         | ...              | ...           | ...    | ... | ...         | ...      |
+
+Import samples as [described here](../doc-odm-user-guide/import-data-using-api.md/#import-samples).
+
+[Cell_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv),
+a tab-delimited file of cell attributes:
+
+| barcode        | sample_id     | cell_type  | treatment  | protocol    | cluster            | n_counts | percent_mito  | umap       | pca      | n_genes | doublet_scores | donor   | organ   | sort    | method | file            | assay      | disease  | organism      | sex    | development_stage |
+|----------------|---------------|------------|------------|-------------|--------------------|----------|---------------|------------|----------|---------|----------------|---------|---------|---------|--------|-----------------|------------|----------|---------------|--------|-------------------|
+| SMPL_CID_A1 01 | EXP_SSID_8801 | CD4_T_cell | stimulated | Smart-seq2  | Activated T cells  | 12500    | 0.8           | -1.2,2.5   | 1.8,-0.7 | 2800    | 0.05           | DONOR_A | spleen  | FACS_A  | scRNA  | SampleFile_A101 | Smart-seq2 | healthy  | Homo sapiens  | female | adult             |
+| SMPL_CID_A102  | EXP_SSID_8802 | NK_cell    | resting    | Smart-seq2  | Resting NK_cells   | 8900     | 1.1           | 2.3,-1.8   | -0.9,2.1 | 2100    | 0.08           | DONOR_A | blood   | FACS_A  | scRNA  | SampleFile_A102 | Smart-seq2 | healthy  | Homo sapiens  | male   | adult             |
+| SMPL_CID_A103  | EXP_SSID_8803 | CD4_T_cell | stimulated | Smart-seq2  | Memory T cells     | 15200    | 0.9           | -2.1,1.7   | 0.6,-1.9 | 3200    | 0.04           | DONOR_A | spleen  | FACS_A  | scRNA  | SampleFile_A103 | Smart-seq2 | healthy  | Homo sapiens  | female | adult             |
+| SMPL_CID_A104  | EXP_SSID_8804 | CD8_T_cell | cytotoxic  | Smart-seq2  | Cytotoxic T cells  | 11800    | 1.2           | 1.9,-2.4   | -1.5,0.8 | 2900    | 0.07           | DONOR_A | blood   | FACS_A  | scRNA  | SampleFile_A104 | Smart-seq2 | healthy  | Homo sapiens  | male   | adult             |
+| SMPL_CID_A105  | EXP_SSID_8805 | CD8_T_cell | resting    | Smart-seq2  | Naive CD8_T_cells  | 9300     | 1.0           | -0.8,1.3   | 2.2,-1.1 | 2500    | 0.06           | DONOR_A | spleen  | FACS_A  | scRNA  | SampleFile_A105 | Smart-seq2 | healthy  | Homo sapiens  | female | adult             |
+
+
 For Cell metadata use the following endpoints:
 
 * Supply the file URL via dataLink
@@ -20,6 +57,15 @@ For Cell metadata use the following endpoints:
 * Upload directly from TSV file 
 
     **Path:** POST `/api/v1/jobs/import/cells/multipart`
+
+[Cell_expression](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/expression_2_cells_linked_to_samples.tsv),
+  a tab-delimited file of cell expression data:
+
+| gene_id          | SMPL_CID_A101 | SMPL_CID_A102 | SMPL_CID_A103 | SMPL_CID_A104 | SMPL_CID_A105 |
+|------------------|---------------|---------------|---------------|---------------|---------------|
+| ENSG00000230368  | 1.01          | 1.02          | 1.03          | 1.04          | 1.05          |
+| ENSG00000188976  | 2.01          | 2.02          | 2.03          | 2.04          | 2.05          |
+| ACTB             | 3.01          | 3.02          | 3.03          | 3.04          | 3.05          |
 
 For Cell expression use the following endpoints:
 
@@ -33,7 +79,7 @@ For Cell expression use the following endpoints:
     
     **It is recommended to use TSV files archived in `.br` or `.lz4` extensions for Cell expression.**
 
-When the import job finishes successfully, the resulting Cell Group accession can be retrieved with the following endpoint:  
+When the import job finishes successfully, the resulting Group accession can be retrieved with the following endpoint:  
 GET `/api/v1/jobs/{jobExecId}/output`.
 
 Example response:
@@ -81,6 +127,21 @@ Cells can be imported and linked in several hierarchical contexts, depending on 
     Used when cells originate from preparation-level data.
 
 Note that Cell metadata will be linked to the nearest metadata group mentioned above in the script.
+
+#### Script example
+
+```
+odm-import-data \
+--server <HOST> \
+--token <HOST> \
+--study 's3://bio-test-data/User_guide_test_data/Single_cell_data/study_metadata.tsv' \
+--samples 's3://bio-test-data/User_guide_test_data/Single_cell_data/samples.tsv' \
+--cells 's3://bio-test-data/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv' \
+--expression 's3://bio-test-data/User_guide_test_data/Single_cell_data/expression_2_cells_linked_to_samples.tsv' \
+--data-class 'Single-cell transcriptomics' \
+--number-of-feature-attributes 1 \
+--allow-duplicates
+```
 
 ### Common rules for TSV files with Cell metadata
 
