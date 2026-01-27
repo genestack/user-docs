@@ -10,28 +10,28 @@ Cell metadata can be imported into ODM using the `job` endpoints and [import_ODM
 Only TSV file format is supported to upload cell metadata.
 
 ### Uploading via API endpoints
-For data import, you should go to the job section and choose the endpoint relevant for the specific data type. 
+For data import, you should go to the `job` section and choose the endpoint relevant for the specific data type. 
 For Cell metadata use the following endpoints:
 
 * Supply the file URL via dataLink
 
-    Path: POST `/api/v1/jobs/import/cells`
+    **Path:** POST `/api/v1/jobs/import/cells`
 
 * Upload directly from TSV file 
 
-    Path: POST `/api/v1/jobs/import/cells/multipart`
+    **Path:** POST `/api/v1/jobs/import/cells/multipart`
 
 For Cell expression use the following endpoints:
 
 * Supply the file URL via dataLink
 
-    Path: POST `/api/v1/jobs/import/expression`
+    **Path:** POST `/api/v1/jobs/import/expression`
 
 * Upload directly from TSV file
 
-    Path: POST `/api/v1/jobs/import/expression/multipart`
+    **Path:** POST `/api/v1/jobs/import/expression/multipart`
     
-    **It is recommended to use TSV files archived in `.br` or `lz4` extensions for Cell expression.**
+    **It is recommended to use TSV files archived in `.br` or `.lz4` extensions for Cell expression.**
 
 When the import job finishes successfully, the resulting Cell Group accession can be retrieved with the following endpoint:  
 GET `/api/v1/jobs/{jobExecId}/output`.
@@ -82,8 +82,6 @@ Cells can be imported and linked in several hierarchical contexts, depending on 
 
 Note that Cell metadata will be linked to the nearest metadata group mentioned above in the script.
 
-Learn more about [uploading data to ODM using the script here](../doc-odm-user-guide/import-data-using-python-script.md).
-
 ### Common rules for TSV files with Cell metadata
 
 #### Stored attributes and limitations
@@ -122,17 +120,19 @@ Warnings (ignored values):
 
 To link Cell metadata to other metadata groups use the following endpoints: 
 
+**Swagger definition:** `integrationCurator` → `Cell integration as Curator`
+
 * Link to Samples
 
-    Path: POST `/api/v1/as-curator/integration/link/cell/group/{sourceId}/to/sample/group/{targetId}`
+    **Path:** POST `/api/v1/as-curator/integration/link/cell/group/{sourceId}/to/sample/group/{targetId}`
 
 * Link to Libraries
 
-    Path: POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/library/group/{targetId}`
+    **Path:** POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/library/group/{targetId}`
 
 * Link to Preparations
 
-    Path: POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/preparation/group/{targetId}`
+    **Path:** POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/preparation/group/{targetId}`
 
 For `sourceId` field provide accession of your Cell metadata group.
 For `targetId` field provide accession of selected Sample, Library, or Preparation group where Cell metadata should be linked.
@@ -142,11 +142,10 @@ Cell metadata will be linked if there are matches between `batch` values in Cell
 
 #### Validation
 
-Fail conditions:
+Fail conditions: 
 
 * There is no Sample Source/Library/Preparation ID in Sample/Library/Preparation metadata group.
 * There are no matches between `batch` in Cell metadata and Sample Source/Library/Preparation IDs.
-* Cell metadata group is already linked to another metadata group.
 
 The amount of successfully created links between Cells and Samples/Libraries/Preparations will be shown in response 
 message if linkage is successful.
@@ -155,7 +154,9 @@ message if linkage is successful.
 
 To link Cell expression to Cell metadata group use the following endpoint:
 
-Path: POST `/api/v1/as-curator/integration/link/expression/group/{sourceId}/to/cell/group/{targetId}`
+**Swagger definition:** `integrationCurator` → `Expression integration as Curator`
+
+**Path:** POST `/api/v1/as-curator/integration/link/expression/group/{sourceId}/to/cell/group/{targetId}`
 
 For `sourceId` field provide accession of your Cell expression group.
 
@@ -172,7 +173,9 @@ It quantifies the proportion of cells that meet specific criteria (`countSelecte
 threshold, cell type, or cluster) relative to a defined reference group or the total cell population 
 (`countAvailable`) defined by study, samples, library, or preparation metadata.
 
-Path: POST `/api/v1/as-curator/omics/cells/analytics/cell-ratio`
+**Swagger definition:** `integrationCurator` → `[BETA] Analytics omics queries as Curator`
+
+**Path:** POST `/api/v1/as-curator/omics/cells/analytics/cell-ratio`
 
 The Cell Ratio endpoint computes a simple proportion:
 
@@ -221,7 +224,9 @@ The Gene Summary endpoint returns **descriptive statistics and distribution summ
 You use it when you want quick “what does this gene look like in these cells?” metrics: 
 mean/median, spread, quantiles, min/max, and a histogram-style density summary.
 
-Path: POST `/api/v1/as-curator/omics/cells/analytics/gene-summary`
+**Swagger definition:** `integrationCurator` → `[BETA] Analytics omics queries as Curator`
+
+**Path:** POST `/api/v1/as-curator/omics/cells/analytics/gene-summary`
 
 For each requested gene, the response includes:
 
@@ -293,7 +298,9 @@ The Differential Expression endpoint compares gene expression between two cell p
 a `Case` group and a `Control` group. It returns per-gene metrics that quantify how strongly expression
 differs between the two groups, including **fold change** and **Mann–Whitney U test** results.
 
-Path: POST `/api/v1/as-curator/omics/cells/analytics/differential-expression`
+**Swagger definition:** `integrationCurator` → `[BETA] Analytics omics queries as Curator`
+
+**Path:** POST `/api/v1/as-curator/omics/cells/analytics/differential-expression`
 
 Use it to answer questions like:
 
@@ -305,11 +312,12 @@ Calculations for each returned `geneId`:
 
 * `caseCellCount`: number of case cells contributing measurable expression for that gene 
 * `controlCellCount`: number of control cells contributing measurable expression for that gene 
-* `caseAvgExpression`: mean expression across contributing case cells 
-* `controlAvgExpression`: mean expression across contributing control cells 
-* `expressionDifference`: `caseAvgExpression` - `controlAvgExpression` 
-* `foldChange`: `caseAvgExpression` / `controlAvgExpression` 
+* `caseAvgEx`: mean expression across contributing case cells 
+* `controlAvgEx`: mean expression across contributing control cells 
+* `expressionDifference`: `caseAvgEx` - `controlAvgEx` 
+* `foldChange`: `caseAvgEx` / `controlAvgEx` 
 * `mannWhitneyU` / `pValue`: Mann–Whitney U test outputs (as implemented by ClickHouse mannwhitneyutest)
+* `log2FC`: the fold change expressed on a base-2 logarithmic scale
 
 If you apply exQuery expression thresholds, only cells/expression values that satisfy those rules contribute to the counts and averages.
 
