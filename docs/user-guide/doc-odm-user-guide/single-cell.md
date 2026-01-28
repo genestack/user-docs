@@ -161,7 +161,7 @@ All other values presented in Cell metadata file will be stored as custom attrib
 | percentMito    | float          | % mitochondrial gene expression                                                                              |          |
 | umap           | float          | Dimensionality reduction results (Uniform Manifold Approximation and Projection). Up to 3 values are stored. |          |
 | pca            | float          | Dimensionality reduction results (Principal Component Analysis results). Up to 100 values are stored.        |          |
-| tsne           | float          | Up to 3 values are stored.                                                                                   |          |
+| tsne           | float          | Dimensionality reduction results (t-distributed Stochastic Neighbor Embedding) Up to 3 values are stored.    |          |
 
 #### Validation
 
