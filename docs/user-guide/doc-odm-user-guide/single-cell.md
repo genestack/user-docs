@@ -133,7 +133,7 @@ Note that Cell metadata will be linked to the nearest metadata group mentioned a
 ```
 odm-import-data \
 --server <HOST> \
---token <HOST> \
+--token <TOKEN> \
 --study 's3://bio-test-data/User_guide_test_data/Single_cell_data/study_metadata.tsv' \
 --samples 's3://bio-test-data/User_guide_test_data/Single_cell_data/samples.tsv' \
 --cells 's3://bio-test-data/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv' \
