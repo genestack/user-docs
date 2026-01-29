@@ -1,8 +1,9 @@
 # Attachments transformation
 
 ## Transformations in General
-Transformation is a process that allows user to convert any attached file format type into format that ODM can index 
-within database. For now ODM can accept TSV files.
+Transformation is a process that allows users to convert any attached file format type into a format that ODM can index.
+Currently, ODM can't accept csv files as a source of metadata, but ODM can accept tsv files for that purpose. 
+This is solved with the help of transformation.
 
 Each transformation consists of transformation script (image) and its configuration. For example, image has ability 
 to transform CSV file to TSV, at the same time configuration provides information where this TSV should be places, 
@@ -66,12 +67,6 @@ Initial request body:
 {
   "data": "string",
   "description": "string",
-  "image_references": [
-    {
-      "name": "string",
-      "version": "string"
-    }
-  ],
   "name": "string"
 }
 ```
@@ -84,12 +79,6 @@ Let’s create configuration that allows image to place transformed `CSV` file t
     "destination": "samples"
     },
   "description": "Configuration which allows you to transform csv file into Sample group",
-  "image_references": [
-    {
-      "name": "metadata-basic",
-      "version": "0.0.2"
-    }
-  ],
   "name": "csv to samples"
 }
 ```
