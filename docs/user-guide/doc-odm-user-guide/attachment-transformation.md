@@ -15,7 +15,7 @@ e.g. Samples, Libraries, Preparations, Cell metadata, Expression, Variants, etc.
 Currently ODM has default image called `metadata-basic`.
 This image allows user to transform `CSV` files into `TSV` to create Sample group.
 
-To get the list of available images via API go to `processorController` Swagger definition of endpoints and use 
+To get the list of available images via API go to `processorsController` Swagger definition of endpoints and use 
 GET `transformations/images`. Endpoint response example:
 
 ```json
@@ -65,7 +65,11 @@ Initial request body:
 
 ```json
 {
-  "data": "string",
+  "data": {
+    "additionalProp1": "string",
+    "additionalProp2": "string",
+    "additionalProp3": "string"
+  },
   "description": "string",
   "name": "string"
 }
@@ -125,7 +129,7 @@ Upload the file as attachment to your Study:
 
 ![CSV-attachment](../doc-odm-user-guide/doc-odm-user-guide/images/attachments-transformation-csv.png)
 
-Go to `Transformation Jobs` section in `processorControllers` group in API. Use POST `transformations/jobs` 
+Go to `Transformation Jobs` section in `processorsController` group in API. Use POST `transformations/jobs` 
 endpoint to transform `CSV` file into Sample group.
 
 Initial request body:
