@@ -186,7 +186,7 @@ odm-import-data --token [token] --host [HOST] --study https://s3.amazonaws.com/b
 
 Script example (Study → Samples → Cells → Expression)
 
-```
+```default
 odm-import-data \
 --server <HOST> \
 --token <TOKEN> \
