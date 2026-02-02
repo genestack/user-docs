@@ -8,7 +8,7 @@ to be able to import and edit data in ODM.
 
 Read the full list of requirements [here](../../../tools/odm-sdk/terminal/study/uploading-study/#requirements)
 
-## Optional experimental (signal) data files
+## Optional files
 
 You can optionally also provide:
 
@@ -33,7 +33,7 @@ You can optionally also provide:
   accession of an existing preparations file
 - A Cell metadata file in TSV format, hosted at an HTTPS web address
 
-Once imported, studies, samples, and signal metadata will be queryable and
+Once imported, studies, samples, libraries, preparations, cells metadata, and signal metadata will be queryable and
 editable from both the User Interface and APIs, whilst the signal data will
 only queryable via APIs.
 
