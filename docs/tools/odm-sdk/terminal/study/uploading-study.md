@@ -392,10 +392,6 @@ Run the script with the above by typing the following (inserting your token
 instead of [token], note you may need to escape or quote strings depending on
 your specific command line interface):
 
-```default
-odm-import-data --token [token] --host [HOST] --study https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.study.tsv --samples https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv --expression https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct --expression_metadata https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct.tsv --variant https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf --variant_metadata https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf.tsv
-```
-
 Script example (Study → Samples → Cells → Expression)
 
 ```default
