@@ -34,6 +34,7 @@ odm-import-data -h
     - `-sm,--samples`: URL of the samples file or accession of existing samples file to be linked
     - `-lb, --libraries`: URL of the libraries file or accession of existing libraries file to be linked
     - `-pr, --preparations`: URL of hosted preparations file or accession of existing preparations file to be linked
+    - `-c, --cell`: URL of hosted cell metadata file or accession of existing cell file to be linked
     - `-e,--expression`: URL of any tabular data file (not only expression data) except Gene Variant or Flow Cytometry
     - `-em,--expression-metadata`: URL of any tabular metadata file (not only expression data) except Gene Variant or Flow Cytometry
     - `-v, --variant`: URL of the variants data file
@@ -73,7 +74,7 @@ Additional optional parameters:
 
 ## Data model
 
-The script supports 2 data models:
+The script supports several data models:
 ![Data Model](uploading-study/data-model.png)
 
 - Study - Samples - Omics data:
@@ -82,6 +83,9 @@ The script supports 2 data models:
     - the script uses this data model if parameters for libraries or preparations loading are specified;
     - omics data can be linked only to libraries or preparations;
     - only expression data (the parameters --expression and --expression-metadata) is supported.
+- Study - Samples - (optional: Libraries/Preparations) - Cell metadata - Omics data:
+    - the script uses this data model if parameter for cell metadata loading is specified;
+    - expression data can be linked to cell metadata;
 
 The script works sequentially, linking the object with the previous one according to the data model. Below you can find
 examples to demonstrate different combinations:
@@ -140,6 +144,25 @@ odm-import-data --token [token] -H [HOST] \
 - `libraries_1` will be linked to `samples_2`
 - `preparations_1` will be linked to `samples_2`
 - `expression_1` will be linked to `preparations_1`
+
+### _Example 4_
+
+```shell
+odm-import-data --token [token] -H [HOST] \
+  --study http://data_source/study.csv \
+  --samples http://data_source/samples_1.csv \
+  --samples http://data_source/samples_2.csv \
+  --libraries http://data_source/libraries_1.csv \
+  --cell http://data_source/cell_1.csv \
+  --expression http://data_source/expression_1.gct \
+  --expression-metadata http://data_source/expression_metadata_1.gct.tsv
+```
+
+- `samples_1` will be linked to `study`
+- `samples_2` will be linked to `study`
+- `libraries_1` will be linked to `samples_2`
+- `cell_1` will be linked to `libraries_1`
+- `expression_1` will be linked to `cell_1`
 
 ## Link all to all
 
@@ -354,4 +377,32 @@ odm-import-data --token [token] -H [HOST] \
   --study http://data_source/arabidopsis_study.tsv \
   --samples http://data_source/arabidopsis_sample_metadata_uncurated.tsv \
   --expression http://data_source/arabidopsis.gct
+```
+
+### Study with single cell data
+
+For working with Cell metadata and Cell expression use the following example files:
+
+- [Study_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/study_metadata.tsv), a tab-delimited file of the study attributes
+- [Samples_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/samples.tsv), a tab-delimited file of sample attributes
+- [Cell_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv), a tab-delimited file of cell attributes
+- [Cell_expression](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/expression_2_cells_linked_to_samples.tsv), a tab-delimited file of cell expression data
+
+Run the script with the above by typing the following (inserting your token
+instead of [token], note you may need to escape or quote strings depending on
+your specific command line interface):
+
+Script example (Study → Samples → Cells → Expression)
+
+```default
+odm-import-data \
+--server <HOST> \
+--token <TOKEN> \
+--study 's3://bio-test-data/User_guide_test_data/Single_cell_data/study_metadata.tsv' \
+--samples 's3://bio-test-data/User_guide_test_data/Single_cell_data/samples.tsv' \
+--cells 's3://bio-test-data/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv' \
+--expression 's3://bio-test-data/User_guide_test_data/Single_cell_data/expression_2_cells_linked_to_samples.tsv' \
+--data-class 'Single-cell transcriptomics' \
+--number-of-feature-attributes 1 \
+--allow-duplicates
 ```

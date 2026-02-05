@@ -8,7 +8,7 @@ to be able to import and edit data in ODM.
 
 Read the full list of requirements [here](../../../tools/odm-sdk/terminal/study/uploading-study/#requirements)
 
-## Optional experimental (signal) data files
+## Optional files
 
 You can optionally also provide:
 
@@ -17,7 +17,8 @@ You can optionally also provide:
 - The server address if you want to apply the script to a different ODM server.
   Use `--host <HOST>` to specify.
 - Any data in the Tabular format (Data Frame) as a TSV, hosted at an HTTPS web address
-- Gene expression data in [GCT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29) format, hosted at an HTTPS web address
+- Gene expression data in [GCT](https://docs.gsea-msigdb.org/#GSEA/Data_Formats/#gct-gene-cluster-text-file-format-gct) format, hosted at an HTTPS web address
+- Gene expression or Cell expression data in TSV format, hosted at an HTTPS web address
 - Gene expression metadata in TSV format, hosted at an HTTPS web address
 - Gene variant data in [VCF](https://samtools.github.io/hts-specs/VCFv4.2.pdf) format, hosted at an HTTPS web address
 - Gene variant metadata in TSV format, hosted at an HTTPS web address
@@ -29,9 +30,10 @@ You can optionally also provide:
 - A libraries file in TSV format, hosted at an HTTPS web address, or the
   accession of an existing library file
 - A preparations file in TSV format, hosted at an HTTPS web address, or the
-  accession of an existing preparations file.
+  accession of an existing preparations file
+- A Cell metadata file in TSV format, hosted at an HTTPS web address
 
-Once imported, studies, samples, and signal metadata will be queryable and
+Once imported, studies, samples, libraries, preparations, cells metadata, and signal metadata will be queryable and
 editable from both the User Interface and APIs, whilst the signal data will
 only queryable via APIs.
 
@@ -87,6 +89,11 @@ Optionally include data files by appending any or all of the following to the ab
 ```default
 --preparations [URL]
 ```
+
+```default
+--cell [URL]
+```
+
 ## Importing Multiple Tabular Files
 
 - [Test_basic_generic_expression.tsv](https://bio-test-data.s3.us-east-1.amazonaws.com/odm/user-guide/Test_basic_generic_expression.tsv), a tab-separated file containing tabular expression data with two text features and two numeric features, followed by expression values for four samples.
@@ -156,11 +163,18 @@ accessions must be supplied. See the example below:
 The following are some example files to illustrate file formats:
 
 - [Test_1000g.study.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.study.tsv), a tab-delimited file of the study attributes
-- [Test_1000g.samples.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv), a tab-delimited file of sample attributes.
-- [Test_1000g.gct](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct), a [GCT](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#GCT:_Gene_Cluster_Text_file_format_.28.2A.gct.29) file of expression data from multiple sequencing runs
+- [Test_1000g.samples.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv), a tab-delimited file of sample attributes
+- [Test_1000g.gct](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct), a [GCT](https://docs.gsea-msigdb.org/#GSEA/Data_Formats/#gct-gene-cluster-text-file-format-gct) file of expression data from multiple sequencing runs
 - [Test_1000g.gct.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct.tsv), a tab-separated file that describes the expression data
 - [Test_1000g.vcf](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf), a [VCF](https://samtools.github.io/hts-specs/VCFv4.2.pdf) file of variant data from multiple sequencing runs
 - [Test_1000g.vcf.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf.tsv), a tab-separated file that describes the variant data
+
+For working with Cell metadata and Cell expression use the following example files:
+
+- [Study_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/study_metadata.tsv), a tab-delimited file of the study attributes
+- [Samples_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/samples.tsv), a tab-delimited file of sample attributes
+- [Cell_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv), a tab-delimited file of cell attributes
+- [Cell_expression](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/expression_2_cells_linked_to_samples.tsv), a tab-delimited file of cell expression data
 
 Run the script with the above by typing the following (inserting your token
 instead of [token], note you may need to escape or quote strings depending on
@@ -168,4 +182,19 @@ your specific command line interface):
 
 ```default
 odm-import-data --token [token] --host [HOST] --study https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.study.tsv --samples https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv --expression https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct --expression_metadata https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.gct.tsv --variant https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf --variant_metadata https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.vcf.tsv
+```
+
+Script example (Study → Samples → Cells → Expression)
+
+```default
+odm-import-data \
+--server <HOST> \
+--token <TOKEN> \
+--study 's3://bio-test-data/User_guide_test_data/Single_cell_data/study_metadata.tsv' \
+--samples 's3://bio-test-data/User_guide_test_data/Single_cell_data/samples.tsv' \
+--cells 's3://bio-test-data/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv' \
+--expression 's3://bio-test-data/User_guide_test_data/Single_cell_data/expression_2_cells_linked_to_samples.tsv' \
+--data-class 'Single-cell transcriptomics' \
+--number-of-feature-attributes 1 \
+--allow-duplicates
 ```
