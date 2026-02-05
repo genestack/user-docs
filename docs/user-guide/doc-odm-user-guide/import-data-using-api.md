@@ -381,15 +381,15 @@ You can link the **Cell metadata group** to the **samples/libraries/preparation 
 
 * Link to Samples
 
-  **Path:** POST `/api/v1/as-curator/integration/link/cell/group/{sourceId}/to/sample/group/{targetId}`
+    **Path:** POST `/api/v1/as-curator/integration/link/cell/group/{sourceId}/to/sample/group/{targetId}`
 
 * Link to Libraries
 
-  **Path:** POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/library/group/{targetId}`
+    **Path:** POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/library/group/{targetId}`
 
 * Link to Preparations
 
-  **Path:** POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/preparation/group/{targetId}`
+    **Path:** POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/preparation/group/{targetId}`
 
 For `sourceId` field provide accession of your Cell metadata group.
 
@@ -398,7 +398,7 @@ For `targetId` field provide accession of selected Sample, Library, or Preparati
 Cell metadata will be linked if there are matches between `batch` values in Cell metadata and `Sample Source ID` for Samples,
 `Library ID` for Libraries, and `Preparation ID` for Preparations.
 
-If successful you will find the Cells via `GET /api/v1/as-curator/cells/by/group/{id}` API endpoint.
+If successful you will find the Cells via `GET /api/v1/as-curator/omics/cells` API endpoint when Study accession is provided for `studyQuery` parameter.
 
 ### Working with the jobExecId
 The following endpoints allow you to manage and inspect jobs using the jobExecId, which is returned after initiating an asynchronous import task.

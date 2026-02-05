@@ -6,7 +6,7 @@ ODM now supports the Cell entity to store and manage metadata and expression for
 Each cell record belongs to a Cell Group, which represents a single cell table (group).
 
 ## Cell metadata and Cell expression in ODM
-Cell metadata can be imported into ODM using the `job` endpoints and [import_ODM_data script](../../tools/odm-sdk/terminal/study/uploading-study.md). 
+Cell metadata can be imported into ODM using the `job` endpoints and [odm_import_data script](../../tools/odm-sdk/terminal/study/uploading-study.md). 
 Only TSV file format is supported to upload cell metadata.
 
 ### Uploading via API endpoints
@@ -47,7 +47,6 @@ a tab-delimited file of cell attributes:
 | SMPL_CID_A104  | EXP_SSID_8804 | CD8_T_cell | cytotoxic  | Smart-seq2  | Cytotoxic T cells  | 11800    | 1.2           | 1.9,-2.4   | -1.5,0.8 | 2900    | 0.07           | DONOR_A | blood   | FACS_A  | scRNA  | SampleFile_A104 | Smart-seq2 | healthy  | Homo sapiens  | male   | adult             |
 | SMPL_CID_A105  | EXP_SSID_8805 | CD8_T_cell | resting    | Smart-seq2  | Naive CD8_T_cells  | 9300     | 1.0           | -0.8,1.3   | 2.2,-1.1 | 2500    | 0.06           | DONOR_A | spleen  | FACS_A  | scRNA  | SampleFile_A105 | Smart-seq2 | healthy  | Homo sapiens  | female | adult             |
 
-
 For Cell metadata use the following endpoints:
 
 * Supply the file URL via dataLink
@@ -57,6 +56,8 @@ For Cell metadata use the following endpoints:
 * Upload directly from TSV file 
 
     **Path:** POST `/api/v1/jobs/import/cells/multipart`
+
+Import Cell metadata as [described here](../doc-odm-user-guide/import-data-using-api.md/#import-cell-metadata).
 
 [Cell_expression](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/expression_2_cells_linked_to_samples.tsv),
   a tab-delimited file of cell expression data:
