@@ -19,11 +19,12 @@ You can import studies, samples, and any data in the tabular format:
 
 - **Study**: the context of an experiment, such as the aim and statistical design.
 - **Sample**: the biological attributes of a sample, such as tissue, disease, and treatment.
-- **Data**: Includes transcriptomics, proteomics, gene variant, flow cytometry data, and more. You can import the metadata (e.g. genome version, normalization
-  method, and the locations of raw/processed data in your storage) together with the processed data (e.g. expression counts, genotypes).
-- **Cross-reference mapping**: a list of transcript and gene ids and how they map to each other.
 - **Libraries metadata**: TSV file describing sequencing libraries or other indexable data types. It includes information on library preparation, type (e.g., single-end or paired-end), protocol, barcodes, and platform.
 - **Preparations metadata**: metadata describing how samples were prepared prior to data generation, applicable to proteomics, transcriptomics, and other data types.
+- **Cell metadata**: all the information stored per cell (per barcode) that describes that cell and its context, separate from the actual molecular measurements (like the gene expression counts matrix which should be uploaded as expression within the ODM)
+- **Data**: Includes transcriptomics, proteomics, gene variant, flow cytometry data, cell expression, and more. You can import the metadata (e.g. genome version, normalization
+  method, and the locations of raw/processed data in your storage) together with the processed data (e.g. expression counts, genotypes).
+- **Cross-reference mapping**: a list of transcript and gene ids and how they map to each other.
 - **Attached Files**: Supplement your study by attaching related research materials like PDF, XLSX, DOCX, PPTX files, images, and more. Please note, contents of these attached files won't be indexed or made searchable.
 
 Once imported, studies, samples, and data metadata will be queryable and editable from both the User Interface and APIs, whilst the signal data will only be queryable via APIs.
@@ -35,17 +36,18 @@ Importing data has two stages. First, you import studies, samples, and data sepa
 
 The **Sample Source ID** is used as the default linking key. You can choose another attribute from the template for linking data to samples. The data model and how it looks in the User Interface is shown below.
 
-In addition to core data types, **Libraries** and **Preparations** require special handling. These files must include the **Sample Source ID**, which is used to link them to the appropriate samples. 
+In addition to core data types, **Libraries**, **Preparations**, **Cell metadata** require special handling. These files must include the **Sample Source ID**, which is used to link them to the appropriate samples. 
 
 The correct order of linking follows the system logic and available endpoints:
 
 - **Samples** are linked to a **Study**
 - **Libraries** and **Preparations** are linked to **Samples**
-- **Omics data** (e.g. transcriptomics, proteomics) are linked to **Samples**, or to **Libraries/Preparations** depending on the data type
+- **Cell metadata** is linked to **Samples** or **Libraries** or **Preparations**
+- **Omics data** (e.g. transcriptomics, proteomics, cell expression) are linked to **Samples**, or to **Libraries/Preparations**, or to **Cell metadata** depending on the data type
 - **Attached files** are linked directly to a **Study**
 
 
-![image](doc-odm-user-guide/images/data-model+metainfo-editor.png)
+![image](doc-odm-user-guide/images/data-model.png)
 ## Data Loading via APIs
 To load the data via APIs each entity is created via a separate endpoint specific for
 this data type. Then they are sequentially linked in the Integration layer.
@@ -271,6 +273,51 @@ As soon as the import process will be completed, you will be able to get the pre
   }
 }
 ```
+
+### Import Cell metadata
+
+For working with Cell metadata and Cell expression use the following example files:
+
+- [Study_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/study_metadata.tsv), a tab-delimited file of the study attributes
+- [Samples_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/samples.tsv), a tab-delimited file of sample attributes
+- [Cell_metadata](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv), a tab-delimited file of cell attributes
+- [Cell_expression](https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/expression_2_cells_linked_to_samples.tsv), a tab-delimited file of cell expression data
+
+To import Cell metadata, you will need to use `POST /api/v1/jobs/import/cells` endpoint:
+
+```default
+curl -X 'POST' \
+  'https://<HOST>/api/v1/jobs/import/cells?allow_dups=false' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "dataLink": "https://bio-test-data.s3.us-east-1.amazonaws.com/User_guide_test_data/Single_cell_data/cells_2_samples_full_match.tsv"
+```
+
+Similar to the previous step, you should see the **jobExecId** in the response:
+
+```json
+{
+  "jobExecId": 24,
+  "startedBy": "job@genestack.com",
+  "jobName": "IMPORT_CELLS",
+  "status": "COMPLETED",
+  "createTime": "2026-02-05 11:35:36",
+  "endTime": "2026-02-05 11:35:38"
+}
+```
+As soon as the import process will be completed, you will be able to get the Cell metadata **groupAccession** by querying the **jobExecId** in `GET /api/v1/jobs/{jobExecId}/output` endpoint:
+
+```json
+{
+  "status": "COMPLETED",
+  "result": {
+    "groupAccession": "GSF016786"
+  }
+}
+```
+
 ### Linking entities
 
 #### Samples to Study
@@ -327,6 +374,31 @@ curl -X 'POST' \
 If successful you will see a preparation tab appear in the Metadata Editor:
 
 ![image](doc-odm-user-guide/images/preparation-added.png)
+
+#### Cell metadata to Samples/Libraries/Preparations
+
+You can link the **Cell metadata group** to the **samples/libraries/preparation groups** using the endpoints:
+
+* Link to Samples
+
+  **Path:** POST `/api/v1/as-curator/integration/link/cell/group/{sourceId}/to/sample/group/{targetId}`
+
+* Link to Libraries
+
+  **Path:** POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/library/group/{targetId}`
+
+* Link to Preparations
+
+  **Path:** POST `/api/v1/as-curator/integration/link/cells/group/{sourceId}/to/preparation/group/{targetId}`
+
+For `sourceId` field provide accession of your Cell metadata group.
+
+For `targetId` field provide accession of selected Sample, Library, or Preparation group where Cell metadata should be linked.
+
+Cell metadata will be linked if there are matches between `batch` values in Cell metadata and `Sample Source ID` for Samples,
+`Library ID` for Libraries, and `Preparation ID` for Preparations.
+
+If successful you will find the Cells via `GET /api/v1/as-curator/cells/by/group/{id}` API endpoint.
 
 ### Working with the jobExecId
 The following endpoints allow you to manage and inspect jobs using the jobExecId, which is returned after initiating an asynchronous import task.
@@ -937,4 +1009,3 @@ Example response:
   ]
 }
 ```
-
