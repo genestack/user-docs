@@ -93,7 +93,7 @@ Learn more about [uploading data to ODM via API here](../doc-odm-user-guide/impo
 
 ### Uploading via script
 
-Curators can upload and link Cell metadata groups to ODM using the [import_ODM_data script](../../tools/odm-sdk/terminal/study/uploading-study.md).
+Curators can upload and link Cell metadata groups to ODM using the [odm_import_data script](../../tools/odm-sdk/terminal/study/uploading-study.md).
 This extension allows you to include Cell groups in the same import workflow as other metadata entities (Studies, 
 Samples, Libraries, and Preparations), ensuring a consistent and automated data-loading process.
 
