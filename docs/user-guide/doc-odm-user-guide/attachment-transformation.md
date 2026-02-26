@@ -42,6 +42,17 @@ GET `transformations/images`. Endpoint response example:
       "samples"
     ]
   },
+    {
+    "name": "metadata-basic",
+    "version": "0.0.3",
+    "description": "Basic converter from attachment to metadata",
+    "input_formats": [
+      "csv"
+    ],
+    "output_formats": [
+      "samples"
+    ]
+  },
   {
     "name": "metadata-basic",
     "version": "latest",
@@ -81,7 +92,7 @@ Let’s create configuration that allows image to place transformed `CSV` file t
   "data": {
     "source": "csv",
     "destination": "samples"
-    },
+  },
   "description": "Configuration which allows you to transform csv file into Sample group",
   "name": "csv to samples"
 }
@@ -136,26 +147,28 @@ Initial request body:
 
 ```json
 {
-  "attachment_accession": "string",
+  "input_accessions": ["string"],
   "configuration_id": 1,
   "image_reference": {
     "name": "string",
     "version": "string"
   },
-  "volume_size": 30
+  "volume_size": 30,
+  "dry_run": false
 }
 ```
 Fill in information about attachment genestack accession, configuration, image name and version:
 
 ```json
 {
-  "attachment_accession": "GSF016786",
+  "input_accessions": ["GSF016786"],
   "configuration_id": 294862386,
   "image_reference": {
     "name": "metadata-basic",
-    "version": "0.0.2"
+    "version": "0.0.3"
   },
-  "volume_size": 30
+  "volume_size": 30,
+  "dry_run": false
 }
 ```
 
@@ -175,11 +188,12 @@ To check the status of the Job use GET `transformations/jobs/{id}` endpoint:
   "$schema": "https://odm-processors-controller:8080/schemas/TransformationJobFields.json",
   "image_reference": {
     "name": "metadata-basic",
-    "version": "0.0.2"
+    "version": "0.0.3"
   },
-  "attachment_accession": "GSF016786",
+  "input_accessions": ["GSF016786"],
   "configuration_id": 294862386,
   "volume_size": 30,
+  "dry_run": false,
   "create_time": "2025-10-31T12:28:57Z",
   "status": {
     "state": "TERMINATED"
