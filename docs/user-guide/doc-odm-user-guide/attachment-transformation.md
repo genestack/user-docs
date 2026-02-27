@@ -196,7 +196,7 @@ To check the status of the Job use GET `transformations/jobs/{id}` endpoint:
   "dry_run": false,
   "create_time": "2025-10-31T12:28:57Z",
   "status": {
-    "state": "TERMINATED"
+    "state": "DONE"
   }
 }
 ```
