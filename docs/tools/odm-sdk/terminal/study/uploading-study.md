@@ -75,7 +75,7 @@ Additional optional parameters:
 ## Data model
 
 The script supports several data models:
-![Data Model](uploading-study/data-model.png)
+![Data Model](../../../../assets/data_model.svg)
 
 - Study - Samples - Omics data:
     - the script uses this data model if no parameters are specified for libraries or preparations loading;
