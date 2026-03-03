@@ -47,7 +47,7 @@ The correct order of linking follows the system logic and available endpoints:
 - **Attached files** are linked directly to a **Study**
 
 
-![image](doc-odm-user-guide/images/data-model.png)
+![image](../../assets/data_model.svg)
 ## Data Loading via APIs
 To load the data via APIs each entity is created via a separate endpoint specific for
 this data type. Then they are sequentially linked in the Integration layer.
