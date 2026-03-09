@@ -213,6 +213,6 @@ As the result new Sample metadata group was created in ODM:
 
 ![Sample-group](../doc-odm-user-guide/doc-odm-user-guide/images/attachments-transformation-samples.png)
 
-To retrieve transformation job logs simply use jod id in POST `transformations/jobs/{id}/logs` endpoint.
+To retrieve transformation job logs simply use job id in POST `transformations/jobs/{id}/logs` endpoint.
 
 !!! danger "Transformation job logs are stored for 2 weeks as default in the system"
