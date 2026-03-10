@@ -12,8 +12,12 @@ e.g. Samples, Libraries, Preparations, Cell metadata, Expression, Variants, etc.
 ![Diagram](../doc-odm-user-guide/doc-odm-user-guide/images/attachments-transformation-diagram.png)
 
 ## Get the list of available images
+
 Currently ODM has default image called `metadata-basic`.
 This image allows user to transform `CSV` files into `TSV` to create Sample group.
+
+!!! danger "`metadata-basic` transformation is introduced just for testing purpose"
+    
 
 To get the list of available images via API go to `processorsController` Swagger definition of endpoints and use 
 GET `transformations/images`. Endpoint response example:
@@ -208,3 +212,7 @@ is placed.
 As the result new Sample metadata group was created in ODM:
 
 ![Sample-group](../doc-odm-user-guide/doc-odm-user-guide/images/attachments-transformation-samples.png)
+
+To retrieve transformation job logs simply use job id in POST `transformations/jobs/{id}/logs` endpoint.
+
+!!! danger "Transformation job logs are stored for 2 weeks as default in the system"
