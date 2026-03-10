@@ -318,6 +318,76 @@ As soon as the import process will be completed, you will be able to get the Cel
 }
 ```
 
+### Multipart form-data upload endpoints
+The Jobs import API includes `multipart/form-data` endpoints for common ODM import workflows. 
+These endpoints allow uploading import files directly as part of the request, without providing 
+a `dataLink` to an external file location.
+
+This simplifies import workflows where the source file is already available locally. 
+Instead of uploading a file to external storage first and then passing its URL to the API, you can 
+submit the file directly to the corresponding import endpoint.
+
+#### Supported endpoints
+
+The following multipart endpoints are available:
+
+* `POST /api/v1/jobs/import/samples/multipart`
+  Uploads **Sample metadata** in **TSV** format.
+
+* `POST /api/v1/jobs/import/libraries/multipart`
+  Uploads **Library metadata** in **TSV** format.
+
+* `POST /api/v1/jobs/import/preparations/multipart`
+  Uploads **Preparation metadata** in **TSV** format.
+
+* `POST /api/v1/jobs/import/cells/multipart`
+  Uploads **Cell metadata** in **TSV** format.
+
+* `POST /api/v1/jobs/import/expression/multipart`
+  Uploads **tabular expression data** in **TSV** or **GCT** format.
+
+* `POST /api/v1/jobs/import/variant/multipart`
+  Uploads **variation data or metadata** in **VCF** or **TSV** format.
+
+* `POST /api/v1/jobs/import/flow-cytometry/multipart`
+  Uploads **flow cytometry data or metadata** in **FACS** or **TSV** format.
+
+* `POST /api/v1/jobs/import/file/multipart`
+  Uploads a **file attachment** through the Jobs import workflow.
+
+#### How these endpoints work
+
+Each endpoint is designed for a specific import type and accepts the uploaded file as multipart form data. 
+The API then creates and processes the corresponding import job in the same way as the existing Jobs import flow.
+
+The main difference from the non-multipart import endpoints is how the source file is provided:
+
+* **Multipart endpoints** accept the file directly in the HTTP request body via `file` parameter. Please note that
+    **the `file` parameter must always be placed last in the list of request parameters.**
+* **Non-multipart endpoints** require a `dataLink` that points to the source file in external storage.
+
+!!! tip "Data management"
+    The files uploaded via multipart endpoints are copied into ODM internal S3 bucket. 
+    The files are maintained by ODM and can be deleted from the original storage. 
+    Additionally such files are marked with `File copy stored` technical metadata field.
+
+#### When to use multipart endpoints
+
+Use multipart upload endpoints when:
+
+* you already has the file available locally
+* you want to avoid the extra step of uploading the file to external storage
+* you want a simpler, single-request import flow for supported import types
+
+These endpoints are particularly useful for importing files dynamically at runtime. 
+Interactive tools can submit files chosen by the user directly to the API, automation scripts can generate 
+and upload supported files as part of a single automated workflow, and system integrations can collect data 
+from external sources, convert it into a supported format, and submit it immediately. 
+This approach eliminates the need for intermediate file hosting and simplifies direct file-based import flows.
+Such flows are also supported 
+within **[Attachment transformation functionality](../doc-odm-user-guide/attachment-transformation.md)** in ODM.
+
+
 ### Linking entities
 
 #### Samples to Study
