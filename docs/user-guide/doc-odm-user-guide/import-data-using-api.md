@@ -378,8 +378,13 @@ Use multipart upload endpoints when:
 * you want to avoid the extra step of uploading the file to external storage
 * you want a simpler, single-request import flow for supported import types
 
-These endpoints are especially useful for interactive tools, automation scripts, 
-and integrations that generate or collect import files immediately before submission.
+These endpoints are particularly useful for importing files dynamically at runtime. 
+Interactive tools can submit files chosen by the user directly to the API, automation scripts can generate 
+and upload supported files as part of a single automated workflow, and system integrations can collect data 
+from external sources, convert it into a supported format, and submit it immediately. 
+This approach eliminates the need for intermediate file hosting and simplifies direct file-based import flows.
+Such flows are also supported 
+within **[Attachment transformation functionality](../doc-odm-user-guide/attachment-transformation.md)** in ODM.
 
 
 ### Linking entities
