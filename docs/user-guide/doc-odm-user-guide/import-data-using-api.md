@@ -362,7 +362,8 @@ The API then creates and processes the corresponding import job in the same way 
 
 The main difference from the non-multipart import endpoints is how the source file is provided:
 
-* **Multipart endpoints** accept the file directly in the HTTP request body.
+* **Multipart endpoints** accept the file directly in the HTTP request body via `file` parameter. Please note that
+    **the `file` parameter must always be placed last in the list of request parameters.**
 * **Non-multipart endpoints** require a `dataLink` that points to the source file in external storage.
 
 !!! tip "Data management"
