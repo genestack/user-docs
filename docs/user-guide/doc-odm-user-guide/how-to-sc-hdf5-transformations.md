@@ -105,7 +105,7 @@ If issues are found, update the configuration and repeat from Step 3. See [How t
 
 ### Step 6: Submit the full run
 
-Once the dry run completes without issues, submit the same job with `dry_run` set to `false`:
+Once the dry run completes without issues, submit the same job with environment variable `dry_run` set to `false`:
 
 ```
 POST /api/v1/transformations/jobs

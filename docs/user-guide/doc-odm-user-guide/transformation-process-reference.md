@@ -89,7 +89,7 @@ A special scenario — exporting a placeholder group containing only ID column(s
 
 #### Discovery mode
 
-When `biosample_metadata` is present, no entity has `columns_to_export` defined, and `dry_run` is enabled, the pipeline runs in discovery-only mode. It identifies which columns are uniform per value of `biosample_column_name`, logs the number of unique biosamples and the list of those attributes, and returns without writing any TSV. No ODM objects are created or modified.
+When `biosample_metadata` is present, no entity has `columns_to_export` defined, and environment variable `dry_run` is enabled, the pipeline runs in discovery-only mode. It identifies which columns are uniform per value of `biosample_column_name`, logs the number of unique biosamples and the list of those attributes, and returns without writing any TSV. No ODM objects are created or modified.
 
 #### Existing biosample metadata update
 
@@ -134,7 +134,7 @@ Data type validation is then performed on the resulting DataFrame.
 - **Required column validation:**
   - `barcode`: Unique cell identifiers. Duplicate or missing values cause an error.
   - `batch`: Sample/library/preparation identifiers for linking. Missing values cause an error.
-- **QC metric calculation** (if `add_qc_metrics` is not `false` and `dry_run` is `false`): Number of counts, number of genes, percentage mitochondrial expression, and percentage ribosomal expression are computed and added if not already present.
+- **QC metric calculation** (if `add_qc_metrics` is not `false` and environment variable `dry_run` is `false`): Number of counts, number of genes, percentage mitochondrial expression, and percentage ribosomal expression are computed and added if not already present.
 
 **Feature metadata additional steps:**
 
@@ -179,7 +179,7 @@ Source file accession and source file name are also included. The generated meta
 
 ### 4.1 Dry run halt and validation
 
-If `dry_run` is `true`, the pipeline halts at this point. Expression matrix compression is skipped. Logs are reported but not saved as attachments.
+If environment variable `dry_run` is `true`, the pipeline halts at this point. Expression matrix compression is skipped. Logs are reported but not saved as attachments.
 
 When `dry_run` is enabled and the cell linking group has been resolved, the pipeline performs a best-effort linking validation:
 

@@ -22,14 +22,6 @@ Unrecognized keys are ignored with a warning logged.
 
 Specifies the format of the input HDF5 file. Must be provided; the pipeline cannot proceed without a valid file type.
 
-### `dry_run`
-
-| | |
-|---|---|
-| **Type** | `boolean` |
-| **Default** | `false` |
-
-When `true`, the transformation performs all extraction, validation, and linking resolution steps but does not upload any data to ODM and does not save logs as an attachment. Expression matrix compression is also skipped. Use to validate configuration before committing data.
 
 ### `save_logs`
 
@@ -38,7 +30,7 @@ When `true`, the transformation performs all extraction, validation, and linking
 | **Type** | `boolean` |
 | **Default** | `true` |
 
-When `false`, transformation logs are not saved as an attachment in ODM after the run completes. Has no effect when `dry_run` is `true`.
+When `false`, transformation logs are not saved as an attachment in ODM after the run completes. Has no effect when environment variable `dry_run` is `true`.
 
 ---
 
@@ -320,7 +312,7 @@ Example:
 | **Type** | `boolean` |
 | **Default** | `true` |
 
-When `true`, QC metrics are calculated and added to the cell metadata if not already present. QC metrics include number of counts, number of genes, and mitochondrial and ribosomal gene presence. When `false`, or when `dry_run` is `true`, QC calculation is skipped.
+When `true`, QC metrics are calculated and added to the cell metadata if not already present. QC metrics include number of counts, number of genes, and mitochondrial and ribosomal gene presence. When `false`, or when environment variable `dry_run` is `true`, QC calculation is skipped.
 
 ---
 

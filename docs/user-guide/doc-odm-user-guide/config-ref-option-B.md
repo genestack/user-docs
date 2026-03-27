@@ -10,9 +10,7 @@ The configuration file controls how the transformation reads, processes, and ind
 
 **`file_type`** *(string, mandatory)* — Format of the input HDF5 file. Accepted values: `"h5ad"`, `"h5"`.
 
-**`dry_run`** *(boolean, optional, default: `false`)* — When `true`, performs all extraction, validation, and linking resolution without uploading data or saving logs. Compression is also skipped. Use to validate configuration before committing data.
-
-**`save_logs`** *(boolean, optional, default: `true`)* — When `false`, logs are not saved as an attachment after the run. Has no effect when `dry_run` is `true`.
+**`save_logs`** *(boolean, optional, default: `true`)* — When `false`, logs are not saved as an attachment after the run. Has no effect when environment variable `dry_run` is `true`.
 
 ---
 
@@ -93,7 +91,7 @@ For H5 files, use the same H5AD key names — the transformation maps them to th
 
 **`columns_to_preserve_name`** *(list[string], optional)* — Columns to exempt from internal name standardisation. Use for columns whose names contain characters that would otherwise be altered (e.g. Leiden cluster columns with decimal suffixes such as `cluster_leiden_0.5`).
 
-**`add_qc_metrics`** *(boolean, optional, default: `true`)* — When `true`, QC metrics are calculated and added to cell metadata if not already present (counts, genes, mitochondrial and ribosomal gene presence). Skipped when `dry_run` is `true`.
+**`add_qc_metrics`** *(boolean, optional, default: `true`)* — When `true`, QC metrics are calculated and added to cell metadata if not already present (counts, genes, mitochondrial and ribosomal gene presence). Skipped when environment variable `dry_run` is `true`.
 
 ---
 

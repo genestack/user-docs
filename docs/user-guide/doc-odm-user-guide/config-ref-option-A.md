@@ -11,8 +11,7 @@ The configuration is validated at the start of every run. If `file_type` is miss
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `file_type` | `string` | **Yes** | — | Format of the input file. Accepted values: `"h5ad"`, `"h5"`. |
-| `dry_run` | `boolean` | No | `false` | Runs all extraction, validation, and linking steps without uploading data or saving logs. Compression is also skipped. |
-| `save_logs` | `boolean` | No | `true` | When `false`, logs are not saved as an attachment after the run. Has no effect when `dry_run` is `true`. |
+| `save_logs` | `boolean` | No | `true` | When `false`, logs are not saved as an attachment after the run. Has no effect when environment variable `dry_run` is `true`. |
 
 ---
 
@@ -80,7 +79,7 @@ Settings for extracting and transforming cell-level metadata. Optional. If absen
 | `columns_to_curate_values` | `dict[string, dict[string, string]]` | No | — | Replacement values for specific entries in specified columns. |
 | `set_column_value` | `dict[string, string]` | No | — | Sets a constant value for all rows. Can add new columns or overwrite existing ones. |
 | `columns_to_preserve_name` | `list[string]` | No | — | Columns to exempt from internal name standardisation (e.g. Leiden cluster columns with decimal suffixes). |
-| `add_qc_metrics` | `boolean` | No | `true` | When `true`, adds QC metrics (counts, genes, mitochondrial/ribosomal presence) if not already present. Skipped when `dry_run` is `true`. |
+| `add_qc_metrics` | `boolean` | No | `true` | When `true`, adds QC metrics (counts, genes, mitochondrial/ribosomal presence) if not already present. Skipped when environment variable `dry_run` is `true`. |
 
 **`metadata_keys` accepted values (H5AD):**
 

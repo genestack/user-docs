@@ -9,7 +9,6 @@
 | Section | Parameter | Type | Required | Default |
 |---------|-----------|------|----------|---------|
 | *(top-level)* | `file_type` | string | **Yes** | — |
-| *(top-level)* | `dry_run` | boolean | No | `false` |
 | *(top-level)* | `save_logs` | boolean | No | `true` |
 | `biosample_metadata` | `metadata_keys` | dict[str, str] | Yes* | — |
 | `biosample_metadata` | `biosample_column_name` | string | Yes* | — |
@@ -60,11 +59,8 @@
 Format of the input HDF5 file. Must be provided; the pipeline cannot proceed without a valid file type.
 - Accepted values: `"h5ad"`, `"h5"`
 
-#### `dry_run`
-Runs all extraction, validation, and linking resolution steps without uploading data or saving logs. Compression is also skipped. Use to validate configuration before committing data.
-
 #### `save_logs`
-When `false`, logs are not saved as an attachment after the run. Has no effect when `dry_run` is `true`.
+When `false`, logs are not saved as an attachment after the run. Has no effect when environment variable `dry_run` is `true`.
 
 ---
 
@@ -196,7 +192,7 @@ Columns to exempt from internal name standardisation. Use for column names that 
 ```
 
 #### `add_qc_metrics`
-When `true`, QC metrics are calculated and added to cell metadata if not already present: number of counts, number of genes, mitochondrial and ribosomal gene presence. Skipped when `dry_run` is `true`.
+When `true`, QC metrics are calculated and added to cell metadata if not already present: number of counts, number of genes, mitochondrial and ribosomal gene presence. Skipped when environment variable `dry_run` is `true`.
 
 ---
 
