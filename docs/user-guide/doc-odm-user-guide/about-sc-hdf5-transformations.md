@@ -37,11 +37,11 @@ This curation happens in-pipeline, which means the source file is never modified
 
 ## Biosample metadata and the aggregation model
 
-A particularly important feature of the transformation is its ability to derive Sample, Library, or Preparation-level metadata directly from the cell metadata. In many single-cell datasets, attributes such as tissue type, disease condition, or donor information are stored as cell-level annotations (one value per cell), even though they logically belong at the biosample level.
+Some single-cell datasets store tissue, disease, or other biosample-level attributes in cell metadata, repeating the same values for every cell. The transformation can aggregate these attributes into related biosample object: Sample, Library, or Preparation (SLP) objects in ODM.
 
-The transformation can aggregate these cell-level attributes to the biosample level by grouping cells by a designated biosample identifier column. Only attributes that are constant across all cells belonging to the same biosample are considered eligible for export to SLP metadata. This ensures that the resulting biosample records are coherent and that no per-cell variation is incorrectly collapsed into a biosample-level value.
+Aggregation is performed by grouping cells using a designated biosample identifier. Only attributes that are consistent across all cells in the same biosample can be assigned to related biosample objects.
 
-Attributes exported to biosample metadata are automatically removed from the cell metadata, preventing duplication. If a biosample attribute should remain in the cell metadata for other reasons, it must be explicitly retained by omitting it from `cell_metadata.columns_to_drop`.
+Attributes assigned to biosample objects are automatically removed from the cell metadata. This reduces duplication and improves the overall structure of the imported data. If an attribute must remain in the cell metadata, it must be explicitly retained by omitting it from `cell_metadata.columns_to_drop`.
 
 ## Linking created objects
 
