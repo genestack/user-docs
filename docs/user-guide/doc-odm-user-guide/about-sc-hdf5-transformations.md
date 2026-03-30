@@ -27,11 +27,12 @@ The transformation extracts three types of data from a HDF5 source file:
 **Feature metadata** — extracted from `var`, and optionally from `varm` and `varp`. This includes per-gene annotations such as gene identifiers and gene names. For supported species, the transformation can also map Ensembl or NCBI gene identifiers to gene names automatically.
 
 **The expression matrix** — extracted from `X`, which contains count or normalized expression values. The transformation validates the matrix dimensions against the extracted cell and feature metadata, then writes the matrix in a Brotli-compressed format optimized for ODM ingestion.
+
 ## The role of metadata curation
 
-Metadata curation is optional, but strongly recommended. It standardizes cell metadata so that it can be imported, linked, and indexed correctly in ODM. Certain fields must use the expected names and data types to ensure consistent linking and indexing. The transformation handles this for the user during processing.
+Metadata curation is optional, but strongly recommended. It standardizes cell metadata so that it can be imported, linked, and indexed correctly in ODM. Certain fields must use the expected names and data types to ensure consistent linking and indexing. The transformation handles this for the user during processing. 
 
-Curation also harmonizes metadata across datasets. This is essential for cross-study search and downstream analysis, because equivalent annotations must be represented consistently. This can include renaming attributes, replacing values with standardized terms, assigning default values, or dropping unnecessary columns. 
+As part of curation, the transformation performs automatic attribute mapping: commonly used attribute names from tools such as Seurat, Scanpy, or Cell Ranger are recognized and renamed to the canonical ODM API names without any configuration. Automatic attribute mapping helps harmonizing metadata across datasets, which is essential for cross-study search and downstream analysis. Attributes that do not match any known name are retained and their names are automatically converted to camelCase for consistency with the ODM naming convention. For the full list of recognized names, see the [Attribute Mapping Reference](attribute-mapping.md). 
 
 Curation is applied only to the data produced by the transformation for import into ODM. The source file is not modified.
 
@@ -81,6 +82,6 @@ As part of the transformation, the log is uploaded to ODM and stored with the st
 
 The transformation supports the following HDF5-based input formats:
 
-- **H5AD (AnnData)** — the native format of the AnnData Python library, widely used in the single-cell ecosystem.
+- **H5AD (AnnData)** — the native format of the AnnData Python library, widely used for single-cell data processing.
 - **10x Genomics H5** — converted internally to H5AD before processing, so the same extraction workflow is used regardless of the input format.
 - **Legacy 10x Genomics H5 (v<3)** — supported only for files containing a single genome. Multi-genome legacy files are not supported.
