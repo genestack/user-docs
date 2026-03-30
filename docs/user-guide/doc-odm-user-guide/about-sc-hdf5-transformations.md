@@ -54,11 +54,13 @@ The created Expression Group created by the transformation is linked to the corr
 
 ## Dry run mode
 
-Before committing any data to ODM, users can run the transformation in dry run mode. In this mode, the transformation performs all extraction, curation, and validation steps — including resolving the linking target and validating that all cell batch identifiers match existing SLP objects — but uploads nothing. Logs are printed but not saved as attachments.
+Dry run mode lets users validate the transformation setup before running a full import. In this mode, the transformation performs the initial processing steps, including reading the input, extracting metadata, applying curation, and running validation checks. It skips the most time-consuming output-generation steps, such as creating the expression matrix, and does not upload data to ODM.
 
-Dry run mode is particularly useful for exploring which biosample-level attributes are available in a dataset before committing to a curation strategy. When `biosample_metadata` is configured without any `columns_to_export` entries, the dry run will log which columns are uniform per biosample and therefore eligible for export — without creating any files or objects.
+Dry run mode is useful for checking that the configuration works as expected and that the required inputs, metadata mappings, and linkage settings are resolved correctly before a full run.
 
-The recommended practice is to iterate on the configuration using repeated dry runs until all warnings are resolved before submitting a full transformation run.
+When `biosample_metadata` is configured without any `columns_to_export` entries, dry run mode can also be used to inspect which attributes are uniform within each biosample and therefore eligible for re-assigning.
+
+The recommended approach is to iterate on the configuration using dry runs until warnings are resolved, and then run the full transformation. For details, see [How to iterate on a configuration using dry runs](how-to-sc-hdf5-transformations.md#how-to-iterate-on-a-configuration-using-dry-runs).
 
 ## Processors Controller API: configurations, images, and jobs
 
