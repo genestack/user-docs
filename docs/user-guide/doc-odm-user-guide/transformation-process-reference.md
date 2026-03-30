@@ -120,12 +120,11 @@ The following transformations are applied in the order listed, when specified in
 
 1. **Drop columns** (`columns_to_drop`)
 2. **Rename columns** (`columns_renaming_map`)
-3. **Fill missing values** (`columns_to_fill_missing_values`)
-4. **Curate values** (`columns_to_curate_values`)
-5. **Coerce data types**
-6. **Set constant values** (`set_column_value`)
+3. **Curate values** (`columns_to_curate_values`)
+4. **Fill missing values** (`columns_to_fill_missing_values`)
+5. **Set constant values** (`set_column_value`)
 
-After all explicit column operations, **attribute name standardization** is applied: column names are mapped to ODM standard attribute names where a mapping exists; non-standard names are converted to camelCase. Columns listed in `columns_to_preserve_name` are exempt from this step.
+After all explicit column operations, **attribute name standardization** is applied: column names are mapped to ODM standard attribute names where a mapping exists; non-standard names are converted to camelCase. Columns listed in `columns_to_preserve_name` are exempt from this step. For the full list of recognized column names, see the [Attribute Mapping Reference](attribute-mapping.md). 
 
 Data type validation is then performed on the resulting DataFrame.
 
@@ -138,7 +137,7 @@ Data type validation is then performed on the resulting DataFrame.
 
 **Feature metadata additional steps:**
 
-- **Gene ID mapping** (if `map_gene_ids_to_names` is `true`): If gene names are absent and the standard `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and the species. If both can be determined, a new column with the mapped gene names is added. Supported organisms and annotation releases are listed in the [Configuration Reference](configuration-reference.md#map_gene_ids_to_names).
+- **Gene ID mapping** (if `map_gene_ids_to_names` is `true`): If gene names are absent and the standard `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and the species. If both can be determined, a new column with the mapped gene names is added. Supported organisms and annotation releases are listed in [Gene ID to name mapping](attribute-mapping.md#gene-id-to-name-mapping)).
 
 ### 2.6 Storing data
 
@@ -170,8 +169,10 @@ The following statistics are always computed and appended to the metadata regard
 2. Total number of features
 3. Sparsity (%)
 4. Number of non-zero values
+5. Source file accession
+6. Source file name
 
-Source file accession and source file name are also included. The generated metadata file is written to the temporary directory.
+The generated metadata file is written to the temporary directory.
 
 ---
 
