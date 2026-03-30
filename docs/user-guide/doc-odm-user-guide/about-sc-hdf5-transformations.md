@@ -4,7 +4,7 @@
 
 Single-cell datasets are commonly distributed as HDF5-based files — most often H5AD (the AnnData format) or the 10x Genomics H5 format. While these formats are rich and expressive, they are not directly ingestible into ODM in a way that supports consistent indexing, cross-dataset search, and the entity relationships that ODM relies on for downstream discovery.
 
-The single-cell HDF5 transformation exists to bridge this gap. Rather than requiring users to hand-craft intermediate files or manually restructure their data, the transformation automates the entire end-to-end process: reading the source file, extracting and optionally curating the relevant metadata, and uploading the results as structured ODM objects.
+The result is feature-level indexed data that is ready for downstream analysis and cross-study discovery without manual file preparation.
 
 ## The ODM entity model for single-cell data
 
