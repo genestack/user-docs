@@ -1,6 +1,6 @@
 # How-to Guides: Single-Cell HDF5 Transformations in ODM
 
-These guides show how to accomplish specific tasks using the single-cell HDF5 transformation. Each guide assumes you have a valid input file (H5AD or 10x H5) already registered in ODM as an attachment, and access to the ODM API.
+These guides show how to accomplish specific tasks using the single-cell HDF5 transformation. Each guide assumes you have a valid input file (H5AD or 10x H5) already attached to a study in ODM.
 
 For a conceptual overview of the entities involved and how the transformation works, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For the full list of configuration parameters, see the [Configuration Reference](configuration-reference.md). For the API endpoint specifications, see the [API Reference](api-reference.md). For details on what the pipeline does internally at each stage, see the [Transformation Process Reference](transformation-process-reference.md).
 
@@ -87,7 +87,7 @@ The response includes the `id` of the created job. As a guideline for setting `v
 GET /api/v1/transformations/jobs/{job_id}
 ```
 
-Repeat until `status.state` reaches a terminal value: `COMPLETED` or `FAILED`.
+Repeat until `status.state` reaches a terminal value: `DONE` or `FAILED`.
 
 ### Step 5: Review the logs
 
@@ -124,7 +124,7 @@ POST /api/v1/transformations/jobs
 }
 ```
 
-Monitor and retrieve logs the same way as the dry run (Steps 4–5). When the job completes, the logs contain the ODM accessions assigned to each object that was created or updated.
+Monitor and retrieve logs the same way as the dry run (Steps 4–5). When the job completes, the logs contain the ODM accessions assigned to each object that was created or updated. The logs will also be uploaded as attachment to the same study.
 
 ---
 
@@ -157,7 +157,7 @@ Repeat until the dry run completes without errors or warnings that require actio
 
 ## How to ingest cell and expression data from an H5AD file
 
-Use this when the study already has Sample, Library, or Preparation groups in ODM and you only need to add the single-cell layer. Configure at least `cell_metadata`, `feature_metadata`, and `cell_expression` in your configuration's `data` field.
+Use this when the study already has Sample, Library, or Preparation groups in ODM and you only need to add the single-cell layer. Configure `cell_metadata`, `feature_metadata`, and `cell_expression` in your configuration's `data` field.
 
 ```json
 {
@@ -189,7 +189,7 @@ The transformation resolves the linking target automatically (Library → Prepar
 ```json
 "cell_metadata": {
   "linking_group": {
-    "library": "GSF017080"
+    "library": "GSFXXXXXX"
   }
 }
 ```
@@ -206,7 +206,7 @@ To link to all preparation groups in the study without specifying their accessio
 
 ---
 
-## How to create Sample, Library, or Preparation groups from your H5AD file
+## How to create or update Sample, Library, or Preparation groups from your H5AD file
 
 Use this when your study does not yet have SLP groups in ODM, or when you want to derive biosample-level attributes from the cell metadata.
 
@@ -222,10 +222,7 @@ Identify the column in your cell metadata that acts as a biosample identifier. S
     "biosample_column_name": "sample_id",
     "sample": {
       "create_new_group": true,
-      "columns_to_export": ["tissue", "disease", "donor_id"],
-      "columns_renaming_map": {
-        "tissue": "tissueType"
-      }
+      "columns_to_export": ["tissue", "disease", "donor_id"]
     }
   },
   "cell_metadata": {
@@ -340,26 +337,18 @@ Legacy 10x H5 files (v<3) are supported only if the file contains a single genom
 
 These operations are available in `cell_metadata`, `feature_metadata`, and per-entity settings within `biosample_metadata`. They are applied in the order listed.
 
-**To rename a column:**
-
-```json
-"columns_renaming_map": {
-  "sample": "batch",
-  "pctmt": "percentMito"
-}
-```
-
 **To drop columns:**
 
 ```json
 "columns_to_drop": ["taxon", "organism_id"]
 ```
 
-**To fill missing values:**
+**To rename a column:**
 
 ```json
-"columns_to_fill_missing_values": {
-  "batch": "unknown"
+"columns_renaming_map": {
+  "sample": "batch",
+  "pctmt": "percentMito"
 }
 ```
 
@@ -370,6 +359,14 @@ These operations are available in `cell_metadata`, `feature_metadata`, and per-e
   "sample": {
     "LGVXCTRL1": "lung_healthy_1"
   }
+}
+```
+
+**To fill missing values:**
+
+```json
+"columns_to_fill_missing_values": {
+  "batch": "unknown"
 }
 ```
 
@@ -387,6 +384,6 @@ These operations are available in `cell_metadata`, `feature_metadata`, and per-e
 "columns_to_preserve_name": ["cluster_leiden_0.5"]
 ```
 
-Operations are applied in order: drop → rename → fill missing values → curate values → set constant values. Attribute name standardization (mapping to ODM standard names and converting others to camelCase) runs after all explicit column operations. Columns listed in `columns_to_preserve_name` are exempt from this standardization step.
+Operations are applied in order: drop → rename → curate values → fill missing values → set constant values. Attribute name standardization (mapping to ODM standard names and converting others to camelCase) runs after all explicit column operations. Columns listed in `columns_to_preserve_name` are exempt from this standardization step.
 
 For full parameter specifications, see the [Configuration Reference](configuration-reference.md).
