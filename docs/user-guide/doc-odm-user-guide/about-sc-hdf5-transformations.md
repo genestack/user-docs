@@ -41,7 +41,7 @@ Some single-cell datasets store tissue, disease, or other biosample-level attrib
 
 Aggregation is performed by grouping cells using a designated biosample identifier. Only attributes that are consistent across all cells in the same biosample can be assigned to related biosample objects.
 
-Attributes assigned to biosample objects are automatically removed from the cell metadata. This reduces duplication and improves the overall structure of the imported data. If an attribute must remain in the cell metadata, it must be explicitly retained by omitting it from `cell_metadata.columns_to_drop`.
+Attributes assigned to biosample objects are automatically removed from the cell metadata. This reduces duplication and improves the overall structure of the imported data.
 
 ## Linking created objects
 
