@@ -126,17 +126,6 @@ Settings for extracting and transforming feature (gene)-level metadata. Optional
 | `varm` | `embedding` | Multidimensional feature data |
 | `varp` | `pairwise` | Pairwise feature annotations |
 
-> The gene ID column must be named `geneId` for mapping to be performed.
-
-**Supported organisms (`map_gene_ids_to_names`) — hdf5-cells v0.0.4:**
-
-| Organism | Genome version | Ensembl release | NCBI release |
-|----------|---------------|-----------------|--------------|
-| *Homo sapiens* | GRCh38.p14 | 115 | GCF_000001405.40-RS_2025_08 |
-| *Mus musculus* | GRCm39 | 115 | GCF_000001635.27-RS_2024_02 |
-| *Rattus norvegicus* | GRCr8 | 115 | GCF_036323735.1-RS_2024_02 |
-| *Sus scrofa* | Sscrofa11.1 | 115 | 106 |
-
 ---
 
 ## `cell_expression`
