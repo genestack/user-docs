@@ -2,7 +2,7 @@
 
 > **Related documentation:** For step-by-step guidance on running the transformation, see the [How-to Guides](how-to-sc-hdf5-transformations.md). For the full configuration schema, see the [Configuration Reference](configuration-reference.md). For the API endpoints, see the [API Reference](api-reference.md). For the internal processing pipeline, see the [Transformation Process Reference](transformation-process-reference.md).
 
-Single-cell datasets are commonly distributed as HDF5-based files — most often H5AD (the AnnData format) or the 10x Genomics H5 format. While these formats are rich and expressive, they are not directly ingestible into ODM in a way that supports consistent indexing, cross-dataset search, and the entity relationships that ODM relies on for downstream discovery.
+This transformation converts a single-cell HDF5 file into the ODM-compatible output files. It extracts expression data and related cell metadata, and can optionally harmonize metadata and create or update biosample objects in ODM. The output files are then imported and linked automatically.
 
 The result is feature-level indexed data that is ready for downstream analysis and cross-study discovery without manual file preparation.
 
