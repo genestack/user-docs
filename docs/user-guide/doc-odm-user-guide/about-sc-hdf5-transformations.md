@@ -79,5 +79,5 @@ This design allows the configuration to evolve (through iterations of the iterat
 The transformation supports the following HDF5-based input formats:
 
 - **H5AD (AnnData)** — the native format of the AnnData Python library, widely used in the single-cell ecosystem.
-- **10x Genomics H5** — converted internally to H5AD before processing, so the extraction logic is unified regardless of the source format.
+- **10x Genomics H5** — converted internally to H5AD before processing, so the same extraction workflow is used regardless of the input format.
 - **Legacy 10x Genomics H5 (v<3)** — supported provided the file contains a single genome. Multi-genome legacy files are not supported.
