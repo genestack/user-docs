@@ -44,15 +44,14 @@ The transformation can aggregate these cell-level attributes to the biosample le
 
 Attributes exported to biosample metadata are automatically removed from the cell metadata, preventing duplication. If a biosample attribute should remain in the cell metadata for other reasons, it must be explicitly retained by omitting it from `cell_metadata.columns_to_drop`.
 
-## The linking resolution rules
+## Linking created objects
 
-When the transformation uploads a Cell Group, it must link it to a parent SLP entity. The transformation resolves this target using a defined priority order, so that users do not always need to specify the target explicitly:
+When the transformation uploads a Cell Group, it links it to a parent Sample, Library, or Preparation entity (SLP).
 
-1. If the configuration creates new SLP groups, the Cell Group is linked to those newly created groups after they are uploaded.
-2. If `cell_metadata.linking_group` explicitly names a target (a sample, library, or preparation accession), that target is used directly.
-3. If no explicit target is given, the transformation auto-discovers the appropriate SLP groups for the study from ODM, checking first for Library groups, then Preparation groups, then Sample groups. The first entity type that has at least one group associated with the study is used, and all accessions of that type are linked.
+This is usually handled automatically. If the transformation creates new SLP objects, the Cell Group is linked to them. Otherwise, the transformation identifies the most appropriate existing SLP target in ODM. Users can override the automatic behavior by specifying the target explicitly in the configuration.
+For details, see [Linking group determination](transformation-process-reference.md#13-linking-group-determination).
 
-This priority order reflects the typical ODM study structure: Library groups are usually the most specific and appropriate parent for a Cell Group. If a study only has Sample-level grouping, the transformation falls back gracefully.
+The created Expression Group created by the transformation is linked to the corresponding Cell Group .
 
 ## Dry run mode
 
