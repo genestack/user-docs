@@ -61,7 +61,7 @@ Dry run mode is particularly useful for exploring which biosample-level attribut
 
 The recommended practice is to iterate on the configuration using repeated dry runs until all warnings are resolved before submitting a full transformation run.
 
-## The API layer: configurations, images, and jobs
+## Processors Controller API: configurations, images, and jobs
 
 The transformation is triggered and managed through the ODM Processors Controller API. This API models the workflow as three separate concerns, each of which can be managed independently:
 
