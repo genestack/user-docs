@@ -62,15 +62,18 @@ The recommended practice is to iterate on the configuration using repeated dry r
 
 ## Processors Controller API: configurations, images, and jobs
 
-The transformation is triggered and managed through the ODM Processors Controller API. This API models the workflow as three separate concerns, each of which can be managed independently:
+The transformation is managed through the ODM Processors Controller API. It is based on three related components: configurations, images, and jobs.
 
-**Transformation configurations** are stored JSON documents that describe how a source file should be processed: the input file format, which metadata to extract, and any curation rules to apply. Configurations are created, retrieved, and updated independently of any particular run. This separation means you can refine a configuration through many dry-run iterations without losing the history of changes, and reuse the same configuration across multiple runs or files.
+**Transformation configurations** are JSON documents that define how input files should be processed, including the input format, metadata extraction, and curation rules. Configurations can be created, retrieved, and updated independently of any particular run. The same configuration can be reused across multiple files with the same structure.
 
-**Transformation images** are versioned, containerized environments that execute the processing logic for a given file format. The image used for single-cell HDF5 files is called `hdf5-cells`. Specifying an image version (e.g. `"latest"` or a specific release tag) allows reproducibility and controlled upgrades when new versions are released.
+**Transformation images** are versioned container images that run the processing logic. Available image versions can be queried through the API. The image used for single-cell HDF5 files is `hdf5-cells`. When starting a job, users can specify either `latest` or a specific release tag.
 
-**Transformation jobs** are the actual execution records. A job binds a configuration and an image to one or more input file accessions, runs the processing pipeline, and produces a log. Each job is independent: you can re-run with a different configuration or image without affecting previous jobs or their results.
+**Transformation jobs** are the execution records. A job combines a configuration, an image, and one or more input files, runs the transformation, and produces the output and logs. Jobs are independent, so the same input can be run again with a different configuration or image when needed.
 
-This design allows the configuration to evolve (through iterations of the iterative dry-run cycle) while keeping the job history clean and auditable.
+## Transformation logs
+
+Each transformation job produces a log that records the processing steps, warnings, detected issues, and created outputs. The log also includes provenance information, such as the source file name and accession, and the accessions of the created objects.
+As part of the transformation, the log is uploaded to ODM and stored with the study as an attachment alongside the other generated files. This provides a persistent record of the transformation output. Logs are also available through the API for a limited time. By default, this retention period is two weeks.
 
 ## Supported input formats
 
