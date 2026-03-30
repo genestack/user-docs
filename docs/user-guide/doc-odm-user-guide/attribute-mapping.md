@@ -45,3 +45,18 @@ The table below lists the canonical ODM API name for each feature attribute alon
 | nCellsByCounts | `n_cells_by_counts`, `n_cells`, `num_cells`, `n_obs`, `num_cells_expressed` |
 | meanCounts | `mean_counts`, `avg_exp`, `obs_mean`, `means` |
 | pctDropoutByCounts | `pct_dropout_by_counts`, `pct_dropout`, `percent_dropout`, `dropout_rate` |
+
+### Gene ID to name mapping
+
+When feature metadata contains a `geneId` column but no gene name column, the transformation can automatically resolve gene names from a built-in reference. This is controlled by the `map_gene_ids_to_names` parameter in the `feature_metadata` configuration block, which is enabled by default. Set it to `false` for proteomics or other non-gene-ID data where this behaviour is not appropriate.
+
+The mapping is performed using Ensembl and NCBI reference data. Both Ensembl gene IDs (e.g. `ENSG...`) and NCBI gene IDs are supported. The following organisms are supported in `hdf5-cells`:
+
+| Organism | Genome version | Ensembl release | NCBI release |
+|----------|----------------|-----------------|--------------|
+| *Homo sapiens* | GRCh38.p14 | 115 | GCF_000001405.40-RS_2025_08 |
+| *Mus musculus* | GRCm39 | 115 | GCF_000001635.27-RS_2024_02 |
+| *Rattus norvegicus* | GRCr8 | 115 | GCF_036323735.1-RS_2024_02 |
+| *Sus scrofa* | Sscrofa11.1 | 115 | 106 |
+
+> The gene ID column must be named `geneId` for mapping to be performed. If the column has a different name in the source file, ensure it is covered by the feature metadata attribute mapping above so that it is renamed to `geneId` before this step runs.

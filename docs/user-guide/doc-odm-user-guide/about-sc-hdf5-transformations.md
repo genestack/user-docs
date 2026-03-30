@@ -24,7 +24,7 @@ The transformation extracts three types of data from a HDF5 source file:
 
 **Cell metadata** — extracted primarily from the `obs` in H5AD input file, or the equivalent structure in 10x H5 input. This includes per-cell annotations such as barcodes, cluster assignments, quality control metrics, and any other experimental annotations. Multidimensional representations stored in `obsm` (such as PCA or UMAP coordinates) and pairwise cell annotations from `obsp` can also be extracted.
 
-**Feature metadata** — extracted from `var`, and optionally from `varm` and `varp`. This includes per-gene annotations such as gene identifiers and gene names. For supported species, the transformation can also map Ensembl or NCBI gene identifiers to gene names automatically.
+**Feature metadata** — extracted from `var`, and optionally from `varm` and `varp`. This includes per-gene annotations such as gene identifiers and gene names. For supported species, the transformation can also map Ensembl or NCBI gene identifiers to gene names automatically (see [Gene ID to name mapping](attribute-mapping.md#gene-id-to-name-mapping)).
 
 **The expression matrix** — extracted from `X`, which contains count or normalized expression values. The transformation validates the matrix dimensions against the extracted cell and feature metadata, then writes the matrix in a Brotli-compressed format optimized for ODM ingestion.
 

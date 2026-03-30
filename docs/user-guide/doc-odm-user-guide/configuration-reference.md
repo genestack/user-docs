@@ -147,7 +147,7 @@ Settings for extracting and uploading the cell expression matrix. Optional. If a
 |-----------|------|----------|---------|-------------|
 | `data_class` | `string` | **Yes** | — | Data class label for the expression data (e.g. `"Single-cell transcriptomics"`). |
 | `compression_level` | `integer` (0–9) | No | `4` | Brotli compression level. Higher values produce smaller files at the cost of longer compression time. |
-| `chunk_size` | `integer` | No | auto | Number of features processed per chunk. Calculated automatically from available memory if omitted. |
+| `chunk_size` | `integer` | No | inferred | Number of features processed per chunk. Calculated automatically from available memory if omitted. |
 | `max_buffer_size` | `integer` | No | `50` | Amount of data held in memory before being flushed to disk during writing. |
 | `number_format` | `string` | No | inferred | Numeric precision of output values. Accepts printf-style (`"%.7g"`, `"%d"`) or NumPy dtype (`"float32"`, `"int64"`). |
 | `columns_to_drop` | `list[string]` | No | — | Column names to remove from expression metadata. |
