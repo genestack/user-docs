@@ -29,11 +29,11 @@ The transformation extracts three types of data from a HDF5 source file:
 **The expression matrix** — extracted from `X`, which contains count or normalized expression values. The transformation validates the matrix dimensions against the extracted cell and feature metadata, then writes the matrix in a Brotli-compressed format optimized for ODM ingestion.
 ## The role of metadata curation
 
-Raw single-cell datasets frequently contain metadata that needs adjustment before it is useful in a cross-study context. Column names may differ between studies, values may be inconsistently coded, fields may be missing, or the biosample identifiers in the cell metadata may not match the naming conventions used by ODM's SLP entities.
+Metadata curation is optional, but strongly recommended. It standardizes cell metadata so that it can be imported, linked, and indexed correctly in ODM. Certain fields must use the expected names and data types to ensure consistent linking and indexing. The transformation handles this for the user during processing.
 
-The transformation addresses this through a set of configurable column operations applied during extraction. These include renaming columns, dropping irrelevant fields, filling missing values with defaults, and replacing specific values with standardized equivalents. Attribute names are also mapped to ODM standard names where applicable; non-standard names are automatically converted to camelCase to satisfy the ODM API requirements.
+Curation also harmonizes metadata across datasets. This is essential for cross-study search and downstream analysis, because equivalent annotations must be represented consistently. This can include renaming attributes, replacing values with standardized terms, assigning default values, or dropping unnecessary columns. 
 
-This curation happens in-pipeline, which means the source file is never modified. The curated output exists only as intermediate files in a temporary directory and, ultimately, as the uploaded ODM objects.
+Curation is applied only to the data produced by the transformation for import into ODM. The source file is not modified.
 
 ## Biosample metadata and the aggregation model
 
