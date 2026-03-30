@@ -20,14 +20,13 @@ The transformation creates the Cell Group and Expression Group and links them in
 
 ## What the transformation reads from the source file
 
-The transformation extracts three distinct types of data from a single HDF5 source file:
+The transformation extracts three types of data from a HDF5 source file:
 
-**Cell metadata** comes primarily from the `obs` slot of an H5AD file (or its equivalent in a 10x H5 file). This includes per-cell annotations such as barcodes, cluster assignments, quality control metrics, and any experimental annotations attached to individual cells. Multidimensional representations (such as PCA or UMAP coordinates stored in `obsm`) and pairwise cell annotations (from `obsp`) can also be extracted.
+**Cell metadata** — extracted primarily from the `obs` in H5AD input file, or the equivalent structure in 10x H5 input. This includes per-cell annotations such as barcodes, cluster assignments, quality control metrics, and any other experimental annotations. Multidimensional representations stored in `obsm` (such as PCA or UMAP coordinates) and pairwise cell annotations from `obsp` can also be extracted.
 
-**Feature metadata** comes from `var` (and optionally `varm` and `varp`). This includes per-gene annotations such as gene identifiers and names. The transformation can automatically map Ensembl or NCBI gene IDs to gene names for supported species, avoiding the need to pre-process gene annotation separately.
+**Feature metadata** — extracted from `var`, and optionally from `varm` and `varp`. This includes per-gene annotations such as gene identifiers and gene names. For supported species, the transformation can also map Ensembl or NCBI gene identifiers to gene names automatically.
 
-**The expression matrix** is the count or normalized values matrix (`X`). The transformation validates its dimensions against the extracted cell and feature metadata, then writes it in a Brotli-compressed format optimised for ODM ingestion.
-
+**The expression matrix** — extracted from `X`, which contains count or normalized expression values. The transformation validates the matrix dimensions against the extracted cell and feature metadata, then writes the matrix in a Brotli-compressed format optimized for ODM ingestion.
 ## The role of metadata curation
 
 Raw single-cell datasets frequently contain metadata that needs adjustment before it is useful in a cross-study context. Column names may differ between studies, values may be inconsistently coded, fields may be missing, or the biosample identifiers in the cell metadata may not match the naming conventions used by ODM's SLP entities.
