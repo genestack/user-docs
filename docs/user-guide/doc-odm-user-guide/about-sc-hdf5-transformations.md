@@ -1,6 +1,6 @@
 # Single-Cell HDF5 Transformations Overview
 
-> **Related documentation:** For step-by-step guidance on running the transformation, see the [How-to Guides](how-to-sc-hdf5-transformations.md). For the full configuration schema, see the [Configuration Reference](configuration-reference.md). For the API endpoints, see the [API Reference](api-reference.md). For the internal processing pipeline, see the [Transformation Process Reference](transformation-process-reference.md).
+> **Related documentation:** For step-by-step guidance on running the transformation, see the [How-to Guides](how-to-sc-hdf5-transformations.md). For the full configuration schema, see the [Configuration Reference](configuration-reference.md). For the API endpoints, see the [API Reference](api-reference.md). For the internal processing pipeline, see the [Transformation Process Reference](transformation-process-reference.md). For more information related the Single-cell data support in ODM, see the [Working with Single Cell Data](single-cell.md)
 
 This transformation converts a single-cell HDF5 file into the ODM-compatible output files. It extracts expression data and related cell metadata, and can optionally harmonize metadata and create or update biosample objects in ODM. The output files are then imported and linked automatically.
 
