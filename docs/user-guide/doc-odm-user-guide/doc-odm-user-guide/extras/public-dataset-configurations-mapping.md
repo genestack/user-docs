@@ -2,8 +2,6 @@
 
 Each curated dataset has been assigned a tested transformation configuration. Use the table below to identify which configuration to use when running a transformation job for a given dataset.
 
-Configurations are stored in ODM and can be retrieved by ID via `GET /api/v1/transformations/configurations`. The full configuration payload — including metadata extraction rules, column curation operations, and biosample metadata settings — can be inspected before use. See `<CONFIGURATIONS_LINK>` to download the configuration files directly.
-
 > Since these configurations have been pre-validated against their respective datasets, the dry-run step can be skipped when transforming the curated catalogue.
 
 ---
