@@ -1,0 +1,108 @@
+{
+  "name": "aggregated_config_2.json",
+  "description": "Aggregated config 2 to transform several public datasets",
+  "data": {
+    "file_type": "h5ad",
+    "biosample_metadata": {
+      "metadata_keys": {
+        "obs": "metadata"
+      },
+      "biosample_column_name": "sample",
+      "sample": {
+        "create_new_group": false,
+        "template_id": null,
+        "linking_group": null,
+        "columns_to_export": [
+          "sex_ontology_term_id",
+          "development_stage_ontology_term_id",
+          "ethnicity_ontology_term_id",
+          "HbA1c",
+          "insulin_content",
+          "glucose_SI"
+        ],
+        "columns_renaming_map": {
+          "sex_ontology_term_id": "Donor Sex Term ID",
+          "development_stage_ontology_term_id": "Developmental Stage Term ID",
+          "ethnicity_ontology_term_id": "Donor Ethnicity Term ID",
+          "HbA1c": "Hemoglobin A1c (HbA1c) Concentration Value",
+          "insulin_content": "Fasting Insulin Concentration Value",
+          "glucose_SI": "Fasting Glucose Concentration Value"
+        },
+        "columns_to_fill_missing_values": null,
+        "columns_to_curate_values": null
+      },
+      "library": {
+        "create_new_group": false,
+        "template_id": null,
+        "linking_group": null,
+        "columns_to_export": [
+          "assay_ontology_term_id"
+        ],
+        "columns_renaming_map": {
+          "assay_ontology_term_id": "Assay Type Term ID"
+        },
+        "columns_to_fill_missing_values": null,
+        "columns_to_curate_values": null
+      }
+    },
+    "cell_metadata": {
+      "metadata_keys": {
+        "obs": "metadata",
+        "obsm": "embedding"
+      },
+      "linking_group": null,
+      "columns_to_drop": [
+        "id",
+        "BMI",
+        "organism_ontolology_term_id",
+        "disease_ontology_term_id",
+        "is_primary_data",
+        "tissue_ontology_term_id"
+      ],
+      "columns_renaming_map": {
+          "_index": "barcode",
+          "sample": "batch",
+          "louvain_anno_broad": "louvain",
+          "louvain_anno_fine": "louvain_fine",
+          "cell_type_ontology_term_id": "cell_type",
+          "mt_frac": "percent_mito"
+          
+        },
+      "columns_to_fill_missing_values": null,
+      "columns_to_curate_values": null,
+      "set_column_value": null,
+      "columns_to_preserve_name": null,
+      "add_qc_metrics": true
+    },
+    "feature_metadata": {
+      "metadata_keys": {
+        "var": "metadata"
+      },
+      "columns_to_drop": [
+        "feature_biotype"
+      ],
+      "columns_renaming_map": {
+        "ensembl_ID": "geneId",
+        "human_ensembl_ID": "human_ensembl_id",
+        "feature_is_filtered": "is_filtered",
+        "filtered_mapped_human_ensembl_ID": "filtered_mapped_human_ensembl_id"
+      },
+      "columns_to_fill_missing_values": null,
+      "columns_to_curate_values": null,
+      "set_column_value": null,
+      "columns_to_preserve_name": null,
+      "map_gene_ids_to_names": true
+    },
+    "cell_expression": {
+      "compression_level": null,
+      "chunk_size": null,
+      "max_buffer_size": null,
+      "data_class": "Single-cell transcriptomics",
+      "number_format": null,
+      "columns_to_drop": null,
+      "columns_renaming_map": null,
+      "set_column_value": null,
+      "source_file_metadata": null
+    }
+  }
+}

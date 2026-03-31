@@ -1,0 +1,49 @@
+{
+  "name": "GSE165045.json",
+  "description": "Config to transform GSE165045 dataset",
+  "data": { 
+    "file_type": "h5ad",
+    "biosample_metadata": null,
+    "cell_metadata": {
+      "metadata_keys": {
+        "obs": "metadata"
+      },
+      "linking_group": null,
+      "columns_to_drop": null,
+      "columns_renaming_map": {
+        "sample": "batch",
+        "_index": "barcode"
+      },
+      "columns_to_fill_missing_values": null,
+      "columns_to_curate_values": null,
+      "set_column_value": null,
+      "columns_to_preserve_name": null,
+      "add_qc_metrics": true
+    },
+    "feature_metadata": {
+      "metadata_keys": {
+        "var": "metadata"
+      },
+      "columns_to_drop": null,
+      "columns_renaming_map": {
+        "_index": "gene"
+      },
+      "columns_to_fill_missing_values": null,
+      "columns_to_curate_values": null,
+      "set_column_value": null,
+      "columns_to_preserve_name": null,
+      "map_gene_ids_to_names": true
+    },
+    "cell_expression": {
+      "compression_level": null,
+      "chunk_size": null,
+      "max_buffer_size": null,
+      "data_class": "Single-cell transcriptomics",
+      "number_format": null,
+      "columns_to_drop": null,
+      "columns_renaming_map": null,
+      "set_column_value": null,
+      "source_file_metadata": null
+    }
+  }
+}

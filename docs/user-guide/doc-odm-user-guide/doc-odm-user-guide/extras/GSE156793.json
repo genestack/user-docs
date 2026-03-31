@@ -1,0 +1,111 @@
+{
+  "name": "GSE156793.json",
+  "description": "Config to transform GSE156793 dataset",
+  "data": {
+    "file_type": "h5ad",
+    "biosample_metadata": {
+      "metadata_keys": {
+        "obs": "metadata"
+      },
+      "biosample_column_name": "RT_group",
+      "sample": {
+        "create_new_group": false,
+        "template_id": null,
+        "linking_group": null,
+        "columns_to_export": [
+          "Fetus_id", 
+          "Development_day"
+        ],
+        "columns_renaming_map": {
+          "Fetus_id": "Donor ID",
+          "Development_day": "Donor Age"
+        },
+        "columns_to_fill_missing_values": null,
+        "columns_to_curate_values": null
+      },
+      "library": {
+        "create_new_group": false,
+        "template_id": null,
+        "linking_group": null,
+        "columns_to_export": [
+          "Assay"
+        ],
+        "columns_renaming_map": {
+          "Assay": "Assay Type"
+        },
+        "columns_to_fill_missing_values": null,
+        "columns_to_curate_values": null
+      }
+    },
+    "cell_metadata": {
+      "metadata_keys": {
+        "obs": "metadata",
+        "obsm": "embedding",
+        "obsp": "pairwise"
+      },
+      "linking_group": null,
+      "columns_to_drop": [
+        "batch",
+        "Organ",
+        "Sex",
+        "Batch",
+        "Experiment_batch"
+      ],
+      "columns_renaming_map": {
+        "_index": "barcode",
+        "RT_group": "batch",
+        "Main_cluster_name": "cluster",
+        "Organ_cell_lineage": "cell_type"
+      },
+      "columns_to_curate_values": {
+        "matched_mca_cell_name": {
+          "nan": ""
+        },
+        "bca_cluster_info": {
+          "nan": ""
+        },
+        "matched_bca_cell_name": {
+          "nan": ""
+        },
+        "X_umap": {
+          "nan,nan": ""
+        }
+      },
+      "columns_to_fill_missing_values": {
+        "batch": "unknown"
+      },
+      "columns_to_preserve_name": [
+        "X_umap"
+      ],
+      "add_qc_metrics": true
+    },
+    "feature_metadata": {
+      "metadata_keys": {
+        "var": "metadata",
+        "varm": "embedding",
+        "varp": "pairwise"
+      },
+      "columns_to_drop": null,
+      "columns_renaming_map": {
+        "_index": "geneId",
+        "gene_short_name": "gene"
+      },
+      "columns_to_fill_missing_values": null,
+      "columns_to_curate_values": null,
+      "set_column_value": null,
+      "columns_to_preserve_name": null,
+      "map_gene_ids_to_names": true
+    },
+    "cell_expression": {
+      "data_class": "Single-cell transcriptomics",
+      "compression_level": null,
+      "chunk_size": null,
+      "max_buffer_size": null,
+      "number_format": null,
+      "columns_to_drop": null,
+      "columns_renaming_map": null,
+      "set_column_value": null,
+      "source_file_metadata": null
+    }
+  }
+}
