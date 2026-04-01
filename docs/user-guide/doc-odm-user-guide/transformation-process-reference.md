@@ -71,13 +71,11 @@ For each metadata section, the pipeline reads parameters (data type, input/outpu
 
 ### 2.2 Biosample metadata (`biosample_metadata` config)
 
-When `biosample_metadata` is present in the configuration, the pipeline can export Sample, Library, or Preparation-level attributes derived from cell-level metadata.
+When `biosample_metadata` is present in the configuration, the pipeline can export Sample, Library, or Preparation-level attributes derived from cell-level metadata, curated as indicated in the configuration..
 
-#### Configuration and input validation
+Only one of `library` or `preparation` may have `columns_to_export` set. 
 
-Parameters are read from `biosample_metadata`: `metadata_keys`, `biosample_column_name`, and per-entity settings under `sample`, `library`, and/or `preparation`. These include parameters for identifying exportable attributes (`columns_to_export`), metadata curation (`columns_renaming_map`, `columns_to_fill_missing_values`, `columns_to_curate_values`), and group creation and linking (`create_new_group`, `template_id`, `linking_group`).
-
-Only one of `library` or `preparation` may have `columns_to_export` set. Attributes exported to biosample metadata are automatically removed from the cell metadata in the subsequent processing step. Biosample attributes that do not need to be exported but also should not remain in cell metadata must be listed in `cell_metadata.columns_to_drop`.
+Attributes exported to biosample metadata are automatically removed from the cell metadata in the subsequent processing step. Biosample attributes that do not need to be exported but also should not remain in cell metadata must be listed in `cell_metadata.columns_to_drop`.
 
 #### File reading and metadata extraction
 
