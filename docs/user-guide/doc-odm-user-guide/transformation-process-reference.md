@@ -2,7 +2,7 @@
 
 > **Related documentation:** For conceptual background, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For configuration parameter definitions and default values, see the [Configuration Reference](configuration-reference.md).
 
-This reference describes the internal processing stages of the single-cell HDF5 transformation pipeline. It is intended for users who need to understand what the pipeline does at each stage — for example, to interpret logs, diagnose errors, or reason about the order of operations. It is not a guide to running the transformation; see the [How-to Guides](how-to-sc-hdf5-transformations.md) for that purpose.
+This reference describes the internal processing stages of the single-cell HDF5 transformation pipeline. It is intended for users who need to understand what the pipeline does at each stage — for example, to interpret logs, diagnose errors, or reason about the order of operations. It is not a guide to running the transformation; see the [Single-Cell Data in ODM: End-to-End Guide](quickstart-sc.md) and [How-to Guides](how-to-sc-hdf5-transformations.md) for that purpose.
 
 ---
 
@@ -167,7 +167,7 @@ The step is skipped when environment variable `dry_run` is `true`.
 
 **Feature metadata additional steps:**
 
-- **Gene ID mapping**: If gene names are absent and the standard `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and the species. If both can be determined, a new column with the mapped gene names is added. Supported organisms and annotation releases are listed in [Gene ID to name mapping](attribute-mapping.md#gene-id-to-name-mapping)). The step can be skipped by setting `map_gene_ids_to_names` to `false` in the feature metadata section of the configuration. 
+- **Gene ID mapping**: If gene names are absent and the standard `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and the species. If both can be determined, a new column with the mapped gene names is added. Supported organisms and annotation releases are listed in [Gene ID to name mapping](attribute-mapping.md#gene-id-to-name-mapping). The step can be skipped by setting `map_gene_ids_to_names` to `false` in the feature metadata section of the configuration. 
 
 
 ### 2.6 Storing data
