@@ -134,13 +134,15 @@ Data type validation is then performed on the resulting DataFrame.
 - **Required column validation:**
   - `barcode`: Unique cell identifiers. Duplicate or missing values cause an error.
   - `batch`: Sample, Library, or Preparation identifiers used for linking. Missing values cause an error.
-- **QC metric calculation**: The following attributes are computed and added if they are not present in the original file: number of counts, number of genes, percentage mitochondrial expression, and percentage ribosomal expression. The step can be skipped by adding `add_qc_metrics` to `false` to the cell metadata section of the configuration. 
+
+- **QC metric calculation**: The following attributes are computed and added if they are not present in the original file: number of counts, number of genes, percentage mitochondrial expression, and percentage ribosomal expression. The step can be skipped by setting `add_qc_metrics` to `false` in the cell metadata section of the configuration. 
 
 The step is skipped when environment variable `dry_run` is `true`.
 
 **Feature metadata additional steps:**
 
-- **Gene ID mapping** (if `map_gene_ids_to_names` is `true`): If gene names are absent and the standard `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and the species. If both can be determined, a new column with the mapped gene names is added. Supported organisms and annotation releases are listed in [Gene ID to name mapping](attribute-mapping.md#gene-id-to-name-mapping)).
+- **Gene ID mapping**: If gene names are absent and the standard `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and the species. If both can be determined, a new column with the mapped gene names is added. Supported organisms and annotation releases are listed in [Gene ID to name mapping](attribute-mapping.md#gene-id-to-name-mapping)). The step can be skipped by setting `map_gene_ids_to_names` to `false` in the feature metadata section of the configuration. 
+
 
 ### 2.6 Storing data
 
