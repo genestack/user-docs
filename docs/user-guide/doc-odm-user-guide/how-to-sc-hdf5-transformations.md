@@ -101,9 +101,9 @@ POST /api/v1/transformations/jobs/{job_id}/logs
 
 Review the logs for warnings and errors. Pay particular attention to:
 - Configuration validation messages.
-- The file structure report (which metadata keys are present in your file).
-- Linking validation results (whether all cell `batch` values map to existing SLP objects).
-- Any columns flagged for automatic renaming or data type coercion.
+- The file structure report: which metadata keys are present in your file.
+- Linking validation results: whether all cell `batch` values map to existing SLP objects.
+- Any columns flagged for automatic renaming or data type conversion.
 
 If issues are found, update the configuration and repeat from Step 3. See [How to iterate on a configuration using dry runs](#how-to-iterate-on-a-configuration-using-dry-runs) for the recommended cycle.
 
