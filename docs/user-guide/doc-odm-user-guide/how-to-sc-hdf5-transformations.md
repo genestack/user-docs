@@ -378,12 +378,13 @@ These operations are available in `cell_metadata`, `feature_metadata`, and per-e
 }
 ```
 
+After all explicit column operations, matching attributes are mapped to ODM standard names. The rest are converted to camelCase. Columns listed in `columns_to_preserve_name` are exempt from this standardization step.
+
+For the details, see [Attribute Mapping Reference](docs/user-guide/doc-odm-user-guide/attribute-mapping.md)
+
 **To prevent a column from being automatically renamed:**
 
 ```json
 "columns_to_preserve_name": ["cluster_leiden_0.5"]
-```
-
-Operations are applied in order: drop → rename → curate values → fill missing values → set constant values. Attribute name standardization (mapping to ODM standard names and converting others to camelCase) runs after all explicit column operations. Columns listed in `columns_to_preserve_name` are exempt from this standardization step.
 
 For full parameter specifications, see the [Configuration Reference](configuration-reference.md).
