@@ -195,7 +195,7 @@ Validation mismatches are reported as warnings and do not abort the dry run. Use
 
 ### 4.2 Upload to ODM
 
-Upload proceeds in a fixed order. Deviating from this order would break the linking chain.
+Output files generated in previous pipeline stages are uploaded to ODM and linked to corresponding entities.
 
 **4.2.1 SLP groups**
 
