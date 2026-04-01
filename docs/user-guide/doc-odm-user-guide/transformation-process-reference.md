@@ -85,7 +85,7 @@ The pipeline opens the H5AD file, reads the metadata from the group indicated by
 
 For each entity type with `columns_to_export` configured, columns are filtered and optionally curated; the entity ID column(s) (e.g. Sample Source ID, Library ID, Preparation ID) are set from the configuration, and the result is written to a TSV file in the temporary directory.
 
-A special scenario — exporting a placeholder group containing only ID column(s) — can be configured by setting `create_new_group: true` and omitting `columns_to_export` (when dry-run mode is disabled).
+Exporting a placeholder group containing only ID column(s) can be configured by setting `create_new_group: true` and omitting `columns_to_export`.
 
 #### Discovery mode
 
