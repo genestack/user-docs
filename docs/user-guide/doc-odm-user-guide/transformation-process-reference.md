@@ -89,7 +89,7 @@ Exporting a placeholder group containing only ID column(s) can be configured by 
 
 #### Discovery mode
 
-When `biosample_metadata` is present, no entity has `columns_to_export` defined, and environment variable `dry_run` is enabled, the pipeline runs in discovery-only mode. It identifies which columns are uniform per value of `biosample_column_name`, logs the number of unique biosamples and the list of those attributes, and returns without writing any TSV. No ODM objects are created or modified.
+Discovery mode is activated only when `dry_run` is enabled, `biosample_metadata` is present, and no entity has `columns_to_export` defined. In this mode, the pipeline logs the number of unique biosamples and the attributes constant within each biosample, then exits without writing a TSV. No ODM objects are created or modified.
 
 #### Existing biosample metadata update
 
