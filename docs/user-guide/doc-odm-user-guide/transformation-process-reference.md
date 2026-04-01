@@ -183,7 +183,7 @@ The generated metadata file is written to the temporary directory.
 
 ## Stage 4: Final steps and upload
 
-### 4.1 Dry run halt and validation
+### 4.1 Dry run exit
 
 If environment variable `dry_run` is `true`, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in APIs but not saved as attachments.
 
