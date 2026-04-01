@@ -93,9 +93,9 @@ Discovery mode is activated only when `dry_run` is enabled, `biosample_metadata`
 
 #### Existing biosample metadata update
 
-When `columns_to_export` is configured for an entity but `create_new_group` is not set, the pipeline prepares an update to existing ODM metadata objects rather than creating new groups.
+When `columns_to_export` is configured for an entity but `create_new_group` is not set, the pipeline prepares an update to existing ODM metadata objects.
 
-It fetches the current metadata for the entity type, then runs a matching procedure joining the extracted metadata to the existing metadata on the entity ID column (e.g. Sample Source ID, Library ID, Preparation ID). Only attributes that do not already exist in the ODM metadata are retained; columns with the same name are skipped. If any extracted ID does not match an existing ODM object, an error is raised listing the unmatched IDs. The matching result is written as a TSV file for use in Stage 4.
+It fetches the current metadata for the entity type, then runs a matching procedure joining the extracted metadata to the existing metadata by the entity ID column (Sample Source ID, Library ID, or Preparation ID). Only attributes that do not already exist in the ODM metadata are retained; columns with the same name are skipped. If any extracted ID does not match an existing ODM object, an error is raised listing the unmatched IDs. The matching result is written to a TSV file for use in Stage 4.
 
 ### 2.3 File reading and metadata extraction
 
