@@ -180,7 +180,7 @@ The generated metadata file is written to the temporary directory.
 
 ### 4.1 Dry run halt and validation
 
-If environment variable `dry_run` is `true`, the pipeline halts at this point. Expression matrix compression is skipped. Logs are reported but not saved as attachments.
+If environment variable `dry_run` is `true`, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in APIs but not saved as attachments.
 
 When `dry_run` is enabled and the cell linking group has been resolved, the pipeline performs a best-effort linking validation:
 
