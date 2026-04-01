@@ -36,7 +36,9 @@ Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index 
 
 **Goal:** Populate ODM with a ready-made catalogue of curated public single-cell studies so you can test cross-study search without preparing your own data. Load the data using the template provided for these datasets to enable range queries.
 
-1. Load the template — `<TEMPLATE_LINK_PLACEHOLDER>` · [Template upload guide](../../../docs/tools/odm-sdk/terminal/templates/create-or-update-template.md)
+1. Load the template
+  - Link: [Public dataset template](https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/templates/public_studies_template_demo.json)
+  - Further details: [Template upload guide](../../../docs/tools/odm-sdk/terminal/templates/create-or-update-template.md)
 2. Load the curated datasets into ODM (HDF5 attachments included).
 
 **Ready-to-run import commands:**
