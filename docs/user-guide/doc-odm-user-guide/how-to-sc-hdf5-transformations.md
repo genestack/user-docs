@@ -4,6 +4,17 @@ These guides show how to accomplish specific tasks using the single-cell HDF5 tr
 
 To get started quickly with the full upload-to-query workflow, see the [Single-Cell Data in ODM: End-to-End Guide](quickstart-sc.md). For a conceptual overview of the entities involved and how the transformation works, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For the full list of configuration parameters, see the [Configuration Reference](configuration-reference.md). For the API endpoint specifications, see the [API Reference](api-reference.md). For details on what the pipeline does internally at each stage, see the [Transformation Process Reference](transformation-process-reference.md).
 
+## Table of Contents
+
+- [How to run a transformation via the ODM API](#how-to-run-a-transformation-via-the-odm-api)
+- [How to iterate on a configuration using dry runs](#how-to-iterate-on-a-configuration-using-dry-runs)
+- [How to ingest cell and expression data from an H5AD file](#how-to-ingest-cell-and-expression-data-from-an-h5ad-file)
+- [How to create Sample, Library, or Preparation groups from your H5AD file](#how-to-create-sample-library-or-preparation-groups-from-your-h5ad-file)
+- [How to update existing biosample metadata](#how-to-update-existing-biosample-metadata)
+- [How to discover which biosample attributes are available in your file](#how-to-discover-which-biosample-attributes-are-available-in-your-file)
+- [How to process a 10x Genomics H5 file](#how-to-process-a-10x-genomics-h5-file)
+- [How to configure metadata curation](#how-to-configure-metadata-curation)
+
 ---
 
 ## How to run a transformation via the ODM API

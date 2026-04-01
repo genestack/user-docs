@@ -4,6 +4,8 @@ The commands below load each curated single-cell dataset into an ODM instance us
 
 Replace `<HOST>`, `<TOKEN>`, and `<TEMPLATE>` with your ODM instance URL, API token, and template ID before running. Commands can be run independently and in any order.
 
+Recommended template: [Public dataset template](https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/templates/public_studies_template_demo.json)
+
 > Two datasets — **GSE192740** and **GSE198623** — contain multiple species and upload two H5AD files (human and mouse, or human and pig) within a single command.
 
 ---
