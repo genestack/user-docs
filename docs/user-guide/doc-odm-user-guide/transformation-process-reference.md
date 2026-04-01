@@ -24,7 +24,9 @@ For all remaining sections, validation errors are accumulated and reported toget
 - `biosample_metadata`: ensures that `library` and `preparation` are not both configured for simultaneous update.
 - `cell_expression`: validates `number_format` as either a printf-format string or a NumPy dtype string; the resolved dtype is stored back into the configuration for downstream use.
 
-Unrecognized keys at any level are logged as warnings and ignored.
+Unrecognized keys at any level are logged as warnings and ignored. 
+
+Examples of valid configurations can be found in [Public dataset configurations](doc-odm-user-guide/extras/).
 
 ### 1.2 Attachment and study metadata retrieval
 
