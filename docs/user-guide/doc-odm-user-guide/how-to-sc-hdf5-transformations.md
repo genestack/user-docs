@@ -2,7 +2,7 @@
 
 These guides show how to accomplish specific tasks using the single-cell HDF5 transformation. Each guide assumes you have a valid input file (H5AD or 10x H5) already attached to a study in ODM.
 
-To get started quickly with the full upload-to-query workflow, see the [Single-Cell Data in ODM: End-to-End Guide](quickstart-sc.md). For a conceptual overview of the entities involved and how the transformation works, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For the full list of configuration parameters, see the [Configuration Reference](configuration-reference.md). For the API endpoint specifications, see the [API Reference](api-reference.md). For details on what the pipeline does internally at each stage, see the [Transformation Process Reference](transformation-process-reference.md).
+To get started quickly with the full upload-to-query workflow, see the [Single-cell data in ODM: Getting Started](quickstart-sc.md). For a conceptual overview of the entities involved and how the transformation works, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For the full list of configuration parameters, see the [Configuration Reference](configuration-reference.md). For the API endpoint specifications, see the [API Reference](api-reference.md). For details on what the pipeline does internally at each stage, see the [Transformation Process Reference](transformation-process-reference.md).
 
 ## Table of Contents
 

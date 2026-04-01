@@ -1,15 +1,15 @@
-# Single-cell data in ODM: End-to-end guide
+# Single-cell data in ODM: Getting Started
 **Upload → Transform → Index → Search**
 
 ---
 
 ### Who this is for
-Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index it, and run cross-study queries.
+Users who want to try single-cell data functionality in ODM on prepared, curated datasets.
 
 ### What you'll achieve
 - Upload single-cell input files as attachments.
 - Run the transformation to generate ODM-compatible indexed objects.
-- Query the data using the provided notebooks.
+- Try cross-study search and analytical queries using the provided notebooks.
 
 ### Prerequisites
 - ODM instance URL: `<HOST>`
@@ -63,9 +63,10 @@ Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index 
 ## Step 4 — Confirm indexing completed
 
 **Goal:** Make sure all datasets are marked as indexed and ready to query.
-
 - Each transformed dataset shows the **Indexed** label in ODM Metadata Editor.
-- All indexing jobs show **Done** status in Task Manager.
+- All indexing tasks show **Done** status in Task Manager.
+
+> **Note:** A completed transformation job does not mean the data is immediately searchable. ODM automatically triggers indexing after ingestion, but data is  available for querying once indexing finishes.
 
 ---
 

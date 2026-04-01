@@ -2,7 +2,7 @@
 
 > **Related documentation:** For conceptual background, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For configuration parameter definitions and default values, see the [Configuration Reference](configuration-reference.md).
 
-This reference describes the internal processing stages of the single-cell HDF5 transformation pipeline. It is intended for users who need to understand what the pipeline does at each stage — for example, to interpret logs, diagnose errors, or reason about the order of operations. It is not a guide to running the transformation; see the [Single-Cell Data in ODM: End-to-End Guide](quickstart-sc.md) and [How-to Guides](how-to-sc-hdf5-transformations.md) for that purpose.
+This reference describes the internal processing stages of the single-cell HDF5 transformation pipeline. It is intended for users who need to understand what the pipeline does at each stage — for example, to interpret logs, diagnose errors, or reason about the order of operations. It is not a guide to running the transformation; see the [Single-cell data in ODM: Getting Started](quickstart-sc.md) and [How-to Guides](how-to-sc-hdf5-transformations.md) for that purpose.
 
 ---
 
