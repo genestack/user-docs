@@ -204,7 +204,7 @@ If `biosample_metadata` is configured with at least one entity:
 
 **4.2.2 Cell Group upload**
 
-The transformed cell metadata TSV is uploaded as a new Cell Group, which is linked to the parent SLP entity determined in Stage 1.3 (or resolved in Stage 4.2.1 if new SLP groups were created).
+The transformed cell metadata TSV is uploaded as a new Cell Group, which is linked to the parent SLP Groups determined in Stage 1.3 or resolved in Stage 4.2.1 if new SLP Groups were created.
 
 **4.2.3 Expression Group upload**
 
