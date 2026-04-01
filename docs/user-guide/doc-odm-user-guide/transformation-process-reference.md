@@ -205,7 +205,7 @@ If `biosample_metadata` is configured with at least one entity:
 
 - **New groups** (for entities with `create_new_group: true`): The corresponding TSV is uploaded as a new group via the entity-specific API endpoint, with `template_id` applied if specified. The new group is then linked to its parent — Sample groups are linked to the study accession; Library and Preparation groups are linked to a Sample group, resolved in this order: (1) `linking_group.sample` in the entity's config, (2) a Sample group created in the same run, (3) pre-fetched Sample group accessions for the study. The new group's accession is stored for use in the cell group linking step (library/preparation takes priority over sample).
 
-- **Existing groups** (for entities with `create_new_group` not set): For each row in the update TSV produced in Stage 2.2, the pipeline calls the ODM PATCH API endpoint for that entity's accession with the new attribute values.
+- **Existing groups** (for entities with `create_new_group` not set): For each row in the update TSV produced in Stage 2.2, the pipeline updates the corresponding object by calling the ODM PATCH API endpoint with the new attribute values.
 
 **4.2.2 Cell Group upload**
 
