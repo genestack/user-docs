@@ -58,7 +58,7 @@ For a default configurations prepared, see the [Configuration mapping](doc-odm-u
 GET /api/v1/transformations/images
 ```
 
-Confirm that the `hdf5-cells` image is available. Note the version you want to use (typically `"latest"`, or a specific release tag for reproducibility).
+Confirm that the `hdf5-cells` image is available. Note the version you want to use: typically `"latest"`, or a specific release tag for reproducibility.
 
 ### Step 3: Submit a dry-run job
 
