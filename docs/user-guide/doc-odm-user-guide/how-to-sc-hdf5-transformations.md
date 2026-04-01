@@ -50,6 +50,8 @@ The response includes the `id` assigned to the new configuration. Save this — 
 
 For a full description of the `data` object, see the [Configuration Reference](configuration-reference.md).
 
+For a default configurations prepared, see the [Configuration mapping](doc-odm-user-guide/extras/public-dataset-configurations-mapping.md)
+
 ### Step 2: Identify the transformation image
 
 ```
