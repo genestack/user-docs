@@ -187,13 +187,13 @@ The generated metadata file is written to the temporary directory.
 
 If environment variable `dry_run` is `true`, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in APIs but not saved as attachments.
 
-When `dry_run` is enabled and the cell linking group has been resolved, the pipeline performs a best-effort linking validation:
+A best-effort linking validation:
 
-- **Biosample coverage:** Unique values in the cell metadata `batch` column are compared against the ID values of the resolved SLP entity. Unmatched values are logged as warnings.
-- **Duplicate IDs:** If the same ID value appears in more than one SLP object, a warning is logged (cells could multi-map to multiple entities).
+- **Biosample coverage:** Unique values in the cell metadata `batch` column are compared against the ID values of the resolved Sample, Library, Preparation (SLP) groups. Unmatched values are logged as warnings.
+- **Duplicate IDs:** If the same ID value appears in more than one SLP object, a warning is logged.
 - **Group accession coverage:** Group accessions that contain no biosample objects matching any cell `batch` value are logged as warnings.
 
-Validation mismatches are reported as warnings and do not abort the dry run. Use them to correct the configuration before submitting a full run.
+Validation mismatches are reported as warnings and do not abort the dry run. They can be used to correct the configuration before submitting a full run.
 
 ### 4.2 Upload to ODM
 
