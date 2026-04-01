@@ -79,9 +79,11 @@ POST /api/v1/transformations/jobs
 }
 ```
 
-The response includes the `id` of the created job. As a guideline for setting `volume_size`:
+As a guideline for setting `volume_size`:
 - For H5AD input files, allocate approximately **1.4× the size of the original attachment** (in GB).
 - For 10x H5 input files, allocate at least **4× the size of the original attachment** (in GB).
+
+The response includes the `id` of the created job. It is required for subsequent steps.
 
 ### Step 4: Monitor the dry-run job
 
