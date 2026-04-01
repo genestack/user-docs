@@ -206,9 +206,9 @@ To link to all preparation groups in the study without specifying their accessio
 
 ---
 
-## How to create or update Sample, Library, or Preparation groups from your H5AD file
+## How to create Sample, Library, or Preparation groups from your H5AD file
 
-Use this when your study does not yet have SLP groups in ODM, or when you want to derive biosample-level attributes from the cell metadata.
+Use this when your study does not yet have SLP groups in ODM and you want to derive biosample-level attributes from the cell metadata.
 
 Identify the column in your cell metadata that acts as a biosample identifier. Set this as `biosample_column_name`. Under the relevant entity (`sample`, `library`, or `preparation`), set `create_new_group: true` and list the columns to export under `columns_to_export`.
 
