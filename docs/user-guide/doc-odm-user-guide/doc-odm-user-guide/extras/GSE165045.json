@@ -43,7 +43,7 @@
       "columns_to_drop": null,
       "columns_renaming_map": null,
       "set_column_value": null,
-      "source_file_metadata": null
+      "source_file_metadata": true
     }
   }
 }
