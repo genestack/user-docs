@@ -283,7 +283,7 @@ The transformation matches extracted rows to existing ODM objects on the entity 
 
 ## How to discover which biosample attributes are available in your file
 
-Use this to identify which cell-level metadata columns are uniform per biosample (and therefore eligible for export), without uploading anything.
+Use this to identify which cell-level metadata columns are uniform per biosample and can be exported. No data will be updated in ODM.
 
 Submit a dry-run job with `biosample_metadata` configured but without any `columns_to_export` entries:
 
