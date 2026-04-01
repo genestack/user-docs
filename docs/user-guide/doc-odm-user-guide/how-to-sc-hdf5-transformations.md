@@ -46,7 +46,7 @@ POST /api/v1/transformations/configurations
 }
 ```
 
-The response includes the `id` assigned to the new configuration. Save this — it is required for every subsequent step.
+The response includes the `id` of the created configuration. It is required for subsequent steps.
 
 For a full description of the `data` object, see the [Configuration Reference](configuration-reference.md).
 
