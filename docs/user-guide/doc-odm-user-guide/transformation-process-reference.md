@@ -39,18 +39,35 @@ The pipeline retrieves the accession and metadata of the input HDF5 attachment f
 
 Before any file processing begins, the pipeline resolves the parent SLP entity (Sample, Library, or Preparation group) to which the Cell Group will be linked. The resolution follows these rules in order:
 
-- **New SLP group creation deferred:** If `biosample_metadata` is present and any of `sample`, `library`, or `preparation` has `create_new_group: true`, linking resolution is deferred until after those new groups are created and uploaded (Stage 4). The cell group is then linked to the newly created groups.
+- **New SLP group creation deferred:** If `biosample_metadata` is present and any of `sample`, `library`, or `preparation` has `create_new_group: true`, linking resolution is deferred until after those new groups are created and uploaded (Stage 4). The cell group is then linked to the newly created groups. Example:
+
 ```json
 "biosample_metadata": {
-"metadata_keys": {
-"obs": "metadata"
-},
-"biosample_column_name": "sample_id",
-"sample": {
-"create_new_group": true,
-...
+  "metadata_keys": {
+    "obs": "metadata"
+  },
+  "biosample_column_name": "sample_id",
+  "sample": {
+    "create_new_group": true
+  }
+}
+```
 
-- **Explicit `linking_group` in `cell_metadata`:** If `cell_metadata.linking_group` is set, the specified entity type and accession(s) are used directly. An empty value (e.g. `[]`) resolves to all available group accessions of the specified entity type for the study.
+- **Explicit `linking_group` in `cell_metadata`:** If `cell_metadata.linking_group` is set, the specified entity type and accession(s) are used directly. An empty value (e.g. `[]`) resolves to all available group accessions of the specified entity type for the study. Examples:
+
+```json
+"cell_metadata": {
+  "linking_group": {
+    "sample": ["GSF000001"]
+  }
+```
+
+```json
+"cell_metadata": {
+  "linking_group": {
+    "preparation": []
+  }
+```
 
 - **Auto-discovery:** If neither of the above applies, the pipeline fetches all SLP groups associated with the study from ODM and selects the first entity type that has at least one group, checking in the order: **Library → Preparation → Sample**. All accessions of the selected type are used for linking.
 
