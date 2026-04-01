@@ -14,17 +14,17 @@ Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index 
 ### Prerequisites
 - ODM instance URL: `<HOST>`
 - API token: `<TOKEN>`
-- Environment to run the notebooks.
+- An environment set up to run the notebooks.
 
 ---
 
 ## Step 1 — Upload and transform a single dataset
 
-**Goal:** Try the full workflow on one HDF5 file and see analysis-ready objects in ODM.
+**Goal:** Walk through the full workflow on one HDF5 file and verify that analysis-ready objects appear in ODM.
 
 1. Create a study with an HDF5 file as an attachment.
 2. Run a transformation job to convert it into ODM-indexed single-cell objects.
-3. Verify objects were created, linked, and indexed correctly.
+3. Verify that objects were created, linked, and indexed correctly.
 
 **Notebook:** *Transformation Quickstart*
 - Link: [Single-cell RNA-Seq: Data transformation and upload to ODM](doc-odm-user-guide/notebooks/transformations-demo.ipynb)
@@ -34,26 +34,26 @@ Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index 
 
 ## Step 2 — Load curated public datasets
 
-**Goal:** Get a ready catalogue of curated public single-cell studies to test cross-study search without preparing your own data. Load data using the template created for these datasets to enable range queries.
+**Goal:** Populate ODM with a ready-made catalogue of curated public single-cell studies so you can test cross-study search without preparing your own data. Load the data using the template provided for these datasets to enable range queries.
 
 1. Load the template — `<TEMPLATE_LINK_PLACEHOLDER>` · [Template upload guide](../../../docs/tools/odm-sdk/terminal/templates/create-or-update-template.md)
 2. Load the curated datasets into ODM (HDF5 attachments included).
 
 **Ready-to-run import commands:**
 - Link: [Import commands for public datasets](doc-odm-user-guide/extras/dataset-import-commands.md)
-- Includes copy/paste commands with placeholders for server and token.
+- Includes copy-paste commands with placeholders for server and token.
 - Further details: [Uploading studies to ODM](../../../docs/tools/odm-sdk/terminal/study/uploading-study.md)
 
 ---
 
 ## Step 3 — Transform curated datasets
 
-**Goal:** Transform the curated datasets to create fully indexed objects with harmonised metadata.
+**Goal:** Transform the curated datasets to produce fully indexed objects with harmonised metadata.
 
-1. Using the Transformation Notebook as an example, run the transformation for each curated dataset.
-2. Use the provided configurations to ensure consistent curation. Dry-run can be skipped as configurations are pre-tested.
-3. Monitor jobs until all succeed.
-4. Confirm expected objects exist: Cell Group, Expression Group, metadata objects.
+1. Following the Transformation Notebook as a reference, run the transformation for each curated dataset.
+2. Use the provided configurations to ensure consistent curation. You can skip the dry-run step, as the configurations are pre-tested.
+3. Monitor transformation jobs until all complete successfully.
+4. Confirm that the expected objects are present: Cell Group, Expression Group, and metadata objects.
 
 **Prepared configurations:**
 - Link: [Public dataset configurations](doc-odm-user-guide/extras/)
@@ -63,7 +63,7 @@ Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index 
 
 ## Step 4 — Confirm indexing completed
 
-**Goal:** Ensure datasets are marked as indexed and ready to query.
+**Goal:** Make sure all datasets are marked as indexed and ready to query.
 
 - Each transformed dataset shows the **Indexed** label in ODM Metadata Editor.
 - All indexing jobs show **Done** status in Task Manager.
@@ -72,8 +72,8 @@ Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index 
 
 ## Step 5 — Query and analyse single-cell data
 
-**Goal:** Use ODM search and analytics notebooks to explore indexed datasets.
+**Goal:** Use ODM's search and analytics notebooks to explore your indexed datasets.
 
 **Notebook:** *Single-cell Query & Analysis*
-- Link: - [Single-cell RNA-Seq: Cohort Selection and Data Retrieval](doc-odm-user-guide/notebooks/sc_rnaseq_demo.ipynb)
+- Link: [Single-cell RNA-Seq: Cohort Selection and Data Retrieval](doc-odm-user-guide/notebooks/sc_rnaseq_demo.ipynb)
 - What it covers: cross-study search examples · filtering by curated attributes · example analytical queries and result inspection.
