@@ -184,7 +184,7 @@ Use this when the study already has Sample, Library, or Preparation groups in OD
 }
 ```
 
-The transformation resolves the linking target automatically (Library → Preparation → Sample). To link to a specific group, set `cell_metadata.linking_group` explicitly:
+The transformation resolves the linking target for created Cell Group automatically in the following order: Library → Preparation → Sample. To link to a specific group, set `cell_metadata.linking_group` explicitly:
 
 ```json
 "cell_metadata": {
