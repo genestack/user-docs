@@ -151,7 +151,7 @@ After reviewing the logs from a dry-run job, update the existing configuration u
 PUT /api/v1/transformations/configurations/{config_id}
 ```
 
-The request body follows the same structure as the original `POST`. The configuration at the given `id` is fully replaced with the new content.
+The request body of the `PUT` endpoint follows the same structure as the original `POST`. The configuration at the given `id` is fully replaced with the new content.
 
 Then resubmit the dry-run job with the same `configuration_id`. Because the configuration is updated in place, you can reuse the same `configuration_id` across all iterations without creating a new configuration for each attempt.
 
