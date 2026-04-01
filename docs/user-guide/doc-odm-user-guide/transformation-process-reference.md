@@ -81,7 +81,7 @@ Only one of `library` or `preparation` may have `columns_to_export` set. Attribu
 
 #### File reading and metadata extraction
 
-The pipeline opens the H5AD file, reads the metadata from the group indicated by `metadata_keys`, and groups the resulting table by `biosample_column_name`. Only attributes that are constant per biosample and listed in `columns_to_export` are processed for export.
+The pipeline opens the H5AD file, reads the metadata from the group indicated by `metadata_keys`, and organizes the resulting table by `biosample_column_name`. Only attributes that are constant within a biosample and listed in `columns_to_export` are processed for export.
 
 For each entity type with `columns_to_export` configured, columns are filtered and optionally curated; the entity ID column(s) (e.g. Sample Source ID, Library ID, Preparation ID) are set from the configuration, and the result is written to a TSV file in the temporary directory.
 
