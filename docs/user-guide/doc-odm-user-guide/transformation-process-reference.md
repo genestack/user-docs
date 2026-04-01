@@ -132,7 +132,7 @@ Data type validation is then performed on the resulting DataFrame.
 
 - **Required column validation:**
   - `barcode`: Unique cell identifiers. Duplicate or missing values cause an error.
-  - `batch`: Sample/library/preparation identifiers for linking. Missing values cause an error.
+  - `batch`: Sample, Library, or Preparation identifiers used for linking. Missing values cause an error.
 - **QC metric calculation** (if `add_qc_metrics` is not `false` and environment variable `dry_run` is `false`): Number of counts, number of genes, percentage mitochondrial expression, and percentage ribosomal expression are computed and added if not already present.
 
 **Feature metadata additional steps:**
