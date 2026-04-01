@@ -36,13 +36,13 @@ Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index 
 
 **Goal:** Get a ready catalogue of curated public single-cell studies to test cross-study search without preparing your own data. Load data using the template created for these datasets to enable range queries.
 
-1. Load the template — `<TEMPLATE_LINK_PLACEHOLDER>` · Template upload guide: `https://github.com/genestack/user-docs/blob/develop/docs/tools/odm-sdk/terminal/templates/create-or-update-template.md`
+1. Load the template — `<TEMPLATE_LINK_PLACEHOLDER>` · [Template upload guide](../../../docs/tools/odm-sdk/terminal/templates/create-or-update-template.md)
 2. Load the curated datasets into ODM (HDF5 attachments included).
 
 **Ready-to-run import commands:**
 - Link: [Import commands for public datasets](doc-odm-user-guide/extras/dataset-import-commands.md)
 - Includes copy/paste commands with placeholders for server and token.
-- Further details: `https://github.com/genestack/user-docs/blob/develop/docs/tools/odm-sdk/terminal/study/uploading-study.md`
+- Further details: [Uploading studies to ODM](../../../docs/tools/odm-sdk/terminal/study/uploading-study.md)
 
 ---
 
