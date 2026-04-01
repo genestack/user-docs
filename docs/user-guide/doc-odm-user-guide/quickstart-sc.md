@@ -40,11 +40,8 @@ Users who want to bring single-cell data (HDF5 / H5AD / 10x H5) into ODM, index 
   - Link: [Public dataset template](https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/templates/public_studies_template_demo.json)
   - Further details: [Template upload guide](../../../docs/tools/odm-sdk/terminal/templates/create-or-update-template.md)
 2. Load the curated datasets into ODM (HDF5 attachments included).
-
-**Ready-to-run import commands:**
-- Link: [Import commands for public datasets](doc-odm-user-guide/extras/dataset-import-commands.md)
-- Includes copy-paste commands with placeholders for server and token.
-- Further details: [Uploading studies to ODM](../../../docs/tools/odm-sdk/terminal/study/uploading-study.md)
+  - **Ready-to-run import commands:** [Import commands for public datasets](doc-odm-user-guide/extras/dataset-import-commands.md). Includes copy-paste commands with placeholders for server, token and template.
+  - Further details: [Uploading studies to ODM](../../../docs/tools/odm-sdk/terminal/study/uploading-study.md)
 
 ---
 
