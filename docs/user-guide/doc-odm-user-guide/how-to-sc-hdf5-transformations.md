@@ -128,7 +128,7 @@ POST /api/v1/transformations/jobs
 }
 ```
 
-Monitor and retrieve logs the same way as the dry run (Steps 4–5). When the job completes, the logs contain the ODM accessions assigned to each object that was created or updated. The logs will also be uploaded as attachment to the same study.
+Monitor and retrieve logs the same way as the dry run (Steps 4–5). When the job completes, the logs contain the ODM accessions assigned to each object that was created or updated. The logs are uploaded as attachment to the same study.
 
 ---
 
