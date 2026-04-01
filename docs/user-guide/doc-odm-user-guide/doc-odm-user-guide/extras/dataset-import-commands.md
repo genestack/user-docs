@@ -14,11 +14,11 @@ Replace `<HOST>`, `<TOKEN>`, and `<TEMPLATE>` with your ODM instance URL, API to
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/HeartDiversityTucker10x/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/HeartDiversityTucker10x/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/HeartDiversityTucker10x/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/HeartDiversityTucker10x/healthy_human_4chamber_map_unnormalized_V4.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/HeartDiversityTucker10x/data.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/HeartDiversityTucker10x/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/HeartDiversityTucker10x/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/HeartDiversityTucker10x/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/HeartDiversityTucker10x/healthy_human_4chamber_map_unnormalized_V4.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/HeartDiversityTucker10x/data.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -32,11 +32,11 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/SCP1303/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/SCP1303/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/SCP1303/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/SCP1303/human_dcm_hcm_scportal_03.17.2022.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Cardiovascular/SCP1303/data.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/SCP1303/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/SCP1303/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/SCP1303/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/SCP1303/human_dcm_hcm_scportal_03.17.2022.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/cardiovascular_diseases/SCP1303/data.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -50,11 +50,11 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Healthy_cell_atlases/GSE156793/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Healthy_cell_atlases/GSE156793/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Healthy_cell_atlases/GSE156793/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Healthy_cell_atlases/GSE156793/GSE156793_all_organs_annotated_with_genes.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Healthy_cell_atlases/GSE156793/data.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/healthy_cell_atlases/GSE156793/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/healthy_cell_atlases/GSE156793/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/healthy_cell_atlases/GSE156793/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/healthy_cell_atlases/GSE156793/GSE156793_all_organs_annotated_with_genes.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/healthy_cell_atlases/GSE156793/data.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -68,11 +68,11 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/FibroticLiverWatsonMERFISH/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/FibroticLiverWatsonMERFISH/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/FibroticLiverWatsonMERFISH/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/FibroticLiverWatsonMERFISH/GSE210077_adata_healthy_diseased_nucseq_sparse.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/FibroticLiverWatsonMERFISH/data.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/FibroticLiverWatsonMERFISH/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/FibroticLiverWatsonMERFISH/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/FibroticLiverWatsonMERFISH/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/FibroticLiverWatsonMERFISH/GSE210077_adata_healthy_diseased_nucseq_sparse.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/FibroticLiverWatsonMERFISH/data.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -86,11 +86,11 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/GSE165045/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/GSE165045/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/GSE165045/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/GSE165045/GSE165045_merged_with_TCR.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Inflammatory/GSE165045/data.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/GSE165045/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/GSE165045/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/GSE165045/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/GSE165045/GSE165045_merged_with_TCR.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/inflammatory_diseases/GSE165045/data.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -104,11 +104,11 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE148073/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE148073/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE148073/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE148073/GSE148073_merged_data_new.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE148073/data.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE148073/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE148073/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE148073/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE148073/GSE148073_merged_data_new.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE148073/data.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -122,14 +122,14 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE192740/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE192740/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE192740/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE192740/GSE192740_human_combined_sparse.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE192740/data_human.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE192740/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE192740/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE192740/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE192740/GSE192740_human_combined_sparse.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE192740/data_human.tsv \
   -dc 'Single-cell transcriptomics' \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE192740/GSE192740_mouse_combined_sparse.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE192740/data_mouse.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE192740/GSE192740_mouse_combined_sparse.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE192740/data_mouse.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -143,14 +143,14 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE198623/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE198623/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE198623/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE198623/GSE198623_human_processed.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE198623/data_human.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE198623/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE198623/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE198623/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE198623/GSE198623_human_processed.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE198623/data_human.tsv \
   -dc 'Single-cell transcriptomics' \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE198623/GSE198623_pig_processed.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE198623/data_pig.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE198623/GSE198623_pig_processed.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE198623/data_pig.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -164,11 +164,11 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE292928/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE292928/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE292928/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE292928/GSE292928_GEX_only_cellbender_sparse.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Metabolic/GSE292928/data.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE292928/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE292928/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE292928/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE292928/GSE292928_GEX_only_cellbender_sparse.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/metabolic_diseases/GSE292928/data.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
@@ -182,11 +182,11 @@ odm-import-data \
 odm-import-data \
   --server <HOST> \
   --token <TOKEN> \
-  --study https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Neurodegenerative/GSE148434/study.tsv \
-  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Neurodegenerative/GSE148434/samples.tsv \
-  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Neurodegenerative/GSE148434/libraries.tsv \
-  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Neurodegenerative/GSE148434/GSE148434_merged_data.h5ad \
-  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/New_demo/Non-Onco/sc/Neurodegenerative/GSE148434/data.tsv \
+  --study https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/neurodegenerative_diseases/GSE148434/study.tsv \
+  --samples https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/neurodegenerative_diseases/GSE148434/samples.tsv \
+  --libraries https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/neurodegenerative_diseases/GSE148434/libraries.tsv \
+  -fl https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/neurodegenerative_diseases/GSE148434/GSE148434_merged_data.h5ad \
+  -flm https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/non_onco/single_cell/neurodegenerative_diseases/GSE148434/data.tsv \
   -dc 'Single-cell transcriptomics' \
   --template <TEMPLATE> \
   --allow-duplicates
