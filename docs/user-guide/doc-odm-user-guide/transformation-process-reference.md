@@ -203,7 +203,12 @@ Output files generated in previous pipeline stages are uploaded to ODM and linke
 
 If `biosample_metadata` is configured with at least one entity:
 
-- **New groups** (for entities with `create_new_group: true`): The corresponding TSV is uploaded as a new group via the entity-specific API endpoint, with `template_id` applied if specified. The new group is then linked to its parent — Sample groups are linked to the study accession; Library and Preparation groups are linked to a Sample group, resolved in this order: (1) `linking_group.sample` in the entity's config, (2) a Sample group created in the same run, (3) pre-fetched Sample group accessions for the study. The new group's accession is stored for use in the cell group linking step (library/preparation takes priority over sample).
+- **New groups** (for entities with `create_new_group: true`): The corresponding TSV is uploaded as a new group via the entity-specific API endpoint, with `template_id` applied if specified. The new group is linked to its parent: Sample Groups are linked to the study; and Library and Preparation Groups are linked to a Sample Group, resolved in this order: 
+(1) `linking_group.sample` in the entity's configuration, 
+(2) a Sample group created in the same run, 
+(3) pre-fetched Sample Group accessions for the study.
+
+The newly created Group's accession is stored for use in the cell group linking step. Library and Preparation takes priority over Sample.
 
 - **Existing groups** (for entities with `create_new_group` not set): For each row in the update TSV produced in Stage 2.2, the pipeline updates the corresponding object by calling the ODM PATCH API endpoint with the new attribute values.
 
