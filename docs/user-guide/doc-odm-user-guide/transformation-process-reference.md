@@ -97,13 +97,14 @@ When `columns_to_export` is configured for an entity but `create_new_group` is n
 
 It fetches the current metadata for the entity type, then runs a matching procedure joining the extracted metadata to the existing metadata by the entity ID column (Sample Source ID, Library ID, or Preparation ID). Only attributes that do not already exist in the ODM metadata are retained; columns with the same name are skipped. If any extracted ID does not match an existing ODM object, an error is raised listing the unmatched IDs. The matching result is written to a TSV file for use in Stage 4.
 
-### 2.3 File reading and metadata extraction
+### 2.3 Cell and feature metadata extraction
 
-For cell and feature metadata sections, the pipeline opens the H5AD file and reads the groups specified in `metadata_keys`:
+For cell and feature metadata, the pipeline opens the H5AD file and reads the groups specified in `metadata_keys`:
 
-- Standard metadata (value `"metadata"`) is loaded into a DataFrame.
-- **Embeddings** (`"embedding"`): Multidimensional arrays are serialized as comma-separated strings and added as columns.
-- **Pairwise** (`"pairwise"`): The row mean of each pairwise matrix is calculated and added as a column.
+- Standard metadata (`"metadata"`) is loaded into a DataFrame.
+- **Embeddings** (`"embedding"`) are read as multidimensional arrays, serialized as comma-separated strings, and added as columns.
+- **Pairwise data** (`"pairwise"`) is read as pairwise matrices; for each matrix, the row mean is calculated and added as a column.
+
 
 ### 2.4 Index handling and sanity checks
 
