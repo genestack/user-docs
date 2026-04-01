@@ -327,9 +327,9 @@ The only required change compared to an H5AD configuration is setting `file_type
 }
 ```
 
-When sizing the `volume_size` for a job using an H5 file, allocate at least **4× the size of the original attachment** (in GB). H5 files require significantly more scratch space due to the conversion step.
+Volume sizing for .h5 inputs: When setting `volume_size` for a job that uses an H5 input file, allocate at least **4× the original attachment size (e.g., a 5 GB file → volume_size ≥ 20 GB). H5 inputs require additional scratch space because the transformation converts them to H5AD during processing.
 
-Legacy 10x H5 files (v<3) are supported only if the file contains a single genome. Pre-process multi-genome files to extract the genome of interest before running the transformation.
+Legacy 10x H5 support: Legacy 10x Genomics H5 files (v<3) are supported only when the file contains a single genome. If the file includes multiple genomes, pre-process it to extract the genome of interest before running the transformation.
 
 ---
 
