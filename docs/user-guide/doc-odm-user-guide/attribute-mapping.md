@@ -1,6 +1,6 @@
 # Attribute Mapping Reference
 
-During metadata curation, the transformation automatically maps commonly used attribute names found in source HDF5 files to the canonical ODM API names. This makes it possible to ingest data from a wide variety of tools and workflows — such as Seurat, Scanpy, or Cell Ranger — without requiring manual renaming of attributes before import.
+During metadata curation, the transformation automatically maps commonly used attribute names found in source HDF5 files to the canonical ODM API names.
 
 Mapping is applied separately to cell metadata and feature metadata. When an attribute in the source file matches one of the known alternative names listed below, it is renamed to the corresponding ODM API display name. Attributes that do not match any known name are converted to camelCase.
 
@@ -30,7 +30,7 @@ The table below lists the canonical ODM API name for each attribute alongside th
 | doubletScore | `doublet_score`, `scrublet_score`, `doublet_probability`, `multiplet_score`, `doublet_stat` |
 | sScore | `S_score`, `s.score`, `S.Score`, `s_phase_score`, `S_phase_probability` |
 | g2mScore | `G2M_score`, `g2m.score`, `G2M.Score`, `g2m_phase_score`, `G2M_phase_probability` |
-| CellCycle | `phase`, `cell_cycle_phase`, `cc_phase`, `cycle_stage` |
+| cellCycle | `phase`, `cell_cycle_phase`, `cc_phase`, `cycle_stage` |
 | ambientFraction | `ambient_fraction`, `decontX_score`, `rho`, `contamination_fraction`, `ambient_rna_percent`, `soup_fraction`, `soup_frac` |
 
 ## Feature metadata attributes

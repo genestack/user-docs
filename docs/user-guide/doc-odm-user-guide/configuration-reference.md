@@ -11,7 +11,7 @@ The configuration is validated at the start of every run. If `file_type` is miss
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `file_type` | `string` | **Yes** | — | Format of the input file. Accepted values: `"h5ad"`, `"h5"`. |
-| `save_logs` | `boolean` | No | `true` | When `false`, logs are not saved as an attachment after the run. Has no effect when environment variable `dry_run` is `true`. |
+| `save_logs` | `boolean` | No | `true` | When `false`, logs are not saved as an attachment after the run. Has no effect when the job is submitted with `dry_run: true`. |
 
 ---
 
@@ -72,14 +72,14 @@ Settings for extracting and transforming cell-level metadata. Optional. If absen
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `metadata_keys` | `dict[string, string]` | Yes | — | Maps HDF5 group keys to metadata types. At least one key with value `"metadata"` is required. |
-| `linking_group` | `dict[string, string \| list[string] \| null]` | No | — | Specifies the parent SLP entity (sample/library/preparation) to link the Cell Group to. Empty value triggers auto-discovery of all available accessions. |
+| `linking_group` | `dict[string, string \| list[string] \| null]` | No | — | Specifies the parent SLP entity (`sample`, `library` or `preparation`) to link the Cell Group to. Empty value triggers auto-discovery of all available accessions. For full linking resolution rules, see [Linking group determination](transformation-process-reference.md#13-linking-group-determination). |
 | `columns_to_drop` | `list[string]` | No | — | Column names to remove before processing. |
 | `columns_renaming_map` | `dict[string, string]` | No | — | Maps source column names to new names. |
 | `columns_to_fill_missing_values` | `dict[string, string]` | No | — | Default values for missing entries. |
 | `columns_to_curate_values` | `dict[string, dict[string, string]]` | No | — | Replacement values for specific entries in specified columns. |
 | `set_column_value` | `dict[string, string]` | No | — | Sets a constant value for all rows. Can add new columns or overwrite existing ones. |
 | `columns_to_preserve_name` | `list[string]` | No | — | Columns to exempt from internal name standardisation (e.g. Leiden cluster columns with decimal suffixes). |
-| `add_qc_metrics` | `boolean` | No | `true` | When `true`, adds QC metrics (counts, genes, mitochondrial/ribosomal presence) if not already present. Skipped when environment variable `dry_run` is `true`. |
+| `add_qc_metrics` | `boolean` | No | `true` | When `true`, adds QC metrics (counts, genes, mitochondrial/ribosomal presence) if not already present. Skipped when the job is submitted with `dry_run: true`. |
 
 **`metadata_keys` accepted values (H5AD):**
 
@@ -137,7 +137,7 @@ Settings for extracting and uploading the cell expression matrix. Optional. If a
 | `data_class` | `string` | **Yes** | — | Data class label for the expression data (e.g. `"Single-cell transcriptomics"`). |
 | `compression_level` | `integer` (0–9) | No | `4` | Brotli compression level. Higher values produce smaller files at the cost of longer compression time. |
 | `chunk_size` | `integer` | No | inferred | Number of features processed per chunk. Calculated automatically from available memory if omitted. |
-| `max_buffer_size` | `integer` | No | `50` | Amount of data held in memory before being flushed to disk during writing. |
+| `max_buffer_size` | `integer` | No | `50` | Amount of data (in MB) held in memory before being flushed to disk during writing. |
 | `number_format` | `string` | No | inferred | Numeric precision of output values. Accepts printf-style (`"%.7g"`, `"%d"`) or NumPy dtype (`"float32"`, `"int64"`). |
 | `columns_to_drop` | `list[string]` | No | — | Column names to remove from expression metadata. |
 | `columns_renaming_map` | `dict[string, string]` | No | — | Maps source column names to new names. |

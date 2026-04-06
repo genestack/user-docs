@@ -1,7 +1,5 @@
 # Single-Cell HDF5 Transformations Overview
 
-> **Related documentation:** To get started quickly with the full upload-to-query workflow, see the [Single-cell data in ODM: Getting Started](quickstart-sc.md). For step-by-step guidance on running the transformation, see the [How-to Guides](how-to-sc-hdf5-transformations.md). For the full configuration schema, see the [Configuration Reference](configuration-reference.md). For the API endpoints, see the [API Reference](api-reference.md). For the internal processing pipeline, see the [Transformation Process Reference](transformation-process-reference.md). For more information related the Single-cell data support in ODM, see the [Working with Single Cell Data](single-cell.md)
-
 This transformation converts a single-cell HDF5 file into the ODM-compatible output files. It extracts expression data and related cell metadata, and can optionally harmonize metadata and create or update biosample objects in ODM. The output files are then imported and linked automatically.
 
 The result is feature-level indexed data that is ready for downstream analysis and cross-study discovery without manual file preparation.
@@ -51,7 +49,7 @@ When the transformation uploads a Cell Group, it links it to a parent Sample, Li
 This is usually handled automatically. If the transformation creates new SLP objects, the Cell Group is linked to them. Otherwise, the transformation identifies the most appropriate existing SLP target in ODM. Users can override the automatic behavior by specifying the target explicitly in the configuration.
 For details, see [Linking group determination](transformation-process-reference.md#13-linking-group-determination).
 
-The created Expression Group created by the transformation is linked to the corresponding Cell Group .
+The Expression Group created by the transformation is linked to the corresponding Cell Group .
 
 ## Dry run mode
 
@@ -85,3 +83,12 @@ The transformation supports the following HDF5-based input formats:
 - **H5AD (AnnData)** — the native format of the AnnData Python library, widely used for single-cell data processing.
 - **10x Genomics H5** — converted internally to H5AD before processing, so the same extraction workflow is used regardless of the input format.
 - **Legacy 10x Genomics H5 (v<3)** — supported only for files containing a single genome. Multi-genome legacy files are not supported.
+
+## See also
+
+- [Single-cell data in ODM: Getting Started](quickstart-sc.md)
+- [How-to Guides](how-to-sc-hdf5-transformations.md) — step-by-step guidance for running the transformation.
+- [Configuration Reference](configuration-reference.md) — full configuration schema.
+- [Transformation Process Reference](transformation-process-reference.md) — internal processing pipeline.
+- [API Reference](api-reference.md) — API endpoints.
+

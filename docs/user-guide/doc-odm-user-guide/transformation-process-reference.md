@@ -1,8 +1,8 @@
 # Transformation Process Reference: Single-Cell HDF5 Transformation
 
-> **Related documentation:** For conceptual background, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For configuration parameter definitions and default values, see the [Configuration Reference](configuration-reference.md).
+> **Related documentation:** For conceptual background, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For configuration parameter definitions and default values, see the [Configuration Reference](configuration-reference.md). For guides to running the transformation, see [Single-cell data in ODM: Getting Started](quickstart-sc.md) and [How-to Guides](how-to-sc-hdf5-transformations.md).
 
-This reference describes the internal processing stages of the single-cell HDF5 transformation pipeline. It is intended for users who need to understand what the pipeline does at each stage — for example, to interpret logs, diagnose errors, or reason about the order of operations. It is not a guide to running the transformation; see the [Single-cell data in ODM: Getting Started](quickstart-sc.md) and [How-to Guides](how-to-sc-hdf5-transformations.md) for that purpose.
+This reference describes the internal processing stages of the single-cell HDF5 transformation pipeline. It is intended for users who need to understand what the pipeline does at each stage — for example, to interpret logs, diagnose errors, or reason about the order of operations.
 
 ---
 
@@ -26,7 +26,7 @@ For all remaining sections, validation errors are accumulated and reported toget
 
 Unrecognized keys at any level are logged as warnings and ignored. 
 
-Examples of valid configurations can be found in [Public dataset configurations](doc-odm-user-guide/extras/).
+Examples of valid configurations can be found in [Public dataset configurations](doc-odm-user-guide/extras/public-dataset-configurations-mapping.md).
 
 ### 1.2 Attachment and study metadata retrieval
 
@@ -60,6 +60,7 @@ Before any file processing begins, the pipeline resolves the parent SLP entity (
   "linking_group": {
     "sample": ["GSF000001"]
   }
+}
 ```
 
 ```json
@@ -67,6 +68,7 @@ Before any file processing begins, the pipeline resolves the parent SLP entity (
   "linking_group": {
     "preparation": []
   }
+}
 ```
 
 - **Auto-discovery:** If neither of the above applies, the pipeline fetches all SLP groups associated with the study from ODM and selects the first entity type that has at least one group, checking in the order: **Library → Preparation → Sample**. All accessions of the selected type are used for linking.
@@ -99,7 +101,7 @@ For each metadata section, the pipeline reads parameters (data type, input/outpu
 
 ### 2.2 Biosample metadata (`biosample_metadata` config)
 
-When `biosample_metadata` is present in the configuration, the pipeline can export Sample, Library, or Preparation-level attributes derived from cell-level metadata, curated as indicated in the configuration..
+When `biosample_metadata` is present in the configuration, the pipeline can export Sample, Library, or Preparation-level attributes derived from cell-level metadata, curated as indicated in the configuration.
 
 Only one of `library` or `preparation` may have `columns_to_export` set. 
 
@@ -163,7 +165,7 @@ Data type validation is then performed on the resulting DataFrame.
 
 - **QC metric calculation**: The following attributes are computed and added if they are not present in the original file: number of counts, number of genes, percentage mitochondrial expression, and percentage ribosomal expression. The step can be skipped by setting `add_qc_metrics` to `false` in the cell metadata section of the configuration. 
 
-The step is skipped when environment variable `dry_run` is `true`.
+The step is also skipped when the job is submitted with `dry_run: true` in the request body.
 
 **Feature metadata additional steps:**
 
@@ -211,7 +213,7 @@ The generated metadata file is written to the temporary directory.
 
 ### 4.1 Dry run exit
 
-If environment variable `dry_run` is `true`, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in APIs but not saved as attachments.
+If the job is submitted with `dry_run: true` in the request body, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in APIs but not saved as attachments.
 
 A best-effort linking validation:
 
@@ -229,12 +231,9 @@ Output files generated in previous pipeline stages are uploaded to ODM and linke
 
 If `biosample_metadata` is configured with at least one entity:
 
-- **New groups** (for entities with `create_new_group: true`): The corresponding TSV is uploaded as a new group via the entity-specific API endpoint, with `template_id` applied if specified. The new group is linked to its parent: Sample Groups are linked to the study; and Library and Preparation Groups are linked to a Sample Group, resolved in this order: 
-(1) `linking_group.sample` in the entity's configuration, 
-(2) a Sample group created in the same run, 
-(3) pre-fetched Sample Group accessions for the study.
+- **New groups** (for entities with `create_new_group: true`): The corresponding TSV is uploaded as a new group via the entity-specific API endpoint, with `template_id` applied if specified. The new group is linked to its parent: Sample Groups are linked to the study; Library and Preparation Groups are linked to a Sample Group, resolved by checking first `linking_group.sample` in the entity's configuration, then a Sample Group created in the same run, and finally pre-fetched Sample Group accessions for the study.
 
-The newly created Group's accession is stored for use in the cell group linking step. Library and Preparation takes priority over Sample.
+The newly created Group's accession is stored for use in the cell group linking step. Library and Preparation take priority over Sample.
 
 - **Existing groups** (for entities with `create_new_group` not set): For each row in the update TSV produced in Stage 2.2, the pipeline updates the corresponding object by calling the ODM PATCH API endpoint with the new attribute values.
 

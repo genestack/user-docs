@@ -3,6 +3,8 @@
 
 ---
 
+## Overview
+
 ### Who this is for
 Users who want to try single-cell data functionality in ODM on prepared, curated datasets.
 
@@ -55,8 +57,7 @@ Users who want to try single-cell data functionality in ODM on prepared, curated
 4. Confirm that the expected objects are present: Cell Group, Expression Group, and metadata objects.
 
 **Prepared configurations:**
-- Link: [Public dataset configurations](doc-odm-user-guide/extras/)
-- Configuration-to-dataset mapping table: [Configuration mapping](doc-odm-user-guide/extras/public-dataset-configurations-mapping.md)
+- Link: [Public dataset configurations](doc-odm-user-guide/extras/public-dataset-configurations-mapping.md)
 
 ---
 
@@ -66,7 +67,7 @@ Users who want to try single-cell data functionality in ODM on prepared, curated
 - Each transformed dataset shows the **Indexed** label in ODM Metadata Editor.
 - All indexing tasks show **Done** status in Task Manager.
 
-> **Note:** A completed transformation job does not mean the data is immediately searchable. ODM automatically triggers indexing after ingestion, but data is  available for querying once indexing finishes.
+> **Note:** A completed transformation job does not mean the data is immediately searchable. ODM automatically triggers indexing after ingestion, but data is available for querying once indexing finishes.
 
 ---
 

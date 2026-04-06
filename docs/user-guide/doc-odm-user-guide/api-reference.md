@@ -1,6 +1,6 @@
 # API Reference: Single-Cell HDF5 Transformation (Processors Controller)
 
-> **Related documentation:** For conceptual background on configurations, images, and jobs, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For step-by-step usage of these endpoints, see the the [Single-cell data in ODM: Getting Started](quickstart-sc.md) and [How-to Guides](how-to-sc-hdf5-transformations.md). For the configuration `data` object schema, see the [Configuration Reference](configuration-reference.md).
+> **Related documentation:** For conceptual background on configurations, images, and jobs, see [About Single-Cell HDF5 Transformations in ODM](about-sc-hdf5-transformations.md). For step-by-step usage of these endpoints, see the [Single-cell data in ODM: Getting Started](quickstart-sc.md) and [How-to Guides](how-to-sc-hdf5-transformations.md). For the configuration `data` object schema, see the [Configuration Reference](configuration-reference.md).
 
 This reference describes all endpoints in the ODM Processors Controller API used to manage and execute single-cell HDF5 transformations. Endpoints are grouped into three resources: Transformation Configurations, Transformation Images, and Transformation Jobs.
 
@@ -107,7 +107,7 @@ Creates a new transformation configuration and returns its assigned `id`.
 PUT /api/v1/transformations/configurations/{id}
 ```
 
-Fully replaces the configuration at the given `id` with the provided content. The request body follows the same structure as `POST`. Use this after reviewing dry-run logs to apply adjustments before resubmitting a dry-run or running the full transformation.
+Fully replaces the configuration at the given `id` with the provided content. 
 
 **Path parameters:**
 
@@ -232,7 +232,7 @@ Returns the job object, including the current `status.state`. Repeat this reques
 | State | Meaning |
 |---|---|
 | `RUNNING` | Job is in progress |
-| `COMPLETED` | Job finished successfully |
+| `DONE` | Job finished successfully |
 | `FAILED` | Job encountered an error |
 
 ### Retrieve job logs
@@ -254,5 +254,3 @@ Returns the log records for the specified job. Logs include:
 | Parameter | Type | Description |
 |---|---|---|
 | `id` | integer | ID of the job whose logs to retrieve |
-
-After a dry run, review the logs carefully before updating the configuration or proceeding to a full run. After a full run, the logs are the primary source of information about which ODM accessions were created.

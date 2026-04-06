@@ -10,14 +10,15 @@ Each curated dataset has been assigned a tested transformation configuration. Us
 
 | Configuration | Datasets |
 |---|---|
-| `aggregated_config_1` | HeartDiversityTucker10x |
+| [`aggregated_config_1`](aggregated_config_1.json) | HeartDiversityTucker10x |
 | | GSE292928 |
 | | GSE192740_human |
 | | GSE192740_mouse |
-| | GSE148434SCP1303 |
-| `aggregated_config_2` | GSE198623_human |
+| | GSE148434 |
+| | SCP1303 |
+| [`aggregated_config_2`](aggregated_config_2.json) | GSE198623_human |
 | | GSE198623_pig |
-| `aggregated_config_3` | GSE148073 |
+| [`aggregated_config_3`](aggregated_config_3.json) | GSE148073 |
 | | FibroticLiverWatsonMERFISH |
-| `GSE156793` | GSE156793 |
-| `GSE165045` | GSE165045 |
+| [`GSE156793`](GSE156793.json) | GSE156793 |
+| [`GSE165045`](GSE165045.json) | GSE165045 |

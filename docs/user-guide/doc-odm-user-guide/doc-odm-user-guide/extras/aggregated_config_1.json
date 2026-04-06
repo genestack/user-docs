@@ -18,8 +18,7 @@
         "age",
         "disease",
         "biosample_id",
-        "lvef",
-        "biosample_id"
+        "lvef"
       ],
       "columns_renaming_map": {
           "index": "barcode",

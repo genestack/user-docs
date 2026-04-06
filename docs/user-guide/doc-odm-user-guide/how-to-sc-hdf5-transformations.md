@@ -61,7 +61,7 @@ The response includes the `id` of the created configuration. It is required for 
 
 For a full description of the `data` object, see the [Configuration Reference](configuration-reference.md).
 
-For a default configurations prepared, see the [Configuration mapping](doc-odm-user-guide/extras/public-dataset-configurations-mapping.md)
+For a list of ready-to-use configurations, see the [Configuration mapping](doc-odm-user-guide/extras/public-dataset-configurations-mapping.md).
 
 ### Step 2: Identify the transformation image
 
@@ -120,7 +120,7 @@ If issues are found, update the configuration and repeat from Step 3. See [How t
 
 ### Step 6: Submit the full run
 
-Once the dry run completes without issues, submit the same job with environment variable `dry_run` set to `false`:
+Once the dry run completes without issues, submit the same job with `dry_run` set to `false` in the request body:
 
 ```
 POST /api/v1/transformations/jobs
@@ -395,7 +395,7 @@ These operations are available in `cell_metadata`, `feature_metadata`, and per-e
 
 After all explicit column operations, matching attributes are mapped to ODM standard names. The rest are converted to camelCase. Columns listed in `columns_to_preserve_name` are exempt from this standardization step.
 
-For the details, see [Attribute Mapping Reference](docs/user-guide/doc-odm-user-guide/attribute-mapping.md)
+For the details, see [Attribute Mapping Reference](attribute-mapping.md)
 
 **To prevent a column from being automatically renamed:**
 
