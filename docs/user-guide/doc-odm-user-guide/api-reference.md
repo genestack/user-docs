@@ -219,7 +219,7 @@ H5 files require significantly more scratch space due to the internal conversion
 GET /api/v1/transformations/jobs/{id}
 ```
 
-Returns the job object, including the current `status.state`. Repeat this request until the state reaches a terminal value before retrieving logs or proceeding to the next step.
+Returns the job object, including the current `status.state`.
 
 **Path parameters:**
 
