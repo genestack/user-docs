@@ -84,6 +84,10 @@ The transformation supports the following HDF5-based input formats:
 - **10x Genomics H5** — converted internally to H5AD before processing, so the same extraction workflow is used regardless of the input format.
 - **Legacy 10x Genomics H5 (v<3)** — supported only for files containing a single genome. Multi-genome legacy files are not supported.
 
+## Known limitations
+
+Currently, only one transformation process can be run per attachment. If there is a need to run another transformation job on the same data, a new copy of attachment should be imported or a new study should be created.
+
 ## See also
 
 - [Single-cell data in ODM: Getting Started](quickstart-sc.md)
