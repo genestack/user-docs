@@ -29,7 +29,7 @@ Users who want to try single-cell data functionality in ODM on prepared, curated
 3. Verify that objects were created, linked, and indexed correctly.
 
 **Notebook:** *Transformation Quickstart*
-- Link: [Single-cell RNA-Seq: Data transformation and upload to ODM](doc-odm-user-guide/notebooks/sc-transformations-demo.ipynb)
+- Link: [Single-cell RNA-Seq: Data transformation and upload to ODM](doc-odm-user-guide/notebooks/sc_transformations_demo.ipynb)
 - What it covers: uploading the HDF5 file · creating a configuration · running a dry-run · checking job status and outputs.
 
 ---
@@ -76,5 +76,5 @@ Users who want to try single-cell data functionality in ODM on prepared, curated
 **Goal:** Use ODM's search and analytics notebooks to explore your indexed datasets.
 
 **Notebook:** *Single-cell Query & Analysis*
-- Link: [Single-cell RNA-Seq: Cohort Selection and Data Retrieval](doc-odm-user-guide/notebooks/sc-rnaseq-demo.ipynb)
+- Link: [Single-cell RNA-Seq: Cohort Selection and Data Retrieval](doc-odm-user-guide/notebooks/sc_rnaseq_demo.ipynb)
 - What it covers: cross-study search examples · filtering by curated attributes · example analytical queries and result inspection.
