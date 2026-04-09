@@ -90,7 +90,7 @@ Currently, only one transformation process can be run per attachment. If there i
 
 ## See also
 
-- [Single-cell data in ODM: Getting Started](quickstart-sc.md)
+- [Single-cell data in ODM: Getting Started](quickstart-sc.md) - quick start tutorial for working with single-cell data.
 - [How-to Guides](how-to-sc-hdf5-transformations.md) — step-by-step guidance for running the transformation.
 - [Configuration Reference](configuration-reference.md) — full configuration schema.
 - [Transformation Process Reference](transformation-process-reference.md) — internal processing pipeline.
