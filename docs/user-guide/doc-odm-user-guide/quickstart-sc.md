@@ -78,3 +78,12 @@ Users who want to try single-cell data functionality in ODM on prepared, curated
 **Notebook:** *Single-cell Query & Analysis*
 - Link: [Single-Cell RNA-Seq: Cohort Selection and Data Retrieval](doc-odm-user-guide/notebooks/sc_rnaseq_demo.ipynb)
 - What it covers: cross-study search examples · filtering by curated attributes · example analytical queries and result inspection.
+
+
+## Next steps
+
+- [Single-Cell HDF5 Transformations Overview](about-sc-hdf5-transformations.md) — conceptual overview of the transformation pipeline.
+- [How-to Guides](how-to-sc-hdf5-transformations.md) — step-by-step guidance for running the transformation.
+- [Configuration Reference](configuration-reference.md) — full configuration schema.
+- [Transformation Process Reference](transformation-process-reference.md) — internal processing pipeline.
+- [API Reference](api-reference.md) — API endpoints.
