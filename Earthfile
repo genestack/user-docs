@@ -30,7 +30,7 @@ build:
     SAVE ARTIFACT site
 
 image:
-    FROM nginxinc/nginx-unprivileged:1.29.8-alpine
+    FROM nginxinc/nginx-unprivileged:1.30.0-alpine
     COPY fs /
     COPY --pass-args +build/site/ /usr/share/nginx/html/
 
