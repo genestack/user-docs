@@ -137,5 +137,5 @@ Monitor and review logs the same way as Steps 4–5. When the job completes, the
 ## Use-case guides
 
 - For single-cell HDF5 ingestion, see [single-cell/single-cell-getting-started.md](single-cell/single-cell-getting-started.md).
-- For CSV-to-TSV conversion, see [csv-to-tsv/how-to-transform-csv-to-tsv.md](csv-to-tsv/how-to-transform-csv-to-tsv.md).
-- For the full endpoint specifications, see [API reference](api-reference.md).
+- For CSV-to-Sample-group conversion, see the [`metadata-basic` image](available-images-reference.md#metadata-basic).
+- For the full endpoint specifications, see [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md) -->.

@@ -8,7 +8,7 @@ These three map onto a simple idea: an image is *what processing to do*, a confi
 
 ## Transformation configurations
 
-Transformation configurations are JSON documents (a structured, text-based settings format) that define how an input file should be processed, including the input format, metadata extraction rules, and curation logic. Configurations are stored centrally and identified by an integer ID. The same configuration can be reused across multiple input files that share the same structure, and configurations can be created, retrieved, and updated independently of any particular run. Configurations are versioned: updating a configuration does not overwrite it but archives the current state as a previous version and increments the active version. Earlier versions remain retrievable, so a job can always be audited or re-run with the exact parameters it used.
+Transformation configurations are JSON documents (a structured, text-based settings format) that define how an input file should be processed, including the input format, metadata extraction rules, and curation logic. Configurations are stored centrally and identified by an integer ID. The same configuration can be reused across multiple input files that share the same structure, and configurations can be created, retrieved, updated, and archived independently of any particular run. Configurations are versioned: updating a configuration does not overwrite it but saves the current state as a previous version and increments the active version. Earlier versions remain retrievable, so a job can always be audited or re-run with the exact parameters it used. Configurations are never deleted; instead they can be archived, which hides a configuration from the default listing and blocks further updates while keeping it retrievable and usable in jobs.
 
 ## Transformation images
 
@@ -18,7 +18,7 @@ Transformation images are versioned container images (self-contained, ready-to-r
 
 Transformation jobs are the execution records. A job combines an image and one or more input file accessions and a configuration, then runs the transformation and produces output plus a processing log. Jobs are independent: the same input file can be submitted again with a different configuration or image without affecting previous runs.
 
-Job operations respect ODM's existing permissions: you can only act on a job if you have access to the studies its input attachments belong to, and creating or managing jobs requires the appropriate curation permissions. See the [API reference](api-reference.md) for the exact rules.
+Job operations respect ODM's existing permissions: you can only act on a job if you have access to the studies its input attachments belong to, and creating or managing jobs requires the appropriate curation permissions. See the [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md) --> for the exact rules.
 
 A job is not where your results are stored. As it runs, the transformation writes its output into ODM as ordinary objects, so once the job finishes those results are part of your ODM data like anything else.
 

@@ -2,7 +2,7 @@
 
 When you submit a transformation job, the Processors Controller provisions the processing environment, tracks the job's state as it runs, and reclaims its compute resources once the job is finished. The Processors Controller does not run the transformation itself. The transformation (the containerized image running inside that environment) does the actual work: it reads its inputs, processes them, writes the resulting objects back into ODM, and uploads its log. This page explains each phase so that you can interpret status responses, reason about failures, and make informed decisions about resource settings.
 
-For the concepts behind transformations, see [About the Processors Controller](about-processors-controller.md). For the full list of job states and the job object's fields, see the [Processors Controller API reference](api-reference.md).
+For the concepts behind transformations, see [About the Processors Controller](about-processors-controller.md). For the full list of job states and the job object's fields, see the [Processors Controller API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md) -->.
 
 ## Submission
 
@@ -48,7 +48,9 @@ The job log records the error that caused the failure; retrieve it via `POST /ap
 
 **Archival and compute cleanup:**
 
-Finishing and archiving are two separate moments. A job first reaches a terminal state (`DONE`, `FAILED`, or `CANCELLED`); shortly afterwards a background process archives its final status and full logs to permanent storage and frees the job's compute resources: the scratch volume and the processing container. Cancelling a job archives it immediately. Once a job is archived, its `archived` field flips to `true`; you see no other change, because its status and logs keep working exactly as before.
+Finishing and archiving are two separate moments. A job first reaches a terminal state (`DONE`, `FAILED`, or `CANCELLED`); shortly afterwards a background process archives its final status and full logs to permanent storage and frees the job's compute resources: the scratch volume and the processing container. Cancelling a job archives it immediately. Archiving is automatic: there is no manual archive or un-archive action. Once a job is archived, its response carries an `archived: true` field; active jobs omit the field entirely. Archiving changes nothing else about how you work with the job: its status and logs keep working exactly as before.
+
+Archiving does change one thing: the jobs listing. By default, `GET /api/v1/transformations/jobs` returns only active jobs, keeping historical entries out of your working view. To include archived jobs as well, pass `include_archived=true`. Operations on a single job by its explicit `id` are unaffected: retrieving its status (`GET /api/v1/transformations/jobs/{id}`), cancelling it (`POST /api/v1/transformations/jobs/{id}/cancel`), and fetching its logs (`POST /api/v1/transformations/jobs/{id}/logs`) always work regardless of archive status.
 
 The job record, its final status, and its logs are retained permanently and stay available through the API: they are never auto-deleted, and a job cannot be deleted manually. Archival frees only the compute resources; it does not remove the ODM objects the transformation produced.
 

@@ -54,7 +54,6 @@ nav:
             - How to Run a Transformation: user-guide/doc-odm-user-guide/transformations/how-to-run-a-transformation.md
             - Manage Configurations: user-guide/doc-odm-user-guide/transformations/manage-configurations.md
             - Job Lifecycle: user-guide/doc-odm-user-guide/transformations/job-lifecycle.md
-            - CSV to Sample Group: user-guide/doc-odm-user-guide/transformations/csv-to-tsv/how-to-transform-csv-to-tsv.md
             - Single Cell (HDF5):
                 - user-guide/doc-odm-user-guide/transformations/single-cell/single-cell-getting-started.md
                 - About Single-cell Transformations: user-guide/doc-odm-user-guide/transformations/single-cell/about-single-cell-transformations.md
@@ -70,7 +69,6 @@ nav:
                 - Transformation Process Reference: user-guide/doc-odm-user-guide/transformations/single-cell/transformation-process-reference.md
                 - Attribute Mapping Reference: user-guide/doc-odm-user-guide/transformations/single-cell/attribute-mapping-reference.md
             - Available Images Reference: user-guide/doc-odm-user-guide/transformations/available-images-reference.md
-            - API Reference: user-guide/doc-odm-user-guide/transformations/api-reference.md
     - Access Control:
         - Users: access-control/users.md
         - Permissions: access-control/permissions.md

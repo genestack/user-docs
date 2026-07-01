@@ -20,7 +20,7 @@ Each transformation image handles a specific input/output format pair. Use `GET 
 
 **Available versions:** `latest`
 
-**Use case:** Converts a CSV file attached to a study into an ODM Sample metadata group. The configuration `data` field specifies the source format and the destination entity type.
+**Use case:** Converts a CSV file attached to a study into an ODM Sample metadata group. The configuration `data` field specifies the source format and the destination entity type. On success, the image converts the CSV to TSV and automatically triggers ODM's multipart sample import, creating a new Sample group linked to the same study as the source attachment.
 
 **Example `data` field:**
 
@@ -31,7 +31,7 @@ Each transformation image handles a specific input/output format pair. Use `GET 
 }
 ```
 
-For the full how-to, see [csv-to-tsv/how-to-transform-csv-to-tsv.md](csv-to-tsv/how-to-transform-csv-to-tsv.md).
+For the end-to-end job workflow (create a configuration, submit a dry run, monitor, and review logs), see [How to run a transformation](how-to-run-a-transformation.md).
 
 ---
 

@@ -2,7 +2,7 @@
 
 This guide shows you how to develop a transformation configuration and iterate on it until it produces the results you want. A configuration is a reusable, versioned JSON document that tells an image how to process your input. The workflow below takes you from a first draft, through dry-run testing, to a configuration you can run for real and reuse across jobs.
 
-For the full field-by-field schema of every configuration endpoint, see the [API reference](api-reference.md#transformation-configurations).
+For the full field-by-field schema of every configuration endpoint, see the [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md#transformation-configurations) -->.
 
 ## Prerequisites
 
@@ -49,7 +49,7 @@ The response is the configuration reference, its server-assigned `id` and the `v
 
 ```json
 {
-  "id": 294862386,
+  "id": 147,
   "version": 1
 }
 ```
@@ -68,7 +68,9 @@ When the logs show something to fix, update the configuration:
 PUT /api/v1/transformations/configurations/{id}
 ```
 
-The request body follows the same structure as the `POST` endpoint. Updating does not overwrite the configuration: the current state is archived as a previous version and the active version is incremented. The same `id` is reused across all iterations, and every earlier version stays retrievable, so you can audit or re-run a job with the exact parameters used in the past.
+The request body follows the same structure as the `POST` endpoint. Updating does not overwrite the configuration: the current state is saved as a previous version and the active version is incremented. The same `id` is reused across all iterations, and every earlier version stays retrievable, so you can audit or re-run a job with the exact parameters used in the past.
+
+You cannot update a configuration once it has been archived: `PUT` on an archived configuration returns `409 Conflict`. To change it, create a new configuration instead (see [Archive a configuration](#archive-a-configuration)).
 
 Resubmit the dry-run job against the same configuration and review the logs again. Repeat until the dry run completes without errors or warnings that require action, then submit the full run.
 
@@ -80,7 +82,7 @@ At any point you can inspect what you have. To list your configurations:
 GET /api/v1/transformations/configurations
 ```
 
-The response is a paginated envelope: the configurations are in the `items` array, and `limit`/`offset` query parameters page through the results (default 100 per page). The list returns the latest version of each configuration, including its full `data`, so you can review the current state of each one without a second request. See [Pagination](api-reference.md#pagination).
+The response is a paginated envelope: the configurations are in the `items` array, and `limit`/`offset` query parameters page through the results (default 100 per page). Results are ordered by `id`. By default the list returns only active configurations; to include archived ones as well, set the `include_archived` query parameter to `true` (see [Archive a configuration](#archive-a-configuration)). The list returns the latest version of each configuration, including its full `data`, so you can review the current state of each one without a second request. See [Pagination](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md#pagination) -->.
 
 To retrieve a single configuration by its `id`:
 
@@ -97,8 +99,27 @@ GET /api/v1/transformations/configurations/{id}/versions
 GET /api/v1/transformations/configurations/{id}/versions/{version}
 ```
 
-The versions are returned in the `items` array of a paginated envelope. For the field-by-field schema of these and every other configuration endpoint, see the [API reference](api-reference.md#transformation-configurations).
+The versions are returned in the `items` array of a paginated envelope. For the field-by-field schema of these and every other configuration endpoint, see the [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md#transformation-configurations) -->.
 
 ## Reuse a working configuration
 
 Configurations are reusable. Once a configuration is working correctly, you can apply it to multiple input files in subsequent jobs without recreating it.
+
+## Archive a configuration
+
+Configurations are never deleted. When you no longer need one, you archive it:
+
+```
+POST /api/v1/transformations/configurations/{id}/archive
+```
+
+Archiving applies to the configuration and all of its versions at once. The call is idempotent - archiving a configuration that is already archived succeeds and changes nothing - and returns `404 Not Found` for an unknown `id`.
+
+Archiving is a soft retirement, not a deletion:
+
+- **Hidden from the default listing.** `GET /api/v1/transformations/configurations` no longer returns the configuration unless you pass `include_archived=true`.
+- **Still retrievable by `id`.** Fetching a configuration or a specific version by its `id` still works, with no filter needed.
+- **Still usable in jobs.** You can still submit a job that references an archived configuration.
+- **No longer updatable.** `PUT` on an archived configuration returns `409 Conflict`: *"Configuration is archived and cannot be updated. Create a new configuration instead."*
+
+Archiving is one-way: there is no un-archive or delete operation. To resume work from an archived configuration, retrieve it by `id` and create a new configuration from its `data`.

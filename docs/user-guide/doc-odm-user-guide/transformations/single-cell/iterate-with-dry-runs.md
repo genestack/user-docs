@@ -37,7 +37,7 @@ Update the configuration using:
 PUT /api/v1/transformations/configurations/{id}
 ```
 
-The request body follows the same structure as the original `POST`. Updating does not overwrite the configuration: the current state is archived as a previous version and the active version is incremented. The same `id` is reused, and earlier versions remain retrievable.
+The request body follows the same structure as the original `POST`. Updating does not overwrite the configuration: the current state is saved as a previous version and the active version is incremented. The same `id` is reused, and earlier versions remain retrievable.
 
 ## Step 3: Resubmit the dry run
 
