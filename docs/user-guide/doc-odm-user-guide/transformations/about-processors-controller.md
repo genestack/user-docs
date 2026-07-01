@@ -1,6 +1,6 @@
 # About the Processors Controller
 
-A transformation takes an attached input file and turns its contents into ODM objects. Some transformations produce indexable metadata: for example, ODM cannot index a CSV file directly as a source of metadata, but the `metadata-basic` transformation converts it into TSV-based metadata objects that ODM can index. Others turn raw data into structured ODM objects: for example, the `hdf5-cells` transformation converts single-cell HDF5 (H5AD/H5) files into ODM Cell Groups and Expression Groups. Either way, a transformation bridges the gap between the file you have and the ODM objects you need.
+The Processors Controller is the ODM API for running file transformations: it lets you discover what transformation images are available, configure how they process your data, and execute and monitor transformation jobs. Its purpose is to remove preprocessing as a barrier to ingestion - you attach the file you have and ODM transforms it into queryable objects. Transformations cover both metadata and data: `metadata-basic` converts a CSV into indexable sample objects, while `hdf5-cells` extracts cell-type annotations, dimensional-reduction results, and processed expression values from an H5AD or H5 file into ODM Cell Groups and Expression Groups.
 
 Transformations are managed through the ODM Processors Controller API, which is built on three related components: configurations, images, and jobs.
 
