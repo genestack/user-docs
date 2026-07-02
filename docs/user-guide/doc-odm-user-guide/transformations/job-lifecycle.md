@@ -1,6 +1,6 @@
 # Transformation job lifecycle
 
-When you submit a transformation job, the Processors Controller provisions the processing environment, tracks the job's state as it runs, and reclaims its compute resources once the job is finished. The Processors Controller does not run the transformation itself. The transformation (the containerized image running inside that environment) does the actual work: it reads its inputs, processes them, writes the resulting objects back into ODM, and uploads its log. This page explains each phase so that you can interpret status responses, reason about failures, and make informed decisions about resource settings.
+When you submit a transformation job, the Processors Controller provisions the processing environment, tracks the job's state as it runs, and reclaims its compute resources once the job is finished. The Processors Controller does not run the transformation itself. The transformation (the containerized image running inside that environment) does the actual work: it reads its inputs, processes them, and writes the resulting objects back into ODM. This page explains each phase so that you can interpret status responses, reason about failures, and make informed decisions about resource settings.
 
 For the concepts behind transformations, see [About the Processors Controller](about-processors-controller.md). For the full list of job states and the job object's fields, see the [Processors Controller API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md) -->.
 
@@ -8,7 +8,7 @@ For the concepts behind transformations, see [About the Processors Controller](a
 
 Submitting a job is a single API call to `POST /api/v1/transformations/jobs`. The Processors Controller validates your request, registers the job, and returns a numeric job `id`. From this point on, polling `GET /api/v1/transformations/jobs/{id}` tells you the current state of the job.
 
-The configuration you submit can pin a specific version; if you don't, the job runs against the latest version. Either way, the job records the configuration version it ran against, so the audit trail stays intact and the job can be reproduced even if the configuration is updated afterwards.
+Both configuration reference and image reference accept an optional version parameter. If you specify a version, that exact version is used. If you specify "latest" or omit the version entirely, the most recent version is used. Either way, the job records the exact configuration version and image version it ran against, so any past job can be audited or reproduced exactly, even if either has been updated since.
 
 ## Container provisioning
 
@@ -27,15 +27,19 @@ While the job stays in the single `RUNNING` state, the transformation works thro
 
 **Output generation:** processed output files are prepared for upload to ODM. In dry-run mode this step is skipped.
 
+**Output loading and linking:** the transformation calls ODM's APIs to create or update ODM entities with the generated output files. The job is considered completed when all import and linking operations finish successfully. If the job fails at this stage, some objects may have already been written to ODM and will need to be deleted manually.
+
+Once the job reaches DONE, ODM begins internal indexing of the imported data - this is not part of the transformation job, but the transformed data may not be immediately available for querying until indexing completes.
+
 ## Dry-run mode
 
-When `dry_run: true`, the transformation validates the configuration and input, runs preliminary checks including linking validation, and then exits before generating output or writing any data to ODM. Like any other job, a dry run is retained permanently: its logs stay available through the API afterwards, even though they are not uploaded to ODM as attachments. Use dry runs to iterate on your configuration before committing to a full run; for the steps, see [How to run a transformation](how-to-run-a-transformation.md).
+When `dry_run: true`, the transformation validates the configuration and input, runs preliminary checks including linking validation, and then exits before generating output or writing any data to ODM. Like any other job, a dry run is retained permanently: its logs stay available through the API. Use dry runs to iterate on your configuration before committing to a full run; for the steps, see [How to run a transformation](how-to-run-a-transformation.md).
 
 ## Completion
 
 When the transformation finishes on its own, the job transitions to either `DONE` or `FAILED`; if you cancel it while it is still running, it transitions to `CANCELLED`. At this point the Processors Controller sets the job's `end_time`, recording the moment the job reached its terminal state; comparing `end_time` against `create_time` gives you the job's total duration.
 
-**On success (`DONE`):** The transformation has written its output objects into ODM and linked them to the appropriate study entities. It also uploads its log to ODM as an attachment on the study that owns the input file. This upload is skipped if `save_logs` is set to `false` in the transformation configuration.
+**On success (`DONE`):** The transformation has written its output objects into ODM and linked them to the appropriate study entities.
 
 **On failure (`FAILED`):** No ODM objects are written.
 
@@ -44,7 +48,7 @@ When the transformation finishes on its own, the job transitions to either `DONE
 
 The job log records the error that caused the failure; retrieve it via `POST /api/v1/transformations/jobs/{id}/logs` to diagnose the problem. A common failure reason is running out of memory: when this happens, the job's status carries the reason `OOMKilled`, meaning the transformation used more memory than `memory_size` allowed. The remedy is to resubmit with a larger `memory_size`.
 
-**On cancellation (`CANCELLED`):** You can cancel a job while it is still running, using `POST /api/v1/transformations/jobs/{id}/cancel`. Cancelling stops the job immediately and records it as `CANCELLED`, a terminal outcome distinct from `FAILED`, carrying no error reason. There is no choice of how the job stops.
+**On cancellation (`CANCELLED`):** You can cancel a job while it is still running, using `POST /api/v1/transformations/jobs/{id}/cancel`. Cancelling stops the job immediately and records it as `CANCELLED`, a terminal outcome distinct from `FAILED`, carrying no error reason. Cancellation cannot be undone; to retry, submit a new job with the same parameters.
 
 **Archival and compute cleanup:**
 
@@ -60,7 +64,6 @@ A job's logs are retained permanently and are always retrievable, whether the jo
 
 Via the API, using `POST /api/v1/transformations/jobs/{id}/logs`, the endpoint returns the live logs while the job runs and the archived logs once it has finished, transparently, with no change in how you call it. This applies to successful, failed, and cancelled jobs alike.
 
-Separately, the log is also uploaded to ODM as an attachment on the study that owns the input file as part of the transformation's final steps (unless `save_logs: false` in the configuration), so it sits alongside the job's other generated files.
 
 !!! warning "Editorial TODO: resolve before publishing"
     Clarify the relationship between the permanent, API-accessible log archive (new) and the existing behavior of uploading a job's log to ODM as a study attachment. The archive makes API-fetchable logs permanent on its own; whether the study-attachment upload still exists or changes is not yet specified. Do NOT state that a log must be attached to a study to persist. Resolve before publishing.
