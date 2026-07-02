@@ -45,7 +45,9 @@ For the end-to-end job workflow (create a configuration, submit a dry run, monit
 
 **Default volume:** `5Gi`
 
-H5 files require significantly more scratch space because they are converted internally to H5AD format before processing.
+For a job using an H5AD inputs recommended `volume_size` is ≥ 1.4× the original file size. 
+
+When setting `volume_size` for a job using an H5 input file, allocate at least 4× the original attachment size (for example, a 5 GB file requires `volume_size` ≥ 20 GB). H5 inputs require additional scratch space because the transformation converts them to H5AD during processing.
 
 For the full how-to and the `data` field schema, see the [single-cell](single-cell/single-cell-getting-started.md) subsection.
 
