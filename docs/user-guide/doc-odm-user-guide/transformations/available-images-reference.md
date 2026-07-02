@@ -1,6 +1,6 @@
 # Available transformation images reference
 
-Each transformation image handles a specific input/output format pair. Use `GET /api/v1/transformations/images` to retrieve the current list of available images and their versions at runtime.
+Each transformation image defines what input formats it accepts and what ODM objects it produces. Use `GET /api/v1/transformations/images` to retrieve the current list of available images and their versions.
 
 ---
 
