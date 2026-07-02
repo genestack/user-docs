@@ -35,5 +35,3 @@ Dry-run is currently implemented only by the `hdf5-cells` image. The `dry_run` f
 ## Transformation logs
 
 Each job produces a log recording processing steps, warnings, errors, the source file name and accession, and the accessions of any ODM objects it created. Logs are retained in line with ODM's standard log retention policy and are retrievable through the API: the logs endpoint returns the live log while the job runs and the archived log once it has finished, transparently.
-
-> **[Subject to change (BIA-151)]** The job log is currently also uploaded into ODM as a study attachment. This behaviour is expected to be removed, so it is not documented as a stable feature here; this section will be finalized once BIA-151 is complete.

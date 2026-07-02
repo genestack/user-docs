@@ -18,9 +18,7 @@ Each transformation image defines what input formats it accepts and what ODM obj
 
 **Default volume:** `5Gi`
 
-**Available versions:** `latest`
-
-**Use case:** Converts a CSV file attached to a study into an ODM Sample metadata group. The configuration `data` field specifies the source format and the destination entity type. On success, the image converts the CSV to TSV and automatically triggers ODM's multipart sample import, creating a new Sample group linked to the same study as the source attachment.
+**Use case:** Converts a CSV file attached to a study into an ODM Sample metadata group. On success, the image converts the CSV to TSV and automatically triggers ODM's multipart sample import, creating a new Sample group linked to the same study as the source attachment.
 
 **Example `data` field:**
 
@@ -47,8 +45,6 @@ For the end-to-end job workflow (create a configuration, submit a dry run, monit
 
 **Default volume:** `5Gi`
 
-**Available versions:** `latest`
-
 H5 files require significantly more scratch space because they are converted internally to H5AD format before processing.
 
 For the full how-to and the `data` field schema, see the [single-cell](single-cell/single-cell-getting-started.md) subsection.
@@ -59,12 +55,3 @@ For the full how-to and the `data` field schema, see the [single-cell](single-ce
 
 - `latest` is an alias for the most recent stable version of an image. Use it for exploration and development.
 - Specific tags (for example, `0.0.7`) pin the job to a particular image version. Use them when you need to reproduce a previous result - the exact image and version used in any job are recorded in its logs.
-
----
-
-## Known limitations
-
-Only one transformation process can be run per attachment.
-
-!!! warning "Editorial TODO: resolve before publishing"
-    Verify: the one-transformation-per-attachment constraint is not present in transformation-images-develop/. Confirm against another source (e.g. the attachment-transformation.md migration source or the Applications layer) before treating it as authoritative.
