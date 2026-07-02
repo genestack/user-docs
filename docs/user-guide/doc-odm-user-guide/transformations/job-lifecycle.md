@@ -41,12 +41,9 @@ When the transformation finishes on its own, the job transitions to either `DONE
 
 **On success (`DONE`):** The transformation has written its output objects into ODM and linked them to the appropriate study entities.
 
-**On failure (`FAILED`):** No ODM objects are written.
+**On failure (`FAILED`):** Whether any ODM objects were written depends on how far the job got. A failure during the earlier phases (configuration validation, input retrieval, or processing) writes nothing to ODM. Output objects are created and linked in the final phase sequentially, so a failure there can leave some objects already written to ODM while later ones were never created. Any objects written before the failure remain in ODM and must be deleted manually.
 
-!!! warning "Editorial TODO: resolve before publishing"
-    Confirm whether a mid-run failure can leave partial objects in ODM. If not guaranteed atomic, reword (e.g. "may not have written all, or any, objects").
-
-The job log records the error that caused the failure; retrieve it via `POST /api/v1/transformations/jobs/{id}/logs` to diagnose the problem. A common failure reason is running out of memory: when this happens, the job's status carries the reason `OOMKilled`, meaning the transformation used more memory than `memory_size` allowed. The remedy is to resubmit with a larger `memory_size`.
+The job log records the error that caused the failure; retrieve it via `POST /api/v1/transformations/jobs/{id}/logs` to diagnose the problem. Failures come in two kinds: infrastructural failures, which relate to the processing environment, and image-specific failures, which come from the transformation itself. Both kinds are recorded in the job log, so review it to find the specific problem before resubmitting.
 
 **On cancellation (`CANCELLED`):** You can cancel a job while it is still running, using `POST /api/v1/transformations/jobs/{id}/cancel`. Cancelling stops the job immediately and records it as `CANCELLED`, a terminal outcome distinct from `FAILED`, carrying no error reason. Cancellation cannot be undone; to retry, submit a new job with the same parameters.
 
@@ -63,7 +60,3 @@ The job record, its final status, and its logs are retained permanently and stay
 A job's logs are retained permanently and are always retrievable, whether the job is still running or long finished.
 
 Via the API, using `POST /api/v1/transformations/jobs/{id}/logs`, the endpoint returns the live logs while the job runs and the archived logs once it has finished, transparently, with no change in how you call it. This applies to successful, failed, and cancelled jobs alike.
-
-
-!!! warning "Editorial TODO: resolve before publishing"
-    Clarify the relationship between the permanent, API-accessible log archive (new) and the existing behavior of uploading a job's log to ODM as a study attachment. The archive makes API-fetchable logs permanent on its own; whether the study-attachment upload still exists or changes is not yet specified. Do NOT state that a log must be attached to a study to persist. Resolve before publishing.
