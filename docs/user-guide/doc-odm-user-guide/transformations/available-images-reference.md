@@ -41,7 +41,7 @@ For the end-to-end job workflow (create a configuration, submit a dry run, monit
 
 **Input formats:** H5AD (AnnData), 10x Genomics H5 (converted internally to H5AD before processing), Legacy 10x Genomics H5 v<3 (single-genome only; multi-genome legacy files are not supported).
 
-**Output formats:** ODM Cell Group, Expression Group, and attachments, with optional Sample, Library, and Preparation groups.
+**Output formats:** ODM Cell Group, Expression Group, with optional Sample, Library, and Preparation groups.
 
 **Default memory:** `5Gi`
 
@@ -58,7 +58,7 @@ For the full how-to and the `data` field schema, see the [single-cell](single-ce
 ## Version conventions
 
 - `latest` is an alias for the most recent stable version of an image. Use it for exploration and development.
-- Specific tags (for example, `0.0.7`) pin the job to a particular image version. Use them in production pipelines where reproducibility matters.
+- Specific tags (for example, `0.0.7`) pin the job to a particular image version. Use them when you need to reproduce a previous result - the exact image and version used in any job are recorded in its logs.
 
 ---
 
