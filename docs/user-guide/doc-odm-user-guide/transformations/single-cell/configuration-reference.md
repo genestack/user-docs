@@ -11,7 +11,6 @@ For related documentation: [About single-cell transformations](about-single-cell
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `file_type` | `string` | **Yes** | — | Format of the input file. Accepted values: `"h5ad"`, `"h5"`. |
-| `save_logs` | `boolean` | No | `true` | When `false`, logs are not saved as an attachment after the run. Has no effect when the job is submitted with `dry_run: true`. |
 
 ---
 
