@@ -36,10 +36,10 @@ This notebook covers: uploading the HDF5 file, creating a configuration, running
 The goal of this optional step is to populate ODM with a ready-made catalogue of curated public single-cell studies so you can test cross-study search without preparing your own data.
 
 1. Load the public dataset template.
-   - Template file: [public_studies_template_demo.json](https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/templates/public_studies_template_demo.json)
-   - For template upload instructions, see [Create or update a template](../../../../tools/odm-sdk/terminal/templates/create-or-update-template.md).
+    - Template file: [public_studies_template_demo.json](https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/templates/public_studies_template_demo.json)
+    - For template upload instructions, see [Create or update a template](../../../../tools/odm-sdk/terminal/templates/create-or-update-template.md).
 2. Load the curated datasets (HDF5 attachments included).
-   - **Ready-to-run import commands:** [Curated public datasets](curated-public-datasets.md), per-dataset copy-paste commands with placeholders for server, token, and template.
+    - **Ready-to-run import commands:** [Curated public datasets](curated-public-datasets.md), per-dataset copy-paste commands with placeholders for server, token, and template.
 
 ---
 
