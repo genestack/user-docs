@@ -72,7 +72,7 @@ To link to all Preparation groups in the study without specifying accessions ind
 }
 ```
 
-For the full linking resolution rules, see `transformation-process-reference.md`.
+For the full linking resolution rules, see [Transformation process reference](transformation-process-reference.md).
 
 ## Related
 
