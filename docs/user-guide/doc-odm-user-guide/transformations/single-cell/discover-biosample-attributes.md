@@ -1,6 +1,6 @@
 # How to discover which biosample attributes are available
 
-This guide explains how to use a dry-run job to identify which cell-level metadata columns are uniform per biosample in your HDF5 file, so you can plan your `columns_to_export` before a full run.
+This guide explains how to identify which cell-level metadata columns are uniform per biosample in your HDF5 file - that is, attributes such as sex or disease that have the same value for every cell belonging to the same biosample. Rather than storing these attributes redundantly for each cell, you can promote them to the appropriate biosample level (Sample, Library, or Preparation) during the transformation, using `columns_to_export`. This dry-run discovery step lets you identify which columns are eligible before committing to a full run.
 
 ## When to use this
 
@@ -13,7 +13,7 @@ Use this when you are planning a biosample export and want to know which attribu
 
 ## Configuration (discovery mode)
 
-Configure `biosample_metadata` with `metadata_keys` and `biosample_column_name`, and leave out `columns_to_export`. Discovery analyses column uniformity across all `obs` columns relative to `biosample_column_name` and is entity-agnostic, so no Sample, Library, or Preparation entity object is needed:
+Configure biosample_metadata with metadata_keys and biosample_column_name, but leave columns_to_export undefined on all entities, and submit the job with dry_run: true:
 
 ```json
 {
@@ -27,7 +27,9 @@ Configure `biosample_metadata` with `metadata_keys` and `biosample_column_name`,
 }
 ```
 
-Set `biosample_column_name` to a column that actually exists in your file's `obs`. If the named column is not present in the cell metadata, the job aborts with an error.
+In this mode the pipeline analyses which obs columns are uniform per biosample value - that is, which attributes have a consistent value across all cells belonging to the same biosample. The results are written to the job log: the number of biosamples detected and the list of uniform attributes. No data is written to ODM and no groups are created or updated.
+
+> **Note:** `biosample_column_name` must refer to a column that exists in your file's `obs` and contains the biosample identifier for each cell. If the column is not present, the job fails with an error.
 
 ## Submit as a dry run
 
