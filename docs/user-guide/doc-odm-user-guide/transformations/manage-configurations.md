@@ -1,6 +1,6 @@
 # How to manage transformation configurations
 
-This guide shows you how to develop a transformation configuration and iterate on it until it produces the results you want. A configuration is a reusable, versioned JSON document that tells an image how to process your input. The workflow below takes you from a first draft, through dry-run testing, to a configuration you can run for real and reuse across jobs.
+This guide shows you how to develop a transformation configuration and iterate on it until it produces the results you want. A configuration is a reusable, versioned JSON document that tells an image how to process your input. The workflow below takes you from a first draft, through dry-run testing, to a validated configuration you can run against your data and reuse across jobs.
 
 For the full field-by-field schema of every configuration endpoint, see the [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md#transformation-configurations) -->.
 
@@ -11,7 +11,7 @@ For the full field-by-field schema of every configuration endpoint, see the [API
 
 ## The iteration loop
 
-Developing a configuration is a loop. You create a first draft, submit it as a dry-run job, review the logs, and update the configuration to fix whatever the dry run surfaced, repeating until the dry run is clean. Only then do you submit a full run.
+Developing a configuration is a loop. You create a first draft, submit it as a dry-run job, review the logs, and update the configuration based on the results, repeating until the dry run completes without issues and produces the output you expect. Only then you submit a full run. Once the configuration is working, you can reuse it for any input file with the same structure.
 
 ```
 Create configuration → Submit dry-run job → Review logs
@@ -54,7 +54,7 @@ The response is the configuration reference, its server-assigned `id` and the `v
 }
 ```
 
-Keep that `id`: you use it to retrieve, update, and submit jobs against the configuration. For the single-cell HDF5 `hdf5-cells` image, the `data` field follows a different schema. See the [Configuration Reference](single-cell/configuration-reference.md).
+Keep that `id`: you use it to retrieve, update, and reference the configuration in job submissions. For the single-cell HDF5 `hdf5-cells` image, the `data` field follows a different schema. See the [Configuration Reference](single-cell/configuration-reference.md).
 
 ## Submit a dry run and review the logs
 
@@ -76,7 +76,7 @@ Resubmit the dry-run job against the same configuration and review the logs agai
 
 ## Review your configurations
 
-At any point you can inspect what you have. To list your configurations:
+At any point you can inspect all available configurations. To list them:
 
 ```
 GET /api/v1/transformations/configurations
@@ -103,7 +103,7 @@ The versions are returned in the `items` array of a paginated envelope. For the 
 
 ## Reuse a working configuration
 
-Configurations are reusable. Once a configuration is working correctly, you can apply it to multiple input files in subsequent jobs without recreating it.
+Once you have validated a configuration through dry-run testing, it becomes the foundation of your ingestion pipeline: the same configuration can be applied to any number of input files that share the same structure or come from the same source, without any further setup. This makes it straightforward to automate ingestion, for example, to process a batch of files or integrate transformation jobs into a recurring pipeline.
 
 ## Archive a configuration
 
@@ -113,7 +113,7 @@ Configurations are never deleted. When you no longer need one, you archive it:
 POST /api/v1/transformations/configurations/{id}/archive
 ```
 
-Archiving applies to the configuration and all of its versions at once. The call is idempotent - archiving a configuration that is already archived succeeds and changes nothing - and returns `404 Not Found` for an unknown `id`.
+Archiving applies to the configuration and all of its versions at once. Returns 404 Not Found for an unknown id. If the configuration is already archived, the request returns 409 Conflict with the message: "The configuration {id} is already archived, so it cannot be archived again."
 
 Archiving is a soft retirement, not a deletion:
 
