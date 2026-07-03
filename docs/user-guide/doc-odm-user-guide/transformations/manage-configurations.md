@@ -32,16 +32,29 @@ POST /api/v1/transformations/configurations
 
 The request body requires `data`: the image-specific processing specification. `name` and `description` are optional but recommended, since the list and get responses surface them so you can identify the configuration later.
 
-For the `metadata-basic` image (CSV to Sample group), a minimal request looks like this:
+Configurations matter for images whose processing you tune through the `data` field. The example `metadata-basic` image has no configurable parameters, so there is nothing to iterate on there; the single-cell HDF5 `hdf5-cells` image is the one you develop a configuration for. A first draft for `hdf5-cells` looks like this:
 
 ```json
 {
+  "name": "my single-cell config",
+  "description": "H5AD ingestion for study XYZ",
   "data": {
-    "source": "csv",
-    "destination": "samples"
-  },
-  "description": "Configuration which allows you to transform csv file into Sample group",
-  "name": "csv to samples"
+    "file_type": "h5ad",
+    "cell_metadata": {
+      "metadata_keys": {
+        "obs": "metadata",
+        "obsm": "embedding"
+      }
+    },
+    "feature_metadata": {
+      "metadata_keys": {
+        "var": "metadata"
+      }
+    },
+    "cell_expression": {
+      "data_class": "Single-cell transcriptomics"
+    }
+  }
 }
 ```
 
@@ -54,7 +67,7 @@ The response is the configuration reference, its server-assigned `id` and the `v
 }
 ```
 
-Keep that `id`: you use it to retrieve, update, and reference the configuration in job submissions. For the single-cell HDF5 `hdf5-cells` image, the `data` field follows a different schema. See the [Configuration Reference](single-cell/configuration-reference.md).
+Keep that `id`: you use it to retrieve, update, and reference the configuration in job submissions. For the full `data` field schema, see the [Configuration Reference](single-cell/configuration-reference.md).
 
 ## Submit a dry run and review the logs
 
@@ -68,11 +81,11 @@ When the logs show something to fix, update the configuration:
 PUT /api/v1/transformations/configurations/{id}
 ```
 
-The request body follows the same structure as the `POST` endpoint. Updating does not overwrite the configuration: the current state is saved as a previous version and the active version is incremented. The same `id` is reused across all iterations, and every earlier version stays retrievable, so you can audit or re-run a job with the exact parameters used in the past.
+The request body follows the same structure as the `POST` endpoint. Updating does not overwrite the configuration: the current state is saved as a previous version and the active version is incremented. The same `id` is reused across all iterations, and any version can be referenced in a job - by default the latest is used.
 
 You cannot update a configuration once it has been archived: `PUT` on an archived configuration returns `409 Conflict`. To change it, create a new configuration instead (see [Archive a configuration](#archive-a-configuration)).
 
-Resubmit the dry-run job against the same configuration and review the logs again. Repeat until the dry run completes without errors or warnings that require action, then submit the full run.
+Resubmit the dry-run job with the updated configuration and review the logs again. Repeat until the dry run completes without issues and produces the output you expect, then submit the full run.
 
 ## Review your configurations
 
