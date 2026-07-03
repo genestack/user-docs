@@ -32,7 +32,7 @@ POST /api/v1/transformations/configurations
 
 The request body requires `data`: the image-specific processing specification. `name` and `description` are optional but recommended, since the list and get responses surface them so you can identify the configuration later.
 
-Configurations matter for images whose processing you tune through the `data` field. The example `metadata-basic` image has no configurable parameters, so there is nothing to iterate on there; the single-cell HDF5 `hdf5-cells` image is the one you develop a configuration for. A first draft for `hdf5-cells` looks like this:
+What goes in `data` depends on the image you are configuring. Start with a first draft like this:
 
 ```json
 {
