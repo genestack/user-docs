@@ -58,7 +58,7 @@ Keep that `id`: you use it to retrieve, update, and reference the configuration 
 
 ## Submit a dry run and review the logs
 
-Submit the configuration as a dry-run job, then read the job logs to see how it behaved against your real input without writing any data. The job-submission and log-retrieval endpoints are covered in [How to run a transformation](how-to-run-a-transformation.md).
+Submit a dry-run job referencing this configuration against your input file, then review the logs to verify it behaves as expected, without writing any data to ODM. The job-submission and log-retrieval endpoints are covered in [How to run a transformation](how-to-run-a-transformation.md).
 
 ## Update and repeat
 
