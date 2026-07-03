@@ -12,7 +12,7 @@ For related documentation: [About single-cell transformations](about-single-cell
 
 The pipeline reads the transformation configuration and validates all fields. The configuration version that was loaded is recorded in the log.
 
-Top-level key validation checks the presence and data types of `file_type`, `save_logs`, `biosample_metadata`, `cell_metadata`, `feature_metadata`, and `cell_expression`. If `file_type` is missing or contains an unsupported value (`"h5ad"` and `"h5"` are the only accepted values), the pipeline raises an error immediately.
+Top-level key validation checks the presence and data types of `file_type`, `biosample_metadata`, `cell_metadata`, `feature_metadata`, and `cell_expression`. If `file_type` is missing or contains an unsupported value (`"h5ad"` and `"h5"` are the only accepted values), the pipeline raises an error immediately.
 
 For all remaining sections, validation errors are accumulated and reported together at the end of the validation stage, so all issues are surfaced in a single run.
 
@@ -93,7 +93,7 @@ The pipeline opens the H5AD file and reads groups specified in `metadata_keys`:
 - If the index name collides with an existing column name, it is renamed to avoid the conflict.
 - The index is extracted and appended as a column so that barcode or feature ID information is preserved.
 
-> If the cell barcode is in the index and the index has no name, the extracted column is named `_index`. To use a different name, rename it using `columns_renaming_map`.
+> If the cell barcode is in the index and the index has no name, the extracted column is named `_index`. `_index` should be renamed to barcode via `columns_renaming_map`.
 
 ### 2.5 Column operations
 
@@ -105,7 +105,7 @@ The following transformations are applied in order:
 4. Fill missing values (`columns_to_fill_missing_values`)
 5. Set constant values (`set_column_value`)
 
-After explicit column operations, attribute name standardisation is applied: column names are mapped to ODM canonical names where a mapping exists; non-standard names are converted to camelCase. Columns in `columns_to_preserve_name` are exempt. For the full mapping list, see `attribute-mapping-reference.md`.
+After explicit column operations, attribute name standardisation is applied: column names are mapped to ODM canonical names where a mapping exists; non-standard names are converted to camelCase. Columns in `columns_to_preserve_name` are exempt. For the full mapping list, see [Attribute Mapping Reference](attribute-mapping-reference.md).
 
 **Cell metadata additional steps:**
 
@@ -114,7 +114,7 @@ After explicit column operations, attribute name standardisation is applied: col
 
 **Feature metadata additional steps:**
 
-- **Gene ID mapping:** If gene names are absent and the `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and species, then adds a gene names column. The step can be skipped with `map_gene_ids_to_names: false`.
+- **Gene ID mapping:** If gene names are absent and the `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and species, then adds a gene names column. The step can be skipped with `map_gene_ids_to_names: false`. For more details , see [Attribute Mapping Reference](attribute-mapping-reference.md#gene-id-to-name-mapping).
 
 ### 2.6 Storing data
 
@@ -142,13 +142,13 @@ Expression metadata from the source attachment is read and transformed according
 
 The following statistics are always computed and appended regardless of the `source_file_metadata` flag:
 
-1. Total number of cells
-2. Total number of features
-3. Sparsity (%)
-4. Number of non-zero values
-5. Source file accession
-6. Source file name
-7. Configuration version
+1. Total Number of Cells or Nuclei
+2. Total Number of Features
+3. Sparsity Percentage Value
+4. Number of Non-zero Values
+5. Source File Accession
+6. Source File Name
+7. Transformation Job ID
 
 ---
 
@@ -156,7 +156,7 @@ The following statistics are always computed and appended regardless of the `sou
 
 ### 4.1 Dry run exit
 
-If `dry_run: true`, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in the API but not saved as attachments.
+If `dry_run: true`, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in the API.
 
 Best-effort linking validation:
 
@@ -183,6 +183,3 @@ The transformed cell metadata TSV is uploaded as a new Cell Group, linked to the
 
 The Brotli-compressed expression file and its metadata file are uploaded to create a new Expression Group, linked to the newly created Cell Group.
 
-#### 4.2.4 Log upload
-
-Transformation logs are uploaded as an attachment together with their metadata. The logs metadata file includes a `Configuration Version` field recording the configuration version the job ran against. This step is skipped if `save_logs: false`.
