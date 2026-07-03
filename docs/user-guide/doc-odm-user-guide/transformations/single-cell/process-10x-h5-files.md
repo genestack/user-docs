@@ -2,7 +2,7 @@
 
 This guide explains how to ingest a 10x Genomics H5 file through the ODM single-cell transformation pipeline.
 
-## The only required change from H5AD
+## Required configuration change
 
 Set `file_type` to `"h5"` instead of `"h5ad"`. Use the same H5AD key names (`obs`, `var`) in `metadata_keys`: the transformation converts the 10x H5 format to H5AD internally before applying unified processing.
 
@@ -28,8 +28,6 @@ Set `file_type` to `"h5"` instead of `"h5ad"`. Use the same H5AD key names (`obs
 ## Volume sizing
 
 When setting `volume_size` for a job using an H5 input file, allocate at least 4× the original attachment size (for example, a 5 GB file requires `volume_size` ≥ 20 GB). H5 inputs require additional scratch space because the transformation converts them to H5AD during processing.
-
-For H5AD inputs the guideline is ≥ 1.4× the original file size. See [Available images reference](../available-images-reference.md) for a summary.
 
 ## Legacy 10x H5 support
 
