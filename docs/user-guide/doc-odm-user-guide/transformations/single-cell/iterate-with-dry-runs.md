@@ -5,6 +5,7 @@ This guide describes the recommended cycle for refining a transformation configu
 ## The iteration cycle
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Source Sans Pro, -apple-system, Segoe UI, sans-serif", "lineColor": "#0470BE"}}}%%
 flowchart TD
     A[Create configuration] --> B[Submit dry-run job]
     B --> C[Review logs]
@@ -12,6 +13,14 @@ flowchart TD
     D -->|Yes| E[Update configuration<br/>PUT → new version]
     E --> B
     D -->|No| F[Submit full run<br/>dry_run: false]
+
+    classDef step fill:#D8F3FF,stroke:#0470BE,stroke-width:2px,color:#023F79;
+    classDef decision fill:#B7EAFF,stroke:#2FACDF,stroke-width:2px,color:#023F79;
+    classDef success fill:#D8F9EA,stroke:#34AF7C,stroke-width:2px,color:#023F79;
+
+    class A,B,C,E step;
+    class D decision;
+    class F success;
 ```
 
 ## Step 1: Review the dry-run logs
