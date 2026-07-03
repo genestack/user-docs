@@ -14,28 +14,6 @@ Understanding the transformation requires familiarity with how ODM represents si
 
 **An Expression Group** represents the gene-by-cell expression matrix (compressed for efficient retrieval) along with computed dataset statistics. An Expression Group is always linked to a Cell Group.
 
-```mermaid
-graph TD
-    subgraph CTX["Biological & experimental context (SLP)"]
-        direction LR
-        S["Sample<br/><i>biological specimen</i>"]
-        L["Library<br/><i>sequencing library</i>"]
-        P["Preparation<br/><i>preparation step</i>"]
-    end
-
-    CG["Cell Group<br/><i>cells + per-cell metadata</i>"]
-    EG["Expression Group<br/><i>gene × cell matrix + dataset stats</i>"]
-
-    EG -->|always linked to| CG
-    CG -->|"linked to one or more groups<br/>of a <b>single</b> SLP type"| CTX
-
-    classDef ctx fill:#D8F3FF,color:#023F79,stroke:#0470BE,stroke-width:2px,font-weight:bold
-    classDef grp fill:#D8F9EA,color:#023F79,stroke:#34AF7C,stroke-width:2px,font-weight:bold
-    class S,L,P ctx
-    class CG,EG grp
-    style CTX fill:#ffffff,stroke:#0470BE,stroke-width:1px
-```
-
 The transformation creates the Cell Group and Expression Group and links them into the existing (or newly created) SLP structure. This is why the configuration requires specifying how the resulting Cell Group connects to its parent. For the broader ODM data model, see [Data model](../../../key-concepts/key-concepts.md).
 
 ## What the transformation reads from the source file
@@ -73,13 +51,6 @@ The transformation accepts HDF5-based input: H5AD (AnnData), 10x Genomics H5 (co
 ## Transformation logs
 
 A single-cell job produces a processing log like any other transformation. For what the log records, how it is retained, and how to retrieve it, see [About the Processors Controller](../about-processors-controller.md#transformation-logs).
-
-## Known limitations
-
-Currently, only one transformation process can be run per attachment. If you need to run another transformation job on the same data, import a new copy of the attachment or create a new study.
-
-!!! warning "Editorial TODO: resolve before publishing"
-    Verify: the one-transformation-per-attachment constraint is a platform-level rule not present in the transformation-images-develop/ image code. Confirm against an authoritative source before publishing. (Same constraint also flagged in available-images-reference.md.)
 
 ## Where to start
 
