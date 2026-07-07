@@ -84,4 +84,4 @@ This notebook covers: cross-study search examples, filtering by curated attribut
 - Per-task how-tos: [Ingest cell and expression data](ingest-cell-and-expression.md), [Create sample/library/preparation groups](create-sample-library-preparation-groups.md), [Update existing biosample metadata](update-existing-biosample-metadata.md), [Discover biosample attributes](discover-biosample-attributes.md).
 - [Configuration reference](configuration-reference.md): full configuration schema.
 - [Transformation process reference](transformation-process-reference.md): internal processing pipeline.
-- [API reference](../api-reference.md): API endpoints.
+- [API reference](/swagger/?urls.primaryName=processorsController): API endpoints.

@@ -2,7 +2,7 @@
 
 The configuration is validated at the start of every run. If `file_type` is missing or invalid, the pipeline raises an error immediately. All other validation errors are collected and reported together. Unrecognised keys are ignored with a warning.
 
-For related documentation: [About single-cell transformations](about-single-cell-transformations.md) · [How-to guides](ingest-cell-and-expression.md) · [API reference](../api-reference.md) · [Transformation process reference](transformation-process-reference.md)
+For related documentation: [About single-cell transformations](about-single-cell-transformations.md) · [How-to guides](ingest-cell-and-expression.md) · [API reference](/swagger/?urls.primaryName=processorsController) · [Transformation process reference](transformation-process-reference.md)
 
 ---
 

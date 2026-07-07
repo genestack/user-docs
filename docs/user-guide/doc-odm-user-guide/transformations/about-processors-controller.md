@@ -18,7 +18,7 @@ Transformation configurations are optional: a configuration is a reusable handle
 
 Transformation jobs are the execution records. A job combines an image and one or more input file accessions and a configuration, then runs the transformation and produces output plus a processing log. Jobs are independent: the same input file can be submitted again with a different configuration or image without affecting previous runs.
 
-Job operations respect ODM's existing permissions: you can only act on a job if you have access to the studies its input attachments belong to, and creating or managing jobs requires the appropriate curation permissions. See the [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md) --> for the exact rules.
+Job operations respect ODM's existing permissions: you can only act on a job if you have access to the studies its input attachments belong to, and creating or managing jobs requires the appropriate curation permissions. See the [API reference](/swagger/?urls.primaryName=processorsController) for the exact rules.
 
 A job is not where your results are stored. As it runs, the transformation writes its output into ODM as ordinary objects, so once the job finishes those results are part of your ODM data like anything else.
 

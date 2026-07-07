@@ -2,7 +2,7 @@
 
 This guide shows you how to develop a transformation configuration and iterate on it until it produces the results you want. A configuration is a reusable, versioned JSON document that tells an image how to process your input. The workflow below takes you from a first draft, through dry-run testing, to a validated configuration you can run against your data and reuse across jobs.
 
-For the full field-by-field schema of every configuration endpoint, see the [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md#transformation-configurations) -->.
+For the full field-by-field schema of every configuration endpoint, see the [API reference](/swagger/?urls.primaryName=processorsController).
 
 ## Prerequisites
 
@@ -95,7 +95,7 @@ At any point you can inspect all available configurations. To list them:
 GET /api/v1/transformations/configurations
 ```
 
-The response is a paginated envelope: the configurations are in the `items` array, and `limit`/`offset` query parameters page through the results (default 100 per page). Results are ordered by `id`. By default the list returns only active configurations; to include archived ones as well, set the `include_archived` query parameter to `true` (see [Archive a configuration](#archive-a-configuration)). The list returns the latest version of each configuration, including its full `data`, so you can review the current state of each one without a second request. See [Pagination](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md#pagination) -->.
+The response is a paginated envelope: the configurations are in the `items` array, and `limit`/`offset` query parameters page through the results (default 100 per page). Results are ordered by `id`. By default the list returns only active configurations; to include archived ones as well, set the `include_archived` query parameter to `true` (see [Archive a configuration](#archive-a-configuration)). The list returns the latest version of each configuration, including its full `data`, so you can review the current state of each one without a second request.
 
 To retrieve a single configuration by its `id`:
 
@@ -112,7 +112,7 @@ GET /api/v1/transformations/configurations/{id}/versions
 GET /api/v1/transformations/configurations/{id}/versions/{version}
 ```
 
-The versions are returned in the `items` array of a paginated envelope. For the field-by-field schema of these and every other configuration endpoint, see the [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md#transformation-configurations) -->.
+The versions are returned in the `items` array of a paginated envelope. For the field-by-field schema of these and every other configuration endpoint, see the [API reference](/swagger/?urls.primaryName=processorsController).
 
 ## Reuse a working configuration
 

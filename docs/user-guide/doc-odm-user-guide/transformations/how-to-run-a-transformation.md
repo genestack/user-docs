@@ -8,7 +8,7 @@ For a conceptual overview of configurations, images, and jobs, see [About the Pr
 
 - An API token. See [Authentication and tokens](../getting-a-genestack-api-token.md).
 - Curator group membership.
-- Every study that contains an attachment listed in the job's `input_accessions` must be shared with you. Requests that reference an attachment you cannot access are rejected with a generic `Item not found or insufficient permission` message.
+- Every study that contains an attachment listed in the job's `input_accessions` must be shared with you. If a request references an attachment that does not exist or is not shared with you, it is rejected with a `422 Unprocessable Entity` response whose message names the affected accessions, for example: `The following input accessions were not found or are not shared with you: GSFXXX.`
 - The source attachment already uploaded to a study in ODM (you need its accession). See [Import attached files](../import-data-in-odm.md#attach-a-file).
 
 ## Step 1: Identify the right image
@@ -146,4 +146,4 @@ Monitor and review logs the same way as Steps 4–5. When the job completes, the
 
 - For single-cell HDF5 ingestion, see [Single-cell data in ODM: Getting started](single-cell/single-cell-getting-started.md).
 - For CSV-to-Sample-group conversion, see the [`metadata-basic` image](available-images-reference.md#metadata-basic).
-- For the full endpoint specifications, see [API reference](#) <!-- TODO(swagger): repoint to OpenAPI/Swagger spec (was api-reference.md) -->.
+- For the full endpoint specifications, see [API reference](/swagger/?urls.primaryName=processorsController).
