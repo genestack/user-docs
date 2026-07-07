@@ -58,7 +58,7 @@ POST /api/v1/transformations/jobs
 
 ```json
 {
-  "configuration_reference": {
+  "configuration": {
     "id": <config_id>
   },
   "dry_run": true,
@@ -77,18 +77,16 @@ The first, `volume_size`, sets the disk space allocated for processing. It must 
 
 `memory_size` sets the RAM allocated for processing, using the same quantity format, for example, `"512Mi"`. Increase it if a job ends in `FAILED` with `status.reason: OOMKilled` (out-of-memory termination).
 
-For default values for both parameters, see [Available images reference](/transformations/available-images-reference.md).
+For default values for both parameters, see [Available images reference](available-images-reference.md).
 
-By default the job runs against the latest version of the configuration. To pin a specific version (for example, to reproduce an earlier job), add a `version` to the `configuration_reference` object:
+By default the job runs against the latest version of the configuration. To pin a specific version (for example, to reproduce an earlier job), add a `version` to the `configuration` object:
 
 ```json
-"configuration_reference": {
+"configuration": {
   "id": <config_id>,
   "version": <version>
 }
 ```
-
-> **[Subject to change (ODM-13233)]** The exact name and shape of the `configuration_reference` field are not yet finalized. Verify against the released API before relying on it.
 
 The response includes the integer `id` of the created job. Record it for monitoring.
 
@@ -103,7 +101,7 @@ GET /api/v1/transformations/jobs/{job_id}
 Check the `status.state` field in the response. While the job is running, it will be in one of the intermediate states: `PENDING`, `WAITING`, or `RUNNING`. When it finishes, the state will be one of:
 
 `DONE` - the transformation completed successfully.
-`FAILED` - the job encountered an error. Check status.reason for a short error code (for example, OOMKilled means the job ran out of memory — resubmit with a larger memory_size) or review the job logs for the full report.
+`FAILED` - the job encountered an error. Check status.reason for a short error code (for example, OOMKilled means the job ran out of memory, so resubmit with a larger memory_size) or review the job logs for the full report.
 `CANCELLED` - the job was cancelled manually.
 
 ## Step 5: Review the logs
@@ -123,11 +121,11 @@ If issues are found, update the configuration using `PUT /api/v1/transformations
 
 ## Step 6: Submit the full run
 
-Once the dry run completes without issues, resubmit the job. You can either set `dry_run` to `false` or omit it entirely — it defaults to `false`:
+Once the dry run completes without issues, resubmit the job. You can either set `dry_run` to `false` or omit it entirely (it defaults to `false`):
 
 ```json
 {
-  "configuration_reference": {
+  "configuration": {
     "id": <config_id>
   },
   "dry_run": false,

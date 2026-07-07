@@ -88,7 +88,7 @@ Settings for extracting and transforming cell-level metadata. Optional. If absen
 | `obsm` | `embedding` | Multidimensional cell data (PCA, UMAP, etc.) |
 | `obsp` | `pairwise` | Pairwise cell annotations |
 
-For H5 files, use the same H5AD key names — the transformation maps them to the correct internal structure.
+For H5 files, use the same H5AD key names: the transformation maps them to the correct internal structure.
 
 **Examples:**
 ```json

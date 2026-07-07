@@ -13,11 +13,24 @@ For the full field-by-field schema of every configuration endpoint, see the [API
 
 Developing a configuration is a loop. You create a first draft, submit it as a dry-run job, review the logs, and update the configuration based on the results, repeating until the dry run completes without issues and produces the output you expect. Only then you submit a full run. Once the configuration is working, you can reuse it for any input file with the same structure.
 
-```
-Create configuration → Submit dry-run job → Review logs
-       ↑                                          |
-       └──── Update configuration ←──────────────┘
-              (if issues found)
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Source Sans Pro, -apple-system, Segoe UI, sans-serif", "lineColor": "#0470BE"}}}%%
+flowchart TD
+    A[Create configuration] --> B[Submit dry-run job]
+    B --> C[Review logs]
+    C --> D{Issues that<br/>need action?}
+    D -->|Yes| E[Update configuration<br/>PUT → new version]
+    E --> B
+    D -->|No| F[Submit full run<br/>dry_run: false]
+    F --> G([Validated configuration<br/>reuse across input files])
+
+    classDef step fill:#D8F3FF,stroke:#0470BE,stroke-width:2px,color:#023F79;
+    classDef decision fill:#B7EAFF,stroke:#2FACDF,stroke-width:2px,color:#023F79;
+    classDef success fill:#D8F9EA,stroke:#34AF7C,stroke-width:2px,color:#023F79;
+
+    class A,B,C,E step;
+    class D decision;
+    class F,G success;
 ```
 
 Each step in the loop maps to an endpoint, covered in the sections below. The dry-run and full-run steps rely on the job-submission workflow described in [How to run a transformation](how-to-run-a-transformation.md).
