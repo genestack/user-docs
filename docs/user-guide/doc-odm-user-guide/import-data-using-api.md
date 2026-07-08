@@ -385,7 +385,7 @@ and upload supported files as part of a single automated workflow, and system in
 from external sources, convert it into a supported format, and submit it immediately. 
 This approach eliminates the need for intermediate file hosting and simplifies direct file-based import flows.
 Such flows are also supported 
-within **[Attachment transformation functionality](../doc-odm-user-guide/attachment-transformation.md)** in ODM.
+within **[Attachment transformation functionality](transformations/about-processors-controller.md)** in ODM.
 
 
 ### Linking entities

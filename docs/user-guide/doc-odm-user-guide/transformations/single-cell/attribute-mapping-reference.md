@@ -1,12 +1,10 @@
-# Attribute Mapping Reference
+# Attribute mapping reference
 
 During metadata curation, the transformation automatically maps commonly used attribute names found in source HDF5 files to the canonical ODM API names.
 
 Mapping is applied separately to cell metadata and feature metadata. When an attribute in the source file matches one of the known alternative names listed below, it is renamed to the corresponding ODM API display name. Attributes that do not match any known name are converted to camelCase.
 
 ## Cell metadata attributes
-
-The table below lists the canonical ODM API name for each attribute alongside the alternative source names that are automatically recognized.
 
 | ODM API display name | Alternative names |
 |---|---|
@@ -35,8 +33,6 @@ The table below lists the canonical ODM API name for each attribute alongside th
 
 ## Feature metadata attributes
 
-The table below lists the canonical ODM API name for each feature attribute alongside the alternative source names that are automatically recognized.
-
 | ODM API display name | Alternative names |
 |---|---|
 | geneId | `gene_id` (index), `gene_ids`, `ensembl_id`, `feature_id`, `stable_id`, `ENSEMBL` |
@@ -46,11 +42,11 @@ The table below lists the canonical ODM API name for each feature attribute alon
 | meanCounts | `mean_counts`, `avg_exp`, `obs_mean`, `means` |
 | pctDropoutByCounts | `pct_dropout_by_counts`, `pct_dropout`, `percent_dropout`, `dropout_rate` |
 
-### Gene ID to name mapping
+## Gene ID to name mapping {#gene-id-to-name-mapping}
 
 When feature metadata contains a `geneId` column but no gene name column, the transformation can automatically resolve gene names from a built-in reference. This is controlled by the `map_gene_ids_to_names` parameter in the `feature_metadata` configuration block, which is enabled by default. Set it to `false` for proteomics or other non-gene-ID data where this behaviour is not appropriate.
 
-The mapping is performed using Ensembl and NCBI reference data. Both Ensembl gene IDs (e.g. `ENSG...`) and NCBI gene IDs are supported. The following organisms are supported in `hdf5-cells`:
+The mapping uses Ensembl and NCBI reference data. Both Ensembl gene IDs (for example, `ENSG...`) and NCBI gene IDs are supported. The following organisms are supported in `hdf5-cells`:
 
 | Organism | Genome version | Ensembl release | NCBI release |
 |----------|----------------|-----------------|--------------|
