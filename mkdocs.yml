@@ -49,7 +49,26 @@ nav:
         - Getting Access Token (Azure): user-guide/doc-odm-user-guide/getting-access-token-azure.md
         - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
         - Working with Single Cell Data: user-guide/doc-odm-user-guide/single-cell.md
-        - Attachments transformation: user-guide/doc-odm-user-guide/attachment-transformation.md
+        - Transformations:
+            - About the Processors Controller: user-guide/doc-odm-user-guide/transformations/about-processors-controller.md
+            - How to Run a Transformation: user-guide/doc-odm-user-guide/transformations/how-to-run-a-transformation.md
+            - Manage Configurations: user-guide/doc-odm-user-guide/transformations/manage-configurations.md
+            - Job Lifecycle: user-guide/doc-odm-user-guide/transformations/job-lifecycle.md
+            - Single Cell (HDF5):
+                - user-guide/doc-odm-user-guide/transformations/single-cell/single-cell-getting-started.md
+                - About Single-cell Transformations: user-guide/doc-odm-user-guide/transformations/single-cell/about-single-cell-transformations.md
+                - Ingest Cell and Expression Data: user-guide/doc-odm-user-guide/transformations/single-cell/ingest-cell-and-expression.md
+                - Create Sample, Library, or Preparation Groups: user-guide/doc-odm-user-guide/transformations/single-cell/create-sample-library-preparation-groups.md
+                - Update Existing Biosample Metadata: user-guide/doc-odm-user-guide/transformations/single-cell/update-existing-biosample-metadata.md
+                - Discover Biosample Attributes: user-guide/doc-odm-user-guide/transformations/single-cell/discover-biosample-attributes.md
+                - Configure Metadata Curation: user-guide/doc-odm-user-guide/transformations/single-cell/configure-metadata-curation.md
+                - Iterate with Dry Runs: user-guide/doc-odm-user-guide/transformations/single-cell/iterate-with-dry-runs.md
+                - Process 10x Genomics H5 Files: user-guide/doc-odm-user-guide/transformations/single-cell/process-10x-h5-files.md
+                - Curated Public Datasets: user-guide/doc-odm-user-guide/transformations/single-cell/curated-public-datasets.md
+                - Configuration Reference: user-guide/doc-odm-user-guide/transformations/single-cell/configuration-reference.md
+                - Transformation Process Reference: user-guide/doc-odm-user-guide/transformations/single-cell/transformation-process-reference.md
+                - Attribute Mapping Reference: user-guide/doc-odm-user-guide/transformations/single-cell/attribute-mapping-reference.md
+            - Available Images Reference: user-guide/doc-odm-user-guide/transformations/available-images-reference.md
     - Access Control:
         - Users: access-control/users.md
         - Permissions: access-control/permissions.md
