@@ -1,10 +1,6 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/attribute-mapping.md
-    lines: [1, 61]
 diataxis: reference
 tab: odm-api
-task: task-107
 ---
 
 # Attribute mapping reference

@@ -1,17 +1,11 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/transformation-process-reference.md
-    lines: [1, 250]
 diataxis: reference
 tab: odm-api
-task: task-106
-tickets:
-  - ODM-13233
 ---
 
 # Transformation process reference: Single-cell HDF5 transformation
 
-This reference describes the internal processing stages of the single-cell HDF5 transformation pipeline. It is intended for users who need to understand what the pipeline does at each stage — for example, to interpret logs, diagnose errors, or reason about the order of operations.
+This reference describes the internal processing stages of the single-cell HDF5 transformation pipeline. It is intended for users who need to understand what the pipeline does at each stage: for example, to interpret logs, diagnose errors, or reason about the order of operations.
 
 For related documentation: [About single-cell transformations](about-single-cell-transformations.md) · [Configuration reference](configuration-reference.md) · [Getting started](single-cell-getting-started.md)
 
@@ -23,7 +17,7 @@ For related documentation: [About single-cell transformations](about-single-cell
 
 The pipeline reads the transformation configuration and validates all fields. The configuration version that was loaded is recorded in the log.
 
-Top-level key validation checks the presence and data types of `file_type`, `save_logs`, `biosample_metadata`, `cell_metadata`, `feature_metadata`, and `cell_expression`. If `file_type` is missing or contains an unsupported value (`"h5ad"` and `"h5"` are the only accepted values), the pipeline raises an error immediately.
+Top-level key validation checks the presence and data types of `file_type`, `biosample_metadata`, `cell_metadata`, `feature_metadata`, and `cell_expression`. If `file_type` is missing or contains an unsupported value (`"h5ad"` and `"h5"` are the only accepted values), the pipeline raises an error immediately.
 
 For all remaining sections, validation errors are accumulated and reported together at the end of the validation stage, so all issues are surfaced in a single run.
 
@@ -104,7 +98,7 @@ The pipeline opens the H5AD file and reads groups specified in `metadata_keys`:
 - If the index name collides with an existing column name, it is renamed to avoid the conflict.
 - The index is extracted and appended as a column so that barcode or feature ID information is preserved.
 
-> If the cell barcode is in the index and the index has no name, the extracted column is named `_index`. To use a different name, rename it using `columns_renaming_map`.
+> If the cell barcode is in the index and the index has no name, the extracted column is named `_index`. `_index` should be renamed to barcode via `columns_renaming_map`.
 
 ### 2.5 Column operations
 
@@ -116,16 +110,16 @@ The following transformations are applied in order:
 4. Fill missing values (`columns_to_fill_missing_values`)
 5. Set constant values (`set_column_value`)
 
-After explicit column operations, attribute name standardisation is applied: column names are mapped to ODM canonical names where a mapping exists; non-standard names are converted to camelCase. Columns in `columns_to_preserve_name` are exempt. For the full mapping list, see `attribute-mapping-reference.md`.
+After explicit column operations, attribute name standardisation is applied: column names are mapped to ODM canonical names where a mapping exists; non-standard names are converted to camelCase. Columns in `columns_to_preserve_name` are exempt. For the full mapping list, see [Attribute Mapping Reference](attribute-mapping-reference.md).
 
 **Cell metadata additional steps:**
 
-- **Required column validation:** `barcode` (unique cell identifiers — duplicates or missing values cause an error) and `batch` (SLP linking identifiers — missing values cause an error).
+- **Required column validation:** `barcode` (unique cell identifiers, duplicates or missing values cause an error) and `batch` (SLP linking identifiers, missing values cause an error).
 - **QC metric calculation:** number of counts, number of genes, percentage mitochondrial expression, and percentage ribosomal expression are added if not already present. Skipped when `add_qc_metrics: false` or when `dry_run: true`.
 
 **Feature metadata additional steps:**
 
-- **Gene ID mapping:** If gene names are absent and the `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and species, then adds a gene names column. The step can be skipped with `map_gene_ids_to_names: false`.
+- **Gene ID mapping:** If gene names are absent and the `geneId` column is present, the pipeline infers the ID source (Ensembl or NCBI) and species, then adds a gene names column. The step can be skipped with `map_gene_ids_to_names: false`. For more details , see [Attribute Mapping Reference](attribute-mapping-reference.md#gene-id-to-name-mapping).
 
 ### 2.6 Storing data
 
@@ -153,13 +147,13 @@ Expression metadata from the source attachment is read and transformed according
 
 The following statistics are always computed and appended regardless of the `source_file_metadata` flag:
 
-1. Total number of cells
-2. Total number of features
-3. Sparsity (%)
-4. Number of non-zero values
-5. Source file accession
-6. Source file name
-7. Configuration version
+1. Total Number of Cells or Nuclei
+2. Total Number of Features
+3. Sparsity Percentage Value
+4. Number of Non-zero Values
+5. Source File Accession
+6. Source File Name
+7. Transformation Job ID
 
 ---
 
@@ -167,7 +161,7 @@ The following statistics are always computed and appended regardless of the `sou
 
 ### 4.1 Dry run exit
 
-If `dry_run: true`, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in the API but not saved as attachments.
+If `dry_run: true`, the pipeline performs linking validation and exits at this point. Expression matrix compression is skipped. Logs are reported and available in the API.
 
 Best-effort linking validation:
 
@@ -194,6 +188,3 @@ The transformed cell metadata TSV is uploaded as a new Cell Group, linked to the
 
 The Brotli-compressed expression file and its metadata file are uploaded to create a new Expression Group, linked to the newly created Cell Group.
 
-#### 4.2.4 Log upload
-
-Transformation logs are uploaded as an attachment together with their metadata. The logs metadata file includes a `Configuration Version` field recording the configuration version the job ran against. This step is skipped if `save_logs: false`.

@@ -1,10 +1,6 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/how-to-sc-hdf5-transformations.md
-    lines: [173, 222]
 diataxis: how-to
 tab: odm-api
-task: task-098
 ---
 
 # How to ingest cell and expression data from an H5AD file
@@ -54,8 +50,8 @@ Configure `cell_metadata`, `feature_metadata`, and `cell_expression` in your con
 }
 ```
 
-- `columns_to_drop` — list of cell metadata columns to exclude from import.
-- `columns_renaming_map` — map of source column names to target names in ODM.
+- `columns_to_drop`: list of cell metadata columns to exclude from import.
+- `columns_renaming_map`: map of source column names to target names in ODM.
 
 ## Linking resolution
 
@@ -81,7 +77,7 @@ To link to all Preparation groups in the study without specifying accessions ind
 }
 ```
 
-For the full linking resolution rules, see `transformation-process-reference.md`.
+For the full linking resolution rules, see [Transformation process reference](transformation-process-reference.md).
 
 ## Related
 

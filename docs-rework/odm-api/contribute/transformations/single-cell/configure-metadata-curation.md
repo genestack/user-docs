@@ -1,10 +1,6 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/how-to-sc-hdf5-transformations.md
-    lines: [349, 406]
 diataxis: how-to
 tab: odm-api
-task: task-103
 ---
 
 # How to configure metadata curation
@@ -72,7 +68,7 @@ Set all rows in a column to the same value. This can add new columns or overwrit
 
 After all explicit column operations, the transformation applies automatic attribute name standardisation: column names that match known ODM canonical names are mapped to those names; non-standard names are converted to camelCase. This step is automatic and does not need to be configured.
 
-For the full list of recognised column names and their ODM equivalents, see `attribute-mapping-reference.md`.
+For the full list of recognised column names and their ODM equivalents, see [Attribute Mapping Reference](attribute-mapping-reference.md).
 
 ## Exempt a column from standardisation
 
@@ -84,6 +80,6 @@ To prevent a specific column from being automatically renamed (for example, a Le
 
 ## Related
 
-- [Configuration reference](configuration-reference.md) — full parameter specifications for all curation fields.
-- `attribute-mapping-reference.md` — the complete mapping of known column names to ODM canonical names.
+- [Configuration reference](configuration-reference.md): full parameter specifications for all curation fields.
+- [Attribute Mapping Reference](attribute-mapping-reference.md): the complete mapping of known column names to ODM canonical names.
 - [Ingest cell and expression data from an H5AD file](ingest-cell-and-expression.md)

@@ -1,0 +1,11 @@
+name,label
+[CVRM],"""Cardiovascular, Renal and Metabolism"""
+[GI],Gastrointestinal
+[INFEC],Infection
+[AI],Autoimmune
+[NEURO],Neuroscience
+[ONC],Oncology
+[IMMUONC],Immuno-oncology
+[INFLA],Inflammation
+[RESP],Respiratory
+[VA],Vaccines

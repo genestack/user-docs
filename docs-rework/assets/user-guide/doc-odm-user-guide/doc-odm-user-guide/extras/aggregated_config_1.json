@@ -1,0 +1,83 @@
+{
+  "name": "aggregated_config_1.json",
+  "description": "Aggregated config 1 to transform several public datasets",
+  "data": {
+    "file_type": "h5ad",
+    "biosample_metadata": null,
+    "cell_metadata": {
+      "metadata_keys": {
+        "obs": "metadata",
+        "obsm": "embedding",
+        "obsp": "pairwise"
+      },
+      "linking_group": null,
+      "columns_to_drop": [
+        "barcode", 
+        "Species",
+        "sex",
+        "age",
+        "disease",
+        "biosample_id",
+        "lvef"
+      ],
+      "columns_renaming_map": {
+          "index": "barcode",
+          "_index": "barcode",
+          "donor_id": "batch",
+          "sample": "batch",
+          "sample_id": "batch",
+          "Sample_Name": "batch",
+          "biological.individual": "batch",
+          "GSM_ID": "gsm_id",
+          "cell_type_leiden0.6": "cell_type",
+          "SubCluster": "cluster",
+          "cellbender_ncount": "n_counts",
+          "cellbender_ngenes": "n_genes",
+          "cellranger_percent_mito": "percent_mito",
+          "cellbender_entropy": "entropy",
+          "cellranger_doublet_scores": "doublet_scores"
+      },
+      "columns_to_fill_missing_values": null,
+      "columns_to_curate_values": null,
+      "set_column_value": null,
+      "columns_to_preserve_name": null,
+      "add_qc_metrics": true
+    },
+    "feature_metadata": {
+      "metadata_keys": {
+        "var": "metadata",
+        "varm": "embedding",
+        "varp": "pairwise"
+      },
+      "columns_to_drop": [
+        "feature_biotype",
+        "feature_types",
+        "genome"
+      ],
+      "columns_renaming_map": {
+        "_index": "gene",
+        "index": "gene",
+        "GENE": "gene",
+        "var_index": "geneId",
+        "feature_is_filtered": "is_filtered"
+      },
+      "columns_to_fill_missing_values": null,
+      "columns_to_curate_values": null,
+      "set_column_value": null,
+      "columns_to_preserve_name": null,
+      "map_gene_ids_to_names": true
+    },
+    "cell_expression": {
+      "compression_level": null,
+      "chunk_size": null,
+      "max_buffer_size": null,
+      "data_class": "Single-cell transcriptomics",
+      "number_format": null,
+      "columns_to_drop": null,
+      "columns_renaming_map": null,
+      "set_column_value": null,
+      "source_file_metadata": true
+    }
+  }
+}
+

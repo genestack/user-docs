@@ -1,21 +1,13 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/about-sc-hdf5-transformations.md
-    lines: [1, 62]
-  - path: docs/user-guide/doc-odm-user-guide/about-sc-hdf5-transformations.md
-    lines: [74, 97]
 diataxis: explanation
 tab: odm-api
-task: task-096
-tickets:
-  - ODM-13324
 ---
 
 # About single-cell HDF5 transformations
 
 The single-cell HDF5 transformation converts a single-cell HDF5 file into the ODM-compatible output. It extracts expression data and cell metadata, optionally harmonises metadata, and can create or update biosample objects in ODM. The output objects are imported and linked automatically. The result is feature-level indexed data ready for downstream analysis and cross-study discovery without manual file preparation.
 
-The transformation runs via the ODM Processors Controller API. For an overview of configurations, images, and jobs — the three building blocks shared by all transformations — see [About the Processors Controller](../about-processors-controller.md).
+The transformation runs via the ODM Processors Controller API. For an overview of configurations, images, and jobs (the three building blocks shared by all transformations), see [About the Processors Controller](../about-processors-controller.md).
 
 ## The ODM entity model for single-cell data
 
@@ -25,29 +17,7 @@ Understanding the transformation requires familiarity with how ODM represents si
 
 **A Cell Group** is the collection of individual cells from an experiment, together with their metadata. Each Cell Group is linked to one or more parent groups of a single SLP type (Sample, Library, or Preparation). This linkage allows ODM to associate cell-level observations with the correct experimental context.
 
-**An Expression Group** represents the gene-by-cell expression matrix — compressed for efficient retrieval — along with computed dataset statistics. An Expression Group is always linked to a Cell Group.
-
-```mermaid
-graph TD
-    subgraph CTX["Biological & experimental context — SLP"]
-        direction LR
-        S["Sample<br/><i>biological specimen</i>"]
-        L["Library<br/><i>sequencing library</i>"]
-        P["Preparation<br/><i>preparation step</i>"]
-    end
-
-    CG["Cell Group<br/><i>cells + per-cell metadata</i>"]
-    EG["Expression Group<br/><i>gene × cell matrix + dataset stats</i>"]
-
-    EG -->|always linked to| CG
-    CG -->|"linked to one or more groups<br/>of a <b>single</b> SLP type"| CTX
-
-    classDef ctx fill:#D8F3FF,color:#023F79,stroke:#0470BE,stroke-width:2px,font-weight:bold
-    classDef grp fill:#D8F9EA,color:#023F79,stroke:#34AF7C,stroke-width:2px,font-weight:bold
-    class S,L,P ctx
-    class CG,EG grp
-    style CTX fill:#ffffff,stroke:#0470BE,stroke-width:1px
-```
+**An Expression Group** represents the gene-by-cell expression matrix (compressed for efficient retrieval) along with computed dataset statistics. An Expression Group is always linked to a Cell Group.
 
 The transformation creates the Cell Group and Expression Group and links them into the existing (or newly created) SLP structure. This is why the configuration requires specifying how the resulting Cell Group connects to its parent. For the broader ODM data model, see [Data model](../../../../overview/data-model/index.md).
 
@@ -63,13 +33,13 @@ The transformation extracts three types of data from an HDF5 source file.
 
 ## The role of metadata curation
 
-Metadata curation standardises cell metadata so that it can be imported, linked, and indexed correctly in ODM. Certain fields must use expected names and data types to ensure consistent linking and indexing — the transformation handles this during processing.
+Metadata curation standardises cell metadata so that it can be imported, linked, and indexed correctly in ODM. Certain fields must use expected names and data types to ensure consistent linking and indexing: the transformation handles this during processing.
 
-As part of curation, the transformation performs automatic attribute mapping: commonly used attribute names from tools such as Seurat, Scanpy, or Cell Ranger are recognised and renamed to canonical ODM API names without any configuration. Attributes that do not match any known name are retained and their names are automatically converted to camelCase. Curation applies only to the data produced for import into ODM — the source file is not modified. For the full list of recognised names, see [Attribute mapping reference](attribute-mapping-reference.md).
+As part of curation, the transformation performs automatic attribute mapping: commonly used attribute names from tools such as Seurat, Scanpy, or Cell Ranger are recognised and renamed to canonical ODM API names without any configuration. Attributes that do not match any known name are retained and their names are automatically converted to camelCase. Curation applies only to the data produced for import into ODM: the source file is not modified. For the full list of recognised names, see [Attribute mapping reference](attribute-mapping-reference.md).
 
 ## Biosample metadata and the aggregation model
 
-Some single-cell datasets store tissue, disease, or other biosample-level attributes in cell metadata, repeating the same values for every cell. The transformation can aggregate these attributes into related biosample objects — Sample, Library, or Preparation groups in ODM.
+Some single-cell datasets store tissue, disease, or other biosample-level attributes in cell metadata, repeating the same values for every cell. The transformation can aggregate these attributes into related biosample objects: Sample, Library, or Preparation groups in ODM.
 
 Aggregation is performed by grouping cells using a designated biosample identifier. Only attributes that are consistent across all cells in the same biosample are assigned to the related biosample objects. Attributes assigned to biosample objects are automatically removed from cell metadata, reducing duplication.
 
@@ -87,17 +57,11 @@ The transformation accepts HDF5-based input: H5AD (AnnData), 10x Genomics H5 (co
 
 A single-cell job produces a processing log like any other transformation. For what the log records, how it is retained, and how to retrieve it, see [About the Processors Controller](../about-processors-controller.md#transformation-logs).
 
-## Known limitations
-
-Currently, only one transformation process can be run per attachment. If you need to run another transformation job on the same data, import a new copy of the attachment or create a new study.
-
-<!-- TODO: verify — the one-transformation-per-attachment constraint is a platform-level rule not present in the transformation-images-develop/ image code. Confirm against an authoritative source before publishing. (Same constraint also flagged in available-images-reference.md.) -->
-
 ## Where to start
 
-- **Start here:** [Single-cell getting started](single-cell-getting-started.md) — a single-cell quickstart from upload to queried data.
-- **General workflow:** [How to run a transformation](../how-to-run-a-transformation.md) — the step-by-step API workflow applicable to any transformation type.
+- **Start here:** [Single-cell getting started](single-cell-getting-started.md), a single-cell quickstart from upload to queried data.
+- **General workflow:** [How to run a transformation](../how-to-run-a-transformation.md), the step-by-step API workflow applicable to any transformation type.
 - **Per-task how-tos:** [Ingest cell and expression data](ingest-cell-and-expression.md), [Create sample/library/preparation groups](create-sample-library-preparation-groups.md), [Update existing biosample metadata](update-existing-biosample-metadata.md).
 - **Dry-run iteration:** [Iterate on a configuration using dry runs](iterate-with-dry-runs.md) and [Discover which biosample attributes are available](discover-biosample-attributes.md).
-- **Configuration spec:** [Configuration reference](configuration-reference.md) — the full `data` field schema for `hdf5-cells`.
-- **Pipeline internals:** [Transformation process reference](transformation-process-reference.md) — the internal processing pipeline.
+- **Configuration spec:** [Configuration reference](configuration-reference.md), the full `data` field schema for `hdf5-cells`.
+- **Pipeline internals:** [Transformation process reference](transformation-process-reference.md), the internal processing pipeline.

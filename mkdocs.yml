@@ -1,129 +1,215 @@
-site_name: User documentation
+site_name: ODM User Documentation
+copyright: Copyright &copy; 2026 Genestack
+
+docs_dir: docs-rework
 
 nav:
-    - Home:
-      - index.md
-      - Quick Start to the ODM:
-        - user-guide/quick-start/index.md
-        - Data in the User Interface:
-          - Data Consumer: user-guide/quick-start/consumer-gui.md
-          - Data Contributor: user-guide/quick-start/contributor-gui.md
-          - Administrator: user-guide/quick-start/admin-gui.md
-        - Data in API:
-          - Data Consumer: user-guide/quick-start/consumer-api.md
-          - Data Contributor: user-guide/quick-start/contributor-api.md
-          - Administrator: user-guide/quick-start/admin-api.md
-      - Key Concepts: user-guide/key-concepts/key-concepts.md
-      - Users, Roles, Permissions: user-guide/users-roles-permissions/users-roles-permissions.md
-      - Supported Data Formats: user-guide/supported-data/supported-data.md
-      - Guides:
-            - Advanced User Guide:
-                - user-guide/index.md
-            - Access Control:
-                - Users: access-control/users.md
-                - Permissions: access-control/permissions.md
-                - Groups: access-control/groups.md
-                - Access Management via SCIM APIs: access-control/scim.md
-                - Data Sharing: access-control/sharing.md
-                - Authorisation via an Access Token: access-control/authorisation.md
-                - Data Governance: access-control/governance.md
-                - Platform Security: access-control/security.md
-      - About Genestack: https://genestack.com/
-    - Advanced Guide:
-        - user-guide/index.md
-        - Start: user-guide/doc-odm-user-guide/quickstart_user.md
-        - Users and Groups: user-guide/doc-odm-user-guide/setup.md
-        - Create Study: user-guide/doc-odm-user-guide/create-study.md
-        - Import Data to ODM: user-guide/doc-odm-user-guide/import-data-in-odm.md
-        - Import Data Using API: user-guide/doc-odm-user-guide/import-data-using-api.md
-        - Import Data Using Python Script: user-guide/doc-odm-user-guide/import-data-using-python-script.md
-        - Exporting Data: user-guide/doc-odm-user-guide/exporting-data.md
-        - Cross-reference Mapping: user-guide/doc-odm-user-guide/xref-mapping.md
-        - Study Browser: user-guide/doc-odm-user-guide/studybrowser.md
-        - Metadata Editor: user-guide/doc-odm-user-guide/metadata-editor.md
-        - Template Editor: user-guide/doc-odm-user-guide/template-editor.md
-        - Curator Guide: user-guide/doc-odm-user-guide/curator_guide.md
-        - Metadata Versioning: user-guide/doc-odm-user-guide/versioning.md
-        - Sharing Studies: user-guide/doc-odm-user-guide/sharing.md
-        - Getting a Genestack API token: user-guide/doc-odm-user-guide/getting-a-genestack-api-token.md
-        - Getting Access Token (Azure): user-guide/doc-odm-user-guide/getting-access-token-azure.md
-        - Supported File Formats: user-guide/doc-odm-user-guide/supported-formats.md
-        - Working with Single Cell Data: user-guide/doc-odm-user-guide/single-cell.md
-        - Transformations:
-            - About the Processors Controller: user-guide/doc-odm-user-guide/transformations/about-processors-controller.md
-            - How to Run a Transformation: user-guide/doc-odm-user-guide/transformations/how-to-run-a-transformation.md
-            - Manage Configurations: user-guide/doc-odm-user-guide/transformations/manage-configurations.md
-            - Job Lifecycle: user-guide/doc-odm-user-guide/transformations/job-lifecycle.md
-            - Single Cell (HDF5):
-                - user-guide/doc-odm-user-guide/transformations/single-cell/single-cell-getting-started.md
-                - About Single-cell Transformations: user-guide/doc-odm-user-guide/transformations/single-cell/about-single-cell-transformations.md
-                - Ingest Cell and Expression Data: user-guide/doc-odm-user-guide/transformations/single-cell/ingest-cell-and-expression.md
-                - Create Sample, Library, or Preparation Groups: user-guide/doc-odm-user-guide/transformations/single-cell/create-sample-library-preparation-groups.md
-                - Update Existing Biosample Metadata: user-guide/doc-odm-user-guide/transformations/single-cell/update-existing-biosample-metadata.md
-                - Discover Biosample Attributes: user-guide/doc-odm-user-guide/transformations/single-cell/discover-biosample-attributes.md
-                - Configure Metadata Curation: user-guide/doc-odm-user-guide/transformations/single-cell/configure-metadata-curation.md
-                - Iterate with Dry Runs: user-guide/doc-odm-user-guide/transformations/single-cell/iterate-with-dry-runs.md
-                - Process 10x Genomics H5 Files: user-guide/doc-odm-user-guide/transformations/single-cell/process-10x-h5-files.md
-                - Curated Public Datasets: user-guide/doc-odm-user-guide/transformations/single-cell/curated-public-datasets.md
-                - Configuration Reference: user-guide/doc-odm-user-guide/transformations/single-cell/configuration-reference.md
-                - Transformation Process Reference: user-guide/doc-odm-user-guide/transformations/single-cell/transformation-process-reference.md
-                - Attribute Mapping Reference: user-guide/doc-odm-user-guide/transformations/single-cell/attribute-mapping-reference.md
-            - Available Images Reference: user-guide/doc-odm-user-guide/transformations/available-images-reference.md
-    - Access Control:
-        - Users: access-control/users.md
-        - Permissions: access-control/permissions.md
-        - Groups: access-control/groups.md
-        - Access Management via SCIM APIs: access-control/scim.md
-        - Data Sharing: access-control/sharing.md
-        - Authorisation via an Access Token: access-control/authorisation.md
-        - Data Governance: access-control/governance.md
-        - Platform Security: access-control/security.md
-    - Tools:
-        - odm-sdk:
-            - Installation: tools/odm-sdk/installation.md
-            - Configuration: tools/odm-sdk/configuration.md
-            #- Work from python:
-            - Work from terminal:
-                  - Users:
-                        - Users creation: tools/odm-sdk/terminal/users/user-creation.md
-                  - Templates:
-                        - Create or update template: tools/odm-sdk/terminal/templates/create-or-update-template.md
-                        - Delete template: tools/odm-sdk/terminal/templates/delete-template.md
-                  - Study:
-                        - Uploading study: tools/odm-sdk/terminal/study/uploading-study.md
-                        - Curation script: tools/odm-sdk/terminal/study/curation-script.md
-                        - Sharing study: tools/odm-sdk/terminal/study/sharing-study.md
-                        - Deleting study: tools/odm-sdk/terminal/study/deleting-study.md
-                        - Loading from GEO: tools/odm-sdk/terminal/study/loading-from-geo.md
-                  - Dictionaries and ontologies:
-                        - Default dictionaries: tools/odm-sdk/terminal/dictionaries-and-ontologies/default-dictionaries.md
-                        - Exporting ontologies from ODM: tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm.md
-                        - Creating new dictionary: tools/odm-sdk/terminal/dictionaries-and-ontologies/creating-new-dictionary.md
-                        - Loading new ontology:
-                              - tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology.md
-                              - CSV dictionary format: tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology/csv-dictionary-format.md
-                              - SKOS dictionary: tools/odm-sdk/terminal/dictionaries-and-ontologies/loading-new-ontology/skos-dictionary.md
-            - Generated:
-                  - tools/odm-sdk/generated/index.md
-        - odm-api:
-              - Python:
-                    - Installation: tools/odm-api/python/installation.md
-                    - Example: tools/odm-api/python/example.md
-                    - Generated:
-                          - tools/odm-api/python/generated/README.md
-              - R:
-                    - Installation: tools/odm-api/r/installation.md
-                    - Example: tools/odm-api/r/example.md
-                    - Generated:
-                        - tools/odm-api/r/generated/README.md
-    - Trainings:
-        - Training Materials: ui/training-materials.md
-    - Release notes:
-          - v1.60 - v1.69: release-notes/v1.60-v1.69.md
-          - v1.50 - v1.59: release-notes/v1.50-v1.59.md
-          - v1.40 - v1.49: release-notes/v1.40-v1.49.md
-          - v1.30 - v1.39: release-notes/v1.30-v1.39.md
-          - v1.20 - v1.29: release-notes/v1.20-v1.29.md
+    - Overview:
+        - overview/index.md
+        - Getting Started:
+            - overview/getting-started/index.md
+            - Data Explorer: overview/getting-started/getting-started-consumer.md
+            - Data Contributor: overview/getting-started/getting-started-contributor.md
+            - Administrator: overview/getting-started/getting-started-admin.md
+        - Data Model:
+            - overview/data-model/index.md
+            - Objects and Groups: overview/data-model/objects-and-groups.md
+            - Data Upload and Indexing: overview/data-model/data-upload-and-indexing-pipeline.md
+            - Data Classes Reference: overview/data-model/data-classes-reference.md
+        - Access Control:
+            - overview/access-control/index.md
+            - Users and Accounts: overview/access-control/users-and-accounts.md
+            - Groups and Roles: overview/access-control/groups-and-roles.md
+            - Permissions: overview/access-control/permissions.md
+            - Sharing and Ownership: overview/access-control/sharing-and-ownership.md
+            - Data Governance: overview/access-control/governance.md
+            - Platform Security: overview/access-control/platform-security.md
+        - Navigating the UI:
+            - overview/navigating-the-ui/index.md
+            - Study Browser: overview/navigating-the-ui/study-browser.md
+            - Metadata Editor: overview/navigating-the-ui/metadata-editor.md
+            - Template Editor: overview/navigating-the-ui/template-editor.md
+        - Supported Data Formats:
+            - overview/supported-data-formats/index.md
+            - TSV: overview/supported-data-formats/tsv.md
+            - GCT: overview/supported-data-formats/gct.md
+            - HDF5: overview/supported-data-formats/hdf5.md
+            - FACS: overview/supported-data-formats/facs.md
+            - VCF: overview/supported-data-formats/vcf.md
+            - Attached Files: overview/supported-data-formats/attached-files.md
+    - Explore Data:
+        - explore/index.md
+        - Search and Filter Studies: explore/search-and-filter-studies.md
+        - View Study Metadata: explore/view-study-metadata.md
+        - Visualise Sample Data: explore/visualise-sample-data.md
+        - Bookmark Studies: explore/bookmark-studies.md
+        - Export Data: explore/export-data.md
+    - Contribute Data:
+        - contribute/index.md
+        - Create a Study: contribute/create-a-study.md
+        - Import Data:
+            - contribute/import-data/index.md
+            - Import Sample Metadata: contribute/import-data/import-sample-metadata.md
+            - Import Libraries and Preparations: contribute/import-data/import-libraries-and-preparations.md
+            - Import Experimental Data: contribute/import-data/import-experimental-data.md
+            - Attach Files: contribute/import-data/attach-files.md
+            - Attached Files vs. Imported Data: contribute/import-data/attached-vs-imported-data.md
+        - Curate Metadata:
+            - contribute/curate-metadata/index.md
+            - About Validation and Curation: contribute/curate-metadata/about-validation-and-curation.md
+            - Edit and Validate Metadata: contribute/curate-metadata/edit-and-validate-metadata.md
+        - Templates:
+            - contribute/templates/index.md
+            - About Templates: contribute/templates/about-templates.md
+            - Create and Edit a Template: contribute/templates/create-and-edit-a-template.md
+            - Change a Study's Template: contribute/templates/change-a-studys-template.md
+            - Template Reference: contribute/templates/template-reference.md
+        - Metadata Versioning:
+            - contribute/version-metadata/index.md
+            - About Metadata Versioning: contribute/version-metadata/about-metadata-versioning.md
+            - Manage Metadata Versions: contribute/version-metadata/manage-metadata-versions.md
+        - Sharing:
+            - contribute/sharing/index.md
+            - Share a Study: contribute/sharing/share-a-study.md
+            - Transfer Study Ownership: contribute/sharing/transfer-study-ownership.md
+    - Admin:
+        - admin/index.md
+        - Manage Users:
+            - admin/manage-users/index.md
+            - Create Users: admin/manage-users/create-users.md
+            - Activate and Deactivate Users: admin/manage-users/activate-and-deactivate-users.md
+            - Change User Password: admin/manage-users/change-user-password.md
+            - Grant and Revoke Permissions: admin/manage-users/grant-and-revoke-permissions.md
+        - Manage Groups:
+            - admin/manage-groups/index.md
+            - Create and Delete Groups: admin/manage-groups/create-and-delete-groups.md
+            - Add and Remove Members: admin/manage-groups/add-and-remove-members.md
+            - Manage Group Admins and Roles: admin/manage-groups/manage-group-admins-and-roles.md
+        - Configure Facets: admin/configure-facets.md
+        - SCIM Integration: admin/scim-integration.md
+    - ODM API:
+        - odm-api/index.md
+        - Getting Started:
+            - odm-api/getting-started/index.md
+            - Authentication and Tokens: odm-api/getting-started/authentication-and-tokens.md
+            - Get an Azure Access Token: odm-api/getting-started/get-an-azure-access-token.md
+            - Swagger Orientation: odm-api/getting-started/swagger-orientation.md
+            - Make Your First Request: odm-api/getting-started/make-your-first-request.md
+            - Getting Started as a Consumer: odm-api/getting-started/getting-started-consumer.md
+            - Getting Started as a Contributor: odm-api/getting-started/getting-started-contributor.md
+            - Getting Started as an Admin: odm-api/getting-started/getting-started-admin.md
+        - Explore via API:
+            - odm-api/explore/index.md
+            - About Querying Data: odm-api/explore/about-querying-data.md
+            - Search Studies: odm-api/explore/search-studies.md
+            - Search Imported Data: odm-api/explore/search-imported-data.md
+            - Search Attached Files: odm-api/explore/search-attached-files.md
+            - Search by HDF5 Contents: odm-api/explore/search-by-hdf5-contents.md
+            - Cross-Product Queries: odm-api/explore/cross-product-queries.md
+            - Stream Data Exports: odm-api/explore/stream-data-exports.md
+            - Cell Analytics:
+                - About Cell Analytics: odm-api/explore/cell-analytics/about-cell-analytics.md
+                - Cell Analytics Reference: odm-api/explore/cell-analytics/cell-analytics-reference.md
+        - Contribute via API:
+            - odm-api/contribute/index.md
+            - Import Data:
+                - About the Import Workflow: odm-api/contribute/import-data/about-the-import-workflow.md
+                - Import Study Metadata: odm-api/contribute/import-data/import-study-metadata.md
+                - Import Sample Metadata: odm-api/contribute/import-data/import-sample-metadata.md
+                - Import Libraries Metadata: odm-api/contribute/import-data/import-libraries-metadata.md
+                - Import Preparations Metadata: odm-api/contribute/import-data/import-preparations-metadata.md
+                - Import Expression Data: odm-api/contribute/import-data/import-expression-data.md
+                - Import Variant Data: odm-api/contribute/import-data/import-variant-data.md
+                - Import Flow Cytometry Data: odm-api/contribute/import-data/import-flow-cytometry-data.md
+                - Import Cell Metadata: odm-api/contribute/import-data/import-cell-metadata.md
+                - Import Attached Files: odm-api/contribute/import-data/import-attached-files.md
+                - Link Entities After Import: odm-api/contribute/import-data/link-entities-after-import.md
+                - Manage Import Jobs: odm-api/contribute/import-data/manage-import-jobs.md
+                - Multipart Uploads Reference: odm-api/contribute/import-data/multipart-uploads-reference.md
+            - Cross-Reference Mapping:
+                - About Cross-Reference Mapping: odm-api/contribute/cross-reference-mapping/about-cross-reference-mapping.md
+                - Import a Mapping: odm-api/contribute/cross-reference-mapping/import-a-mapping.md
+                - Query Mappings: odm-api/contribute/cross-reference-mapping/query-mappings.md
+                - Update or Remove Mappings: odm-api/contribute/cross-reference-mapping/update-or-remove-mappings.md
+            - Transformations:
+                - About the Processors Controller: odm-api/contribute/transformations/about-processors-controller.md
+                - Job Lifecycle: odm-api/contribute/transformations/job-lifecycle.md
+                - How to Run a Transformation: odm-api/contribute/transformations/how-to-run-a-transformation.md
+                - Manage Configurations: odm-api/contribute/transformations/manage-configurations.md
+                - Available Images Reference: odm-api/contribute/transformations/available-images-reference.md
+                - Single Cell:
+                    - Getting Started: odm-api/contribute/transformations/single-cell/single-cell-getting-started.md
+                    - About Single-Cell Transformations: odm-api/contribute/transformations/single-cell/about-single-cell-transformations.md
+                    - Curated Public Datasets: odm-api/contribute/transformations/single-cell/curated-public-datasets.md
+                    - Discover Biosample Attributes: odm-api/contribute/transformations/single-cell/discover-biosample-attributes.md
+                    - Create Sample/Library/Preparation Groups: odm-api/contribute/transformations/single-cell/create-sample-library-preparation-groups.md
+                    - Ingest Cell and Expression Data: odm-api/contribute/transformations/single-cell/ingest-cell-and-expression.md
+                    - Iterate with Dry Runs: odm-api/contribute/transformations/single-cell/iterate-with-dry-runs.md
+                    - Update Existing Biosample Metadata: odm-api/contribute/transformations/single-cell/update-existing-biosample-metadata.md
+                    - Process 10x H5 Files: odm-api/contribute/transformations/single-cell/process-10x-h5-files.md
+                    - Configure Metadata Curation: odm-api/contribute/transformations/single-cell/configure-metadata-curation.md
+                    - Attribute Mapping Reference: odm-api/contribute/transformations/single-cell/attribute-mapping-reference.md
+                    - Configuration Reference: odm-api/contribute/transformations/single-cell/configuration-reference.md
+                    - Transformation Process Reference: odm-api/contribute/transformations/single-cell/transformation-process-reference.md
+        - Administer via API:
+            - odm-api/admin/index.md
+            - Manage User Accounts via API: odm-api/admin/manage-user-accounts-via-api.md
+            - Find Detached Objects: odm-api/admin/find-detached-objects.md
+            - Delete Data: odm-api/admin/delete-data.md
+        - API Reference:
+            - odm-api/reference/index.md
+            - Query and Filter Syntax Reference: odm-api/reference/query-and-filter-syntax-reference.md
+            - Cell Metadata Reference: odm-api/reference/cell-metadata-reference.md
+            - Job Status Codes Reference: odm-api/reference/job-status-codes-reference.md
+            - Response Format Changes Reference: odm-api/reference/response-format-changes-reference.md
+    - API Libraries:
+        - api-libraries/index.md
+        - ODM SDK:
+            - api-libraries/odm-sdk/index.md
+            - Install: api-libraries/odm-sdk/install.md
+            - Configure: api-libraries/odm-sdk/configure.md
+            - Troubleshoot Installation: api-libraries/odm-sdk/troubleshoot-installation.md
+            - Study:
+                - Upload a Study: api-libraries/odm-sdk/study/upload-a-study.md
+                - Load from GEO: api-libraries/odm-sdk/study/load-from-geo.md
+                - Share a Study: api-libraries/odm-sdk/study/share-a-study.md
+                - Delete a Study: api-libraries/odm-sdk/study/delete-a-study.md
+                - Curate with the Curation Script: api-libraries/odm-sdk/study/curate-with-the-curation-script.md
+                - Curation Rules Reference: api-libraries/odm-sdk/study/curation-rules-reference.md
+                - Script Parameters Reference: api-libraries/odm-sdk/study/script-parameters-reference.md
+            - Templates:
+                - Create or Update a Template: api-libraries/odm-sdk/templates/create-or-update-a-template.md
+                - Delete a Template: api-libraries/odm-sdk/templates/delete-a-template.md
+            - Dictionaries and Ontologies:
+                - About Dictionaries: api-libraries/odm-sdk/dictionaries-and-ontologies/about-dictionaries.md
+                - Default Dictionaries Reference: api-libraries/odm-sdk/dictionaries-and-ontologies/default-dictionaries-reference.md
+                - Export an Ontology from ODM: api-libraries/odm-sdk/dictionaries-and-ontologies/export-an-ontology-from-odm.md
+                - Create a CSV Dictionary: api-libraries/odm-sdk/dictionaries-and-ontologies/create-a-csv-dictionary.md
+                - CSV Dictionary Format Reference: api-libraries/odm-sdk/dictionaries-and-ontologies/csv-dictionary-format-reference.md
+                - Load a Custom Ontology: api-libraries/odm-sdk/dictionaries-and-ontologies/load-a-custom-ontology.md
+                - SKOS Dictionary Reference: api-libraries/odm-sdk/dictionaries-and-ontologies/skos-dictionary-reference.md
+            - Users:
+                - Create Users: api-libraries/odm-sdk/users/create-users.md
+        - Python API Client:
+            - api-libraries/python-api-client/index.md
+            - Install: api-libraries/python-api-client/install.md
+            - Usage Example: api-libraries/python-api-client/usage-example.md
+        - R API Client:
+            - api-libraries/r-api-client/index.md
+            - Install: api-libraries/r-api-client/install.md
+            - Usage Example: api-libraries/r-api-client/usage-example.md
+    - Release Notes:
+        - v1.60 - v1.69: release-notes/v1.60-v1.69.md
+        - v1.50 - v1.59: release-notes/v1.50-v1.59.md
+        - v1.40 - v1.49: release-notes/v1.40-v1.49.md
+        - v1.30 - v1.39: release-notes/v1.30-v1.39.md
+        - v1.20 - v1.29: release-notes/v1.20-v1.29.md
+exclude_docs: |
+    docs/**/*.md
+
+plugins:
+    - search
+    - privacy
 theme:
     name: material
     palette:
@@ -141,42 +227,61 @@ theme:
           name: Switch to light mode
     logo: assets/ODM-mono-white.png
     favicon: assets/favicon.ico
+    font: false
     features:
-        - announce.dismiss
-        - content.action.edit
-        - content.action.view
         - content.code.annotate
         - content.code.copy
         # - content.code.select
         # - content.tabs.link
         - content.tooltips
-        # - header.autohide
         # - navigation.expand
         - navigation.footer
         - navigation.indexes
-        # - navigation.instant
-        # - navigation.instant.prefetch
-        # - navigation.instant.progress
+        - navigation.instant
+        - navigation.instant.prefetch
+        - navigation.instant.progress
+        - navigation.path
+        # navigation.prune disabled: render the full section tree so any section
+        # can be expanded/collapsed, not just the current page's branch.
         # - navigation.prune
-        - navigation.sections
+        # navigation.sections disabled: render sections as collapsible tree
+        # items (chevron toggle) rather than fixed, always-open groups.
+        # - navigation.sections
         - navigation.tabs
-        # - navigation.tabs.sticky
+        - navigation.tabs.sticky
         - navigation.top
         - navigation.tracking
         - search.highlight
         - search.share
         - search.suggest
         - toc.follow
-        # - toc.integrate
 extra:
     version:
         provider: mike
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/genestack
+          name: Genestack on GitHub
+        - icon: fontawesome/brands/youtube
+          link: https://www.youtube.com/@GenestackLtd
+          name: Genestack on YouTube
+        - icon: fontawesome/brands/facebook
+          link: http://facebook.com/genestackltd/
+          name: Genestack on Facebook
+        - icon: fontawesome/brands/x-twitter
+          link: https://x.com/genestack
+          name: Genestack on X
+        - icon: fontawesome/brands/linkedin
+          link: https://www.linkedin.com/company/genestack
+          name: Genestack on LinkedIn
+        - icon: fontawesome/solid/globe
+          link: https://genestack.com/
+          name: Genestack website
 extra_css:
     - stylesheets/extra.css
 markdown_extensions:
     - admonition
     - pymdownx.details
-    - pymdownx.superfences
     - attr_list
     - md_in_html
     - pymdownx.highlight:
@@ -205,7 +310,5 @@ markdown_extensions:
     - def_list
     - pymdownx.tasklist:
         custom_checkbox: true
-    - codehilite
-    - pymdownx.tabbed
     - toc:
         permalink: true

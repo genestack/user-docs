@@ -1,12 +1,6 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/dataset-import-commands.md
-    lines: [1, 196]
-  - path: docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/public-dataset-configurations-mapping.md
-    lines: [1, 25]
 diataxis: reference
 tab: odm-api
-task: task-108
 ---
 
 # Curated public datasets: import commands and configurations
@@ -19,7 +13,7 @@ Recommended template: [Public dataset template](https://bio-test-data.s3.us-east
 
 > Because these configurations have been pre-validated against their datasets, you can skip the dry-run step when transforming the curated catalogue.
 
-> Two datasets — **GSE192740** and **GSE198623** — contain multiple species and upload two H5AD files (human and mouse, or human and pig) within a single command.
+> Two datasets (**GSE192740** and **GSE198623**) contain multiple species and upload two H5AD files (human and mouse, or human and pig) within a single command.
 
 For what the configuration fields mean, see the [Configuration reference](configuration-reference.md).
 
@@ -31,17 +25,17 @@ Several datasets share an aggregated configuration. Each dataset's own section r
 
 | Configuration | Datasets |
 |---|---|
-| [`aggregated_config_1`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json) | HeartDiversityTucker10x · SCP1303 · GSE192740_human · GSE192740_mouse · GSE292928 · GSE148434 |
-| [`aggregated_config_2`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_2.json) | GSE198623_human · GSE198623_pig |
-| [`aggregated_config_3`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json) | GSE148073 · FibroticLiverWatsonMERFISH |
-| [`GSE156793`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE156793.json) | GSE156793 |
-| [`GSE165045`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE165045.json) | GSE165045 |
+| [`aggregated_config_1`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json) | HeartDiversityTucker10x · SCP1303 · GSE192740_human · GSE192740_mouse · GSE292928 · GSE148434 |
+| [`aggregated_config_2`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_2.json) | GSE198623_human · GSE198623_pig |
+| [`aggregated_config_3`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json) | GSE148073 · FibroticLiverWatsonMERFISH |
+| [`GSE156793`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE156793.json) | GSE156793 |
+| [`GSE165045`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE165045.json) | GSE165045 |
 
 ---
 
 ## HeartDiversityTucker10x
 
-**Configuration:** [`aggregated_config_1`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
+**Configuration:** [`aggregated_config_1`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
 
 ```bash
 odm-import-data \
@@ -61,7 +55,7 @@ odm-import-data \
 
 ## SCP1303
 
-**Configuration:** [`aggregated_config_1`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
+**Configuration:** [`aggregated_config_1`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
 
 ```bash
 odm-import-data \
@@ -81,7 +75,7 @@ odm-import-data \
 
 ## GSE156793
 
-**Configuration:** [`GSE156793`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE156793.json)
+**Configuration:** [`GSE156793`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE156793.json)
 
 ```bash
 odm-import-data \
@@ -101,7 +95,7 @@ odm-import-data \
 
 ## FibroticLiverWatsonMERFISH
 
-**Configuration:** [`aggregated_config_3`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json)
+**Configuration:** [`aggregated_config_3`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json)
 
 ```bash
 odm-import-data \
@@ -121,7 +115,7 @@ odm-import-data \
 
 ## GSE165045
 
-**Configuration:** [`GSE165045`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE165045.json)
+**Configuration:** [`GSE165045`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE165045.json)
 
 ```bash
 odm-import-data \
@@ -141,7 +135,7 @@ odm-import-data \
 
 ## GSE148073
 
-**Configuration:** [`aggregated_config_3`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json)
+**Configuration:** [`aggregated_config_3`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json)
 
 ```bash
 odm-import-data \
@@ -161,7 +155,7 @@ odm-import-data \
 
 ## GSE192740 (human + mouse)
 
-**Configuration:** [`aggregated_config_1`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
+**Configuration:** [`aggregated_config_1`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
 
 ```bash
 odm-import-data \
@@ -184,7 +178,7 @@ odm-import-data \
 
 ## GSE198623 (human + pig)
 
-**Configuration:** [`aggregated_config_2`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_2.json)
+**Configuration:** [`aggregated_config_2`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_2.json)
 
 ```bash
 odm-import-data \
@@ -207,7 +201,7 @@ odm-import-data \
 
 ## GSE292928
 
-**Configuration:** [`aggregated_config_1`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
+**Configuration:** [`aggregated_config_1`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
 
 ```bash
 odm-import-data \
@@ -227,7 +221,7 @@ odm-import-data \
 
 ## GSE148434
 
-**Configuration:** [`aggregated_config_1`](../../../../docs/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
+**Configuration:** [`aggregated_config_1`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json)
 
 ```bash
 odm-import-data \

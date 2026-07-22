@@ -1,17 +1,13 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/configuration-reference.md
-    lines: [1, 146]
 diataxis: reference
 tab: odm-api
-task: task-105
 ---
 
 # Configuration reference: Single-cell HDF5 transformation
 
 The configuration is validated at the start of every run. If `file_type` is missing or invalid, the pipeline raises an error immediately. All other validation errors are collected and reported together. Unrecognised keys are ignored with a warning.
 
-For related documentation: [About single-cell transformations](about-single-cell-transformations.md) · [How-to guides](ingest-cell-and-expression.md) · [API reference](../api-reference.md) · [Transformation process reference](transformation-process-reference.md)
+For related documentation: [About single-cell transformations](about-single-cell-transformations.md) · [How-to guides](ingest-cell-and-expression.md) · [API reference](/swagger/?urls.primaryName=processorsController) · [Transformation process reference](transformation-process-reference.md)
 
 ---
 
@@ -20,7 +16,6 @@ For related documentation: [About single-cell transformations](about-single-cell
 | Parameter | Type | Required | Default | Description |
 |-----------|------|----------|---------|-------------|
 | `file_type` | `string` | **Yes** | — | Format of the input file. Accepted values: `"h5ad"`, `"h5"`. |
-| `save_logs` | `boolean` | No | `true` | When `false`, logs are not saved as an attachment after the run. Has no effect when the job is submitted with `dry_run: true`. |
 
 ---
 
@@ -98,7 +93,7 @@ Settings for extracting and transforming cell-level metadata. Optional. If absen
 | `obsm` | `embedding` | Multidimensional cell data (PCA, UMAP, etc.) |
 | `obsp` | `pairwise` | Pairwise cell annotations |
 
-For H5 files, use the same H5AD key names — the transformation maps them to the correct internal structure.
+For H5 files, use the same H5AD key names: the transformation maps them to the correct internal structure.
 
 **Examples:**
 ```json

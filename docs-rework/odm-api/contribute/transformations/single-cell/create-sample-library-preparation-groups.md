@@ -1,10 +1,6 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/how-to-sc-hdf5-transformations.md
-    lines: [223, 272]
 diataxis: how-to
 tab: odm-api
-task: task-099
 ---
 
 # How to create Sample, Library, or Preparation groups from an H5AD file
@@ -58,11 +54,11 @@ Identify the column in your cell metadata that acts as the biosample identifier.
 }
 ```
 
-The `cell_metadata`, `feature_metadata`, and `cell_expression` sections are included because a single-cell run normally creates the SLP groups, Cell Group, and Expression Group together — the Cell Group needs an SLP parent to link to. Omit those sections if you only want to create SLP groups.
+The `cell_metadata`, `feature_metadata`, and `cell_expression` sections are included because a single-cell run normally creates the SLP groups, Cell Group, and Expression Group together: the Cell Group needs an SLP parent to link to. Omit those sections if you only want to create SLP groups.
 
 The transformation aggregates cells by `biosample_column_name`. It exports the columns you list in `columns_to_export`; each must be constant across all cells within a biosample, or the job fails. Use the [discovery dry-run](discover-biosample-attributes.md) first to find eligible columns. Exported columns are automatically removed from the cell metadata.
 
-**Constraint:** only one of `library` or `preparation` may be created or updated in the same configuration — that is, only one may carry `create_new_group` or `columns_to_export`.
+**Constraint:** only one of `library` or `preparation` may be created or updated in the same configuration (that is, only one may carry `create_new_group` or `columns_to_export`).
 
 ## Create a placeholder group for linking only
 
@@ -76,6 +72,6 @@ If you need a Library group to exist for linking purposes but do not need to exp
 
 ## Related
 
-- [Discover which biosample attributes are available](discover-biosample-attributes.md) — use a dry run to identify which columns are uniform per biosample before committing to `columns_to_export`.
-- [Configuration reference](configuration-reference.md) — full `biosample_metadata` block schema.
+- [Discover which biosample attributes are available](discover-biosample-attributes.md): use a dry run to identify which columns are uniform per biosample before committing to `columns_to_export`.
+- [Configuration reference](configuration-reference.md): full `biosample_metadata` block schema.
 - [Transformation process reference](transformation-process-reference.md)

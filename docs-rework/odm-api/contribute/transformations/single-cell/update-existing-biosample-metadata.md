@@ -1,10 +1,6 @@
 ---
-sources:
-  - path: docs/user-guide/doc-odm-user-guide/how-to-sc-hdf5-transformations.md
-    lines: [273, 297]
 diataxis: how-to
 tab: odm-api
-task: task-100
 ---
 
 # How to update existing biosample metadata
@@ -27,7 +23,7 @@ For the full job submission workflow, see [How to run a transformation](../how-t
 
 ## Configuration
 
-Configure `biosample_metadata` with `columns_to_export` for the target entity. Do **not** set `create_new_group: true` — that would create new groups instead of updating existing ones:
+Configure `biosample_metadata` with `columns_to_export` for the target entity. Do **not** set `create_new_group: true`, which would create new groups instead of updating existing ones:
 
 ```json
 {
