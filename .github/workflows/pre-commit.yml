@@ -9,7 +9,7 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v6.0.3
+      - uses: actions/checkout@v6.1.0
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
