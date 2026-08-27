@@ -29,6 +29,7 @@ Settings for extracting, transforming, and exporting cell-level metadata to Samp
 | `biosample_column_name` | `string` | Yes | — | Column identifying which biosample each cell belongs to. Rows are grouped by this column for aggregation. |
 
 **`metadata_keys` example:**
+
 ```json
 { "obs": "metadata" }
 ```
@@ -47,6 +48,7 @@ Settings for exporting metadata to the Sample entity. Optional.
 | `columns_to_curate_values` | `dict[string, dict[string, string]]` | — | Maps specific values in a column to replacement values. |
 
 **Examples:**
+
 ```json
 { "columns_renaming_map": { "tissue_type": "tissueType" } }
 { "columns_to_fill_missing_values": { "disease": "unknown" } }
@@ -96,6 +98,7 @@ Settings for extracting and transforming cell-level metadata. Optional. If absen
 For H5 files, use the same H5AD key names: the transformation maps them to the correct internal structure.
 
 **Examples:**
+
 ```json
 { "metadata_keys": { "obs": "metadata", "obsm": "embedding" } }
 { "linking_group": { "library": "GSF017080" } }

@@ -24,27 +24,27 @@ For the equivalent operation through the ODM user interface, see [Create and edi
 
 2. Download a template settings JSON file. Edit it to match your intended upload:
 
-   ```json
-   {
-     "template_path": "/PATHTOTEMPLATEFILE/Default_ODM_Template.json",
-     "template_name": "Default Template",
-     "replace": true,
-     "mark_default": false
-   }
-   ```
+    ```json
+    {
+      "template_path": "/PATHTOTEMPLATEFILE/Default_ODM_Template.json",
+      "template_name": "Default Template",
+      "replace": true,
+      "mark_default": false
+    }
+    ```
 
-   - `template_path`, path to your template JSON file.
-   - `template_name`, name that will appear in ODM.
-   - `replace`, if `true`, replaces any existing template with the same name.
-   - `mark_default`, if `true`, marks this template as the new organisation-wide default.
+    - `template_path`, path to your template JSON file.
+    - `template_name`, name that will appear in ODM.
+    - `replace`, if `true`, replaces any existing template with the same name.
+    - `mark_default`, if `true`, marks this template as the new organisation-wide default.
 
 3. Run the script:
 
-   ```shell
-   odm-update-template -H GENESTACK_ENDPOINT_ADDR /PATHTOSETTINGSFILE/default_ODM_template_settings.json
-   ```
+    ```shell
+    odm-update-template -H GENESTACK_ENDPOINT_ADDR /PATHTOSETTINGSFILE/default_ODM_template_settings.json
+    ```
 
-   Where `GENESTACK_ENDPOINT_ADDR` is the URL of your ODM instance.
+    Where `GENESTACK_ENDPOINT_ADDR` is the URL of your ODM instance.
 
 4. Verify: open the Template Editor in ODM and confirm the template appears in the list.
 

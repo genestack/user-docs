@@ -18,37 +18,37 @@ ODM supports importing studies, sample metadata, libraries, preparations, experi
 
 <div class="grid cards gs-section-cards" markdown>
 
-- __[Create a study](create-a-study.md)__
+- **[Create a study](create-a-study.md)**
 
     ---
 
     Set up a new study to hold your samples, metadata, and data.
 
-- __[Import data](import-data/index.md)__
+- **[Import data](import-data/index.md)**
 
     ---
 
     Import sample metadata, experimental data, and attached files.
 
-- __[Curate metadata](curate-metadata/index.md)__
+- **[Curate metadata](curate-metadata/index.md)**
 
     ---
 
     Edit, validate, and apply controlled vocabulary.
 
-- __[Version metadata](version-metadata/index.md)__
+- **[Version metadata](version-metadata/index.md)**
 
     ---
 
     Publish, discard, and restore metadata versions.
 
-- __[Work with templates](templates/index.md)__
+- **[Work with templates](templates/index.md)**
 
     ---
 
     Create and apply metadata templates.
 
-- __[Share studies](sharing/index.md)__
+- **[Share studies](sharing/index.md)**
 
     ---
 

@@ -8,7 +8,7 @@ nav:
         - overview/index.md
         - Getting Started:
             - overview/getting-started/index.md
-            - Data Explorer: overview/getting-started/getting-started-consumer.md
+            - Data Consumer: overview/getting-started/getting-started-consumer.md
             - Data Contributor: overview/getting-started/getting-started-contributor.md
             - Administrator: overview/getting-started/getting-started-admin.md
         - Data Model:
@@ -58,6 +58,7 @@ nav:
             - contribute/curate-metadata/index.md
             - About Validation and Curation: contribute/curate-metadata/about-validation-and-curation.md
             - Edit and Validate Metadata: contribute/curate-metadata/edit-and-validate-metadata.md
+            - Import Entity Metadata from a File: contribute/curate-metadata/import-entity-metadata.md
         - Templates:
             - contribute/templates/index.md
             - About Templates: contribute/templates/about-templates.md
@@ -126,11 +127,6 @@ nav:
                 - Link Entities After Import: odm-api/contribute/import-data/link-entities-after-import.md
                 - Manage Import Jobs: odm-api/contribute/import-data/manage-import-jobs.md
                 - Multipart Uploads Reference: odm-api/contribute/import-data/multipart-uploads-reference.md
-            - Cross-Reference Mapping:
-                - About Cross-Reference Mapping: odm-api/contribute/cross-reference-mapping/about-cross-reference-mapping.md
-                - Import a Mapping: odm-api/contribute/cross-reference-mapping/import-a-mapping.md
-                - Query Mappings: odm-api/contribute/cross-reference-mapping/query-mappings.md
-                - Update or Remove Mappings: odm-api/contribute/cross-reference-mapping/update-or-remove-mappings.md
             - Transformations:
                 - About the Processors Controller: odm-api/contribute/transformations/about-processors-controller.md
                 - Job Lifecycle: odm-api/contribute/transformations/job-lifecycle.md

@@ -11,7 +11,7 @@ The Study Browser is the main interface for finding and discovering studies in O
 
 From the Dashboard, click **Browse Studies** to open the Study Browser directly. Alternatively, click the menu in the top-left corner of any window and select **Study Browser**.
 
-![Study Browser overview](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/images/1StudyBrowser.png)
+![Study Browser overview](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/studybrowser.gif)
 
 ## Layout
 
@@ -27,9 +27,9 @@ By default, the Study Browser shows only the studies you have permission to obse
 
 ## Navigation aids
 
-The shortcut dock in the top-left corner of any window returns you to the Dashboard. In the top-right, the **Quick Guide** button opens reference materials and examples for working with ODM. On the right side of the screen you can access your account details and check the status of any running tasks. The question-mark icon next to the search bar opens the search help panel, which covers advanced search syntax in detail.
+The three-line menu in the top-left corner of any window takes you back to the Dashboard. In the top-right, the **Quick Guide** button opens reference materials and examples for working with ODM. On the right side of the screen you can access your account details and check the status of any running tasks. The question-mark icon next to the search bar opens the search help panel, which covers advanced search syntax in detail.
 
-![Navigation and help](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/images/14NavigationUpdated.png)
+![Navigation and help](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/studybrowser_interface.gif)
 
 ## Where to go next
 

@@ -187,4 +187,3 @@ The transformed cell metadata TSV is uploaded as a new Cell Group, linked to the
 #### 4.2.3 Expression Group upload
 
 The Brotli-compressed expression file and its metadata file are uploaded to create a new Expression Group, linked to the newly created Cell Group.
-

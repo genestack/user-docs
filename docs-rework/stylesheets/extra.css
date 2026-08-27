@@ -266,6 +266,20 @@
     color: var(--gs-light-blue);
 }
 
+/* H4 — sub-sub-section heading. Material's default h4 is body-size and bold;
+   the shared rule above relaxes it to Larsseit Light, which left it lighter
+   than the body text it sits above and indistinguishable from it. Restore the
+   step with a size bump and the same GS Blue as H3, so hierarchy still comes
+   from size and colour rather than from weight. */
+.md-typeset h4 {
+    font-size: 1.1em;
+    color: var(--gs-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h4 {
+    color: var(--gs-light-blue);
+}
+
 /* ── Horizontal rule — a thin four-primary gradient divider ──────────────────
    Turns an otherwise grey <hr> into a recurring, balanced brand element. */
 .md-typeset hr {
@@ -679,4 +693,38 @@
 [data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
     background-color: rgba(47, 172, 223, 0.14);
     color: var(--gs-light-blue);
+}
+
+/* ── Mermaid diagrams: the boxes read the same in both schemes ───────────────
+   Material renders every mermaid diagram inside a CLOSED shadow root, so no
+   selector in this file can reach the SVG. The only lever that crosses the
+   boundary is the set of custom properties Material feeds into its mermaid
+   themeCSS (custom properties inherit into shadow trees), and by default they
+   follow the active scheme: label text is --md-code-fg-color, near black in
+   light mode and near white in dark mode. That is why per-node `color:` values
+   set with classDef appear to be ignored — Material's `.nodeLabel p { color: … }`
+   rule paints the label paragraph directly, over the inherited value.
+
+   Label colour is therefore one global value, which is why every node fill in
+   the diagram sources is a light brand tint: GS Dark Blue text on those tints
+   reads identically in light and dark mode, so the boxes never change. The
+   diagram itself keeps the page background — no plate, no card — and only the
+   connectors follow the scheme, since GS Blue lines vanish against the dark
+   canvas. Edge labels, which float outside any node, carry their own light chip
+   so their text stays readable either way. */
+.md-typeset .mermaid {
+    /* Node and label text — identical in light and dark. */
+    --md-mermaid-label-fg-color: var(--gs-dark-blue);
+    --md-mermaid-label-bg-color: #ffffff;
+    /* Defaults for nodes that carry no classDef of their own. */
+    --md-mermaid-node-bg-color:  var(--gs-light-blue-3);
+    --md-mermaid-node-fg-color:  var(--gs-blue);
+    /* Connectors: the one thing that adapts (see the slate override below). */
+    --md-mermaid-edge-color:     var(--gs-blue);
+
+    overflow-x: auto;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .mermaid {
+    --md-mermaid-edge-color: var(--gs-light-blue);
 }

@@ -19,7 +19,7 @@ The Study Browser, Metadata Editor, and Template Editor are ODM's shared workspa
 
     ---
 
-    Where you view and edit sample-level metadata within an open study.
+    Where you view and edit a study's metadata: samples, libraries, preparations, data, and attachments.
 
 - __[Template Editor](template-editor.md)__
 

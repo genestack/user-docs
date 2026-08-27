@@ -5,11 +5,13 @@ tab: overview
 
 # Template Editor
 
-The Template Editor is the interface for creating, customizing, and updating templates. Templates define the metadata attributes that apply to data objects in ODM (Study, Sample, Expression, Variant, and Flow cytometry) and control what fields are available and required during import and curation.
+The Template Editor is the interface for creating, customizing, and updating templates. Templates define the metadata attributes that apply to data objects in ODM (Study, Sample, Tabular data, Variant, and Flow cytometry) and control what fields are available and required during import and curation.
 
 ## Getting there
 
-From the Dashboard, click **Set up templates**. Alternatively, open the shortcut dock and select **Template Editor**.
+From the Dashboard, click **Set up templates**. Alternatively, click the three-line menu in the top-left corner of any window and select **Template Editor**.
+
+![Template Editor overview](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/templateeditor.gif)
 
 ## The templates list
 
@@ -18,6 +20,8 @@ When you open the Template Editor, you see a list of all available templates. Fo
 ## Inside a template
 
 The per-template view presents a table of attributes, one per row. Each row shows the attribute's name, whether it is required, its metainfo type, whether it is read-only, the dictionary it draws values from (if any), and a description. Fields that are mandatory for technical reasons appear greyed out and cannot be removed or modified.
+
+![Template Editor list](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/templateeditorlist.gif)
 
 ## Where to go next
 

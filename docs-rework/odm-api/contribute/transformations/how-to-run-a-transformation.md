@@ -20,7 +20,7 @@ For a conceptual overview of configurations, images, and jobs, see [About the Pr
 
 List available transformation images:
 
-```
+```text
 GET /api/v1/transformations/images
 ```
 
@@ -30,13 +30,13 @@ Note the `name` and `version` of the image you want to use. The `version` field 
 
 List existing configurations to see if one already fits your needs:
 
-```
+```text
 GET /api/v1/transformations/configurations
 ```
 
 To create a new configuration, submit a `POST` request with a name, description, and the `data` field containing the image-specific processing specification:
 
-```
+```text
 POST /api/v1/transformations/configurations
 ```
 
@@ -57,7 +57,7 @@ The response includes the integer `id` of the created configuration. Record it: 
 
 Submit a job with `dry_run` set to `true`:
 
-```
+```text
 POST /api/v1/transformations/jobs
 ```
 
@@ -99,7 +99,7 @@ The response includes the integer `id` of the created job. Record it for monitor
 
 Poll the job until it reaches a terminal state:
 
-```
+```text
 GET /api/v1/transformations/jobs/{job_id}
 ```
 
@@ -111,7 +111,7 @@ Check the `status.state` field in the response. While the job is running, it wil
 
 ## Step 5: Review the logs
 
-```
+```text
 POST /api/v1/transformations/jobs/{job_id}/logs
 ```
 

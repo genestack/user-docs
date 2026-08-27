@@ -11,39 +11,29 @@ This guide explains how to retrieve the source file of an ontology (dictionary) 
 
 1. From the Dashboard, open the Template Editor.
 
-   ![Template Editor in Dashboard](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/1.png)
+    ![Template Editor in Dashboard](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/odm-set-up-templates-click.gif){width=800}
 
 2. You will see all available templates.
 
-   ![All templates](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/2.png)
-
 3. To review the ontologies associated with a particular template, open it by clicking on its title.
 
-   ![Open template](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/3.png)
+    ![Open template](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/setuptemplates_interface.gif){width=800}
 
-4. You will see all attributes in the template, including those linked to dictionaries. Note the accession of the dictionary you want to export (for example, `GSF000026`).
+4. You will see all attributes in the template, including those linked to dictionaries. Note the accession of the dictionary you want to export.
 
-5. Navigate to the File Manager using the direct link `[your_host]/ui/files`.
+    ![Copy the dictionary accession](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/copyaccession.gif){width=800}
 
-6. Enter the dictionary accession in the search field and click the search button. The results include both templates that use the dictionary and the dictionary file itself.
+5. Navigate to the File Manager.
 
-   ![Search results](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/7.png)
+6. Enter the dictionary accession in the search field and click the search button. Make sure that the Dictionary filter type is applied before searching.
 
-   To find the dictionary file specifically, look at the **Type** column and identify the row with type **Dictionary**.
-
-   ![Dictionary type in results](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/8.png)
+    ![Dictionary type in results](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/search.gif){width=800}
 
 7. Click the more menu on the dictionary row to open the context menu, then click **More info**.
 
-   ![More info](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/9.png)
+8. In the details panel, click the link in the **Data URL** attribute to download the source file. Alternatively, follow the link in the description to go to the original source.
 
-8. In the details panel, click the link in the **Data URL** attribute to download the source file.
-
-   ![Data URL](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/10.png)
-
-   Alternatively, follow the link in the description to go to the original source.
-
-   ![Source link](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/11.png)
+    ![Source link](../../../assets/tools/odm-sdk/terminal/dictionaries-and-ontologies/exporting-ontologies-from-odm/export.gif){width=800}
 
 ## Related
 

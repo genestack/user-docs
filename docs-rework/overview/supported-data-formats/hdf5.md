@@ -19,7 +19,7 @@ HDF5 (Hierarchical Data Format version 5) is widely used in genomic research, pa
 
 ODM detects HDF5 files during import by their `.h5` or `.h5ad` extension. File contents (groups and datasets) are stored and displayed in the ODM interface.
 
-**GUI**: The Metadata Editor shows a sidebar panel with an interactive tree structure of the file's groups and datasets. Groups are collapsed by default and can be expanded to reveal datasets and nested groups. Use the "Expand all" and "Collapse all" buttons to navigate. Hover over any dataset or group to see a "Copy path" icon.
+**UI**: The Metadata Editor shows a sidebar panel with an interactive tree structure of the file's groups and datasets. Groups are collapsed by default and can be expanded to reveal datasets and nested groups. Use the "Expand all" and "Collapse all" buttons to navigate. Hover over any dataset or group to see a "Copy path" icon.
 
 If content parsing fails, the "Contents" button is disabled and a hover message reads: "The contents could not be parsed."
 

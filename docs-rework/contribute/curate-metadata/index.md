@@ -23,4 +23,10 @@ This section explains how metadata validation works in ODM and how to curate met
 
     Editing individual cells, bulk replace, autocomplete, and resolving validation errors.
 
+- __[Import entity metadata from a file](import-entity-metadata.md)__
+
+    ---
+
+    Loading metadata for a study, a data file, or an attached file from a TSV instead of typing it.
+
 </div>

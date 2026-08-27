@@ -22,7 +22,7 @@ A data object is detached when it has no direct or indirect link to a root-level
 
 Called without any filters, this endpoint returns every detached object available to you, up to 2,000 results:
 
-```
+```text
 GET /api/v1/manage-data/detached-objects
 ```
 

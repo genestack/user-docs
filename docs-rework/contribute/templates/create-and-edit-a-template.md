@@ -13,7 +13,7 @@ You need the **Set up templates** permission to create or edit templates. See [P
 
 ## Open the Template Editor
 
-From the Dashboard, click **Set up templates**, or open it via the shortcut dock. See [Template Editor](../../overview/navigating-the-ui/template-editor.md) for orientation.
+From the Dashboard, click **Set up templates**, or click the three-line menu in the top-left corner and select **Template Editor**. See [Template Editor](../../overview/navigating-the-ui/template-editor.md) for orientation.
 
 ## Create a new template via duplicate
 
@@ -22,7 +22,7 @@ You cannot create a template from scratch, but you can duplicate any existing te
 1. In the Template Editor, click the name of the template you want to use as a starting point.
 2. Select **Duplicate** from the dropdown menu.
 
-   ![Template dropdown menu showing Duplicate option](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/images/Template_dropdown.png)
+    ![Template dropdown menu showing Duplicate option](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/images/Template_dropdown.png)
 
 3. Rename the duplicate to reflect its intended purpose.
 4. Edit its attributes as needed (see the next section).

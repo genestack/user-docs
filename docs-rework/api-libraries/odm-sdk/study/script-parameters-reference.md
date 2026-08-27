@@ -46,6 +46,9 @@ For a practical walkthrough of common usage patterns, see [Upload a study](uploa
 
 ## Cross-reference mapping parameters
 
+!!! note "Experimental and frozen"
+    These flags rely on the `/xrefsets/*` cross-reference mapping endpoints, which are experimental and are no longer being developed. The flags still work, but the feature is not documented elsewhere in this guide and is not recommended for new work.
+
 | Flag | Description |
 |------|-------------|
 | `-mpf, --mapping-file` | URL of the mapping file. |

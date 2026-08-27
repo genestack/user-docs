@@ -24,11 +24,11 @@ A single user account can have multiple active tokens. Each token is permanent; 
 
 You can supply a Genestack API token in three ways, depending on how you are calling the API.
 
-**In Swagger UI**
+### In Swagger UI
 
 Click **Authorize**, select **Genestack API token**, paste the token value, and close the dialog. See [Make your first request in Swagger](make-your-first-request.md) for the full Swagger workflow.
 
-**In curl**
+### In curl
 
 Send the token in the `Genestack-Api-Token` header:
 
@@ -37,7 +37,7 @@ curl -X GET "https://<ODM_HOST>/api/v1/as-user/studies" \
   -H "Genestack-Api-Token: <YOUR_TOKEN>"
 ```
 
-**In the ODM SDK**
+### In the ODM SDK
 
 Run `odm-user-setup -H https://<ODM_HOST>` and follow the prompts. See [Configure the ODM SDK](../../api-libraries/odm-sdk/configure.md) for full setup instructions.
 
@@ -45,7 +45,7 @@ Run `odm-user-setup -H https://<ODM_HOST>` and follow the prompts. See [Configur
 
 ODM also supports access tokens issued by an external identity provider such as Azure AD. Send these using the `Authorization` header:
 
-```
+```text
 Authorization: Bearer <YOUR_ACCESS_TOKEN>
 ```
 

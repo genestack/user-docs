@@ -17,12 +17,6 @@ Contributing data through the API means getting your studies and their data into
 
     Per-entity how-to guides for importing studies, samples, omics data, and attached files.
 
-- __[Cross-reference mapping](cross-reference-mapping/about-cross-reference-mapping.md)__
-
-    ---
-
-    Upload and manage transcript-to-gene mapping files.
-
 - __[Transformations](transformations/about-processors-controller.md)__
 
     ---

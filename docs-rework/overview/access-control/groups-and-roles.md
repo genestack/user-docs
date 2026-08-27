@@ -36,12 +36,12 @@ A user with the **Manage groups** permission can manage all groups system-wide, 
 
 ## Curator group
 
-Membership in the **Curator group** grants edit permissions. Curators can import new studies, edit metadata, and track changes through version history. Users who are not members of the Curator group are considered researchers: they can browse, search, and download data, but cannot contribute.
+Membership in the **Curator group** grants edit permissions. Curators can import new studies, edit metadata, publish their changes as new metadata versions, and restore an earlier version. Users who are not members of the Curator group are considered researchers: they can browse, search, and download data, and they can view a study's version history, but they cannot contribute.
 
 | Role | Member of Curator group? | Capabilities |
 |---|---|---|
-| Researcher | No | Browse, search, download |
-| Curator | Yes | All of the above, plus import data and edit metadata |
+| Researcher | No | Browse, search, download, view version history |
+| Curator | Yes | All of the above, plus import data, edit metadata, publish new versions, and restore earlier ones |
 
 !!! warning
     Do not delete the Curator group. Users need it to contribute data.

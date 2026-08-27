@@ -22,7 +22,7 @@ Reach for these endpoints when you are writing automation scripts, synchronising
 
 To retrieve the non-deleted user groups a user belongs to:
 
-```
+```text
 GET /api/v1/groups
 ```
 
@@ -32,7 +32,7 @@ You can filter the results by user attributes, for example by `displayName`.
 
 Supply the new user's details in the request body:
 
-```
+```text
 POST /api/v1/users
 ```
 
@@ -40,7 +40,7 @@ POST /api/v1/users
 
 Supply only the fields you want to change:
 
-```
+```text
 PATCH /api/v1/users/{id}
 ```
 

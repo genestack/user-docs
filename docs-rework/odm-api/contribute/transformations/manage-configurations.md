@@ -44,7 +44,7 @@ Each step in the loop maps to an endpoint, covered in the sections below. The dr
 
 Create a configuration with:
 
-```
+```text
 POST /api/v1/transformations/configurations
 ```
 
@@ -95,7 +95,7 @@ Submit a dry-run job referencing this configuration against your input file, the
 
 When the logs show something to fix, update the configuration:
 
-```
+```text
 PUT /api/v1/transformations/configurations/{id}
 ```
 
@@ -109,7 +109,7 @@ Resubmit the dry-run job with the updated configuration and review the logs agai
 
 At any point you can inspect all available configurations. To list them:
 
-```
+```text
 GET /api/v1/transformations/configurations
 ```
 
@@ -117,7 +117,7 @@ The response is a paginated envelope: the configurations are in the `items` arra
 
 To retrieve a single configuration by its `id`:
 
-```
+```text
 GET /api/v1/transformations/configurations/{id}
 ```
 
@@ -125,7 +125,7 @@ This returns the latest version of that configuration as a single object, with t
 
 To work with the version history (for example, to compare against or re-run an earlier iteration), list the versions and then retrieve a specific one:
 
-```
+```text
 GET /api/v1/transformations/configurations/{id}/versions
 GET /api/v1/transformations/configurations/{id}/versions/{version}
 ```
@@ -140,7 +140,7 @@ Once you have validated a configuration through dry-run testing, it becomes the 
 
 Configurations are never deleted. When you no longer need one, you archive it:
 
-```
+```text
 POST /api/v1/transformations/configurations/{id}/archive
 ```
 

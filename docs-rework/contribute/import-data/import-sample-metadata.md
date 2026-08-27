@@ -29,25 +29,25 @@ This page explains how to import sample metadata into an existing study using th
 
 1. Open your study and click the **Samples** tab.
 
-   ![Select Samples Tab](../../assets/user-guide/quick-start/quick-start-images/select-samples-tab.png)
+    ![Select Samples Tab](../../assets/user-guide/quick-start/quick-start-images/select-samples-tab.png)
 
 2. Click **Edit** at the bottom left of the sample table.
 
 3. Click the cloud icon at the top right of the sample table to upload a tabular file. You can upload sample metadata from any experiment (flow cytometry, gene variant, transcriptomics) as long as the file is in TSV format.
 
-   ![Upload Samples](../../assets/user-guide/quick-start/quick-start-images/upload-samples.png)
+    ![Upload Samples](../../assets/user-guide/quick-start/quick-start-images/upload-samples.png)
 
-4. In the popup, click **Select tsv file...** and choose your file.
+4. In the popup, click **Select tsv file...** and choose your file. Alternatively, instead of browsing for the file, you can drag it from your file manager and drop it onto the popup.
 
 5. Once the file is recognised, click **Import**.
 
-   ![Select Samples TSV](../../assets/user-guide/quick-start/quick-start-images/select-samples-tsv.png)
+    ![Select Samples TSV](../../assets/user-guide/quick-start/quick-start-images/select-samples-tsv.png)
 
 6. Click **Publish** to save the changes.
 
 7. In the popup, enter a description for this version, for example, "Sample metadata has been added."
 
-   ![Publish Samples Metadata](../../assets/user-guide/quick-start/quick-start-images/publish-samples-metadata.png)
+    ![Publish Samples Metadata](../../assets/user-guide/quick-start/quick-start-images/publish-samples-metadata.png)
 
 ![Import Samples](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/import-samples.gif)
 

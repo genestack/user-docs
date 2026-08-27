@@ -70,7 +70,7 @@ The simplest data frame has features in the first column and measurements for ea
 
 A complex data frame has multiple feature columns (gene name, protein name, peptide sequence, PTM site, etc.) and more than one measurement type per sample (intensity, quality flag, fold change, p-value, etc.).
 
-### Requirements (BETA)
+### Requirements
 
 - All columns must have names.
 - All feature columns must be consecutive on the left side of the file. Specify the number of feature columns at upload time.
@@ -86,7 +86,7 @@ A complex data frame has multiple feature columns (gene name, protein name, pept
 If your file contains more than one measurement type per sample (for example, Fold Change and P-value), the system recognises them by the following rules:
 
 - **Separator in column name**: the column name must contain a special symbol (or combination of symbols) as a separator between the sample name and the measurement type. Example: `Sample1.p-value` uses `.` as separator. If multiple separators exist in the name, only the first one is used for parsing.
-- **Separator specification**: specify the separator explicitly at upload time (API or GUI).
+- **Separator specification**: specify the separator explicitly at upload time (API or UI).
 - **Consistency**: all columns in the file must include the separator.
 - **Uniform measurement types**: every sample must include the same set of measurement types.
 
@@ -98,5 +98,3 @@ If your file contains more than one measurement type per sample (for example, Fo
 ## Cross-reference mapping file
 
 A cross-reference mapping file is a TSV file with two columns. The first row must contain the headers `TXNAME` and `GENEID`. The first column must be transcript IDs (must be unique). The file must be hosted at an HTTPS location accessible to ODM.
-
-For more on cross-reference mapping, see [About cross-reference mapping](../../odm-api/contribute/cross-reference-mapping/about-cross-reference-mapping.md).

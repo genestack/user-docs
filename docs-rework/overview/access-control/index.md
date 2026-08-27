@@ -5,7 +5,7 @@ tab: overview
 
 # Access control
 
-ODM's access control model governs who can see, contribute to, and administer data. This section covers the full model: how accounts are structured, how groups and roles grant rights, how permissions are applied at the study level, and how the platform enforces governance at scale.
+ODM's access control model governs who can see, contribute to, and administer data. This section covers the full model: how accounts are structured, how groups and roles grant rights, which system-level permissions an administrator can assign, and how the platform enforces governance at scale.
 
 <div class="grid cards gs-task-cards" markdown>
 
@@ -25,7 +25,7 @@ ODM's access control model governs who can see, contribute to, and administer da
 
     ---
 
-    The three access levels (Summary, Metadata, Content) and how they combine.
+    System-level permissions granted to users, and who should hold each.
 
 - __[Sharing and ownership](sharing-and-ownership.md)__
 

@@ -47,5 +47,6 @@ Use the top-right definition selector to navigate between API surfaces. Most def
 - `processorsController`, transformations: configurations, images, and jobs (see [About the Processors Controller](../contribute/transformations/about-processors-controller.md))
 - `job`, asynchronous job status
 - `tasks`, background task status
+- `audit`, retrieval of audit event records
 - `scimUsers`, SCIM 2.0 user provisioning (Manage organisation)
 - `scimGroups`, SCIM 2.0 group provisioning (Manage organisation)

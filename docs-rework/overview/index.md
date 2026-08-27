@@ -7,7 +7,7 @@ tab: overview
 
 <p style="text-align: center; margin: 0.5rem 0 2rem;"><img src="../assets/brand/ODM-key.png" alt="ODM: Catalogue, Search, Harmonize" width="220"></p>
 
-ODM (Open Data Manager) is a bioinformatics SaaS platform by Genestack for managing, exploring, contributing to, and administering omics datasets. You can interact with ODM through a web UI, a REST API, and Python and R API client libraries. The documentation here assumes biological background knowledge; ODM-specific concepts are explained where they arise.
+ODM (Open Data Manager) is a bioinformatics product developed by Genestack for managing, exploring, contributing to, and administering omics datasets. You can interact with ODM through a web UI, a REST API, and Python and R API client libraries. The documentation here assumes biological background knowledge; ODM-specific concepts are explained where they arise.
 
 ## Why ODM
 
@@ -23,31 +23,31 @@ Start with the foundational topics in this section. The [getting-started tutoria
 
 <div class="grid cards gs-section-cards" markdown>
 
-- __[Getting Started](getting-started/index.md)__
+- **[Getting Started](getting-started/index.md)**
 
     ---
 
     Guided tutorials for data consumers, contributors, and administrators.
 
-- __[Data model](data-model/index.md)__
+- **[Data model](data-model/index.md)**
 
     ---
 
     How ODM organises studies, samples, libraries, preparations, and signal data.
 
-- __[Access control](access-control/index.md)__
+- **[Access control](access-control/index.md)**
 
     ---
 
     Users, roles, permissions, groups, sharing, governance, and platform security.
 
-- __[Supported data formats](supported-data-formats/index.md)__
+- **[Supported data formats](supported-data-formats/index.md)**
 
     ---
 
     TSV, GCT, VCF, HDF5, FACS, and attached files: what ODM accepts and how.
 
-- __[Navigating the UI](navigating-the-ui/index.md)__
+- **[Navigating the UI](navigating-the-ui/index.md)**
 
     ---
 
@@ -61,35 +61,34 @@ Jump straight to the task tab for your role.
 
 <div class="grid cards gs-task-cards" markdown>
 
-- __[Explore data](../explore/index.md)__
+- **[Explore data](../explore/index.md)**
 
     ---
 
     Search, filter, visualise, and export data via the UI.
 
-- __[Contribute data](../contribute/index.md)__
+- **[Contribute data](../contribute/index.md)**
 
     ---
 
     Create studies, import data, curate metadata, and manage access via the UI.
 
-- __[Admin](../admin/index.md)__
+- **[Admin](../admin/index.md)**
 
     ---
 
     Manage users, groups, facets, and platform configuration via the UI.
 
-- __[ODM API](../odm-api/index.md)__
+- **[ODM API](../odm-api/index.md)**
 
     ---
 
     REST API usage: authentication, exploration, contribution, and administration.
 
-- __[API Libraries](../api-libraries/index.md)__
+- **[API Libraries](../api-libraries/index.md)**
 
     ---
 
     ODM SDK, Python API Client, and R API Client.
 
 </div>
-

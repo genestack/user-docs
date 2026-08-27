@@ -23,19 +23,19 @@ Each file must include the following linking columns for ODM to recognise and co
 
 1. Open your study and click the **+More** tab to reveal the Libraries and Preparations options.
 
-   ![The +More tab expanded to show Libraries and Preparations options](../../assets/user-guide/quick-start/quick-start-images/lib-prep-more.png)
+    ![The +More tab expanded to show Libraries and Preparations options](../../assets/user-guide/quick-start/quick-start-images/lib-prep-more.png)
 
 2. To add libraries, click **Libraries** and select your TSV file from your local computer. To add preparations, click **Preparations** and select your TSV file from your local computer.
 
-   ![Uploading a libraries or preparations file](../../assets/user-guide/quick-start/quick-start-images/upload-lib-prep.png)
+    ![Uploading a libraries or preparations file](../../assets/user-guide/quick-start/quick-start-images/upload-lib-prep.png)
 
-   ![Animated walkthrough of importing libraries and preparations](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/import-libraries.gif)
+    ![Animated walkthrough of importing libraries and preparations](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/import-libraries.gif)
 
 3. ODM links the imported data to sample metadata via the **Sample Source ID** column. Once the data is recognised and linked, the new metadata tabs display the added data.
 
-   ![Linked libraries and preparations displayed in the study](../../assets/user-guide/quick-start/quick-start-images/lib-prep-linkage.png)
+    ![Linked libraries and preparations displayed in the study](../../assets/user-guide/quick-start/quick-start-images/lib-prep-linkage.png)
 
-   ![Example of linked metadata columns including Library ID and Preparation ID](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/images/54ExamplesImport.png)
+    ![Example of linked metadata columns including Library ID and Preparation ID](../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/images/54ExamplesImport.png)
 
 ---
 

@@ -13,11 +13,11 @@ You can initiate an export from two places in the UI:
 
 1. **Study Browser**: open the three-dot menu to the left of the study name and select **Export data**.
 
-   ![Export data from Study Browser](../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/export-data-study-browser.gif)
+    ![Export data from Study Browser](../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/export-data-study-browser.gif)
 
 2. **Metadata Editor**: inside your study, click the **Export** button on the right side of the window. Alternatively, click the study title to reveal a dropdown menu containing the export option, or open the three-dot menu next to **Export** on the right side of the screen.
 
-   ![Export data from Metadata Editor](../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/export-study-from-me.gif)
+    ![Export data from Metadata Editor](../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/gifs/export-study-from-me.gif)
 
 Clicking **Export data** opens a new window where all files associated with the study are compressed. Once compression is complete, the download button becomes active and you can download the files to your local computer. The link is pre-authenticated, so anyone with the link can download the study and its associated data. Previous export links are listed at the bottom of the window; these are archived versions that reflect the data at the time the link was generated, not necessarily the latest version.
 

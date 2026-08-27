@@ -13,7 +13,7 @@ An object is an individual data entity within ODM: a single sample, a single stu
 
 ## Group
 
-A group is a collection of related objects created during a single API call.
+A group is a collection of related objects created during a single call.
 
 !!! example
     All samples uploaded as part of one TSV file form a single sample group. If you later upload additional samples for the same study in a second file, those samples form a second, distinct sample group within the same study.

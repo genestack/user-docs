@@ -19,17 +19,15 @@ ODM organises omics data around a hierarchy of entities. Each entity captures a 
 
 **Preparations** (optional) describe sample preparation steps (for example, the protein digestion and fractionation steps used in proteomics). Preparations link to Samples.
 
-**Cell metadata** applies to single-cell datasets. It captures per-cell annotations for individual cells in a Cell Group. Each Cell Group belongs to a single parent entity: a Sample, Library, or Preparation (collectively referred to as an SLP entity). Cell metadata can be imported via the job endpoints or the import script.
+**Cell metadata** (optional) applies to single-cell datasets. It captures per-cell annotations for individual cells in a Cell Group. Each Cell Group belongs to a single parent entity: a Sample, Library, or Preparation (collectively referred to as an SLP entity). Cell metadata can be imported via the job endpoints or the import script.
 
 **Data metadata** describes how experimental data was processed: normalisation techniques, instrumentation, and the types of processed data files (for example, TSV, VCF, GCT).
 
-**Data** (also referred to as Expression Groups, Variant Groups, or FACS Groups depending on the data type) holds the actual omics data generated from a study. Expression data can be linked to Samples, Libraries, Preparations, or Cell metadata. Only expression data can be linked to Libraries and Preparations.
+**Data** (also referred to as Expression (Tabular) Groups, Variant Groups, or FACS Groups depending on the data type) holds the actual omics data generated from a study. Data can be linked to Samples, Libraries, Preparations, or Cell metadata. Only tabular data can be linked to Libraries and Preparations.
 
-For single-cell data, each **Expression Group** represents a gene-by-cell expression matrix compressed for efficient retrieval. An Expression Group is always linked to a Cell Group, and through the Cell Group to the parent SLP entity.
+For single-cell data, each **Expression Group** represents a gene-by-cell expression matrix compressed for efficient retrieval. An Expression Group is always linked to a Cell Group, and through the Cell Group to the parent SLP (Sample, Library, or Preparation) entity.
 
-**Attachments** are files associated with a study that are not omics data: PDFs, presentations, supplementary materials. They link directly to a Study and each receives a unique accession number, but they are not indexed for metadata search.
-
-**Cross-reference mapping** maps transcripts to gene identifiers, enabling queries that span different identifier spaces. Mappings are associated with expression data files, though all mapping files can also be queried globally via API.
+**Attachments** are files associated with a study that are not omics data: PDFs, presentations, supplementary materials. They link directly to a Study and each receives a unique accession number, but they are not indexed for content search.
 
 ## Linking rules
 
@@ -53,7 +51,7 @@ The entities you create for a given study depend on your experimental design. OD
     The baseline variant, used when no library or preparation grouping is needed.
 
 !!! variant "With library or preparation grouping: Study → Samples → Libraries / Preparations → Omics data"
-    Used when library or preparation metadata is a meaningful experimental layer. Only expression data can be linked to Libraries or Preparations.
+    Used when library or preparation metadata is a meaningful experimental layer. Only tabular data can be linked to Libraries or Preparations.
 
 !!! variant "Single-cell: Study → Samples → (Libraries / Preparations) → Cell metadata → Omics data"
     Used for single-cell experiments. A Cell Group links to a parent SLP entity; an Expression Group links to the Cell Group.
@@ -62,25 +60,25 @@ The entities you create for a given study depend on your experimental design. OD
 
 <div class="grid cards gs-section-cards" markdown>
 
-- __[Objects and groups](objects-and-groups.md)__
+- **[Objects and groups](objects-and-groups.md)**
 
     ---
 
     The distinction between object types and group types in the data model.
 
-- __[Data classes reference](data-classes-reference.md)__
+- **[Data classes reference](data-classes-reference.md)**
 
     ---
 
     The full enumeration of data class values used in import and search.
 
-- __[Access control](../access-control/index.md)__
+- **[Access control](../access-control/index.md)**
 
     ---
 
     How permissions apply to studies and data.
 
-- __[Supported data formats](../supported-data-formats/index.md)__
+- **[Supported data formats](../supported-data-formats/index.md)**
 
     ---
 

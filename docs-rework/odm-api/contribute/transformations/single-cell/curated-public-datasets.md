@@ -12,7 +12,7 @@ The import commands use the `odm-import-data` CLI and upload the study and sampl
 Recommended template: [Public dataset template](https://bio-test-data.s3.us-east-1.amazonaws.com/demo_materials/templates/public_studies_template_demo.json)
 
 > Because these configurations have been pre-validated against their datasets, you can skip the dry-run step when transforming the curated catalogue.
-
+>
 > Two datasets (**GSE192740** and **GSE198623**) contain multiple species and upload two H5AD files (human and mouse, or human and pig) within a single command.
 
 For what the configuration fields mean, see the [Configuration reference](configuration-reference.md).

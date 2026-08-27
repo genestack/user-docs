@@ -13,9 +13,9 @@ In this tutorial, you will create a complete study end-to-end via the ODM API: u
 - An API token. See [Authentication and tokens](authentication-and-tokens.md).
 - Familiarity with the Swagger UI. See [Swagger orientation](swagger-orientation.md).
 - The following example files (hosted on S3 and available without authentication):
-  - [GSE60871_study.tsv](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_study.tsv), study metadata
-  - [GSE60871_samples.tsv](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_samples.tsv), sample metadata
-  - [GSE60871_expression.gct](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_expression.gct), gene expression in GCT format
+    - [GSE60871_study.tsv](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_study.tsv), study metadata
+    - [GSE60871_samples.tsv](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_samples.tsv), sample metadata
+    - [GSE60871_expression.gct](https://bio-test-data.s3.amazonaws.com/GSE60871/GSE60871_expression.gct), gene expression in GCT format
 
 ## Step 1: Upload study metadata
 
@@ -64,8 +64,8 @@ Linking must be performed in the correct order: samples to study first, then dat
 1. In the definition selector, choose **integrationCurator**. This definition contains the endpoints for linking entities.
 2. Expand **Create a Link Between a Group of Sample Objects and a Study** (`POST /api/v1/as-curator/integration/link/sample/group/{sourceId}/to/study/{targetId}`). Click **Try it out**.
 3. Enter:
-   - `sourceId`: your Sample Group Accession ID (e.g., `GSF1147034`)
-   - `targetId`: your Study Accession ID (e.g., `GSF1147033`)
+    - `sourceId`: your Sample Group Accession ID (e.g., `GSF1147034`)
+    - `targetId`: your Study Accession ID (e.g., `GSF1147033`)
 4. Click **Execute**. A response with HTTP status `204` confirms the link was created.
 
 You can open the study in the ODM interface to confirm that the sample metadata is now associated with the study.
@@ -74,9 +74,9 @@ You can open the study in the ODM interface to confirm that the sample metadata 
 
 1. In the **integrationCurator** definition, expand **Create a link between a group of expression objects and a group of samples objects** (`POST /api/v1/as-curator/integration/link/expression/group/{sourceId}/to/sample/group/{targetId}`). Click **Try it out**.
 2. Enter:
-   - `sourceId`: your Experimental Data Group Accession ID (e.g., `GSF1147049`)
-   - `targetId`: your Sample Group Accession ID (e.g., `GSF1147034`)
-   - By default, the linking attribute is **Sample Source ID**. You can customise this to another column if your data uses a different key.
+    - `sourceId`: your Experimental Data Group Accession ID (e.g., `GSF1147049`)
+    - `targetId`: your Sample Group Accession ID (e.g., `GSF1147034`)
+    - By default, the linking attribute is **Sample Source ID**. You can customise this to another column if your data uses a different key.
 3. Click **Execute**. A response with HTTP status `200` confirms the link was created.
 
 ## Step 7: Verify in the ODM interface

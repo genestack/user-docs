@@ -5,7 +5,7 @@ tab: overview
 
 # Metadata Editor
 
-The Metadata Editor is the central interface for working with study, sample, and data metadata in ODM. It is where you go to read the metadata associated with a study and, if you have curation permissions, to edit and validate it.
+The Metadata Editor is the central interface for working with a study's metadata in ODM: the study itself, its samples, libraries, and preparations, and the data files and attachments linked to it. It is where you go to read that metadata and, if you have curation permissions, to edit and validate it.
 
 ## Getting there
 
@@ -36,6 +36,8 @@ The **Samples** tab shows per-sample metadata: attributes such as organism, cell
 The **+More** tab (if present) gives access to additional entity types (Libraries, Preparations, or others) when those entities are part of the study. Not all studies include these.
 
 The **Data** tab shows metadata for the data files associated with the study, such as expression or variant data. If multiple versions of an omics file exist, you can toggle between them here to compare their metadata.
+
+Cell metadata is the one entity the editor does not cover. Cell groups are imported and queried through the API rather than shown in a tab here, so single-cell annotations are managed outside the editor.
 
 The **Explore** tab is a visualisation view: select up to two sample attributes to generate a plot and cross-examine your data. For step-by-step guidance, see [Explore sample data visually](../../explore/visualise-sample-data.md).
 

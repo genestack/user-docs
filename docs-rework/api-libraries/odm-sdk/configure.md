@@ -18,9 +18,9 @@ This guide explains how to configure the ODM SDK with your ODM instance and API 
 
 2. Start the setup wizard from your terminal:
 
-   ```shell
-   odm-user-setup -H https://domain_name/
-   ```
+    ```shell
+    odm-user-setup -H https://domain_name/
+    ```
 
 3. Type `add` to enter a new user and choose an alias for it.
 
@@ -28,14 +28,14 @@ This guide explains how to configure the ODM SDK with your ODM instance and API 
 
 5. Select an authentication method and enter your token:
 
-   ```shell
-   1) by token
-   2) by access token
-   3) by email and password
-   Select authentication: 1
-   Host: https://domain_name/
-   Please specify Genestack API token for "my_user":
-   ```
+    ```shell
+    1) by token
+    2) by access token
+    3) by email and password
+    Select authentication: 1
+    Host: https://domain_name/
+    Please specify Genestack API token for "my_user":
+    ```
 
 6. Type `quit` to exit the setup wizard.
 

@@ -21,7 +21,7 @@ Processed data is stored in a columnar database, enabling it to be indexed and s
 
 ## Attachments
 
-When data files are imported via the GUI or attached to a study (for example, supplementary documents), they must be uploaded into the platform's S3 bucket. This creates a copy of the file in ODM, ensuring accessibility through the user interface. See [Attached files](../supported-data-formats/attached-files.md) for supported file types.
+When data files are imported via the UI or attached to a study (for example, supplementary documents), they must be uploaded into the platform's S3 bucket. This creates a copy of the file in ODM, ensuring accessibility through the user interface. See [Attached files](../supported-data-formats/attached-files.md) for supported file types.
 
 ## Current limitation
 

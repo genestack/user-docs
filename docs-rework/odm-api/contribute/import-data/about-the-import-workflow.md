@@ -19,7 +19,6 @@ The ODM API supports import of the following entity types:
 - **Preparations metadata**, sample preparation details prior to data generation (applicable to proteomics, transcriptomics, and other data types).
 - **Cell metadata**, per-barcode cell information, separate from the actual molecular measurements.
 - **Tabular data**, expression, variant, flow cytometry, and other tabular data types, including both metadata and processed data values.
-- **Cross-reference mapping**, transcript-to-gene ID mapping files.
 - **Attached files**, supplementary materials such as PDFs, spreadsheets, images, and archives. Note: the contents of attached files are not indexed or made searchable.
 
 ## The import-then-link workflow

@@ -11,7 +11,7 @@ This reference describes the query language and shared parameters used across th
 
 Metadata filters are written as attribute-name/value expressions:
 
-```
+```text
 "AttributeName" = "value"
 ```
 

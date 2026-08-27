@@ -24,8 +24,12 @@ The `status` field in the `/info` response can be one of:
 |---|---|
 | `STARTING` | Import job is initialising |
 | `RUNNING` | Import job is in progress |
+| `STOPPING` | Import job is being stopped |
+| `STOPPED` | Import job has been stopped |
 | `COMPLETED` | Import job finished successfully |
 | `FAILED` | Import job failed with an error |
+| `ABANDONED` | Import job was left incomplete, for example by a server restart mid-run |
+| `UNKNOWN` | Import job state could not be determined |
 
 ## Output response (`/output`)
 

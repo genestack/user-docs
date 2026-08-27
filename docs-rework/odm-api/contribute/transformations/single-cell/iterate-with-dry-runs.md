@@ -32,7 +32,7 @@ flowchart TD
 
 After a dry-run job completes, retrieve the logs:
 
-```
+```text
 POST /api/v1/transformations/jobs/{id}/logs
 ```
 
@@ -47,7 +47,7 @@ Look for:
 
 Update the configuration using:
 
-```
+```text
 PUT /api/v1/transformations/configurations/{id}
 ```
 

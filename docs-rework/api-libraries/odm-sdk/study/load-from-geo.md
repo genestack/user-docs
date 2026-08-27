@@ -17,18 +17,18 @@ This guide explains how to prepare a GEO series matrix file for import into ODM 
 
 1. Run the preparation script, providing the series matrix file as an argument:
 
-   ```shell
-   odm-geo-prepare GSE29746_series_matrix.txt
-   ```
+    ```shell
+    odm-geo-prepare GSE29746_series_matrix.txt
+    ```
 
 2. The script creates a folder containing three files ready for import into ODM. For example:
 
-   ```shell
-   ├── GSE29746
-   │   ├── GSE29746_expression.gct
-   │   ├── GSE29746_samples.tsv
-   │   └── GSE29746_study.tsv
-   ```
+    ```shell
+    ├── GSE29746
+    │   ├── GSE29746_expression.gct
+    │   ├── GSE29746_samples.tsv
+    │   └── GSE29746_study.tsv
+    ```
 
 3. Upload the generated files to AWS S3 or another accessible URL host, then import them into ODM using the [Upload a study](upload-a-study.md) workflow.
 

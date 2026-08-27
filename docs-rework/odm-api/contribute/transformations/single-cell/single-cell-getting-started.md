@@ -5,7 +5,7 @@ tab: odm-api
 
 # Single-cell data in ODM: Getting started
 
-**Upload → Transform → Index → Search**
+Upload → Transform → Index → Search
 
 This page walks you through the single-cell HDF5 workflow in ODM (uploading a file, running a transformation to produce indexed objects, confirming indexing, and exploring your data with search and analytics queries) and links to the notebooks for each stage.
 
@@ -30,7 +30,6 @@ The goal here is to walk through the full workflow on one HDF5 file and verify t
 3. Verify that objects were created, linked, and indexed correctly.
 
 **Notebook:** [Single-Cell RNA-Seq: Data Transformation and Upload to ODM](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/notebooks/sc_transformations_demo.ipynb)
-
 
 This notebook covers: uploading the HDF5 file, creating a configuration, running a dry run, and checking job status and outputs.
 
@@ -77,7 +76,6 @@ Make sure all datasets are marked as indexed and ready to query.
 Use ODM's search and analytics notebooks to explore your indexed datasets.
 
 **Notebook:** [Single-Cell RNA-Seq: Cohort Selection and Data Retrieval](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/notebooks/sc_rnaseq_demo.ipynb)
-
 
 This notebook covers: cross-study search examples, filtering by curated attributes, example analytical queries, and result inspection.
 

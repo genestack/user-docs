@@ -23,5 +23,5 @@ You must be a Group Admin of the group you are editing, or have the **Manage gro
 The change takes effect immediately.
 
 > **Note:** every group must have at least one Group admin at all times. The interface prevents you from demoting the last admin in a group. To remove the current sole admin, first promote another member to Group admin, then change the original admin's role.
-
+>
 > **Curator group note:** only users with the Manage organisation permission (administrators) can add or remove members of the Curator group. See [Groups and roles](../../overview/access-control/groups-and-roles.md) for background on the Curator group and other default groups.

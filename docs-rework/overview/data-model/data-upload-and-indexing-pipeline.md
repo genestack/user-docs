@@ -8,20 +8,30 @@ tab: overview
 Getting a data file into ODM and making it usable is a two-phase process, and the
 two phases are independent. This page explains what happens in the background when
 you upload a data file, and why the distinction between the phases matters when
-something goes wrong. 
+something goes wrong.
+
 ## The one idea to take away first
 
 Getting a data file into ODM is **two independent phases**, not one:
 
-1. **Import**: the file is loaded into ODM and becomes **visible in the GUI**.
+1. **Import**: the file is loaded into ODM and becomes **visible in the UI**.
    This is driven by a **job**.
 2. **Indexing**: the file's contents are processed so they become
    **searchable and queryable through the APIs**. This is driven by a **task**.
 
+A job and a task are different objects in ODM, not two names for the same work. A
+job imports one file: it downloads the file, transforms it, and loads it into ODM,
+and you track it through the Jobs REST API by its numeric `jobExecId`. A task
+indexes one file once that import has finished, writing the file's metadata and
+contents into the stores that back search and query, and it appears as a row in
+the Task Manager in the UI. Each file you upload produces one job and then one
+task, and either one can fail without the other. The table below sets the two side
+by side.
+
 The consequence is the single most common point of confusion:
 
-!!! warning "Visible in the GUI is not the same as available via the APIs"
-    A file can be fully imported (you can see it in the GUI) while it is still
+!!! warning "Visible in the UI is not the same as available via the APIs"
+    A file can be fully imported (you can see it in the UI) while it is still
     indexing, or while its indexing has *failed*. Being visible does **not** mean
     it is searchable or queryable through the search and data APIs.
 
@@ -31,12 +41,12 @@ understanding, and troubleshooting, the upload pipeline.
 
 ```mermaid
 flowchart LR
-    Upload["Upload<br/>via API / GUI"]
+    Upload["Upload<br/>via API / UI"]
     subgraph P1["PHASE 1 · IMPORT"]
         direction LR
         Job["Import job<br/>one per file"]
-        GUI["Visible in the GUI<br/>now visible"]
-        Job --> GUI
+        UI["Visible in the UI"]
+        Job --> UI
     end
     subgraph P2["PHASE 2 · INDEXING"]
         direction LR
@@ -45,18 +55,18 @@ flowchart LR
         Task --> APIs
     end
     Upload --> Job
-    GUI --> Task
+    UI --> Task
 
-    classDef start  fill:#023F79,color:#ffffff,stroke:#023F79,stroke-width:2px,font-weight:bold
+    classDef start  fill:#ffffff,color:#023F79,stroke:#023F79,stroke-width:3px,font-weight:bold
     classDef import fill:#D8F3FF,color:#023F79,stroke:#0470BE,stroke-width:2px,font-weight:bold
     classDef index  fill:#D8F9EA,color:#023F79,stroke:#34AF7C,stroke-width:2px,font-weight:bold
 
     class Upload start
-    class Job,GUI import
+    class Job,UI import
     class Task,APIs index
 
-    style P1 fill:#ffffff,stroke:#0470BE,stroke-width:1px
-    style P2 fill:#ffffff,stroke:#34AF7C,stroke-width:1px
+    style P1 fill:#eaeff5,stroke:#0470BE,stroke-width:1px
+    style P2 fill:#eaeff5,stroke:#34AF7C,stroke-width:1px
 ```
 
 ## Terminology: "job" vs "task"
@@ -70,7 +80,7 @@ managed by different components, with different lifecycles and status names.
 | **Phase** | Phase 1 — Import | Phase 2 — Indexing |
 | **Managed by** | Job Service (`func-job`) | Core |
 | **Identified by** | `jobExecId` (a numeric execution ID) | Task accession |
-| **Tracked via** | Jobs REST API endpoints | **Task Manager** in the GUI |
+| **Tracked via** | Jobs REST API endpoints | **Task Manager** in the UI |
 | **State stored in** | `func_job` database | Solr `tasks` core |
 | **Status vocabulary** | `STARTING`, `RUNNING`, `COMPLETED`, `FAILED`, … | `QUEUED`, `RUNNING`, `DONE`, `FAILED`, … |
 
@@ -80,7 +90,7 @@ rows you see are jobs. The rows are **indexing tasks**.
 
 ## Phase 1: Import (the job)
 
-An import is initiated either by API users calling the ODM REST API or by GUI users working through the data import
+An import is initiated either by API users calling the ODM REST API or by UI users working through the data import
 screens in the web application. Both paths converge on the same mechanism: the
 **Job Service** (`func-job`) creates one **job execution** to load the file.
 
@@ -140,7 +150,7 @@ A job moves through the following lifecycle, the values you may see in the
 | `UNKNOWN` | State could not be determined |
 
 When a job reaches `COMPLETED`, the file object and its metadata have been written
-into ODM (the `genestack` database) and the file is now **visible in the GUI**,
+into ODM (the `genestack` database) and the file is now **visible in the UI**,
 the milestone the diagrams mark at the end of Phase 1. At this moment the
 file exists, but it is **not yet searchable or queryable through the data APIs**.
 That is Phase 2.
@@ -155,7 +165,7 @@ imported data is durably saved.
 ### One task per file
 
 Each data file is indexed under its **own background task**, and these tasks are
-what appear in the **Task Manager** in the GUI, one row per file, each with its
+what appear in the **Task Manager** in the UI, one row per file, each with its
 own status.
 
 Indexing is visible in the web interface through the **Task Manager**, reached
@@ -229,7 +239,7 @@ You see it through the jobs REST API: `GET /api/v1/jobs/{jobExecId}/info` shows
 `status = FAILED` and an exit status, while `GET /api/v1/jobs/{jobExecId}/output`
 returns the captured errors, each with the **stage** (which step failed), the
 **reason** (an error code or message), and the underlying exception **stack**. A
-failed job means the file was **not** imported: it will not appear in the GUI, and
+failed job means the file was **not** imported: it will not appear in the UI, and
 there is nothing to index.
 
 One special case looks alarming but is benign. If the Job Service is restarted
@@ -248,7 +258,7 @@ content could not be written to ClickHouse, or metadata extraction errored.
 
 You see it in the **Task Manager** (the "Failed" status on the file's row), and
 each task carries **stdout** and **stderr** output streams that hold the failure
-detail. A failed task means the file **was imported** (it is visible in the GUI)
+detail. A failed task means the file **was imported** (it is visible in the UI)
 but it is **not** fully searchable or queryable through the APIs. Searches may
 return it with incomplete data, or its expression data may be unavailable for
 export.
@@ -265,16 +275,16 @@ file rather than a momentary glitch.
 When a user reports *"my data is missing / not showing up in search"*, the first
 question is **which phase failed**:
 
-- **Not visible in the GUI at all** → the **import job** failed (Phase 1). Look at
+- **Not visible in the UI at all** → the **import job** failed (Phase 1). Look at
   the job via the jobs REST API.
-- **Visible in the GUI but missing or incomplete in search or export** → the
+- **Visible in the UI but missing or incomplete in search or export** → the
   **indexing task** failed (Phase 2). Look at the file's task in the Task Manager.
 
 ## End-to-end summary
 
 ```mermaid
 flowchart TD
-    Start["Upload a data file<br/>(API / GUI)"]
+    Start["Upload a data file<br/>(API / UI)"]
 
     subgraph P1["PHASE 1 · IMPORT — Job Service, one streaming job per file"]
         direction LR
@@ -284,7 +294,7 @@ flowchart TD
         E --> T --> L
     end
 
-    GUI["File visible in the GUI"]
+    UI["File visible in the UI"]
     Link["Linking — a SEPARATE, optional step<br/>Link Service → genestack_link<br/>(object-ID pairs only, no ACLs)"]
 
     subgraph P2["PHASE 2 · INDEXING — Core, one task per file (see Task Manager)"]
@@ -296,29 +306,29 @@ flowchart TD
     APIs["Indexed data available in the APIs"]
 
     Start --> E
-    L -- "job COMPLETED" --> GUI
-    GUI -.-> Link
-    GUI -- "indexing auto-starts on commit" --> Solr
+    L -- "job COMPLETED" --> UI
+    UI -.-> Link
+    UI -- "indexing auto-starts on commit" --> Solr
     CH -- "task DONE" --> APIs
 
-    classDef start  fill:#023F79,color:#ffffff,stroke:#023F79,stroke-width:2px,font-weight:bold
+    classDef start  fill:#ffffff,color:#023F79,stroke:#023F79,stroke-width:3px,font-weight:bold
     classDef import fill:#D8F3FF,color:#023F79,stroke:#0470BE,stroke-width:2px,font-weight:bold
     classDef index  fill:#D8F9EA,color:#023F79,stroke:#34AF7C,stroke-width:2px,font-weight:bold
     classDef aside  fill:#B7EAFF,color:#023F79,stroke:#2FACDF,stroke-width:1px
 
     class Start start
-    class E,T,L,GUI import
+    class E,T,L,UI import
     class Solr,CH,APIs index
     class Link aside
 
-    style P1 fill:#ffffff,stroke:#0470BE,stroke-width:1px
-    style P2 fill:#ffffff,stroke:#34AF7C,stroke-width:1px
+    style P1 fill:#eaeff5,stroke:#0470BE,stroke-width:1px
+    style P2 fill:#eaeff5,stroke:#34AF7C,stroke-width:1px
 ```
 
-In sequence: an import is initiated via the API or GUI; the **Job Service** runs
+In sequence: an import is initiated via the API or UI; the **Job Service** runs
 **one streaming ETL job per file**, tracked through
 `GET /api/v1/jobs/{jobExecId}/info` and `…/output`; on `COMPLETED` the **file is
-visible in the GUI** (linking to metadata or study objects, if needed, is a
+visible in the UI** (linking to metadata or study objects, if needed, is a
 **separate** call to the **Link Service**); Core then **automatically** schedules
 **one indexing task per file**; indexing writes **metadata to Solr** and
 **expression / variant / flow-cytometry content to ClickHouse**, tracked in the
@@ -330,7 +340,7 @@ visible in the GUI** (linking to metadata or study objects, if needed, is a
 
 | You observe | Phase | Where to look |
 |---|---|---|
-| File never appears in the GUI | Import (job) | Jobs REST API: `…/info` for status, `…/output` for errors |
+| File never appears in the UI | Import (job) | Jobs REST API: `…/info` for status, `…/output` for errors |
 | Import seems stuck | Import (job) | Job `status` — `RUNNING` on a large file is normal (streamed in chunks) |
 | File visible, but missing from search results | Indexing (task) | Task Manager — find the file's task status |
 | Expression data won't export / is empty | Indexing (task) | Task Manager + ClickHouse-bound indexing task for that file |
@@ -349,7 +359,7 @@ visible in the GUI** (linking to metadata or study objects, if needed, is a
 - [About the import workflow](../../odm-api/contribute/import-data/about-the-import-workflow.md),
   the import-then-link pattern, by entity type, via the REST API.
 - [Importing data in the web interface](../../contribute/import-data/index.md),
-  the GUI path through the same pipeline.
+  the UI path through the same pipeline.
 - [Manage import jobs](../../odm-api/contribute/import-data/manage-import-jobs.md)
   and the
   [Job status codes reference](../../odm-api/reference/job-status-codes-reference.md).

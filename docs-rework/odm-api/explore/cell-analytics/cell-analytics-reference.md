@@ -37,6 +37,7 @@ The `exQuery` field is a top-level parameter (not inside the cohort object) that
 Computes the proportion of cells matching all criteria relative to a reference population.
 
 **Request body:**
+
 ```json
 {
   "cellGroup": { ... },
@@ -53,6 +54,7 @@ Computes the proportion of cells matching all criteria relative to a reference p
 | `ratio` | `countSelected / countAvailable` |
 
 **Example response:**
+
 ```json
 {
   "countSelected": 1243393,
@@ -70,6 +72,7 @@ Computes the proportion of cells matching all criteria relative to a reference p
 Returns descriptive statistics and distribution summaries for expression values of up to 100 genes across a filtered cell population.
 
 **Request body:**
+
 ```json
 {
   "cellGroup": { ... },
@@ -103,6 +106,7 @@ Returns descriptive statistics and distribution summaries for expression values 
 Compares gene expression between a case group and a control group and returns per-gene statistical results.
 
 **Request body:**
+
 ```json
 {
   "caseGroup": { ... },

@@ -11,7 +11,7 @@ Each tutorial walks you through the core workflow for your role end to end, so y
 
 <div class="grid cards gs-task-cards" markdown>
 
-- __[Data Explorer](getting-started-consumer.md)__
+- __[Data Consumer](getting-started-consumer.md)__
 
     ---
 

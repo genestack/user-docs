@@ -20,7 +20,7 @@ ODM's integration endpoints let you traverse the entity graph: you filter one en
 
 The endpoints follow a consistent pattern, so once you know the shape you can construct any traversal:
 
-```
+```text
 GET /api/v1/as-curator/integration/link/{target-type}/by/{source-type}
 ```
 

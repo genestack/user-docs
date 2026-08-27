@@ -50,7 +50,7 @@ For the end-to-end job workflow (create a configuration, submit a dry run, monit
 
 **Default volume:** `5Gi`
 
-For a job using an H5AD inputs recommended `volume_size` is ≥ 1.4× the original file size. 
+For a job using an H5AD inputs recommended `volume_size` is ≥ 1.4× the original file size.
 
 When setting `volume_size` for a job using an H5 input file, allocate at least 4× the original attachment size (for example, a 5 GB file requires `volume_size` ≥ 20 GB). H5 inputs require additional scratch space because the transformation converts them to H5AD during processing.
 

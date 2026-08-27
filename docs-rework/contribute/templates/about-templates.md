@@ -28,9 +28,7 @@ In the context of data curation, validation refers to the process of ensuring th
 
 Every template includes a set of mandatory technical fields that ODM requires regardless of how you configure the remaining attributes. See [Template file format reference](template-reference.md) for the full list.
 
----
-
-**See also**
+## Related
 
 - [Template Editor](../../overview/navigating-the-ui/template-editor.md), UI orientation for the Template Editor.
 - [Create and edit a template](create-and-edit-a-template.md), step-by-step instructions for building and modifying templates.
