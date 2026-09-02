@@ -57,7 +57,7 @@ python3 -m ipykernel install --user \
 jupyter notebook
 ```
 
-A browser window opens with the Jupyter file browser. Stay in this folder (or navigate to it in the UI) so you can open the `.ipynb` files listed above.
+A browser window opens with the Jupyter file browser. Stay in this folder (or navigate to it in the UI) so you can open the included `.ipynb` files.
 
 ### 6. Select the kernel in the notebook
 
@@ -88,7 +88,7 @@ Each demo notebook includes a short **Prerequisites → Installation** cell that
 
 ## Authentication
 
-The notebooks talk to an ODM instance. If you have a permanent **Genestack API token**, paste the token into the input form that appears below the cell (in Jupyter Notebook) or at the top of the notebook (in VS Code).
+The notebooks talk to an ODM instance. If you have a permanent **Genestack API token**, paste the token into the input form that appears below the cell (in Jupyter Notebook) or at the top of the notebook (in VS Code). You can also store the token in a `.env` file in this folder as `ODM_API_TOKEN=...` (do not commit that file).
 
 ---
 
