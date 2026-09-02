@@ -31,4 +31,10 @@ Most of the admin API surface is documented directly in Swagger, so this section
 
     Create, update, and deactivate users programmatically.
 
+- __[Audit logs](audit/about-audit-logs.md)__
+
+    ---
+
+    Retrieve the trail of user and system actions for investigation, compliance, and support.
+
 </div>

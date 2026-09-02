@@ -5,12 +5,30 @@ tab: api-libraries
 
 # API Libraries
 
-ODM provides three API libraries for programmatic access to the platform. Choose the one that matches your workflow.
+ODM provides three API libraries for programmatic access to the platform. Choose the one that matches your workflow. If you work outside the web UI and want pre-built workflows rather than raw endpoints, start with the ODM SDK.
 
-**ODM SDK** is the primary command-line tool for bulk operations: uploading studies, running curation scripts, managing templates and dictionaries, and administering users. It is the recommended starting point for contributors who work outside the web UI.
+## Choose your library
 
-**Python API Client** provides a thin Python wrapper around the ODM REST API. Use it to build Python scripts and notebooks that query or contribute data programmatically.
+<div class="grid cards gs-section-cards" markdown>
 
-**R API Client** provides equivalent functionality for R-based workflows, suited for downstream analysis pipelines that consume ODM data.
+- __[ODM SDK](odm-sdk/index.md)__
+
+    ---
+
+    Command-line scripts and a Python client for bulk work: study upload, curation, templates, dictionaries, and user administration.
+
+- __[Python API Client](python-api-client/index.md)__
+
+    ---
+
+    A thin Python wrapper over the REST API, for scripts and Jupyter notebooks that query or contribute data.
+
+- __[R API Client](r-api-client/index.md)__
+
+    ---
+
+    The same coverage for R scripts and Bioconductor or base-R analysis pipelines that consume ODM data.
+
+</div>
 
 All three libraries require a valid API token. See [Authentication and Tokens](../odm-api/getting-started/authentication-and-tokens.md) in the ODM API section for setup instructions.

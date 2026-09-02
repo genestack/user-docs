@@ -39,7 +39,7 @@ In the Users and Permissions view, click **+ New user**. A form opens where you 
 
 ## Step 4: Grant or revoke permissions
 
-From the Users and Permissions view, find the user you want to configure. Use the search bar if the list is long. Tick or untick the checkboxes for each permission: **Manage organisation**, **Manage groups**, **Set up templates**, **Access all data**, and **Configure facets**. Hover over any checkbox to read a brief description of what that permission enables. Changes take effect as soon as you toggle the checkbox.
+From the Users and Permissions view, find the user you want to configure. Use the search bar if the list is long. Tick or untick the checkboxes for each permission: **Manage organisation**, **Manage groups**, **Set up templates**, **Access all data**, **Configure facets**, and **View Audit Log**. Hover over any checkbox to read a brief description of what that permission enables. Changes take effect as soon as you toggle the checkbox.
 
 <figure markdown="span">
 ![Permissions panel](../../assets/user-guide/quick-start/quick-start-images/addpermissions.gif)

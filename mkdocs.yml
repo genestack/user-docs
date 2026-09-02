@@ -152,6 +152,15 @@ nav:
             - Manage User Accounts via API: odm-api/admin/manage-user-accounts-via-api.md
             - Find Detached Objects: odm-api/admin/find-detached-objects.md
             - Delete Data: odm-api/admin/delete-data.md
+            - Audit Logs:
+                - About Audit Logs: odm-api/admin/audit/about-audit-logs.md
+                - About Audit Event Recording: odm-api/admin/audit/about-event-recording.md
+                - Your First Audit Query: odm-api/admin/audit/first-audit-query.md
+                - Reconstruct a Study's History: odm-api/admin/audit/reconstruct-a-study-history.md
+                - Review a User's Activity: odm-api/admin/audit/review-user-activity.md
+                - Trace Data Access and Exports: odm-api/admin/audit/trace-data-access-and-exports.md
+                - Audit Event Types Reference: odm-api/admin/audit/audit-event-types-reference.md
+                - Audit Event Schema Reference: odm-api/admin/audit/audit-event-schema-reference.md
         - API Reference:
             - odm-api/reference/index.md
             - Query and Filter Syntax Reference: odm-api/reference/query-and-filter-syntax-reference.md

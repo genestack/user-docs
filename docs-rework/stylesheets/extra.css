@@ -695,6 +695,45 @@
     color: var(--gs-light-blue);
 }
 
+/* ── Key columns: one line per key ──────────────────────────────────────────
+   Reference tables lead with a single code token (a JSON key, a field name, an
+   endpoint path). Wrapping it mid-name is unreadable, so hold it on one line
+   and let the column claim the width it needs; the description column takes
+   what is left and wraps there instead. Markdown has no column-width syntax,
+   so this is the only place the behaviour can live. On a narrow viewport a
+   long path scrolls inside Material's table wrapper rather than breaking. */
+.md-typeset table:not([class]) td:first-child > code:only-child {
+    white-space: nowrap;
+}
+
+/* ── Grouped tables: one label per category ─────────────────────────────────
+   The event-type summary merges its first column with rowspan so the rows of a
+   category read as one block. Markdown tables cannot express a merged cell, so
+   that table is written as HTML with <th scope="rowgroup"> labels.
+   The label sits centred in the block it covers and keeps its brand colour, but
+   drops the header fill: a tinted first column runs straight into the tinted
+   header row and the two read as one L-shaped block. A vertical rule fences the
+   label column instead, and each group boundary is ruled harder than the row
+   lines inside it, so the blocks separate. */
+.md-typeset table:not([class]) tbody th[scope="rowgroup"] {
+    background-color: transparent;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    border-right: .05rem solid var(--gs-light-blue);
+}
+
+/* The fence has to carry on through the header cell, or the label column reads
+   as half drawn. :has() keeps that to grouped tables and leaves every ordinary
+   table's header untouched. */
+.md-typeset table:not([class]):has(th[scope="rowgroup"]) thead th:first-child {
+    border-right: .05rem solid var(--gs-light-blue);
+}
+
+.md-typeset table:not([class]) tbody + tbody > tr:first-child > * {
+    border-top: .1rem solid var(--gs-light-blue);
+}
+
 /* ── Mermaid diagrams: the boxes read the same in both schemes ───────────────
    Material renders every mermaid diagram inside a CLOSED shadow root, so no
    selector in this file can reach the SVG. The only lever that crosses the
