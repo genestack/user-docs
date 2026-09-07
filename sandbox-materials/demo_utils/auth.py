@@ -91,6 +91,7 @@ def set_api_configuration(
     """
     odm_url = re.sub(r'/ui/.+$', '', odm_url).rstrip('/')
     configuration = odm_api.Configuration(host=odm_url)
+    configuration.proxy = os.environ.get("https_proxy") or os.environ.get("HTTPS_PROXY")
     docs_url = f"{odm_url}/user-docs/tools/odm-api/python/generated/"
 
     def validate(client):
