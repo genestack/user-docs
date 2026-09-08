@@ -1,0 +1,23 @@
+#1.2
+20	6
+Name	Description	SMPL-001	SMPL-002	SMPL-003	SMPL-004	SMPL-005	SMPL-006
+ACTB	Actin beta	542.1	518.3	561.7	527.4	503.9	548.2
+GAPDH	Glyceraldehyde-3-phosphate dehydrogenase	834.6	821.2	857.3	812.5	798.7	845.1
+B2M	Beta-2-microglobulin	1243.7	1198.4	1312.6	1187.3	1221.5	1276.4
+HMOX1	Heme oxygenase 1	45.3	42.8	48.1	198.4	187.2	212.6
+TP53	Tumor protein p53	112.4	108.7	118.3	234.7	221.8	248.3
+CDKN1A	Cyclin-dependent kinase inhibitor 1A (p21)	23.6	21.4	25.8	167.3	152.8	178.9
+MDM2	MDM2 proto-oncogene	67.8	64.2	71.3	201.4	189.7	215.6
+BAX	BCL2-associated X protein	89.4	85.7	94.2	223.6	211.4	234.8
+BCL2	B-cell lymphoma 2	156.3	148.7	163.4	61.4	57.8	64.9
+MYC	MYC proto-oncogene	234.8	228.4	245.7	118.3	112.7	124.6
+CCND1	Cyclin D1	178.6	172.3	186.4	71.3	67.8	74.9
+ATM	ATM serine/threonine kinase	134.7	128.3	141.2	278.4	265.7	291.3
+BRCA1	BRCA1 DNA repair associated	67.4	63.8	71.2	108.3	102.7	114.6
+CASP3	Caspase 3	89.6	85.3	94.7	198.4	187.6	208.3
+CASP9	Caspase 9	78.4	74.6	82.7	148.7	141.3	156.2
+PARP1	Poly(ADP-ribose) polymerase 1	134.2	128.6	141.7	156.3	148.7	163.4
+IL6	Interleukin 6	12.4	11.8	13.2	42.3	39.8	45.1
+TNF	Tumor necrosis factor	8.7	8.2	9.3	18.4	17.2	19.6
+STAT3	Signal transducer and activator of transcription 3	198.4	191.7	207.3	212.8	204.7	221.3
+JUN	Jun proto-oncogene	45.6	43.2	48.7	118.4	112.6	124.7

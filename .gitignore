@@ -10,3 +10,8 @@ venv
 .env-woq
 .arg
 .secret
+
+.cache/
+.claude/
+CLAUDE.md
+docs-standards/

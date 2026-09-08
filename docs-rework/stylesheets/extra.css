@@ -1,0 +1,769 @@
+/* ── Brand fonts (self-hosted woff2) ────────────────────────────────────────
+   Ivar Display — accent serif for main headers; Larsseit — basic sans
+   (Light body, Medium headers). */
+@font-face { font-family: 'Larsseit'; src: url('../assets/fonts/larsseit-light.woff2') format('woff2');   font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Larsseit'; src: url('../assets/fonts/larsseit-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Larsseit'; src: url('../assets/fonts/larsseit-medium.woff2') format('woff2');  font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Larsseit'; src: url('../assets/fonts/larsseit-bold.woff2') format('woff2');    font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ivar Display'; src: url('../assets/fonts/ivar-display-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Ivar Display'; src: url('../assets/fonts/ivar-display-bold.woff2') format('woff2');    font-weight: 700; font-style: normal; font-display: swap; }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   GENESTACK BRAND PALETTE  (source of truth: docs-standards colour card)
+   Primary  : GS Dark Blue · GS Blue · GS Light Blue · GS Green
+   Secondary: GS Green-2/-3 · GS Light Blue-2/-3
+   Design goal: the four PRIMARIES carry roughly equal visual weight, in both
+   light and dark schemes. Each primary owns a recurring role rather than one
+   colour (blue) dominating and green appearing only as a rare accent:
+     Dark Blue  → header base (light) · footer · H1/H2 text (light)
+     Blue       → header gradient · links · H3 · section cards
+     Light Blue → table headers · notes · blockquote rule · links/H1 (dark)
+     Green      → accent/hover · H2 rule · task cards · tips · hr tail
+   ════════════════════════════════════════════════════════════════════════════ */
+:root {
+    /* Brand colour tokens */
+    --gs-dark-blue:    #023F79;
+    --gs-blue:         #0470BE;
+    --gs-light-blue:   #2FACDF;
+    --gs-green:        #34AF7C;
+    --gs-green-2:      #93D8B8;
+    --gs-green-3:      #D8F9EA;
+    --gs-light-blue-2: #B7EAFF;
+    --gs-light-blue-3: #D8F3FF;
+
+    /* Brand typography: Larsseit for body/UI, JetBrains Mono (with system fallback) for code */
+    --md-text-font: "Larsseit", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    --md-code-font: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    /* Material theme overrides — light mode */
+    --md-primary-fg-color:        var(--gs-blue);
+    --md-primary-fg-color--light: var(--gs-light-blue);
+    --md-primary-fg-color--dark:  var(--gs-dark-blue);
+    --md-accent-fg-color:         var(--gs-green);
+    --md-typeset-a-color:         var(--gs-blue);
+
+    --md-admonition-icon--access-scope: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>');
+    --md-admonition-icon--owner-only: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>');
+    --md-admonition-icon--variant: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22 11V3h-7v3H9V3H2v8h7V8h2v10h4v3h7v-8h-7v3h-2V8h2v3z"/></svg>');
+}
+
+/* ── Light scheme surfaces ───────────────────────────────────────────────────
+   A soft blue-grey canvas instead of stark white, so the reading area itself
+   reads as a branded surface (near-black body text stays fully legible on it).
+   Colour then arrives through the header, headings, rules, cards and footer —
+   not from a single flat wash. */
+[data-md-color-scheme="default"] {
+    --md-default-bg-color: #eaeff5;
+    --md-typeset-a-color:  var(--gs-blue);
+}
+
+/* ── Dark scheme surfaces ────────────────────────────────────────────────────
+   Two structural darks only: a near-black ground (#0b1017) and GS Dark Blue
+   (#023F79) for the header/footer chrome. The blue-green primaries read as
+   bright accents against the near-black ground, and the footer base reuses the
+   ground colour so no extra non-brand dark is introduced. */
+[data-md-color-scheme="slate"] {
+    --md-primary-fg-color:        var(--gs-dark-blue);
+    --md-primary-fg-color--light: var(--gs-blue);
+    --md-primary-fg-color--dark:  var(--gs-dark-blue);
+    --md-accent-fg-color:         var(--gs-green);
+    /* GS Light Blue has far better contrast on dark backgrounds than GS Blue */
+    --md-typeset-a-color:         var(--gs-light-blue);
+    /* Near-black ground; the footer base (.md-footer-meta) reuses this exact
+       colour so dark mode stays to two structural darks. */
+    --md-default-bg-color:        #0b1017;
+    --md-default-fg-color:          rgba(230, 238, 245, 0.90);
+    --md-default-fg-color--light:   rgba(230, 238, 245, 0.62);
+    --md-default-fg-color--lighter: rgba(230, 238, 245, 0.36);
+    --md-default-fg-color--lightest:rgba(230, 238, 245, 0.14);
+}
+
+.md-grid {
+    max-width: 72rem;
+}
+
+/* Always show site name in header — suppress page title scrolling in.
+   Stretch the (absolutely-positioned) topic to the full 2.4rem header height and
+   flex-center its contents, so the title is vertically centred regardless of the
+   text's own line-height. */
+.md-header__topic:first-child {
+    opacity: 1;
+    transform: translateY(0);
+    top: 0;
+    bottom: 0;
+    align-items: center;
+}
+
+.md-header__topic + .md-header__topic {
+    display: none;
+}
+
+/* Site title — Ivar Display Bold (brand accent serif), pinned to an explicit
+   size/weight so it renders identically in both schemes. */
+.md-header__topic:first-child .md-ellipsis {
+    font-family: 'Ivar Display', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* ── Header — a solid PRIMARY blue per scheme ────────────────────────────────
+   Light: GS Blue (#0470BE), the standard brand blue.
+   Dark : GS Dark Blue (#023F79), the darkest primary blue.
+   White logo + text read cleanly on both. */
+[data-md-color-scheme="default"] .md-header {
+    background-color: var(--gs-blue);
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(2, 63, 121, 0.22);
+}
+
+[data-md-color-scheme="slate"] .md-header {
+    background-color: var(--gs-dark-blue);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* Tabs share the header surface (transparent) so header + tabs read as one
+   band. White links; the active tab gets a GS Green underline for wayfinding. */
+.md-tabs {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.md-tabs__link {
+    opacity: 0.82;
+    transition: opacity 0.15s;
+}
+
+.md-tabs__link:hover,
+.md-tabs__link--active {
+    opacity: 1;
+}
+
+.md-tabs__link--active {
+    box-shadow: inset 0 -2px 0 var(--gs-green);
+}
+
+/* Logo: the white monochrome ODM wordmark (assets/ODM-mono-white.png), which
+   reads cleanly on both solid-blue headers with no plate behind it. */
+.md-header__button.md-logo {
+    margin-right: 0.2rem;
+}
+
+.md-logo img,
+.md-header__button.md-logo img {
+    height: 1.4rem;
+    display: block;
+}
+
+/* Brand accent stripe along the bottom of the header cluster (both schemes):
+   the four primaries in sequence, with GS Green given a full quarter so the
+   green primary reads as an equal, not a tail garnish. `.md-tabs` lives inside
+   `.md-header`, so bottom:0 lands under the tabs on desktop, under the bar on
+   mobile. */
+.md-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+        var(--gs-dark-blue) 0%,
+        var(--gs-blue) 33%,
+        var(--gs-light-blue) 66%,
+        var(--gs-green) 100%);
+    z-index: 5;
+}
+
+/* ── Search field — a borderless darkened "well" in the header band ──────────
+   A subtly darkened translucent fill sets the field apart from the coloured
+   header with no outline at all; hover and focus simply deepen the fill for
+   feedback. White text / placeholder / icons stay legible (AA in both schemes). */
+.md-search__input {
+    background-color: rgba(0, 0, 0, 0.16);
+    color: #ffffff;
+    box-shadow: none;
+    transition: background-color 0.2s;
+}
+
+.md-search__input:hover {
+    background-color: rgba(0, 0, 0, 0.24);
+}
+
+.md-search__input:focus {
+    background-color: rgba(0, 0, 0, 0.32);
+    color: #ffffff;
+}
+
+.md-search__input::placeholder {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+/* Magnifier + clear icons in white to match the field's text. Material tints
+   the icon following the input with --md-primary-bg-color via a sibling rule,
+   so these matching-specificity selectors are needed to win by load order. */
+.md-search__input + .md-search__icon,
+.md-search__input ~ .md-search__icon,
+.md-search__form .md-search__icon {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+
+.md-typeset .admonition {
+    font-size: 0.8rem;
+}
+
+/* Body text: Larsseit Light (brand basic font at light weight) */
+.md-typeset {
+    font-weight: 300;
+}
+
+.md-typeset strong,
+.md-typeset b {
+    font-weight: 700;
+}
+
+/* Headings: uniform Larsseit Light across every level. Hierarchy comes from
+   size and colour, not from mixing font families or weights. */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+    font-family: 'Larsseit', sans-serif;
+    font-weight: 300;
+}
+
+/* H1 — main page title (GS Dark Blue) */
+.md-typeset h1 {
+    color: var(--gs-dark-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h1 {
+    color: var(--gs-light-blue);
+}
+
+/* H2 — section heading with a GS Green left-rule accent (green presence in
+   every article, in both schemes). */
+.md-typeset h2 {
+    padding-left: 0.6rem;
+    border-left: 4px solid var(--gs-green);
+    color: var(--gs-dark-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h2 {
+    color: rgba(230, 238, 245, 0.92);
+    border-left-color: var(--gs-green);
+}
+
+/* H3 — sub-section heading in GS Blue */
+.md-typeset h3 {
+    color: var(--gs-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h3 {
+    color: var(--gs-light-blue);
+}
+
+/* H4 — sub-sub-section heading. Material's default h4 is body-size and bold;
+   the shared rule above relaxes it to Larsseit Light, which left it lighter
+   than the body text it sits above and indistinguishable from it. Restore the
+   step with a size bump and the same GS Blue as H3, so hierarchy still comes
+   from size and colour rather than from weight. */
+.md-typeset h4 {
+    font-size: 1.1em;
+    color: var(--gs-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h4 {
+    color: var(--gs-light-blue);
+}
+
+/* ── Horizontal rule — a thin four-primary gradient divider ──────────────────
+   Turns an otherwise grey <hr> into a recurring, balanced brand element. */
+.md-typeset hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg,
+        var(--gs-dark-blue) 0%,
+        var(--gs-blue) 33%,
+        var(--gs-light-blue) 66%,
+        var(--gs-green) 100%);
+    opacity: 0.85;
+}
+
+/* ── Blockquote — GS Light Blue left rule + faint tint ───────────────────────
+   Puts the lighter blue primary to work in body content. */
+.md-typeset blockquote {
+    border-left: 3px solid var(--gs-light-blue);
+    background-color: rgba(47, 172, 223, 0.06);
+    color: inherit;
+}
+
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+    border-left-color: var(--gs-light-blue);
+    background-color: rgba(47, 172, 223, 0.08);
+}
+
+/* ── Navigation & Table of Contents typography ──────────────────────────────
+   Both the left sidebar nav and the right TOC default to near-black
+   (--md-default-fg-color, 0.87 alpha), which reads heavy. Soften them to
+   Larsseit Light in a muted, mode-adaptive tone — Material's semantic fg tokens
+   flip automatically between the light and slate schemes, so no per-scheme rules
+   are needed. Hierarchy is preserved: leaves recede, section labels sit a step
+   darker, and the current page stands out in brand blue. */
+.md-nav {
+    font-weight: 300;
+}
+
+.md-nav__link {
+    /* A tone between the muted --light (~0.54) and the near-black default
+       (~0.87). color-mix keeps it mode-adaptive: both tokens flip per scheme. */
+    color: color-mix(in srgb, var(--md-default-fg-color) 60%, var(--md-default-fg-color--light));
+    transition: color 0.15s;
+}
+
+.md-nav__link:hover,
+.md-nav__link:focus {
+    color: var(--md-accent-fg-color);
+}
+
+/* Section / group labels — a step more prominent than leaf links, but far
+   lighter than Material's default bold. */
+.md-nav__title,
+.md-nav__item--section > .md-nav__link {
+    font-weight: 400;
+    color: var(--md-default-fg-color);
+}
+
+/* Current page (left nav) and the active section (right TOC) — brand blue,
+   slightly heavier so the reader can always see where they are. */
+.md-nav__link--active,
+.md-nav__item--active > .md-nav__link {
+    color: var(--md-typeset-a-color);
+    font-weight: 400;
+}
+
+/* ── Left-nav expand/collapse toggle (desktop) ───────────────────────────────
+   A collapsible section renders as the section-name link (which navigates to
+   its landing page) plus a separate toggle whose chevron only expands/collapses
+   — it never navigates. Material tucks that chevron into a tiny 1.2rem
+   absolutely-positioned box, so the name is the only easy target. Enlarge the
+   toggle into a full-height, hover-highlighted control clearly distinct from
+   the name, so the reader can open/close any section freely without being taken
+   to a page. */
+@media screen and (min-width: 76.25em) {
+    .md-nav__container > label.md-nav__link {
+        flex: 0 0 1.9rem;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.15s, color 0.15s;
+    }
+
+    /* Free the chevron from Material's absolute placement so flexbox can centre
+       it inside the enlarged hit area. */
+    .md-nav__container > label.md-nav__link .md-nav__icon {
+        position: static;
+        top: auto;
+        right: auto;
+        left: auto;
+        margin: 0;
+    }
+
+    .md-nav__container > label.md-nav__link:hover {
+        background-color: color-mix(in srgb, var(--md-accent-fg-color) 18%, transparent);
+        color: var(--md-accent-fg-color);
+    }
+}
+
+/* Code block background → GS Light Blue -3 (light); neutral dark (dark). */
+.md-typeset pre {
+    background-color: var(--gs-light-blue-3);
+}
+
+[data-md-color-scheme="slate"] .md-typeset pre {
+    background-color: #1b232c;
+}
+
+/* Tip → GS Green */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+    border-color: #34AF7C;
+}
+
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+    background-color: #D8F9EA;
+    color: #023F79;
+}
+
+/* Note / Info → GS Light Blue */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+    border-color: #2FACDF;
+}
+
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary {
+    background-color: #D8F3FF;
+    color: #023F79;
+}
+
+/* Dark mode overrides: admonition title backgrounds are too bright on slate */
+[data-md-color-scheme="slate"] .md-typeset .tip > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .tip > summary {
+    background-color: rgba(52, 175, 124, 0.15);
+    color: var(--gs-green-2);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .note > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .note > summary {
+    background-color: rgba(47, 172, 223, 0.15);
+    color: var(--gs-light-blue);
+}
+
+/* Custom admonition: Access scope — marks behaviour that differs by access level */
+.md-typeset .admonition.access-scope,
+.md-typeset details.access-scope {
+    border-color: #34AF7C;
+}
+
+.md-typeset .access-scope > .admonition-title,
+.md-typeset .access-scope > summary {
+    background-color: rgba(52, 175, 124, .1);
+}
+
+.md-typeset .access-scope > .admonition-title::before,
+.md-typeset .access-scope > summary::before {
+    background-color: #34AF7C;
+    -webkit-mask-image: var(--md-admonition-icon--access-scope);
+            mask-image: var(--md-admonition-icon--access-scope);
+}
+
+/* ── Branded grid cards ─────────────────────────────────────────────────────
+   gs-section-cards  →  "In this section"   → GS BLUE family
+   gs-task-cards     →  "Where to go next"   → GS GREEN family
+   Splitting the two card genres between blue and green is the single biggest
+   lever for balancing the primaries: wherever cards appear, blue and green
+   appear together in equal measure. Orbs follow brand spec: coloured circles
+   with blur as decorative backgrounds.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.md-typeset .grid.cards.gs-section-cards,
+.md-typeset .grid.cards.gs-task-cards {
+    position: relative;
+}
+
+.md-typeset .grid.cards.gs-section-cards > ul,
+.md-typeset .grid.cards.gs-task-cards > ul {
+    position: relative;
+    z-index: 1;
+}
+
+/* Section cards: GS Light Blue orb top-right, GS Blue orb bottom-left */
+.md-typeset .grid.cards.gs-section-cards::before {
+    content: '';
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: rgba(47, 172, 223, 0.2);
+    filter: blur(72px);
+    top: -80px;
+    right: -60px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.md-typeset .grid.cards.gs-section-cards::after {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(4, 112, 190, 0.16);
+    filter: blur(56px);
+    bottom: -60px;
+    left: -40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Task cards: GS Green orb top-left, GS Green-2 orb bottom-right */
+.md-typeset .grid.cards.gs-task-cards::before {
+    content: '';
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: rgba(52, 175, 124, 0.22);
+    filter: blur(72px);
+    top: -80px;
+    left: -60px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.md-typeset .grid.cards.gs-task-cards::after {
+    content: '';
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(147, 216, 184, 0.22);
+    filter: blur(56px);
+    bottom: -60px;
+    right: -40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Section-card surface: GS Blue accent ── */
+.md-typeset .grid.cards.gs-section-cards > ul > li {
+    border: 1px solid rgba(4, 112, 190, 0.2);
+    border-top: 3px solid var(--gs-blue);
+    background-color: var(--gs-light-blue-3);
+    background-image: radial-gradient(circle, rgba(4, 112, 190, 0.14) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    border-radius: 4px;
+    transition: box-shadow 0.2s ease, border-top-color 0.2s ease;
+}
+
+.md-typeset .grid.cards.gs-section-cards > ul > li:hover {
+    box-shadow: 0 4px 20px rgba(4, 112, 190, 0.16);
+    border-top-color: var(--gs-light-blue);
+}
+
+/* ── Task-card surface: GS Green accent ── */
+.md-typeset .grid.cards.gs-task-cards > ul > li {
+    border: 1px solid rgba(52, 175, 124, 0.22);
+    border-top: 3px solid var(--gs-green);
+    background-color: var(--gs-green-3);
+    background-image: radial-gradient(circle, rgba(52, 175, 124, 0.14) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    border-radius: 4px;
+    transition: box-shadow 0.2s ease, border-top-color 0.2s ease;
+}
+
+.md-typeset .grid.cards.gs-task-cards > ul > li:hover {
+    box-shadow: 0 4px 20px rgba(52, 175, 124, 0.18);
+    border-top-color: var(--gs-green-2);
+}
+
+/* Card link headings — GS Dark Blue title, brand hover */
+.md-typeset .grid.cards.gs-section-cards > ul > li p:first-child a,
+.md-typeset .grid.cards.gs-task-cards > ul > li p:first-child a {
+    color: var(--gs-dark-blue);
+    font-family: 'Larsseit', sans-serif;
+    font-weight: 500;
+}
+
+.md-typeset .grid.cards.gs-section-cards > ul > li p:first-child a:hover {
+    color: var(--gs-blue);
+    text-decoration: none;
+}
+
+.md-typeset .grid.cards.gs-task-cards > ul > li p:first-child a:hover {
+    color: var(--gs-green);
+    text-decoration: none;
+}
+
+/* ── Card dark mode ── */
+[data-md-color-scheme="slate"] .md-typeset .grid.cards.gs-section-cards > ul > li {
+    background-color: rgba(47, 172, 223, 0.06);
+    background-image: radial-gradient(circle, rgba(47, 172, 223, 0.18) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    border-color: rgba(47, 172, 223, 0.22);
+    border-top-color: var(--gs-light-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards.gs-task-cards > ul > li {
+    background-color: rgba(52, 175, 124, 0.07);
+    background-image: radial-gradient(circle, rgba(52, 175, 124, 0.20) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+    border-color: rgba(52, 175, 124, 0.24);
+    border-top-color: var(--gs-green);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards.gs-section-cards > ul > li p:first-child a {
+    color: var(--gs-light-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards.gs-task-cards > ul > li p:first-child a {
+    color: var(--gs-green-2);
+}
+
+/* Custom admonition: Owner only — marks actions restricted to study owners */
+.md-typeset .admonition.owner-only,
+.md-typeset details.owner-only {
+    border-color: #023F79;
+}
+
+.md-typeset .owner-only > .admonition-title,
+.md-typeset .owner-only > summary {
+    background-color: rgba(2, 63, 121, .1);
+}
+
+.md-typeset .owner-only > .admonition-title::before,
+.md-typeset .owner-only > summary::before {
+    background-color: #023F79;
+    -webkit-mask-image: var(--md-admonition-icon--owner-only);
+            mask-image: var(--md-admonition-icon--owner-only);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .owner-only > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .owner-only > summary {
+    background-color: rgba(47, 172, 223, 0.12);
+}
+
+/* Custom admonition: variant — data model variant blocks */
+.md-typeset .admonition.variant,
+.md-typeset details.variant {
+    border-color: #0470BE;
+}
+
+.md-typeset .variant > .admonition-title,
+.md-typeset .variant > summary {
+    background-color: rgba(4, 112, 190, 0.1);
+    color: #023F79;
+}
+
+.md-typeset .variant > .admonition-title::before,
+.md-typeset .variant > summary::before {
+    background-color: #0470BE;
+    -webkit-mask-image: var(--md-admonition-icon--variant);
+            mask-image: var(--md-admonition-icon--variant);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .variant > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .variant > summary {
+    background-color: rgba(4, 112, 190, 0.15);
+    color: var(--gs-light-blue);
+}
+
+/* ── Subtle Genestack attribution in the footer ─────────────────────────────
+   CSS-relative url() resolves at any page depth and under mike version
+   prefixes (it is relative to this stylesheet, not to the page). */
+.md-copyright::before {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 28px;
+    margin: 0 0 0.4rem;
+    background: url('../assets/brand/GS-1.png') left center / contain no-repeat;
+    opacity: 0.9;
+}
+
+/* ── Footer — two-tone: upper matches the HEADER, bottom is deep navy ─────────
+   Upper (.md-footer, including the prev/next nav) mirrors each scheme's header:
+   solid GS Blue in light, solid GS Dark Blue in dark. A thin green top-rule
+   mirrors the header's accent stripe. The meta bar (.md-footer-meta) uses the
+   deep near-black navy (#0b1017) as the darkest anchor at the foot of the page. */
+.md-footer {
+    border-top: 3px solid var(--gs-green);
+}
+
+[data-md-color-scheme="default"] .md-footer {
+    background-color: var(--gs-blue);
+}
+
+[data-md-color-scheme="slate"] .md-footer {
+    background-color: var(--gs-dark-blue);
+}
+
+.md-footer-meta {
+    background-color: #0b1017;
+}
+
+/* ── Table headers: GS Light Blue tint ──────────────────────────────────────
+   Puts the lighter primary to work so tables aren't yet another medium-blue. */
+[data-md-color-scheme="default"] .md-typeset table:not([class]) th {
+    background-color: var(--gs-light-blue-3);
+    color: var(--gs-dark-blue);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+    background-color: rgba(47, 172, 223, 0.14);
+    color: var(--gs-light-blue);
+}
+
+/* ── Key columns: one line per key ──────────────────────────────────────────
+   Reference tables lead with a single code token (a JSON key, a field name, an
+   endpoint path). Wrapping it mid-name is unreadable, so hold it on one line
+   and let the column claim the width it needs; the description column takes
+   what is left and wraps there instead. Markdown has no column-width syntax,
+   so this is the only place the behaviour can live. On a narrow viewport a
+   long path scrolls inside Material's table wrapper rather than breaking. */
+.md-typeset table:not([class]) td:first-child > code:only-child {
+    white-space: nowrap;
+}
+
+/* ── Grouped tables: one label per category ─────────────────────────────────
+   The event-type summary merges its first column with rowspan so the rows of a
+   category read as one block. Markdown tables cannot express a merged cell, so
+   that table is written as HTML with <th scope="rowgroup"> labels.
+   The label sits centred in the block it covers and keeps its brand colour, but
+   drops the header fill: a tinted first column runs straight into the tinted
+   header row and the two read as one L-shaped block. A vertical rule fences the
+   label column instead, and each group boundary is ruled harder than the row
+   lines inside it, so the blocks separate. */
+.md-typeset table:not([class]) tbody th[scope="rowgroup"] {
+    background-color: transparent;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    border-right: .05rem solid var(--gs-light-blue);
+}
+
+/* The fence has to carry on through the header cell, or the label column reads
+   as half drawn. :has() keeps that to grouped tables and leaves every ordinary
+   table's header untouched. */
+.md-typeset table:not([class]):has(th[scope="rowgroup"]) thead th:first-child {
+    border-right: .05rem solid var(--gs-light-blue);
+}
+
+.md-typeset table:not([class]) tbody + tbody > tr:first-child > * {
+    border-top: .1rem solid var(--gs-light-blue);
+}
+
+/* ── Mermaid diagrams: the boxes read the same in both schemes ───────────────
+   Material renders every mermaid diagram inside a CLOSED shadow root, so no
+   selector in this file can reach the SVG. The only lever that crosses the
+   boundary is the set of custom properties Material feeds into its mermaid
+   themeCSS (custom properties inherit into shadow trees), and by default they
+   follow the active scheme: label text is --md-code-fg-color, near black in
+   light mode and near white in dark mode. That is why per-node `color:` values
+   set with classDef appear to be ignored — Material's `.nodeLabel p { color: … }`
+   rule paints the label paragraph directly, over the inherited value.
+
+   Label colour is therefore one global value, which is why every node fill in
+   the diagram sources is a light brand tint: GS Dark Blue text on those tints
+   reads identically in light and dark mode, so the boxes never change. The
+   diagram itself keeps the page background — no plate, no card — and only the
+   connectors follow the scheme, since GS Blue lines vanish against the dark
+   canvas. Edge labels, which float outside any node, carry their own light chip
+   so their text stays readable either way. */
+.md-typeset .mermaid {
+    /* Node and label text — identical in light and dark. */
+    --md-mermaid-label-fg-color: var(--gs-dark-blue);
+    --md-mermaid-label-bg-color: #ffffff;
+    /* Defaults for nodes that carry no classDef of their own. */
+    --md-mermaid-node-bg-color:  var(--gs-light-blue-3);
+    --md-mermaid-node-fg-color:  var(--gs-blue);
+    /* Connectors: the one thing that adapts (see the slate override below). */
+    --md-mermaid-edge-color:     var(--gs-blue);
+
+    overflow-x: auto;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .mermaid {
+    --md-mermaid-edge-color: var(--gs-light-blue);
+}
