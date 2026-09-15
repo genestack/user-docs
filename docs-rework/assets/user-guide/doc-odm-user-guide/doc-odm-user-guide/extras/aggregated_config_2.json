@@ -20,6 +20,7 @@
           "insulin_content",
           "glucose_SI"
         ],
+        "copy_columns_map": null,
         "columns_renaming_map": {
           "sex_ontology_term_id": "Donor Sex Term ID",
           "development_stage_ontology_term_id": "Developmental Stage Term ID",
@@ -38,6 +39,7 @@
         "columns_to_export": [
           "assay_ontology_term_id"
         ],
+        "copy_columns_map": null,
         "columns_renaming_map": {
           "assay_ontology_term_id": "Assay Type Term ID"
         },
@@ -59,6 +61,7 @@
         "is_primary_data",
         "tissue_ontology_term_id"
       ],
+      "copy_columns_map": null,
       "columns_renaming_map": {
           "_index": "barcode",
           "sample": "batch",
@@ -80,6 +83,7 @@
       "columns_to_drop": [
         "feature_biotype"
       ],
+      "copy_columns_map": null,
       "columns_renaming_map": {
         "ensembl_ID": "geneId",
         "human_ensembl_ID": "human_ensembl_id",

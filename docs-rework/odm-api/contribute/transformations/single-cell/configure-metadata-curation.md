@@ -9,7 +9,7 @@ This guide explains how to apply curation operations to cell metadata, feature m
 
 ## Where these operations apply
 
-Curation operations are available in the `cell_metadata`, `feature_metadata`, and per-entity settings within `biosample_metadata`. They are applied in the order listed below.
+Curation operations are available in the `cell_metadata`, `feature_metadata`, and per-entity settings within `biosample_metadata`. They are applied in the order listed below. When a configuration extracts a matrix whose features come from a different source, such as `.raw`, the `feature_metadata` operations are configured per source, so each feature table can carry its own rules. See [Configuration reference](configuration-reference.md#configuring-features-per-matrix-source).
 
 ## Order of operations
 
@@ -21,7 +21,21 @@ Remove columns before any other processing:
 "columns_to_drop": ["taxon", "organism_id"]
 ```
 
-### 2. Rename columns
+### 2. Copy columns
+
+Duplicate a column's values into another column:
+
+```json
+"copy_columns_map": {
+  "sample_id": "batch"
+}
+```
+
+The destination may be a new column or an existing one; an existing column is overwritten. Because copying happens before renaming, a column can be copied and then the original and the copy renamed independently.
+
+A source column that is not present is skipped, and a warning is logged. Copying a column onto itself is skipped in the same way.
+
+### 3. Rename columns
 
 Map source column names to new names:
 
@@ -32,7 +46,7 @@ Map source column names to new names:
 }
 ```
 
-### 3. Replace specific values
+### 4. Replace specific values
 
 Replace known values within a column:
 
@@ -44,7 +58,7 @@ Replace known values within a column:
 }
 ```
 
-### 4. Fill missing values
+### 5. Fill missing values
 
 Provide a default value for missing entries:
 
@@ -54,7 +68,7 @@ Provide a default value for missing entries:
 }
 ```
 
-### 5. Set a constant value for all rows
+### 6. Set a constant value for all rows
 
 Set all rows in a column to the same value. This can add new columns or overwrite existing ones:
 

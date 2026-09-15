@@ -17,6 +17,7 @@
           "self_reported_ethnicity_ontology_term_id",
           "tissue_type"
         ],
+        "copy_columns_map": null,
         "columns_renaming_map": {
           "Condition": "Condition Group",
           "self_reported_ethnicity_ontology_term_id": "Donor Ethnicity Term ID",
@@ -39,6 +40,7 @@
         "template_id": null,
         "linking_group": null,
         "columns_to_export": null,
+        "copy_columns_map": null,
         "columns_to_fill_missing_values": null,
         "columns_to_curate_values": null
       }
@@ -62,6 +64,7 @@
         "disease_ontology_term_id",
         "tissue_ontology_term_id"
       ],
+      "copy_columns_map": null,
       "columns_renaming_map": {
           "_index": "barcode",
           "sample_id": "batch",
@@ -93,6 +96,7 @@
         "varp": "pairwise"
       },
       "columns_to_drop": null,
+      "copy_columns_map": null,
       "columns_renaming_map": {
         "_index": "gene"
       },

@@ -20,6 +20,7 @@
         "biosample_id",
         "lvef"
       ],
+      "copy_columns_map": null,
       "columns_renaming_map": {
           "index": "barcode",
           "_index": "barcode",
@@ -54,6 +55,7 @@
         "feature_types",
         "genome"
       ],
+      "copy_columns_map": null,
       "columns_renaming_map": {
         "_index": "gene",
         "index": "gene",

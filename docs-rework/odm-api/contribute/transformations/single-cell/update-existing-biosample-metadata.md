@@ -9,7 +9,7 @@ This guide explains how to enrich existing Sample, Library, or Preparation (SLP)
 
 ## When to use this
 
-Use this guide when SLP groups already exist in ODM but are missing attributes that are present in the cell metadata of your HDF5 file.
+Use this guide when SLP groups already exist in ODM but are missing **attributes** or **values** that are present in the cell metadata of your HDF5 file.
 
 If no SLP groups exist yet, see [Create Sample, Library, or Preparation groups from an H5AD file](create-sample-library-preparation-groups.md) instead.
 
@@ -42,7 +42,15 @@ Configure `biosample_metadata` with `columns_to_export` for the target entity. D
 
 ## Matching behaviour
 
-The transformation matches extracted rows to existing ODM objects using the entity ID column (Sample Source ID, Library ID, or Preparation ID). Only attributes that do not already exist in the ODM metadata are added. If any extracted ID does not match an existing ODM object, the transformation raises an error.
+The transformation matches extracted rows to existing ODM objects using the entity ID column (Sample Source ID, Library ID, or Preparation ID). For each exported column, on objects that match:
+
+| Situation in ODM | What happens |
+|---|---|
+| Attribute does not exist | It is **added** from the HDF5-derived table. |
+| Attribute exists but some values are missing (`null` or empty) | Missing cells are **filled** from the HDF5-derived table. Existing non-empty values are left unchanged. |
+| Attribute exists and is fully populated | It is **not** updated, even if the HDF5 file has different values. |
+
+If some extracted IDs do not match existing ODM objects, those rows are skipped and a warning is written to the job log. Matched objects are still updated. If **none** of the extracted IDs match, the update is skipped with a warning.
 
 ## Recommendation
 

@@ -40,6 +40,7 @@ Look for:
 
 - **Configuration validation errors:** invalid field values or missing required keys.
 - **File structure report:** which metadata keys (`obs`, `var`, `obsm`, etc.) are present in your file. See [Transformation process reference](transformation-process-reference.md#15-file-structure-inspection).
+- **Matrix validation:** whether each configured matrix exists in the file, whether its counts agree with the extracted metadata, and whether its feature source is configured. These checks run during a dry run, so a clean dry run means the configuration is sound before any data is written.
 - **Linking validation warnings:** whether all cell `batch` values map to existing SLP objects. See [Transformation process reference](transformation-process-reference.md#41-dry-run-exit).
 - **Curation warnings:** columns flagged for automatic renaming or data type conversion.
 

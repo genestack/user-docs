@@ -16,6 +16,7 @@
           "Fetus_id", 
           "Development_day"
         ],
+        "copy_columns_map": null,
         "columns_renaming_map": {
           "Fetus_id": "Donor ID",
           "Development_day": "Donor Age"
@@ -30,6 +31,7 @@
         "columns_to_export": [
           "Assay"
         ],
+        "copy_columns_map": null,
         "columns_renaming_map": {
           "Assay": "Assay Type"
         },
@@ -51,6 +53,7 @@
         "Batch",
         "Experiment_batch"
       ],
+      "copy_columns_map": null,
       "columns_renaming_map": {
         "_index": "barcode",
         "RT_group": "batch",
@@ -86,6 +89,7 @@
         "varp": "pairwise"
       },
       "columns_to_drop": null,
+      "copy_columns_map": null,
       "columns_renaming_map": {
         "_index": "geneId",
         "gene_short_name": "gene"

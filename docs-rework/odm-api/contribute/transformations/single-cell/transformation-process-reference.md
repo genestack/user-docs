@@ -23,6 +23,8 @@ For all remaining sections, validation errors are accumulated and reported toget
 
 Per-section validation covers: presence of required keys, data type correctness, key-value correctness for `metadata_keys` entries. `biosample_metadata` validation ensures that `library` and `preparation` are not both configured for simultaneous update. `cell_expression` validation resolves `number_format` to a dtype stored for downstream use. Unrecognised keys are logged as warnings and ignored.
 
+The matrices named in `cell_expression` are checked against the file before any matrix data is read: that each named matrix exists, that its cell and feature counts agree with the extracted metadata, that its feature source is configured, that its number format suits the values it holds, and that the projected output fits the available disk space. This validation also runs during a dry run.
+
 ### 1.2 Attachment and study metadata retrieval
 
 The pipeline retrieves the accession and metadata of the input HDF5 attachment from ODM to determine the name to assign to the processed data objects and the study accession to which the resulting Cell Group and Expression Group will be associated.
@@ -91,6 +93,8 @@ The pipeline opens the H5AD file and reads groups specified in `metadata_keys`:
 - Embeddings (`"embedding"`) are read as multidimensional arrays, serialised as comma-separated strings, and added as columns.
 - Pairwise data (`"pairwise"`) is read as pairwise matrices; for each matrix, the row mean is calculated and added as a column.
 
+Feature metadata is extracted once per feature source in use, producing one table per source: `X` and every `.layers` matrix share one, while a matrix held elsewhere in the file (`.raw`, for example) has its own. A configured source that no extracted matrix uses is skipped, and a warning is logged.
+
 ### 2.4 Index handling and sanity checks
 
 - If the DataFrame is empty with neither columns nor an index, an error is raised.
@@ -105,10 +109,11 @@ The pipeline opens the H5AD file and reads groups specified in `metadata_keys`:
 The following transformations are applied in order:
 
 1. Drop columns (`columns_to_drop`)
-2. Rename columns (`columns_renaming_map`)
-3. Curate values (`columns_to_curate_values`)
-4. Fill missing values (`columns_to_fill_missing_values`)
-5. Set constant values (`set_column_value`)
+2. Copy columns (`copy_columns_map`)
+3. Rename columns (`columns_renaming_map`)
+4. Curate values (`columns_to_curate_values`)
+5. Fill missing values (`columns_to_fill_missing_values`)
+6. Set constant values (`set_column_value`)
 
 After explicit column operations, attribute name standardisation is applied: column names are mapped to ODM canonical names where a mapping exists; non-standard names are converted to camelCase. Columns in `columns_to_preserve_name` are exempt. For the full mapping list, see [Attribute Mapping Reference](attribute-mapping-reference.md).
 
@@ -131,15 +136,15 @@ The processed metadata DataFrame is written to the temporary directory as a TSV 
 
 ### 3.1 Configuration and input validation
 
-The pipeline reads expression parameters: `data_class`, `compression_level`, `chunk_size`, `max_buffer_size`, and `number_format`. Parameters not specified in the configuration are inferred from the data or set to sensible defaults.
+The pipeline reads expression parameters (`data_class`, `compression_level`, `chunk_size`, `max_buffer_size` and `number_format`) for each matrix being extracted, taking each value from that matrix's own block where present and from the top level of `cell_expression` otherwise. Parameters given in neither are inferred from the data or set to sensible defaults.
 
 ### 3.2 Expression matrix reading and validation
 
-The cell expression matrix is read from the HDF5 file. The pipeline validates that the matrix shape matches the number of cells and features determined in Stage 2.
+Each configured matrix is read from the HDF5 file. The pipeline validates that a matrix's shape matches the number of cells in the cell metadata and the number of features in the feature table of its own source.
 
 ### 3.3 Expression data writing
 
-The expression data, enriched with feature metadata according to the configuration, is written to a Brotli-compressed file (`.br`) in the temporary directory.
+Each matrix, enriched with the feature metadata of its source, is written to its own Brotli-compressed file (`.br`) in the temporary directory, named after the matrix it holds.
 
 ### 3.4 Expression metadata reading and writing
 
@@ -154,6 +159,9 @@ The following statistics are always computed and appended regardless of the `sou
 5. Source File Accession
 6. Source File Name
 7. Transformation Job ID
+8. Source Expression Matrix
+
+`Source Expression Matrix` records which matrix in the source file the group came from: `X`, `raw`, or a layer such as `layers/lognorm`. The value is the matrix's canonical name, so it does not depend on how the configuration key was written.
 
 ---
 
@@ -186,4 +194,4 @@ The transformed cell metadata TSV is uploaded as a new Cell Group, linked to the
 
 #### 4.2.3 Expression Group upload
 
-The Brotli-compressed expression file and its metadata file are uploaded to create a new Expression Group, linked to the newly created Cell Group.
+The Brotli-compressed expression file and its metadata file are uploaded to create a new Expression Group, linked to the newly created Cell Group. One Expression Group is created per extracted matrix. Currently a Cell Group can be linked to a single Expression Group, which is why a configuration naming several matrices is rejected during validation.

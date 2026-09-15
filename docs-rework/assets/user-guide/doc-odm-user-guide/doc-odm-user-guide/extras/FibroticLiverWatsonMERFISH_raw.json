@@ -1,0 +1,78 @@
+{
+  "name": "FibroticLiverWatsonMERFISH_raw.json",
+  "description": "Config to transform FibroticLiverWatsonMERFISH extracting raw matrix",
+  "data": {
+    "file_type": "h5ad",
+    "biosample_metadata": null,
+    "cell_metadata": {
+      "metadata_keys": {
+        "obs": "metadata",
+        "obsm": "embedding",
+        "obsp": "pairwise"
+      },
+      "linking_group": null,
+      "columns_to_drop": [
+        "Sex",
+        "Age",
+        "batch",
+        "organism_ontology_term_id",
+        "donor_id",
+        "development_stage_ontology_term_id",
+        "sex_ontology_term_id",
+        "disease_ontology_term_id",
+        "tissue_ontology_term_id"
+      ],
+      "columns_renaming_map": {
+          "_index": "barcode",
+          "sample_id": "batch",
+          "log10GenesPerUMI_injured": "log10_genes_per_umi_injured",
+          "CellType_injured": "cell_type_injured",
+          "log10GenesPerUMI_healthy": "log10_genes_per_umi_healthy",
+          "CellType_healthy": "cell_type_healthy",
+          "cell_type_ontology_term_id": "cell_type"
+      },
+      "columns_to_fill_missing_values": null,
+      "columns_to_curate_values": {
+        "batch": {
+          "AM031": "Liver-32",
+          "AM042": "Liver-13",
+          "AM048": "Liver-14",
+          "AM061": "Liver-18",
+          "AM062": "Liver-33",
+          "AM072": "Liver-34"
+        }
+      },
+      "set_column_value": null,
+      "columns_to_preserve_name": null,
+      "add_qc_metrics": true
+    },
+    "feature_metadata": {
+      "/raw": {
+        "metadata_keys": {
+          "var": "metadata"
+        },
+        "columns_renaming_map": {
+          "_index": "gene"
+        },
+        "columns_to_fill_missing_values": null,
+        "columns_to_curate_values": null,
+        "set_column_value": null,
+        "columns_to_preserve_name": null,
+        "map_gene_ids_to_names": false
+      }
+    },
+    "cell_expression": {
+      "/raw/X": {
+        "data_class": "Single-cell transcriptomics",
+        "compression_level": null,
+        "chunk_size": null,
+        "max_buffer_size": null,
+        "number_format": null,
+        "columns_to_drop": null,
+        "columns_renaming_map": null,
+        "set_column_value": null,
+        "source_file_metadata": true
+      }
+    }
+  }
+}

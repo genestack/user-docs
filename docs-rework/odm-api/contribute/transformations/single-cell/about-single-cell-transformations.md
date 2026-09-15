@@ -27,9 +27,9 @@ The transformation extracts three types of data from an HDF5 source file.
 
 **Cell metadata** is extracted primarily from `obs` in H5AD input (or the equivalent in 10x H5). This includes per-cell annotations such as barcodes, cluster assignments, and quality control metrics. Multidimensional representations from `obsm` (PCA, UMAP coordinates) and pairwise cell annotations from `obsp` can also be extracted.
 
-**Feature metadata** is extracted from `var`, and optionally from `varm` and `varp`. This includes per-gene annotations such as gene identifiers and gene names.
+**Feature metadata** is extracted from `var`, and optionally from `varm` and `varp`. This includes per-gene annotations such as gene identifiers and gene names. A file can hold more than one feature table, and each extracted matrix takes its features from the source that holds it: root-level `X` and the matrices in `.layers` share one table, while the matrix in `.raw` has its own, typically with more features.
 
-**The expression matrix** is extracted from `X`, which contains count or normalised expression values. The transformation validates that the number of features in the matrix matches the extracted feature metadata, then writes the matrix in a Brotli-compressed format optimised for ODM ingestion.
+**The expression matrix** is extracted from root-level `X` by default, which contains count or normalised expression values. A configuration can instead name another matrix in the file, such as one of the alternative normalisations in `.layers` or the pre-filtering matrix in `.raw`. The transformation validates that the number of features in the matrix matches its feature metadata, then writes the matrix in a Brotli-compressed format optimised for ODM ingestion. Each Expression Group records which matrix it came from.
 
 ## The role of metadata curation
 

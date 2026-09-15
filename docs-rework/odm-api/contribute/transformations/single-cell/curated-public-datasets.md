@@ -23,6 +23,8 @@ For what the configuration fields mean, see the [Configuration reference](config
 
 Several datasets share an aggregated configuration. Each dataset's own section repeats the configuration that applies to it.
 
+A dataset may appear more than once when more than one configuration has been prepared for it. `FibroticLiverWatsonMERFISH` has two: `aggregated_config_3`, which extracts the default `X` matrix, and `FibroticLiverWatsonMERFISH_raw`, which extracts expression from `.raw` instead. Pick the one that matches the matrix you want. See [Configuration reference](configuration-reference.md#extracting-a-matrix-other-than-default-x) for how a configuration names a matrix.
+
 | Configuration | Datasets |
 |---|---|
 | [`aggregated_config_1`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json) | HeartDiversityTucker10x · SCP1303 · GSE192740_human · GSE192740_mouse · GSE292928 · GSE148434 |
@@ -30,6 +32,7 @@ Several datasets share an aggregated configuration. Each dataset's own section r
 | [`aggregated_config_3`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json) | GSE148073 · FibroticLiverWatsonMERFISH |
 | [`GSE156793`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE156793.json) | GSE156793 |
 | [`GSE165045`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/GSE165045.json) | GSE165045 |
+| [`FibroticLiverWatsonMERFISH_raw`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/FibroticLiverWatsonMERFISH_raw.json) | FibroticLiverWatsonMERFISH (extracts features and expression matrix from `.raw`) |
 
 ---
 
@@ -96,6 +99,8 @@ odm-import-data \
 ## FibroticLiverWatsonMERFISH
 
 **Configuration:** [`aggregated_config_3`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json)
+
+**Alternative configuration:** [`FibroticLiverWatsonMERFISH_raw`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/FibroticLiverWatsonMERFISH_raw.json), which extracts the `.raw` expression matrix instead of default `X`. Same import command; run one configuration or the other.
 
 ```bash
 odm-import-data \
