@@ -1,0 +1,156 @@
+---
+diataxis: how-to
+tab: odm-api
+---
+
+# How to manage transformation configurations
+
+This guide shows you how to develop a transformation configuration and iterate on it until it produces the results you want. A configuration is a reusable, versioned JSON document that tells an image how to process your input. The workflow below takes you from a first draft, through dry-run testing, to a validated configuration you can run against your data and reuse across jobs.
+
+For the full field-by-field schema of every configuration endpoint, see the [API reference](/swagger/?urls.primaryName=processorsController).
+
+## Prerequisites
+
+- An API token. See [Authentication and tokens](../../getting-started/authentication-and-tokens.md).
+- Curator group membership.
+
+## The iteration loop
+
+Developing a configuration is a loop. You create a first draft, submit it as a dry-run job, review the logs, and update the configuration based on the results, repeating until the dry run completes without issues and produces the output you expect. Only then you submit a full run. Once the configuration is working, you can reuse it for any input file with the same structure.
+
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontFamily": "Source Sans Pro, -apple-system, Segoe UI, sans-serif", "lineColor": "#0470BE"}}}%%
+flowchart TD
+    A[Create configuration] --> B[Submit dry-run job]
+    B --> C[Review logs]
+    C --> D{Issues that<br/>need action?}
+    D -->|Yes| E[Update configuration<br/>PUT → new version]
+    E --> B
+    D -->|No| F[Submit full run<br/>dry_run: false]
+    F --> G([Validated configuration<br/>reuse across input files])
+
+    classDef step fill:#D8F3FF,stroke:#0470BE,stroke-width:2px,color:#023F79;
+    classDef decision fill:#B7EAFF,stroke:#2FACDF,stroke-width:2px,color:#023F79;
+    classDef success fill:#D8F9EA,stroke:#34AF7C,stroke-width:2px,color:#023F79;
+
+    class A,B,C,E step;
+    class D decision;
+    class F,G success;
+```
+
+Each step in the loop maps to an endpoint, covered in the sections below. The dry-run and full-run steps rely on the job-submission workflow described in [How to run a transformation](how-to-run-a-transformation.md).
+
+## Create a first draft
+
+Create a configuration with:
+
+```text
+POST /api/v1/transformations/configurations
+```
+
+The request body requires `data`: the image-specific processing specification. `name` and `description` are optional but recommended, since the list and get responses surface them so you can identify the configuration later.
+
+What goes in `data` depends on the image you are configuring. Start with a first draft like this:
+
+```json
+{
+  "name": "my single-cell config",
+  "description": "H5AD ingestion for study XYZ",
+  "data": {
+    "file_type": "h5ad",
+    "cell_metadata": {
+      "metadata_keys": {
+        "obs": "metadata",
+        "obsm": "embedding"
+      }
+    },
+    "feature_metadata": {
+      "metadata_keys": {
+        "var": "metadata"
+      }
+    },
+    "cell_expression": {
+      "data_class": "Single-cell transcriptomics"
+    }
+  }
+}
+```
+
+The response is the configuration reference, its server-assigned `id` and the `version` (`1` for a newly created configuration):
+
+```json
+{
+  "id": 147,
+  "version": 1
+}
+```
+
+Keep that `id`: you use it to retrieve, update, and reference the configuration in job submissions. For the full `data` field schema, see the [Configuration Reference](single-cell/configuration-reference.md).
+
+## Submit a dry run and review the logs
+
+Submit a dry-run job referencing this configuration against your input file, then review the logs to verify it behaves as expected, without writing any data to ODM. The job-submission and log-retrieval endpoints are covered in [How to run a transformation](how-to-run-a-transformation.md).
+
+## Update and repeat
+
+When the logs show something to fix, update the configuration:
+
+```text
+PUT /api/v1/transformations/configurations/{id}
+```
+
+The request body follows the same structure as the `POST` endpoint. Updating does not overwrite the configuration: the current state is saved as a previous version and the active version is incremented. The same `id` is reused across all iterations, and any version can be referenced in a job - by default the latest is used.
+
+You cannot update a configuration once it has been archived: `PUT` on an archived configuration returns `409 Conflict`. To change it, create a new configuration instead (see [Archive a configuration](#archive-a-configuration)).
+
+Resubmit the dry-run job with the updated configuration and review the logs again. Repeat until the dry run completes without issues and produces the output you expect, then submit the full run.
+
+## Review your configurations
+
+At any point you can inspect all available configurations. To list them:
+
+```text
+GET /api/v1/transformations/configurations
+```
+
+The response is a paginated envelope: the configurations are in the `items` array, and `limit`/`offset` query parameters page through the results (default 100 per page). Results are ordered by `id`. By default the list returns only active configurations; to include archived ones as well, set the `include_archived` query parameter to `true` (see [Archive a configuration](#archive-a-configuration)). The list returns the latest version of each configuration, including its full `data`, so you can review the current state of each one without a second request.
+
+To retrieve a single configuration by its `id`:
+
+```text
+GET /api/v1/transformations/configurations/{id}
+```
+
+This returns the latest version of that configuration as a single object, with the same fields as a list item.
+
+To work with the version history (for example, to compare against or re-run an earlier iteration), list the versions and then retrieve a specific one:
+
+```text
+GET /api/v1/transformations/configurations/{id}/versions
+GET /api/v1/transformations/configurations/{id}/versions/{version}
+```
+
+The versions are returned in the `items` array of a paginated envelope. For the field-by-field schema of these and every other configuration endpoint, see the [API reference](/swagger/?urls.primaryName=processorsController).
+
+## Reuse a working configuration
+
+Once you have validated a configuration through dry-run testing, it becomes the foundation of your ingestion pipeline: the same configuration can be applied to any number of input files that share the same structure or come from the same source, without any further setup. This makes it straightforward to automate ingestion, for example, to process a batch of files or integrate transformation jobs into a recurring pipeline.
+
+## Archive a configuration
+
+Configurations are never deleted. When you no longer need one, you archive it:
+
+```text
+POST /api/v1/transformations/configurations/{id}/archive
+```
+
+Archiving applies to the configuration and all of its versions at once. Returns 404 Not Found for an unknown id. If the configuration is already archived, the request returns 409 Conflict with the message: "The configuration {id} is already archived, so it cannot be archived again."
+
+Archiving is a soft retirement, not a deletion:
+
+- **Hidden from the default listing.** `GET /api/v1/transformations/configurations` no longer returns the configuration unless you pass `include_archived=true`.
+- **Still retrievable by `id`.** Fetching a configuration or a specific version by its `id` still works, with no filter needed.
+- **Still usable in jobs.** You can still submit a job that references an archived configuration.
+- **No longer updatable.** `PUT` on an archived configuration returns `409 Conflict`: *"Configuration is archived and cannot be updated. Create a new configuration instead."*
+
+Archiving is one-way: there is no un-archive or delete operation. To resume work from an archived configuration, retrieve it by `id` and create a new configuration from its `data`.

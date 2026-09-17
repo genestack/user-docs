@@ -1,0 +1,7 @@
+Name	Preparation ID	Sample Source ID	Chromatography	Derivatization	Digestion	Experiment Site	Experiment Instrument	Experiment Type	Quantitation Method	Quantification Method	PX Sample Preparation Protocol	Scope
+HeLa_Control_RNA_Prep_Rep1	PREP-001	SMPL-001				Genestack Research Lab	Agilent Bioanalyzer 2100	RNA Extraction		Fluorometric		Mechanistic
+HeLa_Control_RNA_Prep_Rep2	PREP-002	SMPL-002				Genestack Research Lab	Agilent Bioanalyzer 2100	RNA Extraction		Spectrophotometric		Mechanistic
+HeLa_Control_RNA_Prep_Rep3	PREP-003	SMPL-003				Genestack Research Lab	Agilent Bioanalyzer 2100	RNA Extraction		Colorimetric		Mechanistic
+HeLa_Doxo_RNA_Prep_Rep1	PREP-004	SMPL-004				Genestack Research Lab	Agilent Bioanalyzer 2100	RNA Extraction		Fluorometric		Mechanistic
+HeLa_Doxo_RNA_Prep_Rep2	PREP-005	SMPL-005				Genestack Research Lab	Agilent Bioanalyzer 2100	RNA Extraction		Spectrophotometric		Mechanistic
+HeLa_Doxo_RNA_Prep_Rep3	PREP-006	SMPL-006				Genestack Research Lab	Agilent Bioanalyzer 2100	RNA Extraction		Fluorometric		Mechanistic

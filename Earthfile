@@ -24,7 +24,7 @@ build:
         --secret NEXUS_PASSWORD \
             ./collect-deps.sh
 
-    COPY --dir docs mkdocs.yml .
+    COPY --dir docs-rework mkdocs.yml .
     RUN mkdocs build
 
     SAVE ARTIFACT site
