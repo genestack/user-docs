@@ -175,28 +175,56 @@
     z-index: 5;
 }
 
-/* ── Search field — a borderless darkened "well" in the header band ──────────
-   A subtly darkened translucent fill sets the field apart from the coloured
-   header with no outline at all; hover and focus simply deepen the fill for
-   feedback. White text / placeholder / icons stay legible (AA in both schemes). */
+/* `.md-search__inner` carries z-index 2, which makes it a stacking context, so
+   the results panel inside it (z-index 1) can never rise above the stripe at 5
+   no matter what it is set to. Lift the whole search cluster past the stripe
+   instead, so the dropdown is not sliced by it. */
+.md-search__inner {
+    z-index: 6;
+}
+
+/* ── Search field — a GS Light Blue tint in the header band ──────────────────
+   Material already fills the form with black at 26%; the fill used to be laid
+   on the input as a further 16% black, and the two together over the primary
+   blue header are what made the field read grey. The tint is now GS Light Blue
+   (#2FACDF), a secondary brand colour, so the field separates from the header
+   without losing its colour, and hover deepens it. The field stays outline-free
+   in every state. */
+.md-search__form {
+    background-color: rgba(47, 172, 223, 0.22);
+    transition: background-color 0.2s, color 0.25s;
+}
+
+.md-search__form:hover {
+    background-color: rgba(47, 172, 223, 0.34);
+}
+
 .md-search__input {
-    background-color: rgba(0, 0, 0, 0.16);
+    background-color: transparent;
     color: #ffffff;
     box-shadow: none;
-    transition: background-color 0.2s;
-}
-
-.md-search__input:hover {
-    background-color: rgba(0, 0, 0, 0.24);
-}
-
-.md-search__input:focus {
-    background-color: rgba(0, 0, 0, 0.32);
-    color: #ffffff;
 }
 
 .md-search__input::placeholder {
     color: rgba(255, 255, 255, 0.72);
+}
+
+/* With the dropdown open, Material turns the form into the top edge of the
+   results card and switches it to the default surface, keeping its own soft
+   shadow. Keep that, so the field and the results read as one card. Text and
+   placeholder follow the surface rather than staying white, which is what
+   previously left a grey pill sitting inside a white field. */
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+    background-color: var(--md-default-bg-color);
+    color: var(--md-default-fg-color);
+}
+
+[data-md-toggle="search"]:checked ~ .md-header .md-search__input {
+    color: var(--md-default-fg-color);
+}
+
+[data-md-toggle="search"]:checked ~ .md-header .md-search__input::placeholder {
+    color: var(--md-default-fg-color--light);
 }
 
 /* Magnifier + clear icons in white to match the field's text. Material tints
