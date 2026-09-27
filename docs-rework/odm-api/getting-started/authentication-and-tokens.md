@@ -18,7 +18,7 @@ Every ODM API request requires an authorisation token. The token determines whic
 
 ### Token capabilities
 
-A single user account can have multiple active tokens. Each token is permanent; there is no expiration date. You can revoke any token at any time from your Profile page. Use the HTTP header `Genestack-Api-Token` to send the token with API requests.
+A single user account can have multiple active tokens. Each token has the lifetime that you select when you create it, and a token can also have no expiration date. You can revoke any token at any time from your Profile page. Use the HTTP header `Genestack-Api-Token` to send the token with API requests.
 
 ## Use a Genestack API token
 
