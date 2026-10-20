@@ -5,16 +5,12 @@ ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM python:3.14.8-alpine
-    DO github.com/genestack/earthly-libs:6e90f15c1b437e0bfdf6f95786cac47fb5c0c7e9+PYTHON_PREPARE
+    WORKDIR /app
 
     COPY requirements.txt .
     RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            pypi-login.sh && \
-            python3 -m pip install --no-cache-dir -r requirements.txt && \
-            apk add curl && \
-            pypi-clean.sh
+        python3 -m pip install --no-cache-dir -r requirements.txt && \
+        apk add curl
 
     ARG --required SDK_VERSION
     ARG --required OPENAPI_VERSION
