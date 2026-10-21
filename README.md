@@ -28,27 +28,6 @@ Install python dependencies
 python3 -m pip install -r requirements.txt
 ```
 
-Set credentials to Nexus
-
-```shell
-export NEXUS_USER="your-google-username-without-@genestack.com"
-export NEXUS_PASSWORD="your-google-password"
-```
-
-Set correct versions for archives of generated documentations
-
-```shell
-export OPENAPI_VERSION='1.x.x-x'  # Version from teamcity
-export SDK_VERSION='1.x.xbx'  # Version from teamcity
-```
-
-Use script to download and unarchive generated documentations
-
-```shell
-export RAW_REGISTRY_SNAPSHOTS='https://nexus.devops.gs.team/repository/raw-snapshots'
-./collect-deps.sh
-```
-
 To serve documentation on localhost:
 
 ```shell
