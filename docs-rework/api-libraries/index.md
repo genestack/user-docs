@@ -23,6 +23,12 @@ ODM provides three API libraries for programmatic access to the platform. Choose
 
     A thin Python wrapper over the REST API, for scripts and Jupyter notebooks that query or contribute data.
 
+- __[R API Client](r-api-client/index.md)__
+
+    ---
+
+    The same coverage for R scripts and Bioconductor or base-R analysis pipelines that consume ODM data.
+
 </div>
 
-Both libraries require a valid API token. See [Authentication and Tokens](../odm-api/getting-started/authentication-and-tokens.md) in the ODM API section for setup instructions.
+All three libraries require a valid API token. See [Authentication and Tokens](../odm-api/getting-started/authentication-and-tokens.md) in the ODM API section for setup instructions.

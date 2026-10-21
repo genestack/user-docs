@@ -89,6 +89,6 @@ Jump straight to the task tab for your role.
 
     ---
 
-    ODM SDK and Python API Client.
+    ODM SDK, Python API Client, and R API Client.
 
 </div>
