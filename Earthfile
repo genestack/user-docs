@@ -1,24 +1,13 @@
 VERSION 0.8
 
 ARG --global --required HARBOR_DOCKER_REGISTRY
-ARG --global --required RAW_REGISTRY_SNAPSHOTS
 
 build:
     FROM python:3.14.8-alpine
     WORKDIR /app
 
     COPY requirements.txt .
-    RUN \
-        python3 -m pip install --no-cache-dir -r requirements.txt && \
-        apk add curl
-
-    ARG --required SDK_VERSION
-    ARG --required OPENAPI_VERSION
-    COPY collect-deps.sh .
-    RUN \
-        --secret NEXUS_USER \
-        --secret NEXUS_PASSWORD \
-            ./collect-deps.sh
+    RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
     COPY --dir docs-rework mkdocs.yml .
     RUN mkdocs build
