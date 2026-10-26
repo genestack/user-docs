@@ -42,7 +42,7 @@ Every parameter is optional. Called with none, the endpoint returns the last thi
 | Cursor is valid but no longer resolves to an event | `Cursor not found: ...` |
 | Event type is not one of the supported values | `400`, with a message naming the invalid value |
 | Page limit is outside the range 0 to 2000 | The standard page limit error used across ODM endpoints |
-| Caller lacks the **View Audit Log** permission | `403`, `Not enough permissions to call method '' of application 'genestack/auditEvent'. Required permissions: [VIEW_AUDIT_LOG]` |
+| Caller lacks the **Audit Log Administrator** role | `403`, `Not enough permissions to call method '' of application 'genestack/auditEvent'. Required permissions: [VIEW_AUDIT_LOG]` |
 
 ## Response envelope
 

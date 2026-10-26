@@ -7,11 +7,11 @@ tab: odm-api
 
 With your study in place, the next thing to bring in is its samples. Importing sample metadata registers your samples in ODM as a sample group, ready to be linked to the study they belong to. This guide takes you from a sample metadata TSV file to a sample group with its own accession, the value you carry forward into the linking step.
 
-For a wider view of how the pieces fit together, see [About the import workflow](about-the-import-workflow.md), and for tokens and authorization, see [Authentication and tokens](../../getting-started/authentication-and-tokens.md). For the full endpoint specification, the [Swagger UI](/swagger/helper/) is the source of truth.
+For a wider view of how the pieces fit together, see [About the import workflow](about-the-import-workflow.md), and for tokens and authorisation, see [Authentication and tokens](../../getting-started/authentication-and-tokens.md). For the full endpoint specification, the [Swagger UI](/swagger/helper/) is the source of truth.
 
 ## Prerequisites
 
-- An API token and Curator group membership.
+- Curator group membership. To run the curl examples, you also need an API token.
 - A sample metadata TSV file hosted at an HTTP/HTTPS URL, S3 URI, or NFS path. The file must include the required columns **Sample Source** and **Sample Source ID**. For the TSV format specification, see the supported data formats documentation.
 
 ## Send the import request

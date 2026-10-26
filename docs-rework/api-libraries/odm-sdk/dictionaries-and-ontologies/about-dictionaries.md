@@ -28,6 +28,8 @@ Organisations can load their own dictionaries to extend or override the defaults
 - Load an ontology file (OWL, OBO, TTL, JSON, or SKOS). See [Load a custom ontology](load-a-custom-ontology.md).
 - Create a simple CSV list. See [Create a CSV dictionary](create-a-csv-dictionary.md).
 
+A dictionary can be deleted through the API by a user with the **Reference Data Administrator** role, but only while no template uses it. See [Delete data](../../../odm-api/admin/delete-data.md#delete-a-dictionary).
+
 ## Supported formats
 
 ODM accepts dictionaries in the following formats:

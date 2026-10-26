@@ -15,7 +15,7 @@ This section covers platform administration in ODM: managing users and groups, c
 
     ---
 
-    Create, activate, deactivate, and configure user accounts and their permission sets.
+    Create, activate, deactivate, and configure user accounts and their roles.
 
 - __[Manage groups](manage-groups/index.md)__
 
@@ -39,6 +39,6 @@ This section covers platform administration in ODM: managing users and groups, c
 
 ## Watch the video
 
-The following video walks through the core admin tasks: the two user classes (contributors and consumers), creating users and assigning permissions, creating user groups and assigning curator groups, and enabling sharing and editing.
+The following video walks through the core admin tasks: the two user classes (contributors and consumers), creating users and assigning roles, creating user groups and assigning curator groups, and enabling sharing and editing.
 
 [Watch: User Admins in ODM](https://www.youtube.com/watch?v=8Jz0VT6ZwG0&list=PLqGSwEO9VFw1L0gPg2CgrLMnPsS3oGn3T&index=2)

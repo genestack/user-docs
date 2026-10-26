@@ -5,7 +5,7 @@ tab: admin
 
 # Manage Users
 
-This section covers creating and managing user accounts and their permissions through the ODM user interface.
+This section covers creating and managing user accounts and their roles through the ODM user interface.
 
 ## In this section
 
@@ -29,10 +29,10 @@ This section covers creating and managing user accounts and their permissions th
 
     Change another user's account password as an administrator.
 
-- __[Grant and revoke permissions](grant-and-revoke-permissions.md)__
+- __[Assign and remove roles](assign-and-remove-roles.md)__
 
     ---
 
-    Assign or remove permissions for a user.
+    Assign or remove roles for a user.
 
 </div>

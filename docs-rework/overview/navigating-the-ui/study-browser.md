@@ -15,7 +15,7 @@ From the Dashboard, click **Browse Studies** to open the Study Browser directly.
 
 ## Layout
 
-The centre of the page shows a list of studies. Under each study title, ODM displays a metadata summary (organism, tissue, cell type, disease, and similar fields) drawn directly from the sample metadata associated with that study. Hovering over any value in the summary reveals the name of the metadata field it comes from. The study entry also shows who imported the study and when.
+The centre of the page shows a list of studies. Each study entry shows who imported the study and when.
 
 To the right of each study title you can see how many samples the study contains and which Data Classes are linked to it.
 

@@ -11,8 +11,8 @@ For the full field-by-field schema of every configuration endpoint, see the [API
 
 ## Prerequisites
 
-- An API token. See [Authentication and tokens](../../getting-started/authentication-and-tokens.md).
-- Curator group membership.
+- The **Transformation Configuration Administrator** role to create, update, and archive configurations.
+- Curator group membership to list and retrieve configurations and to submit the dry-run and full-run jobs.
 
 ## The iteration loop
 

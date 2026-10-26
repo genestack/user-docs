@@ -16,15 +16,13 @@ You will work entirely in the Swagger UI. Nothing you do here changes any data.
 
 ## Prerequisites
 
-- The **View Audit Log** permission on your account. Only a user with **Manage organisation** can grant it, and it is never assigned automatically. See [Grant and revoke permissions](../../../admin/manage-users/grant-and-revoke-permissions.md).
-- An API token. See [Authentication and tokens](../../getting-started/authentication-and-tokens.md).
+- The **Audit Log Administrator** role on your account. Only an **Organisation Administrator** can assign it, and it is never assigned automatically. See [Assign and remove roles](../../../admin/manage-users/assign-and-remove-roles.md).
 - Familiarity with the Swagger UI. See [Swagger orientation](../../getting-started/swagger-orientation.md).
 
 ## Step 1: Open the audit definition
 
-1. From the ODM Dashboard, click **API Documentation** to open the Swagger UI.
+1. From the ODM Dashboard, click **API Documentation** to open the Swagger UI. You do not need a token in Swagger. See [Make your first request in Swagger](../../getting-started/make-your-first-request.md).
 2. In the definition selector, choose **audit**. This definition contains a single endpoint, `GET /api/v1/audit/events`.
-3. Click **Authorize**, select **Genestack API token**, paste your token, and close the dialog.
 
 ## Step 2: Retrieve your first events
 

@@ -5,7 +5,7 @@ tab: overview
 
 # Getting started
 
-Each tutorial walks you through the core workflow for your role end to end, so you finish with a working mental model before moving on to deeper guidance.
+Each tutorial walks you through the core workflow for the kind of work you do, end to end, so you finish with a working mental model before moving on to deeper guidance.
 
 ## Choose your path
 

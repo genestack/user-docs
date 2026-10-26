@@ -11,7 +11,7 @@ For a wider view of how the pieces fit together, see [About the import workflow]
 
 ## Prerequisites
 
-- An API token and Curator group membership.
+- Curator group membership. To run the curl examples, you also need an API token.
 - A VCF file and optionally a metadata TSV file, both hosted at HTTP/HTTPS URLs, S3 URIs, or NFS paths. For the VCF format specification and ODM-specific requirements, see the supported data formats documentation on VCF.
 - Sample metadata already imported.
 

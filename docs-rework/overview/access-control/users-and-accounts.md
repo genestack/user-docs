@@ -15,17 +15,17 @@ Newly created users have immediate access to studies shared with everyone in the
 
 ## Group membership
 
-To gain additional rights (viewing group-specific studies or contributing data), users must be added to groups. See [Groups and roles](groups-and-roles.md) for how groups and the Curator group grant access.
+To gain additional rights (viewing group-specific studies or contributing data), users must be added to groups. See [Groups](groups.md) for how groups and the Curator group grant access.
 
 ## Lifecycle
 
-Once created, a user cannot be deleted from the system. Users can be deactivated to remove their access. See [Activate and deactivate users](../../admin/manage-users/activate-and-deactivate-users.md) for the procedure.
+Once created, a user cannot be deleted from the system. Users can be deactivated to remove their access. A deactivated user's studies can no longer be transferred by their owner; they can be reassigned through [ownership recovery](../../odm-api/admin/recover-study-ownership.md). See [Activate and deactivate users](../../admin/manage-users/activate-and-deactivate-users.md) for the procedure.
 
 ## Technical users
 
 On a fresh installation of ODM, a small number of technical user accounts are created automatically. These accounts support integration, automated testing, and system configuration and are not intended for day-to-day use. Passwords for technical users can be changed at any time.
 
-| User | State | Role |
+| User | State | Purpose |
 |---|---|---|
 | <root@genestack.com> | Active | Superadmin |
 | <public@genestack.com> | Active | Loading public data, ontologies, setting templates |

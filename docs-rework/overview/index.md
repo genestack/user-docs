@@ -15,11 +15,11 @@ Scientific data presents challenges that generic file management cannot address.
 
 ## Who uses ODM
 
-ODM is built for three kinds of users. **Data consumers** search, filter, visualise, and export existing datasets. **Data contributors** create and manage studies, import experimental data, and curate metadata. **Platform administrators** govern users, groups, and organisation-level settings. Each role has its own getting-started path and dedicated task tab.
+ODM is built for three kinds of users. **Data consumers** search, filter, visualise, and export existing datasets. **Data contributors** create and manage studies, import experimental data, and curate metadata. **Platform administrators** govern users, groups, and organisation-level settings. Each kind of user has its own getting-started path and dedicated task tab.
 
 ## New to ODM?
 
-Start with the foundational topics in this section. The [getting-started tutorials](getting-started/index.md) walk you through the core workflow for your role, while the data model and access control pages give you the conceptual grounding to make sense of everything else.
+Start with the foundational topics in this section. The [getting-started tutorials](getting-started/index.md) walk you through the core workflow for the kind of work you do, while the data model and access control pages give you the conceptual grounding to make sense of everything else.
 
 <div class="grid cards gs-section-cards" markdown>
 
@@ -39,7 +39,7 @@ Start with the foundational topics in this section. The [getting-started tutoria
 
     ---
 
-    Users, roles, permissions, groups, sharing, governance, and platform security.
+    Users, roles, groups, sharing, governance, and platform security.
 
 - **[Supported data formats](supported-data-formats/index.md)**
 
@@ -57,7 +57,7 @@ Start with the foundational topics in this section. The [getting-started tutoria
 
 ## Already familiar with ODM?
 
-Jump straight to the task tab for your role.
+Jump straight to the task tab for the kind of work you do.
 
 <div class="grid cards gs-task-cards" markdown>
 
