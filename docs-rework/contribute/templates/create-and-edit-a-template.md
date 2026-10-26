@@ -9,7 +9,7 @@ This guide explains how to create a new template by duplicating an existing one 
 
 ## Prerequisites
 
-You need the **Set up templates** permission to create or edit templates. See [Permissions](../../overview/access-control/permissions.md) for details.
+You need the **Template Administrator** role to create or edit templates. See [Roles](../../overview/access-control/roles.md) for details.
 
 ## Open the Template Editor
 

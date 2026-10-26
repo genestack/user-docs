@@ -58,7 +58,7 @@ Event types are supplied to the `eventType` query parameter exactly as written h
 
 ### ADD_USER
 
-A user account is created, either in the Users and Permissions application or through SCIM provisioning.
+A user account is created, either in the Users and Roles application or through SCIM provisioning.
 
 **Source:** `UI` with source type `genestack/usersadmin-api`, or `API` with source type `genestack/scim-integration`.
 
@@ -95,7 +95,7 @@ A user signs out through the interface, or a session ends on its own. A session 
 
 ### CREATE_GROUP
 
-A user group is created, either in the Users and Permissions application or through SCIM provisioning.
+A user group is created, either in the Groups application or through SCIM provisioning.
 
 **Source:** `UI` with source type `genestack/groupsadmin-api`, or `API` with source type `genestack/scim-integration`.
 
@@ -180,7 +180,7 @@ A new metadata version is created, either by publishing an edit or by restoring 
 
 Ownership of a study is transferred to another user.
 
-**Source:** `UI` with source type `genestack/study-metainfo-editor`.
+**Source:** `UI` with source type `genestack/study-metainfo-editor` when the owner transfers the study in the interface, or `API` with source type `genestack/manageData` when the study is reassigned through `PATCH /api/v1/manage-data/ownership-recovery/studies`.
 
 **Target:** `STUDY`.
 
@@ -190,7 +190,7 @@ Ownership of a study is transferred to another user.
 |---|---|
 | `newUserId` | User who received ownership |
 | `oldUserId` | User who lost ownership |
-| `ownershipChangerId` | User who executed the transfer. Matches the acting user, and is not necessarily the previous owner. |
+| `ownershipChangerId` | User who executed the transfer. Matches the acting user. For an interface transfer this is the previous owner; for ownership recovery it is the Ownership Recovery Administrator who reassigned the study. |
 
 ### EXECUTE_ENTITY_QUERY
 

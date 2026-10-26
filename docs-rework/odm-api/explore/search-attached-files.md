@@ -11,7 +11,7 @@ For filter syntax, see [Query and filter syntax reference](../reference/query-an
 
 ## Prerequisites
 
-- An API token. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
+- An API token, to run the curl examples. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
 - The study containing the files must be shared with you, or you must have the "Access all data" permission.
 
 Attached files are not content-indexed; they can only be queried by their metadata. For background on the distinction between indexed and attached files, see [About querying data](about-querying-data.md).

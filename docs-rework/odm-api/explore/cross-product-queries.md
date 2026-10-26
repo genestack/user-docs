@@ -11,7 +11,7 @@ For filter syntax and URL-encoding rules, see [Query and filter syntax reference
 
 ## Prerequisites
 
-- An API token. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
+- An API token, to run the curl examples. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
 - The entities you want to query must already be linked. Linking is performed at import time. See [Link entities after import](../contribute/import-data/link-entities-after-import.md).
 
 ## About cross-product queries

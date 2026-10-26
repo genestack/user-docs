@@ -9,7 +9,7 @@ This guide explains how to customise which metadata fields appear as search face
 
 ## Prerequisites
 
-You must have the **Configure facets** permission. See [Permissions](../overview/access-control/permissions.md).
+You must have the **Catalogue Administrator** role. See [Roles](../overview/access-control/roles.md).
 
 Changes you make here apply to all users on the ODM instance, not just your own view.
 

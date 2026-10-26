@@ -13,7 +13,7 @@ When you need to establish what a particular account did, the audit log lets you
 
 ## Prerequisites
 
-- The **View Audit Log** permission and an API token. See [About audit logs](about-audit-logs.md) for the permission and [Authentication and tokens](../../getting-started/authentication-and-tokens.md) for the token.
+- The **Audit Log Administrator** role. See [About audit logs](about-audit-logs.md).
 - The integer user ID of the account you are investigating.
 
 ## Find a user's ID
@@ -73,7 +73,7 @@ The endpoint has no filter for the event target, so you cannot ask what was done
 
 Retrieve `ADD_USER` events for the relevant time range and scan for the account you are interested in. The same pattern applies to `CREATE_GROUP`, where `details.groupName` names the group and `target.id` holds its accession.
 
-Creation is as far as this goes. ODM audits the creation of accounts and groups, not later changes to them, so a permission grant or a change of group membership leaves no audit event.
+Creation is as far as this goes. ODM audits the creation of accounts and groups, not later changes to them, so a role assignment or a change of group membership leaves no audit event.
 
 ## Related
 

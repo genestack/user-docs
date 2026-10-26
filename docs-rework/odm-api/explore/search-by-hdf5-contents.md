@@ -11,7 +11,6 @@ For the full list of structural query parameters, see the [HDF5 structural queri
 
 ## Prerequisites
 
-- An API token. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
 - The studies containing the HDF5 files must be shared with you, or you must have the "Access all data" permission.
 - HDF5 files are detected by their `.h5` or `.h5ad` extension on import, and their structure is parsed and stored in ODM at that time.
 

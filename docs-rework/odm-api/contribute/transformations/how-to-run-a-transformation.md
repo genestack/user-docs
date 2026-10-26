@@ -11,7 +11,6 @@ For a conceptual overview of configurations, images, and jobs, see [About the Pr
 
 ## Prerequisites
 
-- An API token. See [Authentication and tokens](../../getting-started/authentication-and-tokens.md).
 - Curator group membership.
 - Every study that contains an attachment listed in the job's `input_accessions` must be shared with you. If a request references an attachment that does not exist or is not shared with you, it is rejected with a `422 Unprocessable Entity` response whose message names the affected accessions, for example: `The following input accessions were not found or are not shared with you: GSFXXX.`
 - The source attachment already uploaded to a study in ODM (you need its accession). See [Import attached files](../import-data/import-attached-files.md).
@@ -34,7 +33,7 @@ List existing configurations to see if one already fits your needs:
 GET /api/v1/transformations/configurations
 ```
 
-To create a new configuration, submit a `POST` request with a name, description, and the `data` field containing the image-specific processing specification:
+Creating a configuration requires the **Transformation Configuration Administrator** role. If you do not hold it, use an existing configuration or ask a user with the role to create one. To create a new configuration, submit a `POST` request with a name, description, and the `data` field containing the image-specific processing specification:
 
 ```text
 POST /api/v1/transformations/configurations
@@ -122,7 +121,7 @@ Review the log output for:
 - Linking validation results: whether the transformation output can be linked to existing ODM objects.
 - Columns flagged for automatic renaming or data type conversion.
 
-If issues are found, update the configuration using `PUT /api/v1/transformations/configurations/{id}` and repeat from Step 3. See [Manage configurations](manage-configurations.md) for the recommended iteration loop.
+If issues are found, update the configuration using `PUT /api/v1/transformations/configurations/{id}` (requires the **Transformation Configuration Administrator** role) and repeat from Step 3. See [Manage configurations](manage-configurations.md) for the recommended iteration loop.
 
 ## Step 6: Submit the full run
 

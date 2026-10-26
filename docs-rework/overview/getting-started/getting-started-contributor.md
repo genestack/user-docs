@@ -9,7 +9,7 @@ In this tutorial you will create a study from scratch in the ODM web interface. 
 
 ## Before you begin
 
-You must be a member of the Curator group to create and edit studies. See [Groups and roles](../access-control/groups-and-roles.md) for how group membership works and how to request access if you do not have it. All actions in this tutorial are performed through the ODM web interface; no API token is required.
+You must be a member of the Curator group to create and edit studies. See [Groups](../access-control/groups.md) for how group membership works and how to request access if you do not have it. All actions in this tutorial are performed through the ODM web interface; no API token is required.
 
 ## Step 1: Understand the data model
 

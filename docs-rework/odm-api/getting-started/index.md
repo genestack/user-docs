@@ -5,7 +5,7 @@ tab: odm-api
 
 # Getting started with the ODM API
 
-The ODM API is a RESTful API that provides programmatic access to your data and to platform administration. This Getting Started section covers everything you need before using any endpoint: authentication, navigating the Swagger UI, and role-based tutorials to get you producing results quickly.
+The ODM API is a RESTful API that provides programmatic access to your data and to platform administration. This Getting Started section covers everything you need before using any endpoint: authentication for calls made outside Swagger, navigating the Swagger UI, and tutorials for each type of user to get you producing results quickly.
 
 > **Note:** the live [OpenAPI specification (Swagger UI)](/swagger/helper/) is the canonical and complete source of endpoint details for the ODM API. This documentation provides workflow guidance, worked examples, and coverage of behaviours not surfaced in Swagger alone.
 
@@ -35,7 +35,7 @@ The ODM API is a RESTful API that provides programmatic access to your data and 
 
     ---
 
-    Open Swagger, authorise, and execute your first API request.
+    Open Swagger and execute your first API request.
 
 - **[Tutorial: Getting started as a Data Consumer](getting-started-consumer.md)**
 
