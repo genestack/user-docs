@@ -44,7 +44,7 @@ On the **Users** tab, find the user you want to configure. Use the **Name or ema
 | Category | Roles |
 |---|---|
 | Administration | **Organisation Administrator**, **Group Administrator** |
-| Configuration | **Template Administrator**, **Catalogue Administrator**, **Transformation Configuration Administrator**, **Reference Data Administrator** |
+| Configuration | **Template Administrator**, **Catalogue Administrator**, **Transformation Configuration Administrator**, **Reference Data Administrator**, **Harmonisation Administrator** |
 | Data stewardship | **Ownership Recovery Administrator**, **Orphan Data Administrator** |
 | Compliance | **Audit Log Administrator** |
 
