@@ -43,7 +43,7 @@ stateDiagram-v2
 
 ## Starting: PENDING
 
-A new run is `PENDING` while ODM sets up its processing environment and until the run reports that it is ready. Steps are refused until then. While the run waits, its status says why, for example `ContainerCreating` while the environment starts. A run that stays `PENDING` with a reason such as `ErrImagePull` cannot start: finish it, and let your administrator know.
+A new run is `PENDING` while ODM sets up its processing environment and until the run reports that it is ready. Steps are refused until then. While the run waits, its status says why, for example `Unschedulable` for a moment while its storage is set up, then `ContainerCreating` while the environment starts. A run that stays `PENDING` with a reason such as `ErrImagePull` or `Unschedulable` cannot start: finish it, and let your administrator know.
 
 ## Working: READY and RUNNING
 
@@ -58,6 +58,8 @@ Once ready, the run is `READY`. It takes the steps you ask for one at a time, in
 | `SKIPPED` | The step never ran, because the run was finished, or failed, before its turn. |
 
 A step that fails does not end the run: the run goes on to the next step, or waits for one.
+
+Each run has storage of its own for the files it works on, of a size your administrator sets, and it is deleted once the run is over. A step that runs out of that storage fails with an error that starts `No space left` and says how much the run has. If your steps need more, let your administrator know.
 
 ## Finishing: FINISHING and FINISHED
 
