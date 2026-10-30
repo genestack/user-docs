@@ -73,6 +73,12 @@ nav:
             - contribute/sharing/index.md
             - Share a Study: contribute/sharing/share-a-study.md
             - Transfer Study Ownership: contribute/sharing/transfer-study-ownership.md
+        - Harmonise:
+            - contribute/harmonise/index.md
+            - About Harmonise: contribute/harmonise/about-harmonise.md
+            - Run Lifecycle: contribute/harmonise/run-lifecycle.md
+            - Start and Finish a Run: contribute/harmonise/start-and-finish-a-run.md
+            - Save Your LLM Credentials: contribute/harmonise/save-your-llm-credentials.md
     - Admin:
         - admin/index.md
         - Manage Users:
@@ -81,6 +87,7 @@ nav:
             - Activate and Deactivate Users: admin/manage-users/activate-and-deactivate-users.md
             - Change User Password: admin/manage-users/change-user-password.md
             - Grant and Revoke Permissions: admin/manage-users/grant-and-revoke-permissions.md
+            - Manage LLM Providers: admin/manage-users/manage-llm-providers.md
         - Manage Groups:
             - admin/manage-groups/index.md
             - Create and Delete Groups: admin/manage-groups/create-and-delete-groups.md
@@ -147,6 +154,11 @@ nav:
                     - Attribute Mapping Reference: odm-api/contribute/transformations/single-cell/attribute-mapping-reference.md
                     - Configuration Reference: odm-api/contribute/transformations/single-cell/configuration-reference.md
                     - Transformation Process Reference: odm-api/contribute/transformations/single-cell/transformation-process-reference.md
+            - Harmonise:
+                - About the Harmonisation API: odm-api/contribute/harmonise/about-the-harmonisation-api.md
+                - How to Run Harmonise via the API: odm-api/contribute/harmonise/how-to-run-harmonise-via-the-api.md
+                - Manage LLM Credentials via the API: odm-api/contribute/harmonise/manage-llm-credentials-via-the-api.md
+                - Harmonisation API Reference: odm-api/contribute/harmonise/harmonisation-api-reference.md
         - Administer via API:
             - odm-api/admin/index.md
             - Manage User Accounts via API: odm-api/admin/manage-user-accounts-via-api.md
