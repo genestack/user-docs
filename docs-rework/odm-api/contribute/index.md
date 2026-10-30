@@ -23,4 +23,10 @@ Contributing data through the API means getting your studies and their data into
 
     Launch and manage Processors Controller jobs for data transformation workflows.
 
+- __[Harmonise](harmonise/about-the-harmonisation-api.md)__
+
+    ---
+
+    Start, steer and finish Harmonise runs, and manage the LLM credentials they use.
+
 </div>
