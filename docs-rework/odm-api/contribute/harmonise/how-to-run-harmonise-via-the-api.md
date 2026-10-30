@@ -51,7 +51,7 @@ Record the `id`: every other call about the run takes it. If you have no usable 
 GET /api/v1/harmonisation/runs/{id}
 ```
 
-Poll the run until its `status` is `READY`. While it is `PENDING`, its `reason` says what it waits for, for example `ContainerCreating`. A run that stays `PENDING` with a reason such as `ErrImagePull` cannot start: finish it (Step 5), and let your administrator know.
+Poll the run until its `status` is `READY`. While it is `PENDING`, its `reason` says what it waits for, for example `Unschedulable` for a moment while its storage is set up, then `ContainerCreating`. A run that stays `PENDING` with a reason such as `ErrImagePull` or `Unschedulable` cannot start: finish it (Step 5), and let your administrator know.
 
 ## Step 4: Ask the run for steps
 
