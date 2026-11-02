@@ -27,6 +27,6 @@ ODM's SCIM endpoints follow the SCIM 2.0 standard and are compatible with any id
 
 ## Recommendation
 
-Run user and group synchronisation in AD on behalf of a user who has the **Manage groups** permission in ODM. This ensures the synchronisation account can see and edit all groups on the instance, regardless of group membership.
+Run user and group synchronisation in AD on behalf of a user who has the **Group Administrator** role in ODM. This ensures the synchronisation account can see and edit all groups on the instance, regardless of group membership.
 
-For manual user management without SCIM, see [Create users](manage-users/create-users.md). For context on how user accounts and groups work in ODM, see [Users and accounts](../overview/access-control/users-and-accounts.md) and [Groups and roles](../overview/access-control/groups-and-roles.md).
+For manual user management without SCIM, see [Create users](manage-users/create-users.md). For context on how user accounts and groups work in ODM, see [Users and accounts](../overview/access-control/users-and-accounts.md) and [Groups](../overview/access-control/groups.md).

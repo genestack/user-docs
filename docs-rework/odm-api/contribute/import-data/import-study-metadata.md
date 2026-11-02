@@ -11,7 +11,7 @@ For a wider view of how the pieces fit together, see [About the import workflow]
 
 ## Prerequisites
 
-- An API token and Curator group membership.
+- Curator group membership. To run the curl examples, you also need an API token.
 - A study metadata TSV file hosted where ODM can reach it: an HTTP/HTTPS URL, an S3 URI, or an NFS path. For the file format itself, see the TSV format specification in the supported data formats documentation.
 
 ## Send the import request

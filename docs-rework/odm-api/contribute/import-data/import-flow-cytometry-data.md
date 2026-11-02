@@ -11,7 +11,7 @@ For a wider view of how the pieces fit together, see [About the import workflow]
 
 ## Prerequisites
 
-- An API token and Curator group membership.
+- Curator group membership. To run the curl examples, you also need an API token.
 - A FACS data file (`.facs` format), optionally accompanied by a metadata TSV file. Both must be hosted at HTTP/HTTPS URLs, S3 URIs, or NFS paths. For format requirements, see the supported data formats documentation.
 - Sample metadata already imported.
 

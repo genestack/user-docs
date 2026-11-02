@@ -14,7 +14,7 @@ Confidentiality obligations, partner agreements, and personal data accountabilit
 
 ## Prerequisites
 
-- The **View Audit Log** permission and an API token. See [About audit logs](about-audit-logs.md) for the permission and [Authentication and tokens](../../getting-started/authentication-and-tokens.md) for the token.
+- The **Audit Log Administrator** role. See [About audit logs](about-audit-logs.md).
 
 ## Find who viewed a study
 

@@ -13,7 +13,7 @@ For a wider view of how the pieces fit together, see [About the import workflow]
 
 ## Prerequisites
 
-- An API token and Curator group membership.
+- Curator group membership. To run the curl examples, you also need an API token.
 - An S3 bucket configured for ODM. An S3 bucket is mandatory for the attached files functionality in ODM.
 - The file to attach, accessible at an HTTP/HTTPS URL, S3 URI, or as a local file for multipart upload.
 - A study to attach the file to (you need the study's accession number).

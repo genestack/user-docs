@@ -15,8 +15,7 @@ Reach for these endpoints when you are writing automation scripts, synchronising
 
 ## Prerequisites
 
-- An API token. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
-- "Manage organisation" permission.
+- "Organisation Administrator" role.
 
 ## Look up a user's groups
 
@@ -47,5 +46,5 @@ PATCH /api/v1/users/{id}
 ## Related
 
 - [SCIM integration](../../admin/scim-integration.md), Active Directory / SCIM provisioning.
-- [Permissions reference](../../overview/access-control/permissions.md)
+- [Roles](../../overview/access-control/roles.md)
 - [Authentication and tokens](../getting-started/authentication-and-tokens.md)

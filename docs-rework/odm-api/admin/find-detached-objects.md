@@ -15,8 +15,7 @@ A data object is detached when it has no direct or indirect link to a root-level
 
 ## Prerequisites
 
-- An API token. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
-- "Manage organisation" AND "Access all data" permissions.
+- "Orphan Data Administrator" role.
 
 ## List the detached objects
 
@@ -53,4 +52,4 @@ The response also carries a `cursor` field marking the last object retrieved. Pa
 
 ## Next steps
 
-The accessions you collect here are what you feed into deletion. When you are ready to remove the objects you found, see [Delete data](delete-data.md).
+The accessions you collect here are what you feed into deletion. Deleting a detached object also requires the Orphan Data Administrator role, even if you own the object. When you are ready to remove the objects you found, see [Delete data](delete-data.md).

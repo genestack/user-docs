@@ -9,9 +9,9 @@ This guide explains how to add users to a group and remove them in ODM.
 
 ## Prerequisites
 
-To add or remove members from a group where you are the Group Admin, no additional permission is required beyond your admin role in that group.
+To add or remove members from a group where you are the Group admin, no platform role is required beyond your group admin role in that group.
 
-To add or remove members from any group across the instance, you need the **Manage groups** permission. See [Permissions](../../overview/access-control/permissions.md).
+To add or remove members from any group across the instance, you need the **Group Administrator** platform role. See [Roles](../../overview/access-control/roles.md).
 
 ## Add members
 

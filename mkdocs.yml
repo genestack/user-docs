@@ -19,8 +19,8 @@ nav:
         - Access Control:
             - overview/access-control/index.md
             - Users and Accounts: overview/access-control/users-and-accounts.md
-            - Groups and Roles: overview/access-control/groups-and-roles.md
-            - Permissions: overview/access-control/permissions.md
+            - Groups: overview/access-control/groups.md
+            - Roles: overview/access-control/roles.md
             - Sharing and Ownership: overview/access-control/sharing-and-ownership.md
             - Data Governance: overview/access-control/governance.md
             - Platform Security: overview/access-control/platform-security.md
@@ -80,7 +80,7 @@ nav:
             - Create Users: admin/manage-users/create-users.md
             - Activate and Deactivate Users: admin/manage-users/activate-and-deactivate-users.md
             - Change User Password: admin/manage-users/change-user-password.md
-            - Grant and Revoke Permissions: admin/manage-users/grant-and-revoke-permissions.md
+            - Assign and Remove Roles: admin/manage-users/assign-and-remove-roles.md
         - Manage Groups:
             - admin/manage-groups/index.md
             - Create and Delete Groups: admin/manage-groups/create-and-delete-groups.md
@@ -152,6 +152,7 @@ nav:
             - Manage User Accounts via API: odm-api/admin/manage-user-accounts-via-api.md
             - Find Detached Objects: odm-api/admin/find-detached-objects.md
             - Delete Data: odm-api/admin/delete-data.md
+            - Recover Study Ownership: odm-api/admin/recover-study-ownership.md
             - Audit Logs:
                 - About Audit Logs: odm-api/admin/audit/about-audit-logs.md
                 - About Audit Event Recording: odm-api/admin/audit/about-event-recording.md

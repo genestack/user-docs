@@ -17,7 +17,7 @@ For the equivalent operations through the ODM user interface, see the [Explore d
 
     ---
 
-    Authentication, navigating the Swagger UI, and role-based tutorials to get you producing results quickly.
+    Authentication, navigating the Swagger UI, and tutorials for each type of user to get you producing results quickly.
 
 - __[Explore via API](explore/index.md)__
 

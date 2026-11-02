@@ -23,7 +23,13 @@ Most of the admin API surface is documented directly in Swagger, so this section
 
     ---
 
-    Delete studies, samples, omics objects, and attached files via the API.
+    Delete studies you own, detached objects, templates, and reference data via the API, and check which role each needs.
+
+- __[Recover study ownership](recover-study-ownership.md)__
+
+    ---
+
+    Assign a new owner to studies whose owner has been deactivated.
 
 - __[Manage user accounts via API](manage-user-accounts-via-api.md)__
 

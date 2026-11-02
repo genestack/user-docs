@@ -11,7 +11,7 @@ For an overview of how the import pieces fit together, see [About the import wor
 
 ## Prerequisites
 
-- An API token and Curator group membership.
+- Curator group membership. To run the curl examples, you also need an API token.
 - A cell metadata TSV file. The required columns are `barcode` (must be unique within the group) and `batch` (used as the linking key to samples, libraries, or preparations).
 - Sample, library, or preparation metadata already imported (the entity type you intend to link cell metadata to).
 

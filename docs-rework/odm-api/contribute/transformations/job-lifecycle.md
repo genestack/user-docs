@@ -36,7 +36,7 @@ While the job stays in the single `RUNNING` state, the transformation works thro
 
 **Output generation:** processed output files are prepared for upload to ODM. In dry-run mode this step is skipped.
 
-**Output loading and linking:** the transformation calls ODM's APIs to create or update ODM entities with the generated output files. The job is considered completed when all import and linking operations finish successfully. If the job fails at this stage, some objects may have already been written to ODM and will need to be deleted manually.
+**Output loading and linking:** the transformation calls ODM's APIs to create or update ODM entities with the generated output files. The job is considered completed when all import and linking operations finish successfully. If the job fails at this stage, some objects may have already been written to ODM and will need to be deleted manually (see [Delete data](../../admin/delete-data.md) for who can delete them).
 
 Once the job reaches DONE, ODM begins internal indexing of the imported data - this is not part of the transformation job, but the transformed data may not be immediately available for querying until indexing completes.
 
@@ -50,7 +50,7 @@ When the transformation finishes on its own, the job transitions to either `DONE
 
 **On success (`DONE`):** The transformation has written its output objects into ODM and linked them to the appropriate study entities.
 
-**On failure (`FAILED`):** Whether any ODM objects were written depends on how far the job got. A failure during the earlier phases (configuration validation, input retrieval, or processing) writes nothing to ODM. Output objects are created and linked in the final phase sequentially, so a failure there can leave some objects already written to ODM while later ones were never created. Any objects written before the failure remain in ODM and must be deleted manually.
+**On failure (`FAILED`):** Whether any ODM objects were written depends on how far the job got. A failure during the earlier phases (configuration validation, input retrieval, or processing) writes nothing to ODM. Output objects are created and linked in the final phase sequentially, so a failure there can leave some objects already written to ODM while later ones were never created. Any objects written before the failure remain in ODM and must be deleted manually. The study owner can delete objects linked to their study; objects left detached need the **Orphan Data Administrator** role. See [Delete data](../../admin/delete-data.md).
 
 The job log records the error that caused the failure; retrieve it via `POST /api/v1/transformations/jobs/{id}/logs` to diagnose the problem. Failures come in two kinds: infrastructural failures, which relate to the processing environment, and image-specific failures, which come from the transformation itself. Both kinds are recorded in the job log, so review it to find the specific problem before resubmitting.
 

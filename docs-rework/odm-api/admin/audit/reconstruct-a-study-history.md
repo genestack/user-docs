@@ -16,7 +16,7 @@ When a study's metadata looks wrong, its access list is unexpected, or it has di
 
 ## Prerequisites
 
-- The **View Audit Log** permission and an API token. See [About audit logs](about-audit-logs.md) for the permission and [Authentication and tokens](../../getting-started/authentication-and-tokens.md) for the token.
+- The **Audit Log Administrator** role. See [About audit logs](about-audit-logs.md).
 - The Genestack accession of the study you are investigating.
 
 ## Retrieve the study's events
@@ -93,7 +93,7 @@ Each `CHANGE_OWNER` event names three people, not two:
 }
 ```
 
-`oldUserId` identifies the owner before the transfer and `newUserId` the owner after it. `ownershipChangerId` is whoever executed the transfer, and matches the event's acting user. It is usually the previous owner, but an administrator can transfer a study on someone's behalf, in which case the three IDs are all different. That distinction is the whole reason the field exists, so check it rather than assuming the previous owner initiated the change.
+`oldUserId` identifies the owner before the transfer and `newUserId` the owner after it. `ownershipChangerId` is whoever executed the transfer, and matches the event's acting user. In an interface transfer it is the previous owner, because only the owner can transfer a study. When a study whose owner is deactivated is reassigned through ownership recovery, it is the Ownership Recovery Administrator who made the change, and the three IDs are all different. That distinction is the whole reason the field exists, so check it rather than assuming the previous owner initiated the change.
 
 ## Investigate a deleted study
 

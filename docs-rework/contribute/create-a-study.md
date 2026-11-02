@@ -6,7 +6,7 @@ tab: contribute
 # Create a study
 
 !!! info "Prerequisites"
-    Creating and editing studies requires membership in the Curator group. See [Groups and roles](../overview/access-control/groups-and-roles.md).
+    Creating and editing studies requires membership in the Curator group. See [Groups](../overview/access-control/groups.md).
 
 ## Create a study
 

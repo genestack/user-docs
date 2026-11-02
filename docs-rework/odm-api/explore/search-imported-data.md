@@ -11,7 +11,7 @@ For the filter parameters and their syntax, see [Query and filter syntax referen
 
 ## Prerequisites
 
-- An API token. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
+- An API token, to run the curl examples. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
 - The data you want to query must have been indexed on import. Attached files (PDFs, archives) cannot be queried via these endpoints. See [About querying data](about-querying-data.md) for background on the indexed vs. attached distinction.
 
 ## Query a data type

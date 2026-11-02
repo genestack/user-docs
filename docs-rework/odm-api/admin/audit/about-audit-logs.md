@@ -11,7 +11,7 @@ tickets:
 
 Life sciences organisations hold some of their most valuable and most regulated assets in a data management platform: clinical and omics studies, curated metadata, and files shared across teams and external partners. Sooner or later, someone asks the same question about one of them. Who changed this, and when?
 
-ODM's audit log answers that question. Every significant action against a user, a group, or a study is recorded as a structured audit event, and those events are retrieved through a dedicated REST endpoint protected by its own permission. The result is a trail designed for human review rather than a technical log that happens to contain the answer somewhere.
+ODM's audit log answers that question. Every significant action against a user, a group, or a study is recorded as a structured audit event, and those events are retrieved through a dedicated REST endpoint protected by its own role. The result is a trail designed for human review rather than a technical log that happens to contain the answer somewhere.
 
 ## Why the audit log exists
 
@@ -33,13 +33,13 @@ Every event answers who, what, when, where from, and with what result. Each one 
 
 ## Who can read the audit log
 
-Reading audit events requires the **View Audit Log** permission, which allows the holder to search and review audit events across the platform for investigation, compliance, and support purposes.
+Reading audit events requires the **Audit Log Administrator** role, which allows the holder to search and review audit events across the platform for investigation, compliance, and support purposes.
 
-The permission is narrow. It grants no data access of its own: a holder can see that a study was created, shared, or deleted, and by whom, but cannot open study content, metadata, or files, and cannot perform any action on a study unless they also hold access to it through the normal sharing model. Neither **Access all data** nor **Manage organisation** confers the ability to retrieve audit events on its own.
+The role is narrow. It grants no data access of its own: a holder can see that a study was created, shared, or deleted, and by whom, but cannot open study content, metadata, or files, and cannot perform any action on a study unless they also hold access to it through the normal sharing model. Neither the **Access all data** nor the **Organisation Administrator** role confers the ability to retrieve audit events on its own.
 
-It is also never granted automatically. Only a user with the **Manage organisation** permission can assign it, and no account receives it by default. For the permission table and how it sits alongside the others, see [Permissions](../../../overview/access-control/permissions.md). For the assignment workflow in the interface, see [Grant and revoke permissions](../../../admin/manage-users/grant-and-revoke-permissions.md).
+It is also never assigned automatically. Only a user with the **Organisation Administrator** role can assign it, and no account receives it by default. For the role table and how it sits alongside the others, see [Roles](../../../overview/access-control/roles.md). For the assignment workflow in the interface, see [Assign and remove roles](../../../admin/manage-users/assign-and-remove-roles.md).
 
-Calling the endpoint without the permission returns `403` with a message naming the required permission:
+Calling the endpoint without the role returns `403` with a message that names the role by its internal identifier, `VIEW_AUDIT_LOG`:
 
 ```text
 Not enough permissions to call method '' of application 'genestack/auditEvent'. Required permissions: [VIEW_AUDIT_LOG]
@@ -63,4 +63,4 @@ See [Tutorial: your first audit query](first-audit-query.md) to start using the 
 - [Tutorial: your first audit query](first-audit-query.md), a guided first pass through the endpoint.
 - [Audit event schema reference](audit-event-schema-reference.md), the query parameters, errors, and event field structure.
 - [Audit event types reference](audit-event-types-reference.md), the complete event catalogue.
-- [Permissions](../../../overview/access-control/permissions.md), how **View Audit Log** relates to the other platform permissions.
+- [Roles](../../../overview/access-control/roles.md), how **Audit Log Administrator** relates to the other platform roles.

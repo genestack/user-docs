@@ -5,7 +5,9 @@ tab: odm-api
 
 # Authentication and tokens
 
-Every ODM API request requires an authorisation token. The token determines which data you can retrieve and which operations you are permitted to perform. ODM supports two token types: a Genestack API token (personal access token) and an Identity Provider access token such as an Azure AD Bearer token.
+Every ODM API request made with curl, a script, or a client library requires an authorisation token. The token determines which data you can retrieve and which operations you are permitted to perform. ODM supports two token types: a Genestack API token (personal access token) and an Identity Provider access token such as an Azure AD Bearer token.
+
+Requests made in the Swagger UI need no token. Swagger uses your ODM session, so once you are signed in to ODM, the requests you execute in Swagger run as you. See [Make your first request in Swagger](make-your-first-request.md).
 
 ## Generate a Genestack API token
 
@@ -22,11 +24,7 @@ A single user account can have multiple active tokens. Each token is permanent; 
 
 ## Use a Genestack API token
 
-You can supply a Genestack API token in three ways, depending on how you are calling the API.
-
-### In Swagger UI
-
-Click **Authorize**, select **Genestack API token**, paste the token value, and close the dialog. See [Make your first request in Swagger](make-your-first-request.md) for the full Swagger workflow.
+You can supply a Genestack API token in two ways, depending on how you are calling the API.
 
 ### In curl
 
@@ -57,4 +55,4 @@ If both a `Genestack-Api-Token` header and an `Authorization: Bearer` header are
 
 ## Why tokens matter
 
-API tokens provide a secure method for authenticating users, ensuring only those with valid credentials can access data. They enforce access control by respecting each user's permissions and group memberships. They also enable auditability: all API interactions are logged and traceable to the token's issuing user. Finally, they enable seamless automated workflows by eliminating the need for manual re-authentication on each request.
+API tokens provide a secure method for authenticating users, ensuring only those with valid credentials can access data. They enforce access control by respecting each user's permissions and group memberships. They also enable auditability: all API interactions are logged and traceable to the user who made them. Finally, they enable seamless automated workflows by eliminating the need for manual re-authentication on each request.

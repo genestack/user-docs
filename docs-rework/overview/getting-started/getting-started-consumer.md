@@ -29,11 +29,11 @@ Take a moment to orient yourself before searching. The list shows every study yo
 
 In the filter panel on the left, select a **Data Class** value that interests you. The list immediately narrows to studies matching that class. Note that the exact filters available depend on the data in your ODM instance and the facets your administrator has enabled. Your panel may look different from the screenshot below.
 
-![Filter panel in the Study Browser](../../assets/user-guide/quick-start/quick-start-images/data_consumer_filters.png)
+![Filter panel in the Study Browser](../../assets/user-guide/quick-start/quick-start-images/facets.png)
 
 Next, type a search term relevant to your data (for example, a tissue type or disease name) into the search bar at the top. As you type, ODM's autocomplete feature suggests matching values drawn from ontologies, helping you land on precise terms. The study list updates to show only results that match both your filter selection and the search term.
 
-![Search bar with autocomplete suggestions](../../assets/user-guide/quick-start/quick-start-images/odm_searchbar.gif)
+![Search bar with autocomplete suggestions](../../assets/user-guide/quick-start/quick-start-images/searchbar.gif)
 
 ## Step 4: Open a study
 
@@ -41,11 +41,11 @@ Click on any study in the results list. ODM opens the study in the Metadata Edit
 
 Tabs for other entity types appear between **Study** and **Data**, but only when the study actually contains those entities. A study whose contributor recorded per-sample metadata also has a **Samples** tab, with one row per sample, and studies built around sequencing workflows may show **Libraries** and **Preparations** tabs as well. Each tab displays the number of entities it holds next to its label.
 
-![The tabs across the top of a study in the Metadata Editor](../../assets/user-guide/quick-start/quick-start-images/study_tabs.gif)
+![The tabs across the top of a study in the Metadata Editor](../../assets/user-guide/quick-start/quick-start-images/studytabs.gif)
 
 Each study has a unique accession number that ODM generates automatically. You can see it on the **Study** tab, or copy it at any time by clicking the study menu in the top bar and selecting **Copy accession**. The accession number is what you will use to reference this study when working with the API.
 
-![Accession number location](../../assets/user-guide/quick-start/quick-start-images/study_accession.gif)
+![Accession number location](../../assets/user-guide/quick-start/quick-start-images/studyaccession.gif)
 
 The next step visualises sample attributes, so if the study you opened has no **Samples** tab, go back to the results list and pick one that does.
 
@@ -53,15 +53,13 @@ The next step visualises sample attributes, so if the study you opened has no **
 
 Click the **Explore** tab. You are now in ODM's interactive visualisation view.
 
-![The Explore tab](../../assets/user-guide/quick-start/quick-start-images/odm-explore-tab-click.gif)
-
 Select an attribute from the menu, for example, **Age** (the attributes available depend on the metadata in the study you opened). ODM immediately generates a plot of the values for that attribute across all samples in the study.
 
 ![Single-attribute plot for Age](../../assets/user-guide/quick-start/quick-start-images/explore_one_attribute.gif)
 
-Now select a second attribute, for example, **Disease**. ODM combines both attributes into a single plot that shows sample count alongside value ranges, giving you a richer view of the data.
+Now select a second attribute, for example, **Status**. ODM combines both attributes into a single plot that shows sample count alongside value ranges, giving you a richer view of the data.
 
-![Combined plot for Age and Disease](../../assets/user-guide/quick-start/quick-start-images/explore_two_attr.gif)
+![Combined plot for Age and Status](../../assets/user-guide/quick-start/quick-start-images/explore_two_attr.gif)
 
 To remove an attribute, click the **X** icon next to it in the attribute list. To clear all attributes at once, click **Reset**.
 

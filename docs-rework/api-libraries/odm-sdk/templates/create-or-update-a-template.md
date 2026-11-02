@@ -12,7 +12,7 @@ Templates loaded through the SDK are available to all users on the instance.
 ## Prerequisites
 
 - Configured ODM SDK. See [Configure](../configure.md).
-- "Set up templates" permission and a Bearer token or API token. See [Authentication and tokens](../../../odm-api/getting-started/authentication-and-tokens.md).
+- "Template Administrator" role and a Bearer token or API token. See [Authentication and tokens](../../../odm-api/getting-started/authentication-and-tokens.md).
 - A template JSON file. See the [Template reference](../../../contribute/templates/template-reference.md) for the file format.
 - A template settings JSON file (for example, `default_ODM_template_settings.json`).
 

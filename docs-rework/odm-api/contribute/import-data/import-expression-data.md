@@ -11,7 +11,7 @@ For an overview of how the import steps fit together, see [About the import work
 
 ## Prerequisites
 
-- An API token and Curator group membership.
+- Curator group membership. To run the curl examples, you also need an API token.
 - An expression data file in GCT or TSV format. For format requirements, see the supported data formats documentation.
 - Sample, library, preparation, or cell metadata already imported (the entity you intend to link expression data to).
 

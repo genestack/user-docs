@@ -9,11 +9,11 @@ This guide explains how to create a new group in ODM and how to delete one you n
 
 ## Prerequisites
 
-Any user can create a group; no special permission is required for group creation.
+Any user can create a group; no special role is required for group creation.
 
-To delete a group that you did not create (i.e., one you are not the Group Admin of), you need the **Manage groups** permission. Without it, only the Group Admin of a group can delete it. See [Permissions](../../overview/access-control/permissions.md).
+To delete a group that you did not create (i.e., one you are not the Group admin of), you need the **Group Administrator** platform role. Without it, only the Group admin of a group can delete it. See [Roles](../../overview/access-control/roles.md).
 
-For background on how groups work and the default groups that ship with ODM, see [Groups and roles](../../overview/access-control/groups-and-roles.md).
+For background on how groups work and the default groups that ship with ODM, see [Groups](../../overview/access-control/groups.md).
 
 ## Create a group
 
@@ -23,7 +23,7 @@ For background on how groups work and the default groups that ship with ODM, see
 4. Enter a name for the group in the window that appears.
 5. Click **Create**.
 
-The group is created immediately. The user who created it is automatically assigned as the Group Admin. Every group must have at least one Group Admin at all times.
+The group is created immediately. The user who created it is automatically assigned as the Group admin. Every group must have at least one Group admin at all times.
 
 There is no limit to the number of groups you can create, but avoid creating multiple groups with the same name; it creates confusion when managing sharing and permissions.
 

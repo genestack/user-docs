@@ -5,7 +5,7 @@ tab: overview
 
 # Access control
 
-ODM's access control model governs who can see, contribute to, and administer data. This section covers the full model: how accounts are structured, how groups and roles grant rights, which system-level permissions an administrator can assign, and how the platform enforces governance at scale.
+ODM's access control model governs who can see, contribute to, and administer data. This section covers the full model: how accounts are structured, how group membership grants rights, which platform roles an administrator can assign, and how the platform enforces governance at scale.
 
 <div class="grid cards gs-task-cards" markdown>
 
@@ -15,17 +15,17 @@ ODM's access control model governs who can see, contribute to, and administer da
 
     Account creation, default access, lifecycle, and technical users.
 
-- __[Groups and roles](groups-and-roles.md)__
+- __[Groups](groups.md)__
 
     ---
 
     How group membership determines access beyond the organisation default.
 
-- __[Permissions](permissions.md)__
+- __[Roles](roles.md)__
 
     ---
 
-    System-level permissions granted to users, and who should hold each.
+    Platform roles assigned to users, and who should hold each.
 
 - __[Sharing and ownership](sharing-and-ownership.md)__
 

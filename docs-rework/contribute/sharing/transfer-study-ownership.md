@@ -9,16 +9,7 @@ This guide explains how to transfer ownership of a study to another user in ODM.
 
 ## Who can transfer ownership
 
-The following users may initiate an ownership transfer:
-
-| Initiator | Conditions | Permitted? |
-|---|---|:---:|
-| Current Study Owner | Always | Yes |
-| User with Manage organisation and Access all data | Study is not shared with the user | Yes |
-| User with Manage organisation (with access to the study) | Study is shared with the user | Yes |
-| Any other user | — | No |
-
-For the full access control model, see [Sharing and ownership](../../overview/access-control/sharing-and-ownership.md).
+Only the study owner can transfer a study. No role grants the right to transfer someone else's study. If the owner's account has been deactivated, the study can be reassigned through ownership recovery instead; see [Recover study ownership](../../odm-api/admin/recover-study-ownership.md).
 
 The target of the transfer must be an active user account. You cannot transfer to a deactivated account.
 
@@ -27,7 +18,7 @@ The target of the transfer must be an active user account. You cannot transfer t
 1. Open the study in the Metadata Editor.
 2. Click the study name to open the study menu.
 3. Hover over the **Owner** option in the study menu.
-4. Select **Transfer ownership**. This option is only visible if you meet the criteria in the table above.
+4. Select **Transfer ownership**. This option is only visible if you own the study.
 5. Choose the new owner from the active-user list. The dropdown is searchable.
 6. Click **Assign new owner** in the pop-up to complete the transfer.
 
@@ -40,3 +31,9 @@ Each transfer creates a **Changing Ownership** entry in the study's metadata ver
 ## Current limitation
 
 In this release, ownership transfer operates one study at a time. There is no bulk multi-study transfer interface.
+
+## Related
+
+- [Sharing and ownership](../../overview/access-control/sharing-and-ownership.md), the full access control model.
+- [Share a study](share-a-study.md)
+- [Recover study ownership](../../odm-api/admin/recover-study-ownership.md)

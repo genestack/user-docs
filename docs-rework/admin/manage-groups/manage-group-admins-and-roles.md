@@ -9,7 +9,7 @@ This guide explains how to change a group member's role between Group member and
 
 ## Prerequisites
 
-You must be a Group Admin of the group you are editing, or have the **Manage groups** permission to change roles in any group across the instance.
+You must be a Group admin of the group you are editing, or have the **Group Administrator** platform role to change group roles in any group across the instance.
 
 ## Steps
 
@@ -24,4 +24,4 @@ The change takes effect immediately.
 
 > **Note:** every group must have at least one Group admin at all times. The interface prevents you from demoting the last admin in a group. To remove the current sole admin, first promote another member to Group admin, then change the original admin's role.
 >
-> **Curator group note:** only users with the Manage organisation permission (administrators) can add or remove members of the Curator group. See [Groups and roles](../../overview/access-control/groups-and-roles.md) for background on the Curator group and other default groups.
+> **Curator group note:** only users with the **Organisation Administrator** role can add or remove members of the Curator group. See [Groups](../../overview/access-control/groups.md) for background on the Curator group and other default groups.

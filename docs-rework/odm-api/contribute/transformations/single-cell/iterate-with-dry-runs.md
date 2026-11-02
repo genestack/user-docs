@@ -46,7 +46,7 @@ Look for:
 
 ## Step 2: Update the configuration
 
-Update the configuration using:
+Update the configuration using the following endpoint, which requires the **Transformation Configuration Administrator** role:
 
 ```text
 PUT /api/v1/transformations/configurations/{id}

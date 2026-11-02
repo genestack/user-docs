@@ -13,7 +13,8 @@ Use this when you are planning a biosample export and want to know which attribu
 
 ## Prerequisites
 
-- An API token and Curator group membership. See [Authentication and tokens](../../../getting-started/authentication-and-tokens.md).
+- Curator group membership.
+- The **Transformation Configuration Administrator** role to create or update the configuration, or an existing configuration created by someone who holds it.
 - The HDF5 file uploaded as an attachment to your study.
 
 ## Configuration (discovery mode)

@@ -9,10 +9,6 @@ This guide shows you how to find studies and samples through the ODM REST API, f
 
 For the filter and query syntax used throughout, see [Query and filter syntax reference](../reference/query-and-filter-syntax-reference.md). For the complete parameters and response schema of any endpoint, see the [Swagger UI](/swagger/helper/).
 
-## Prerequisites
-
-- An API token. See [Authentication and tokens](../getting-started/authentication-and-tokens.md).
-
 ## Find studies matching metadata criteria
 
 Send `GET /api/v1/as-user/studies` with a `filter` (metadata attribute values) or `query` (keyword search) parameter to find studies. For example, `filter="Disease"="Asthma"` returns studies tagged with that disease.

@@ -19,21 +19,16 @@ Study owners can revoke access from a group at any time.
 
 ## Transferring ownership
 
-Ownership of a study can be transferred to another active user in the system. When ownership is transferred, it cascades to all study-scoped objects: the Study, Samples, Libraries, Preparations, and all associated data objects.
-
-### Who can transfer ownership
-
-| Initiator | Conditions | Allowed? | Notes |
-|---|---|:---:|---|
-| Current Study Owner | Always | Yes | Owner can transfer regardless of other permissions. |
-| User with **Manage organisation** and **Access all data** | Study is not shared with user | Yes | For super-admin use cases. |
-| User with **Manage organisation** (with access to the Study) | Study is shared with user | Yes | Covers org-level admins who can see the Study. |
-| Any other user | — | No | Not permitted. |
+Ownership of a study can be transferred to another active user in the system. Only the study owner can transfer it. When ownership is transferred, it cascades to all study-scoped objects: the Study, Samples, Libraries, Preparations, and all associated data objects.
 
 Additional rules:
 
 - The target must be another active user. You cannot transfer to a deactivated account.
 - Transfers are one study at a time in the current release.
+
+### Studies with a deactivated owner
+
+A deactivated owner can no longer transfer their studies, so ODM provides ownership recovery for this case. A user with the **Ownership Recovery Administrator** role can list the studies whose owner is deactivated and assign them to an active user in the same organisation, whether or not those studies are shared with them. Ownership recovery applies only to studies whose owner is deactivated, and it is available through the API. See [Recover study ownership](../../odm-api/admin/recover-study-ownership.md).
 
 ## Access changes after transfer
 
@@ -46,4 +41,4 @@ Every transfer generates a "Changing Ownership" entry in the study's metadata ve
 !!! note
     Ownership version history entries are informational only. You cannot roll back to a prior owner from the version history window. To change ownership again, perform a new transfer.
 
-For the UI procedure to share a study or transfer ownership, see [Share a study](../../contribute/sharing/share-a-study.md) and [Transfer study ownership](../../contribute/sharing/transfer-study-ownership.md). For how groups gate access, see [Groups and roles](groups-and-roles.md).
+For the UI procedure to share a study or transfer ownership, see [Share a study](../../contribute/sharing/share-a-study.md) and [Transfer study ownership](../../contribute/sharing/transfer-study-ownership.md). For how groups gate access, see [Groups](groups.md).

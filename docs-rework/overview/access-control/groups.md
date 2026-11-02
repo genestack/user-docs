@@ -3,11 +3,11 @@ diataxis: explanation
 tab: overview
 ---
 
-# Groups and roles
+# Groups
 
 ## Purpose of groups
 
-Groups in ODM simplify collaboration and data sharing. A group can represent a location, department, or project team, ensuring that data is shared only with the relevant people. Users see only the groups they are members of, unless they hold the **Manage groups** permission.
+Groups in ODM simplify collaboration and data sharing. A group can represent a location, department, or project team, ensuring that data is shared only with the relevant people. Users see only the groups they are members of, unless they hold the **Group Administrator** role.
 
 ## Default groups
 
@@ -23,11 +23,11 @@ Within any group, there are two roles:
 - **Group members**: can access all data shared with their group and can share data with the group. Once added to a group, a user immediately has access to all studies shared with it; removing them revokes that access.
 - **Group admins**: can add or remove members and assign roles within their group. Admin rights do not extend to other groups.
 
-A user with the **Manage groups** permission can manage all groups system-wide, regardless of membership.
+A user with the **Group Administrator** platform role can manage all groups system-wide, regardless of membership. This is different from being a group admin: the group admin role applies only within one group, while the Group Administrator role is assigned to a user across the whole instance in the Users and Roles application. See [Roles](roles.md).
 
-### Permission interactions
+### Group Administrator role interactions
 
-| Capability | With Manage Groups permission | Without Manage Groups permission |
+| Capability | With Group Administrator role | Without Group Administrator role |
 |---|---|---|
 | Access the groups list | All groups in the system | Only groups you are a member of |
 | Create a new group | Yes | Yes (any user can create a group) |
@@ -38,7 +38,7 @@ A user with the **Manage groups** permission can manage all groups system-wide, 
 
 Membership in the **Curator group** grants edit permissions. Curators can import new studies, edit metadata, publish their changes as new metadata versions, and restore an earlier version. Users who are not members of the Curator group are considered researchers: they can browse, search, and download data, and they can view a study's version history, but they cannot contribute.
 
-| Role | Member of Curator group? | Capabilities |
+| User type | Member of Curator group? | Capabilities |
 |---|---|---|
 | Researcher | No | Browse, search, download, view version history |
 | Curator | Yes | All of the above, plus import data, edit metadata, publish new versions, and restore earlier ones |
@@ -46,14 +46,14 @@ Membership in the **Curator group** grants edit permissions. Curators can import
 !!! warning
     Do not delete the Curator group. Users need it to contribute data.
 
-## System roles
+## User personas
 
-The following roles are not formal system constructs (ODM uses permissions and groups internally), but they describe how different kinds of users typically interact with the platform:
+The following personas describe how different kinds of users typically interact with the platform. They are not roles that can be assigned:
 
 **Data Consumer**: browses and searches studies, exports data, and visualises results. No contribution capabilities.
 
 **Data Contributor**: creates new studies, curates data, shares data with other users and groups, and imports data. Requires membership in the Curator group.
 
-**Administrator**: manages user accounts and permissions, manages groups, and can delete data permanently.
+**Administrator**: manages user accounts and roles, and manages groups.
 
 For the procedures to manage users and groups, see [Manage users](../../admin/manage-users/index.md) and [Manage groups](../../admin/manage-groups/index.md). For the model of how data is shared between users and groups, see [Sharing and ownership](sharing-and-ownership.md).

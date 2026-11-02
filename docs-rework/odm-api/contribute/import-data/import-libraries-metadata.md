@@ -11,7 +11,7 @@ For a wider view of how the pieces fit together, see [About the import workflow]
 
 ## Prerequisites
 
-- An API token and Curator group membership.
+- Curator group membership. To run the curl examples, you also need an API token.
 - A library metadata TSV file hosted at an HTTP/HTTPS URL, S3 URI, or NFS path. The `Sample Source ID` column is mandatory. It must contain the identifiers used to link each library to its corresponding sample.
 - Sample metadata already imported. See [Import sample metadata](import-sample-metadata.md).
 

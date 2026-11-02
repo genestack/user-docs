@@ -16,8 +16,10 @@ This guide is for users who want to try ODM's single-cell functionality on prepa
 ## Prerequisites
 
 - ODM instance URL: `<HOST>`
-- API token: `<TOKEN>`. See [Authentication and tokens](../../../getting-started/authentication-and-tokens.md).
+- API token for the notebooks and import commands: `<TOKEN>`. See [Authentication and tokens](../../../getting-started/authentication-and-tokens.md).
 - An environment set up to run Jupyter notebooks.
+- Curator group membership, to run transformation jobs.
+- The **Transformation Configuration Administrator** role, to create the configurations the notebook uses. Without it, use configurations that a user with the role has already created.
 
 ---
 

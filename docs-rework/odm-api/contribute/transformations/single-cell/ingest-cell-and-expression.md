@@ -15,7 +15,8 @@ If your study does not yet have SLP groups, see [Create Sample, Library, or Prep
 
 ## Prerequisites
 
-- An API token and Curator group membership. See [Authentication and tokens](../../../getting-started/authentication-and-tokens.md).
+- Curator group membership.
+- The **Transformation Configuration Administrator** role to create or update the configuration, or an existing configuration created by someone who holds it.
 - The HDF5 file uploaded as an attachment to your study in ODM.
 - Sample, Library, or Preparation groups already present in the study.
 

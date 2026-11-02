@@ -9,8 +9,7 @@ In this tutorial, you will use the ODM API to locate detached data objects (obje
 
 ## Prerequisites
 
-- Both the **Manage organisation** and **Access all data** permissions are required for these operations.
-- An API token. See [Authentication and tokens](authentication-and-tokens.md).
+- The **Orphan Data Administrator** role, which is required both to list detached objects and to delete them.
 - Familiarity with the Swagger UI. See [Swagger orientation](swagger-orientation.md).
 
 ## What is a detached object?
@@ -41,7 +40,7 @@ For example, setting the type filter to `LIBRARY_GROUP` and the limit to `10` re
 
 ## Step 4: Verify the deletion
 
-After a short time, search for the deleted study or object in the ODM interface. It should no longer appear in any listing.
+After a short time, repeat the request from Step 1. The accession you deleted should no longer appear in the list of detached objects.
 
 ## What you built
 

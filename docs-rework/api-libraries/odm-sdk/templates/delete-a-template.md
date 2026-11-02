@@ -10,14 +10,14 @@ This guide explains how to delete a template from ODM using the `odm-delete-temp
 ## Prerequisites
 
 - Configured ODM SDK. See [Configure](../configure.md).
-- "Manage organisation" permission and a Bearer token or API token. See [Authentication and tokens](../../../odm-api/getting-started/authentication-and-tokens.md).
+- "Template Administrator" role and a Bearer token or API token. See [Authentication and tokens](../../../odm-api/getting-started/authentication-and-tokens.md).
 
 > **Warning:**
 >
 > 1. The Default template can be deleted, which may cause issues, so be careful.
-> 2. Only users with the "Manage organization" permission can delete templates.
+> 2. Only users with the "Template Administrator" role can delete templates. The "Organisation Administrator" role does not grant this right.
 > 3. The script does not verify that the file with the provided accession exists. If nothing is deleted but the script runs correctly, it will still output `Success`.
-> 4. The script does not check the type of the object. If a study's accession is provided instead of a template's accession, the study will be deleted. For deleting studies, use the script described in [Delete a study](../study/delete-a-study.md).
+> 4. The script does not check the type of the object. If a study's accession is provided instead of a template's accession and you own that study, the study will be deleted. For deleting studies, use the script described in [Delete a study](../study/delete-a-study.md).
 
 ## Steps
 

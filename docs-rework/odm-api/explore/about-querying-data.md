@@ -29,7 +29,7 @@ Query endpoints are grouped by the access path they sit under, which determines 
 
 - **`as-user/`** endpoints are available to all authenticated users and return published data.
 - **`as-curator/`** endpoints require Curator group membership and additionally return unpublished data.
-- **`manage-data/`** endpoints require the "Manage organisation" and "Access all data" permissions.
+- **`manage-data/`** endpoints each have their own requirement: study ownership for deleting a study and its child objects, or a platform role for the other operations (for example, **Orphan Data Administrator** to list detached objects). See [Roles](../../overview/access-control/roles.md).
 
 Within the `as-user/` and `as-curator/` paths, endpoints come in two flavours: **omics endpoints**, which query a single data type (expression, variant, flow cytometry, and so on), and **integration endpoints**, which query across linked entity types (for example, retrieving the samples linked to a library). For the omics endpoints and their filters, see [Search imported data](search-imported-data.md); for the integration endpoints, see [Cross-product queries](cross-product-queries.md). For the filter-expression language and query parameters shared across all of these, see [Query and filter syntax reference](../reference/query-and-filter-syntax-reference.md).
 

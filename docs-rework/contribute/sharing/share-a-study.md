@@ -12,7 +12,7 @@ This guide explains how to share a study with one or more user groups in ODM.
 - You must own the study to share or unshare it. See [Sharing and ownership](../../overview/access-control/sharing-and-ownership.md) for the ownership model.
 - You must be a member of the groups you want to share the study with.
 
-Studies in ODM are shared with groups, not with individual users. For an explanation of how groups work, see [Groups and roles](../../overview/access-control/groups-and-roles.md).
+Studies in ODM are shared with groups, not with individual users. For an explanation of how groups work, see [Groups](../../overview/access-control/groups.md).
 
 ## Share from the Study Browser
 

@@ -40,7 +40,7 @@ Legacy 10x Genomics H5 files (v<3) are supported only when the file contains a s
 
 ## Prerequisites and workflow
 
-For the full job submission workflow, see [How to run a transformation](../how-to-run-a-transformation.md). For authentication prerequisites, see [Authentication and tokens](../../../getting-started/authentication-and-tokens.md).
+For the full job submission workflow, see [How to run a transformation](../how-to-run-a-transformation.md).
 
 ## Related
 
