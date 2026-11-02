@@ -16,10 +16,12 @@ This guide explains how to change the password of another user's account as an a
 
 1. Click the three-line menu at the top left of the Dashboard.
 2. Select **Users and Roles**.
-3. Locate the user whose password you want to change.
-4. Click the three-dot menu ( ⋮ ) next to the user's name.
-5. Select **Change Password**. A new window appears prompting you to authenticate yourself as an administrator.
+3. Find the user whose password you want to change, using the **Name or email** search field if the list is long.
+4. Click the user's row, or its edit button. A panel opens on the right with the user's details.
+5. Click **Change password**. A new window appears prompting you to authenticate yourself as an administrator.
 6. After authenticating, enter the new password and confirm it.
 7. Ensure the new password meets the required security criteria.
 
 A confirmation message appears when the password has been successfully changed.
+
+> **Note:** in your own panel, **Change password** opens your profile page, where you change your own password instead.

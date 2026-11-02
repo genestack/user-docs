@@ -16,12 +16,14 @@ You must have the **Organisation Administrator** role to create users. See [Role
 ## Steps
 
 1. Click the three-line menu at the top left of the Dashboard.
-2. Select **Users and Roles**. A window opens listing all users in the instance.
+2. Select **Users and Roles**. The **Users** tab opens, listing all users in the instance.
 3. Click **+ New user**.
 4. Fill in the user's details, including their email address and name.
 5. Click **Add** to confirm.
 
 ODM detects if a user with that email address has been previously added and will alert you if there is a conflict.
+
+After you add the user, ODM clears the search, selects the new user in the list and opens the panel with their roles on the right, where you can assign roles straight away.
 
 ## Next steps
 
