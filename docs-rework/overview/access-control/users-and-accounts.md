@@ -27,7 +27,7 @@ On a fresh installation of ODM, a small number of technical user accounts are cr
 
 | User | State | Purpose |
 |---|---|---|
-| <root@genestack.com> | Active | Superadmin |
+| <root@genestack.com> | Active | Organisation Administrator |
 | <public@genestack.com> | Active | Loading public data, ontologies, setting templates |
 | <tester_curator@genestack.com> | Deactivated | Automated testing upon installation |
 | <tester_user@genestack.com> | Deactivated | Automated testing upon installation |
