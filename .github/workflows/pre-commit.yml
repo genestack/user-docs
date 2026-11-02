@@ -3,11 +3,14 @@ name: Pre-commit
 on:
   pull_request:
     branches: [develop]
+    # The default three, plus ready_for_review: a draft's runs are skipped, and a PR
+    # marked ready without a new push would otherwise never run the hooks.
+    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
   pre-commit:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7.0.1
       - name: Setup Node.js
