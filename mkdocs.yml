@@ -43,6 +43,7 @@ nav:
         - View Study Metadata: explore/view-study-metadata.md
         - Visualise Sample Data: explore/visualise-sample-data.md
         - Bookmark Studies: explore/bookmark-studies.md
+        - Connect an AI Assistant: explore/connect-an-ai-assistant.md
         - Export Data: explore/export-data.md
     - Contribute Data:
         - contribute/index.md
@@ -88,6 +89,7 @@ nav:
             - Manage Group Admins and Roles: admin/manage-groups/manage-group-admins-and-roles.md
         - Configure Facets: admin/configure-facets.md
         - SCIM Integration: admin/scim-integration.md
+        - Enable the MCP Server: admin/mcp-server.md
     - ODM API:
         - odm-api/index.md
         - Getting Started:

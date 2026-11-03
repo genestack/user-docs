@@ -5,7 +5,7 @@ tab: admin
 
 # Admin
 
-This section covers platform administration in ODM: managing users and groups, configuring facets for the Study Browser, and integrating with external identity providers via SCIM. All topics here address operations through the ODM user interface. For API-only administration operations, such as working with detached objects, data deletion, and user account management via the REST API, see [Administer via API](../odm-api/admin/index.md).
+This section covers platform administration in ODM: managing users and groups, configuring facets for the Study Browser, and integrating with external identity providers via SCIM. All topics here address operations through the ODM user interface, except enabling the MCP server, which is part of deploying ODM. For API-only administration operations, such as working with detached objects, data deletion, and user account management via the REST API, see [Administer via API](../odm-api/admin/index.md).
 
 ## Choose your task
 
@@ -34,6 +34,12 @@ This section covers platform administration in ODM: managing users and groups, c
     ---
 
     Connect ODM to an external identity provider for automated user provisioning.
+
+- __[Enable the MCP server](mcp-server.md)__
+
+    ---
+
+    Let AI assistants search and read ODM for the signed-in user.
 
 </div>
 
