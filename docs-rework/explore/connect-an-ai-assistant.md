@@ -39,10 +39,10 @@ In VS Code, in `.vscode/mcp.json`:
 
 ## Step 2: Sign in
 
-The first time the assistant connects, it opens a browser window:
+The first time the assistant connects, it asks you to sign in. In Claude Code, run `/mcp`, select `odm` and choose **Authenticate**. VS Code asks you to allow the sign-in. A browser window then opens:
 
 1. On the **Application Access Request** page, check the assistant's name and allow it.
-2. Sign in with your Microsoft account, as you do for ODM.
+2. Sign in with your Microsoft account, as you do for ODM. If Microsoft asks for your consent to *Access ODM through an AI assistant*, accept it.
 
 The assistant then lists ODM's tools.
 
@@ -56,4 +56,4 @@ For example:
 
 ## If you have to sign in again
 
-The sign-in lasts while the assistant stays connected. When the MCP server restarts, after an ODM upgrade for example, the assistant asks you to sign in again.
+The assistant keeps you signed in, also when you restart it. It asks you to sign in again when your sign-in expires, or when the MCP server is replaced, after an ODM upgrade for example.
