@@ -11,7 +11,7 @@ The assistant acts as you: it sees what you can see in ODM, and it cannot change
 
 ## Prerequisites
 
-- Your ODM administrator has [enabled the MCP server](../admin/mcp-server.md), and given you its address, `https://<ODM_HOST>/mcp`.
+- Your ODM administrator has [enabled the MCP server](https://genestack.github.io/admin-docs/latest/home/mcp-server/enable/), and given you its address, `https://<ODM_HOST>/mcp`.
 - You sign in to ODM with Microsoft.
 
 ## Step 1: Add ODM to your assistant

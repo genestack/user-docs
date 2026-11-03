@@ -89,7 +89,6 @@ nav:
             - Manage Group Admins and Roles: admin/manage-groups/manage-group-admins-and-roles.md
         - Configure Facets: admin/configure-facets.md
         - SCIM Integration: admin/scim-integration.md
-        - Enable the MCP Server: admin/mcp-server.md
     - ODM API:
         - odm-api/index.md
         - Getting Started:
