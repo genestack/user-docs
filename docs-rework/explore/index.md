@@ -41,6 +41,12 @@ The Explore tab covers finding, viewing, visualising, and exporting data through
 
     Save studies for quick access.
 
+- __[Connect an AI assistant](connect-an-ai-assistant.md)__
+
+    ---
+
+    Ask an AI assistant to search and read ODM for you.
+
 </div>
 
 To orient yourself to the Study Browser interface before diving in, see [Navigating the UI: Study Browser](../overview/navigating-the-ui/study-browser.md).

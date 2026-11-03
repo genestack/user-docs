@@ -21,12 +21,14 @@ ODM does not allow user accounts to be deleted, only deactivated. A deactivated 
 
 1. Click the three-line menu at the top left of the Dashboard.
 2. Select **Users and Roles**.
-3. Locate the user in the list.
-4. Click the three-dot menu ( ⋮ ) next to the user's name.
-5. Select **Deactivate**.
+3. Find the user, using the **Name or email** search field if the list is long.
+4. Click the user's row, or its edit button. A panel opens on the right with the user's details.
+5. Click **Deactivate**.
 
-The change takes effect immediately.
+The change takes effect immediately. A **DEACTIVATED** badge appears next to the user's name, and the button changes to **Activate**. The user keeps their roles and still appears in the list and in search results.
+
+> **Note:** you cannot deactivate your own account, so the button is not shown in your own panel.
 
 ## Reactivate a user
 
-Follow the same steps as above, but select **Activate** in step 5 instead. The user regains access immediately.
+Follow the same steps as above, but click **Activate** in step 5 instead. The user regains access immediately.
