@@ -23,5 +23,3 @@ This guide explains how to change the password of another user's account as an a
 7. Ensure the new password meets the required security criteria.
 
 A confirmation message appears when the password has been successfully changed.
-
-> **Note:** in your own panel, **Change password** opens your profile page, where you change your own password instead.
