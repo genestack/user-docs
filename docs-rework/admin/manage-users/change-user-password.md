@@ -30,6 +30,6 @@ This guide explains how to change another user's password in ODM as an administr
 
     Each requirement turns green once the password meets it, and the window shows whether the two passwords match.
 
-8. Click **Save**.
+8. Once all requirements are met and the passwords match, click **Save**.
 
 > **Note:** in your own panel, **Change password** opens **Change your password** instead. There you confirm your current password, and the new password must differ from it.
