@@ -7,11 +7,12 @@ tab: admin
 
 This guide explains how to change another user's password in ODM as an administrator.
 
+> **Warning:** this guide does not apply to accounts that sign in only with SSO or are synchronised through [SCIM](../scim-integration.md). Such accounts have no password stored in ODM, so their panel has no **Change password**. If your own administrator account is one of them, you cannot change anyone's password with it; use the root account instead. For more on account types, see [Users and accounts](../../overview/access-control/users-and-accounts.md).
+
 ## Prerequisites
 
 - You must have the **Organisation Administrator** role.
-- Your administrator account must have a password set. If your account uses SSO as its only login method, it has no stored password, and no user's panel shows **Change password**. Use the root account in that case. For more on account types, see [Users and accounts](../../overview/access-control/users-and-accounts.md).
-- The user must be active and have a password. The panel of a deactivated user, or of a user who signs in only with SSO, has no **Change password**.
+- The user must be active. The panel of a deactivated user has no **Change password**.
 
 ## Steps
 
@@ -30,7 +31,5 @@ This guide explains how to change another user's password in ODM as an administr
     Each requirement turns green once the password meets it, and the window shows whether the two passwords match.
 
 8. Click **Save**.
-
-When the password changes, a confirmation message such as **Password for Jane Doe updated** appears. To leave without changing the password, click **Cancel** or the close button. The window keeps nothing you entered.
 
 > **Note:** in your own panel, **Change password** opens **Change your password** instead. There you confirm your current password, and the new password must differ from it.
