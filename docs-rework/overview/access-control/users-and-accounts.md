@@ -9,6 +9,13 @@ tab: overview
 
 With Single Sign-On (SSO) configured, new users are created automatically upon their first login. Detailed instructions for identity provider integration are available in the [ODM Administrator Documentation](https://genestack.github.io/admin-docs/latest/home/single-sign-on/sso/). Automated provisioning via AD/SCIM is also supported. See [SCIM integration](../../admin/scim-integration.md).
 
+## Sign-in methods
+
+An ODM account uses one of two sign-in methods.
+
+- Password-based accounts sign in with an email and a password stored in ODM. On instances without SSO, an administrator creates these accounts in **Users and Roles**. The [technical users](#technical-users), including root, also have password-based accounts. The account owner can change the password in their profile, or an administrator can change it for them. See [How to change a user's password](../../admin/manage-users/change-user-password.md).
+- SSO-only accounts sign in through the organisation's identity provider. ODM creates them on the user's first SSO login, or receives them through [SCIM](../../admin/scim-integration.md). ODM stores no password for these accounts, so neither the user nor an administrator can set or change one in ODM. The identity provider manages their credentials.
+
 ## Default access
 
 Newly created users have immediate access to studies shared with everyone in the organisation. Access beyond that requires group membership.
