@@ -5,21 +5,31 @@ tab: admin
 
 # How to change a user's password
 
-This guide explains how to change the password of another user's account as an administrator in ODM.
+This guide explains how to change another user's password in ODM as an administrator.
+
+> **Warning:** this guide does not apply to accounts that sign in only with SSO or are synchronised through [SCIM](../scim-integration.md). Such accounts have no password stored in ODM, so their panel has no **Change password**. For more on sign-in methods, see [Users and accounts](../../overview/access-control/users-and-accounts.md#sign-in-methods).
 
 ## Prerequisites
 
 - You must have the **Organisation Administrator** role.
-- Your administrator account must have a password set. If your account uses SSO as its only login method, you do not have a stored password and cannot perform this action. Use the root account in that case. For more on account types, see [Users and accounts](../../overview/access-control/users-and-accounts.md).
+- The user must be active. The panel of a deactivated user has no **Change password**.
 
 ## Steps
 
 1. Click the three-line menu at the top left of the Dashboard.
 2. Select **Users and Roles**.
-3. Locate the user whose password you want to change.
-4. Click the three-dot menu ( ⋮ ) next to the user's name.
-5. Select **Change Password**. A new window appears prompting you to authenticate yourself as an administrator.
-6. After authenticating, enter the new password and confirm it.
-7. Ensure the new password meets the required security criteria.
+3. Find the user whose password you want to change, using the **Name or email** search field if the list is long.
+4. Click the user's row, or its edit button. A panel opens on the right with the user's details.
+5. Click **Change password**. The **Change password** window opens with the user's name, email and ID.
+6. In step 1 of 2, **Confirm it's you**, enter your own password under **Your password** and click **Continue**. If the password is wrong, the window shows **Incorrect password. Try again.**
+7. In step 2 of 2, **New password**, enter the new password, then enter it again under **Confirm new password**. The password must have:
+    - at least 8 characters
+    - a capital letter
+    - a lower-case letter
+    - a number
 
-A confirmation message appears when the password has been successfully changed.
+    Each requirement turns green once the password meets it, and the window shows whether the two passwords match.
+
+8. Once all requirements are met and the passwords match, click **Save**.
+
+> **Note:** in your own panel, **Change password** opens **Change your password** instead. There you confirm your current password, and the new password must differ from it.

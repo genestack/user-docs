@@ -5,7 +5,7 @@ tab: overview
 
 # Roles
 
-Once a user is created, roles can be assigned in the **Users and Roles** application by any user who holds the **Organisation Administrator** role. The system account `root@genestack.com` has this role by default. Hovering over each role in the UI displays a tooltip with its capabilities.
+Once a user is created, roles can be assigned in the **Users and Roles** application by any user who holds the **Organisation Administrator** role. The system account `root@genestack.com` has this role by default. On its **Users** tab you change the roles of one user at a time, and on its **Roles** tab you add users to a role or remove them. Both tabs show a short description of each role.
 
 These are platform roles, assigned to individual users across the whole instance. They are separate from group roles (group member and group admin), which apply within a single group; see [Groups](groups.md).
 

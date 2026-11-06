@@ -23,7 +23,7 @@ Click your profile icon at the top-right of the Dashboard. Your profile view sho
 
 ## Step 2: Access Users and Roles
 
-Click the three-line menu at the top-left of the Dashboard and select **Users and Roles**. A window opens listing all users on your ODM instance. This section is also accessible directly from the main Dashboard if you have the relevant role.
+Click the three-line menu at the top-left of the Dashboard and select **Users and Roles**. The application has two tabs: **Users** lists all users on your ODM instance with their roles, and **Roles** lists the roles with their members. This section is also accessible directly from the main Dashboard if you have the relevant role.
 
 <figure markdown="span">
 ![Users and Roles menu](../../assets/user-guide/quick-start/quick-start-images/usersandroles.gif)
@@ -39,7 +39,16 @@ In the Users and Roles view, click **+ New user**. A form opens where you enter 
 
 ## Step 4: Assign or remove roles
 
-From the Users and Roles view, find the user you want to configure. Use the search bar if the list is long. Tick or untick the checkboxes for each role: **Organisation Administrator**, **Group Administrator**, **Template Administrator**, **Access all data**, **Catalogue Administrator**, **Ownership Recovery Administrator**, **Orphan Data Administrator**, **Transformation Configuration Administrator**, **Reference Data Administrator**, and **Audit Log Administrator**. Hover over any checkbox to read a brief description of what that role enables. Changes take effect as soon as you toggle the checkbox.
+On the **Users** tab, find the user you want to configure. Use the **Name or email** search field if the list is long. Click the user's row to open the panel with their roles on the right. Each role has a short description of what it enables, and the roles are grouped into four categories:
+
+| Category | Roles |
+|---|---|
+| Administration | **Organisation Administrator**, **Group Administrator** |
+| Configuration | **Template Administrator**, **Catalogue Administrator**, **Transformation Configuration Administrator**, **Reference Data Administrator** |
+| Data stewardship | **Ownership Recovery Administrator**, **Orphan Data Administrator** |
+| Compliance | **Audit Log Administrator** |
+
+Tick a role's checkbox to assign it, or untick it to remove it. The change takes effect as soon as you toggle the checkbox. To work from the role's side instead, open the **Roles** tab and select a role. There you add users in the **Add users to this role** field, or click **Remove** next to a member.
 
 <figure markdown="span">
 ![Roles panel](../../assets/user-guide/quick-start/quick-start-images/addrole.gif)
