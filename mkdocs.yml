@@ -79,6 +79,7 @@ nav:
             - About Harmonise: contribute/harmonise/about-harmonise.md
             - Run Lifecycle: contribute/harmonise/run-lifecycle.md
             - Start and Finish a Run: contribute/harmonise/start-and-finish-a-run.md
+            - Harmonise a Study: contribute/harmonise/harmonise-a-study.md
             - Save Your LLM Credentials: contribute/harmonise/save-your-llm-credentials.md
     - Admin:
         - admin/index.md

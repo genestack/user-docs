@@ -19,6 +19,10 @@ Times are ISO 8601, in UTC.
 | `POST /api/v1/harmonisation/runs/{id}/steps` | Curators | Queues a `list-files` step | `201`, the step |
 | `POST /api/v1/harmonisation/runs/{id}/upload` | Curators | Queues an `upload-to-odm` step | `201`, the step |
 | `POST /api/v1/harmonisation/runs/{id}/check-llm` | Curators | Queues a `check-llm` step | `201`, the step |
+| `POST /api/v1/harmonisation/runs/{id}/extract` | Curators | Starts an `extract` step: the first extraction, or changes to the latest one | `201`, the step |
+| `POST /api/v1/harmonisation/runs/{id}/transform` | Curators | Starts a `transform` step: approves the latest extraction, or changes to the latest transformation | `201`, the step |
+| `POST /api/v1/harmonisation/runs/{id}/export` | Curators | Starts an `export` step: approves the latest transformation | `201`, the step |
+| `GET /api/v1/harmonisation/runs/{id}/steps/{stepId}/review` | Curators | Reads the review payload of an `extract` or a `transform` step | `200`, the [review](#review) |
 | `POST /api/v1/harmonisation/runs/{id}/finish` | Curators | Finishes a run | `200`, the run |
 | `GET /api/v1/harmonisation/llm-credentials` | Curators | Reads your credentials, without the key | `200`, the credentials |
 | `PUT /api/v1/harmonisation/llm-credentials` | Curators | Saves your credentials, replacing any saved before | `200`, the credentials |
@@ -34,11 +38,11 @@ A run's `{id}` is its number. There is no endpoint to delete or cancel a run.
 
 | Status | When |
 |---|---|
-| `400 Bad Request` | A run id that is not a number, or an invalid body: see each endpoint in Swagger. |
+| `400 Bad Request` | A run id that is not a number, or an invalid body, such as a first extraction without `path`, or with a blank one (`""` or `/`), a first transformation without `templateId`, or feedback outside its [limits](#feedback): see each endpoint in Swagger. |
 | `401 Unauthorized` | No valid token. |
 | `403 Forbidden` | Not a Curator, or, to change providers, not a Harmonisation Administrator. |
-| `404 Not Found` | No run with this id that you started, no credentials saved, or no provider with this id. |
-| `409 Conflict` | Starting a run without usable LLM credentials; a step on a run that cannot take one now, because it is not ready yet or is finishing or over; an upload before any listing found files; adding a provider whose id is in use. |
+| `404 Not Found` | No run with this id that you started, no step with this id in it, a step without a review payload, no credentials saved, or no provider with this id. |
+| `409 Conflict` | Starting a run without usable LLM credentials; a step on a run that cannot take one now, because it is not ready yet or is finishing or over; an upload before any listing found files; a phase the run cannot take now (see [Phases](#phases)); adding a provider whose id is in use. |
 | `503 Service Unavailable` | The cluster the runs' processing environments run on, or the database that keeps their history, cannot be reached. Retry later. |
 
 ## Run
@@ -53,7 +57,7 @@ A run's `{id}` is its number. There is no endpoint to delete or cancel a run.
 | `finishedAt` | When the run ended; set once it is `FINISHED` or `FAILED`. |
 | `exitCode` | Exit code of the run's process; `0` after a clean finish. Absent if it never ran. |
 | `reason` | Why the run waits, failed or ended as it did, for example `ErrImagePull` or `Finished before its Pod was ready`. |
-| `defaultBucket` | The bucket a `list-files` step lists when it names none. |
+| `defaultBucket` | The bucket a `list-files` or an `extract` step reads when it names none, and the one an `export` step writes its Package to. |
 | `connected` | Whether the run's processing environment is connected to ODM now; `false` once the run is over. |
 | `steps` | The [steps](#steps) you asked for, in order, and `shutdown` last once the run shuts down. |
 
@@ -73,22 +77,49 @@ See [Run lifecycle](../../../contribute/harmonise/run-lifecycle.md) for how a ru
 ## Steps
 
 !!! note
-    The step actions other than `shutdown` are early versions and will change as Harmonise develops.
+    The step actions other than `shutdown` are early versions and may change as Harmonise develops.
 
 | Field | Description |
 |---|---|
-| `id` | Unique within the run: `list-files-1`, `upload-to-odm-1`, `check-llm-1`, … and `shutdown`. |
-| `action` | `list-files`, `upload-to-odm`, `check-llm` or `shutdown`. |
+| `id` | Unique within the run: `list-files-1`, `upload-to-odm-1`, `check-llm-1`, `extract-1`, `transform-1`, `export-1`, … and `shutdown`. |
+| `action` | `list-files`, `upload-to-odm`, `check-llm`, `extract`, `transform`, `export` or `shutdown`. |
 | `status` | One of the [step statuses](#step-statuses). |
 | `startedAt`, `finishedAt` | When the step started and ended. |
 | `error` | Why the step failed. |
 | `failure` | For a failed step that called the LLM, its [cause](#llm-failures), where the run can tell it. |
-| `bucket`, `path` | What a `list-files` step lists, or the listing an `upload-to-odm` step uploads. |
+| `bucket`, `path` | What a `list-files` or an `extract` step reads, or the listing an `upload-to-odm` step uploads. |
 | `files` | What a `list-files` step found: each file's `key`, `size` in bytes and `lastModified`. Absent in run lists. |
 | `keys` | The files an `upload-to-odm` step uploads. |
-| `upload` | What an `upload-to-odm` step imported into ODM: `studyAccession`, `sampleGroupAccession` and `expressionGroupAccessions`. |
+| `upload` | What an `upload-to-odm` or an `export` step imported into ODM: `studyAccession`, `sampleGroupAccession` and `expressionGroupAccessions`, empty for an export; for an export, also `packageBucket` and `packageKeys`, where it wrote the Package. |
+| `templateId` | The template a `transform` step harmonises to. |
+| `basedOn` | The attempt a `transform` or an `export` step is built on: the one approved, for example `extract-2`. |
+| `revises` | The attempt of the same phase an `extract` or a `transform` step revises; absent for the first attempt of a phase. |
+| `feedback` | The comments a revising step carries: `attemptStepId` and `comments`. Absent in run lists. |
+| `reviewKind` | `extraction` or `transformation`, once the step has a review payload. |
+| `review` | For a successful `extract` or `transform` step: `AWAITING`, nothing asked on it yet; `APPROVED`, a later step is built on it; `CHANGES_REQUESTED`, a later step's feedback names it. When both happened, the latest counts. |
+| `superseded` | `true` for an `extract` or a `transform` step once a later attempt of its phase has succeeded. Nothing can be built on it or comment on it. |
 
 The body of `POST /api/v1/harmonisation/runs/{id}/steps` is optional: `bucket`, the run's `defaultBucket` when absent, and `path`, a folder in the bucket, the whole bucket when absent.
+
+### Phases
+
+`extract`, `transform` and `export` are accepted only when the run is `READY` with no step queued or running, and in this order:
+
+| Where the run is | Approve | Request changes |
+|---|---|---|
+| No successful extraction | `POST .../extract` with `path` | — |
+| An extraction succeeded, no transformation yet | `POST .../transform` with `templateId` | `POST .../extract` with `feedback` on the latest extraction |
+| A transformation succeeded, no export yet | `POST .../export` | `POST .../transform` with `feedback` on the latest transformation |
+| An export succeeded | No more phases: finish the run | — |
+
+Anything else is refused with `409 Conflict`. A failed export does not count: another can be asked for. `list-files`, `upload-to-odm` and `check-llm` keep their own rules. An extraction with `feedback` keeps the bucket and path of the attempt it revises unless it gives others, and a blank `path` (`""` or `/`) keeps the revised attempt's folder too; a transformation with `feedback` keeps its extraction and template.
+
+### Feedback
+
+| Field | Description |
+|---|---|
+| `attemptStepId` | Required. The attempt reviewed: the latest successful step of the same phase. |
+| `comments` | Required. 1 to 100 comments, each with a `comment`, 1 to 4000 characters, and an optional `context`, at most 500 characters, such as `object:samples` or `field:Sample.Disease`. |
 
 ### Step statuses
 
@@ -108,8 +139,19 @@ The body of `POST /api/v1/harmonisation/runs/{id}/steps` is optional: `bucket`, 
 | `LLM_MODEL_UNAVAILABLE` | The provider does not know the model, or the key may not use it. |
 | `LLM_UNREACHABLE` | No answer from the provider. |
 | `LLM_KEY_MISSING` | The run's Curator had no usable credentials when it started. |
+| `LLM_API_UNSUPPORTED` | The step needs an API the provider does not speak: `transform` needs `OPENAI`. |
 
 A run keeps the credentials it started with: a key saved since applies to the next run.
+
+## Review
+
+What `GET /api/v1/harmonisation/runs/{id}/steps/{stepId}/review` returns. It never changes once the step has it.
+
+| Field | Description |
+|---|---|
+| `stepId` | The step. |
+| `kind` | `extraction` or `transformation`: the format of `payload`. |
+| `payload` | The JSON object the run produced for review, a bounded summary of the attempt: for an extraction, its files, how it read them, the objects extracted and the findings; for a transformation, its plan, how it ran, the entities, the lineage of their fields and the findings. |
 
 ## LLM credentials
 

@@ -5,7 +5,7 @@ tab: contribute
 
 # Harmonise
 
-Harmonise prepares the raw files of a study for ODM with the help of a large language model (LLM). This section covers what Harmonise is, how a run moves from its start to its finish, and how to save the LLM credentials your runs use. For the same operations through the API, see [Harmonise via API](../../odm-api/contribute/harmonise/about-the-harmonisation-api.md).
+Harmonise prepares the raw files of a study for ODM with the help of a large language model (LLM). This section covers what Harmonise is, how a run moves from its start to its finish, how to take a study through its phases, and how to save the LLM credentials your runs use. For the same operations through the API, see [Harmonise via API](../../odm-api/contribute/harmonise/about-the-harmonisation-api.md).
 
 !!! info
     Harmonise is available to users who are part of the **Curator** group within ODM.
@@ -18,7 +18,7 @@ Harmonise prepares the raw files of a study for ODM with the help of a large lan
 
     ---
 
-    What a run is, what it does as you, and which LLM it calls.
+    What a run is, its phases and attempts, what it does as you, and which LLM it calls.
 
 - **[Run lifecycle](run-lifecycle.md)**
 
@@ -31,6 +31,12 @@ Harmonise prepares the raw files of a study for ODM with the help of a large lan
     ---
 
     Starting a run, finishing it, and finding it again later.
+
+- **[Harmonise a study](harmonise-a-study.md)**
+
+    ---
+
+    Extracting, transforming and exporting a study, with your review of each attempt.
 
 - **[Save your LLM credentials](save-your-llm-credentials.md)**
 
