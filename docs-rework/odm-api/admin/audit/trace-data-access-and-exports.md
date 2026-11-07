@@ -43,7 +43,7 @@ GET /api/v1/audit/events?studyAccession=GSF2006789&eventType=DOWNLOAD_FILE&from=
 `DOWNLOAD_FILE` covers four different actions. You tell them apart by the source, the target, and the result, not by the event type:
 
 | Action | How the event appears |
-|---|---|
+| --- | --- |
 | A whole study exported from the Export Data application | `source: UI`, `dataType: STUDY`, and the study accession as the target ID |
 | A single file exported from the same application | `source: UI`, the file's accession as the target ID, and a `dataType` of `FILE` for an attachment or `TABULAR_DATA`, `GENE_VARIANT`, or `FLOW_CYTOMETRY` for omics data |
 | An attachment downloaded through `GET /api/v1/as-curator/files/{id}/download` | `source: API`, `dataType: FILE`, and the file's accession as the target ID |

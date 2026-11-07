@@ -33,7 +33,7 @@ Once created, a user cannot be deleted from the system. Users can be deactivated
 On a fresh installation of ODM, a small number of technical user accounts are created automatically. These accounts support integration, automated testing, and system configuration and are not intended for day-to-day use. Passwords for technical users can be changed at any time.
 
 | User | State | Purpose |
-|---|---|---|
+| --- | --- | --- |
 | <root@genestack.com> | Active | Organisation Administrator |
 | <public@genestack.com> | Active | Loading public data, ontologies, setting templates |
 | <tester_curator@genestack.com> | Deactivated | Automated testing upon installation |

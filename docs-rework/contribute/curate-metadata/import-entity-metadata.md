@@ -19,7 +19,7 @@ When you need to describe a single entity, you can load its metadata from a TSV 
 List the attribute names in the first row of your file and their values in the second row. Where a single attribute takes more than one value, separate the values with a pipe character (`|`).
 
 | Study Source | Study Description |
-|---|---|
+| --- | --- |
 | 1000 Genomes Project | Subset of 1000 Genomes Project |
 
 Technical, read-only keys such as `genestack:accession` are ignored, so you can leave them in the file.

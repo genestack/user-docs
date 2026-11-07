@@ -19,7 +19,7 @@ Use multipart endpoints when:
 ## Supported multipart endpoints
 
 | Endpoint | File format | Entity type |
-|---|---|---|
+| --- | --- | --- |
 | `POST /api/v1/jobs/import/samples/multipart` | TSV | Sample metadata |
 | `POST /api/v1/jobs/import/libraries/multipart` | TSV | Library metadata |
 | `POST /api/v1/jobs/import/preparations/multipart` | TSV | Preparation metadata |

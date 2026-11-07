@@ -10,7 +10,7 @@ Asynchronous import operations return a `jobExecId`. Use this identifier to moni
 ## Endpoints
 
 | Operation | Method | Endpoint |
-|---|---|---|
+| --- | --- | --- |
 | Get job status and metadata | `GET` | `/api/v1/jobs/{jobExecId}/info` |
 | Get final output and accession | `GET` | `/api/v1/jobs/{jobExecId}/output` |
 | Restart a failed or stopped job | `PUT` | `/api/v1/jobs/{jobExecId}/restart` |
@@ -21,7 +21,7 @@ Asynchronous import operations return a `jobExecId`. Use this identifier to moni
 The `status` field in the `/info` response can be one of:
 
 | Status | Meaning |
-|---|---|
+| --- | --- |
 | `STARTING` | Import job is initialising |
 | `RUNNING` | Import job is in progress |
 | `STOPPING` | Import job is being stopped |
@@ -51,7 +51,7 @@ For group-level imports, the result object uses `groupAccession` instead of `acc
 The behaviour of stop and restart actions depends on the type of file being processed:
 
 | File type | Stop/restart behaviour |
-|---|---|
+| --- | --- |
 | Metadata files (studies, samples, libraries, preparations) | Stop and restart are supported. The job resumes from where it left off. |
 | Signal files (expression, flow cytometry, variant) | Processed quickly; stop and restart have limited practical use. |
 | Attachment files | Handled as a single unit; stop and restart are not applicable. |

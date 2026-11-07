@@ -32,7 +32,7 @@ The remaining columns are metadata attributes. Attribute names cannot be duplica
 Example file: [Test_1000g.samples.tsv](https://s3.amazonaws.com/bio-test-data/odm/Test_1000g/Test_1000g.samples.tsv)
 
 | Sample Source | Sample Source ID | Species | Sex | Population |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | 1000 Genomes Project | HG00119 | Homo sapiens | M | British |
 | 1001 Genomes Project | HG00121 | Homo sapiens | F | British |
 
@@ -45,7 +45,7 @@ Required headings: **Sample Source ID**, **Library ID**.
 Example file: [Test_RM.libraries.tsv](https://bio-test-data.s3.amazonaws.com/Research_Model_BR-205/Test_RM.libraries.tsv)
 
 | Sample Source ID | Library ID | Library barcode | Library pool |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | SRR6441195 | LIB1 | A | |
 | SRR6441196 | LIB2 | B | |
 | SRR6441197 | LIB3 | A + B | 1\|2 |
@@ -91,7 +91,7 @@ If your file contains more than one measurement type per sample (for example, Fo
 - **Uniform measurement types**: every sample must include the same set of measurement types.
 
 | Sample1.Intensity | Sample1.QualityPass | Sample2.Intensity | Sample2.QualityPass |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 5.4 | Pass | 7.8 | Pass |
 | 4.9 | Fail | 8.1 | Pass |
 

@@ -10,7 +10,7 @@ Data classes categorise data objects in ODM. You choose the class when you impor
 Every class also has a three-letter code. That code is the badge shown next to a study in the Study Browser, so you can see at a glance which kinds of data a study holds. Flow Cytometry (FACS) and Flow Cytometry (FCS) are separate classes that share the `FCY` badge.
 
 | Data class | Code |
-|---|---|
+| --- | --- |
 | Bulk transcriptomics | `EXP` |
 | Single-cell transcriptomics | `SCT` |
 | Differential abundance (FC, pval, etc.) | `DAN` |
@@ -47,7 +47,7 @@ Every class also has a three-letter code. That code is the badge shown next to a
 A data class does not imply a file format. The format you can supply is decided by the endpoint you import through, and the data class travels as a separate parameter on that request. The same class can therefore legitimately arrive in more than one format: Proteomics is TSV when you import it as a measurement matrix, and PDF when you attach it as a file.
 
 | Import route | Format | Data classes accepted |
-|---|---|---|
+| --- | --- | --- |
 | [`/api/v1/jobs/import/expression`](../../odm-api/contribute/import-data/import-expression-data.md) | TSV or GCT | Any data class |
 | [`/api/v1/jobs/import/file`](../../odm-api/contribute/import-data/import-attached-files.md) | Any file, held as an attachment | Any data class |
 | [`/api/v1/jobs/import/variant`](../../odm-api/contribute/import-data/import-variant-data.md) | VCF, with TSV metadata | Gene variant (VCF) |
