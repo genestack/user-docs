@@ -103,7 +103,7 @@ fail independently.
 !!! note "Linking is a separate process from import"
     Associating an imported file with a study or metadata object (say, an
     expression matrix with its samples) is **not** part of the import job. It is
-    a separate call to the **Link Service**.
+    a separate call, to the link storage in the **Applications** container.
 
 ### What the job actually does: a streaming ETL pipeline
 
@@ -295,7 +295,7 @@ flowchart TD
     end
 
     UI["File visible in the UI"]
-    Link["Linking — a SEPARATE, optional step<br/>Link Service → genestack_link<br/>(object-ID pairs only, no ACLs)"]
+    Link["Linking — a SEPARATE, optional step<br/>Applications' link storage → genestack_link<br/>(object-ID pairs only, no ACLs)"]
 
     subgraph P2["PHASE 2 · INDEXING — Core, one task per file (see Task Manager)"]
         direction LR
@@ -329,7 +329,7 @@ In sequence: an import is initiated via the API or UI; the **Job Service** runs
 **one streaming ETL job per file**, tracked through
 `GET /api/v1/jobs/{jobExecId}/info` and `…/output`; on `COMPLETED` the **file is
 visible in the UI** (linking to metadata or study objects, if needed, is a
-**separate** call to the **Link Service**); Core then **automatically** schedules
+**separate** call, to the link storage in **Applications**); Core then **automatically** schedules
 **one indexing task per file**; indexing writes **metadata to Solr** and
 **expression / variant / flow-cytometry content to ClickHouse**, tracked in the
 **Task Manager**; and on task `DONE` the **data is available through the APIs**.
@@ -345,7 +345,7 @@ visible in the UI** (linking to metadata or study objects, if needed, is a
 | File visible, but missing from search results | Indexing (task) | Task Manager — find the file's task status |
 | Expression data won't export / is empty | Indexing (task) | Task Manager + ClickHouse-bound indexing task for that file |
 | Task shows `BLOCKED_BY_DEPENDENCY_FAILURE` | Indexing (task) | Find and fix the upstream failed task |
-| Link between objects not resolving | (separate) | Link Service / `genestack_link` — not part of import or indexing |
+| Link between objects not resolving | (separate) | Applications' link storage (`genestack_link`) — not part of import or indexing |
 
 ### Status cheat-sheet
 
