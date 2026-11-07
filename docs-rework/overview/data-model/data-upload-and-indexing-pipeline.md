@@ -78,7 +78,7 @@ managed by different components, with different lifecycles and status names.
 |---|---|---|
 | **What it does** | Imports one data file (ETL load) | Indexes one data file (makes it searchable) |
 | **Phase** | Phase 1 — Import | Phase 2 — Indexing |
-| **Managed by** | Job Service (`func-job`) | Core |
+| **Managed by** | Job Service, part of Applications | Core |
 | **Identified by** | `jobExecId` (a numeric execution ID) | Task accession |
 | **Tracked via** | Jobs REST API endpoints | **Task Manager** in the UI |
 | **State stored in** | `func_job` database | Solr `tasks` core |
@@ -92,7 +92,8 @@ rows you see are jobs. The rows are **indexing tasks**.
 
 An import is initiated either by API users calling the ODM REST API or by UI users working through the data import
 screens in the web application. Both paths converge on the same mechanism: the
-**Job Service** (`func-job`) creates one **job execution** to load the file.
+**Job Service**, which is part of the Applications backend, creates one
+**job execution** to load the file.
 
 ### One job per file
 
@@ -116,8 +117,8 @@ This is what lets ODM ingest very large files.
    streams in.
 2. **Transform**: each record is passed through the filters defined by the
    import specification.
-3. **Load**: records are batched into chunks and delivered to the Applications
-   container, which writes them into ODM through Core. Processing state is carried
+3. **Load**: records are batched into chunks and handed to the rest of
+   Applications, which writes them into ODM through Core. Processing state is carried
    across chunks so the pipeline can pick up where it left off.
 
 Because the work is chunked and streamed, a large import progresses
@@ -242,10 +243,10 @@ returns the captured errors, each with the **stage** (which step failed), the
 failed job means the file was **not** imported: it will not appear in the UI, and
 there is nothing to index.
 
-One special case looks alarming but is benign. If the Job Service is restarted
-while a job is running, that job is marked `FAILED` with an exit status of
-`INCOMPLETE` and a reason such as *"Abandoned due to Server Restart."* This
-indicates an interrupted run, not a problem with your file.
+One special case looks alarming but is benign. If Applications, which runs the
+Job Service, is restarted while a job is running, that job is marked `FAILED`
+with an exit status of `INCOMPLETE` and a reason such as *"Abandoned due to
+Server Restart."* This indicates an interrupted run, not a problem with your file.
 
 The pipeline does **not** silently retry a failed import step. There is a small
 automatic retry only at the moment of *starting* a job, to ride out transient
