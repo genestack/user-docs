@@ -16,7 +16,7 @@ A `rules.json` file is an array of mapper objects. Each object defines how raw m
 Each mapper object accepts the following attributes:
 
 | Attribute | Type | Required | Description |
-|-----------|------|----------|-------------|
+| ----------- | ------ | ---------- | ------------- |
 | `dictionary` | string | optional | Name of a Genestack dictionary to validate mapped values against. If a mapped value is not found in the dictionary, a warning is logged. |
 | `genestack_key` | string or list | mandatory | Target metainfo key (e.g., `"Sex"`). For the key-with-unit mapper, provide a list of two keys. |
 | `object_type` | string | mandatory | Target object type: `"study"` or `"sample"` (lowercase). |
@@ -114,11 +114,11 @@ Specify `genestack_key` as a list of two keys, the first for the value and the s
 
 Example results:
 
-| Sample | Raw value    | Mapped value | Mapped unit       |
-|--------|--------------|--------------|-------------------|
-| A      | `7 ug/ml`    | `7`          | `microgram per millilitre` (via dictionary synonym) |
-| B      | `7 ug per ml`| `7`          | `ug per ml` (not found in dictionary; kept as-is) |
-| C      | `7ug/ml`     | `7ug/ml`     | (empty — no space found) |
+| Sample | Raw value     | Mapped value | Mapped unit                                         |
+|--------|---------------|--------------|-----------------------------------------------------|
+| A      | `7 ug/ml`     | `7`          | `microgram per millilitre` (via dictionary synonym) |
+| B      | `7 ug per ml` | `7`          | `ug per ml` (not found in dictionary; kept as-is)   |
+| C      | `7ug/ml`      | `7ug/ml`     | (empty — no space found)                            |
 
 **Supported case:** Multiple values with units per sample are supported. For example, a sample with two compounds each having a dose:
 
@@ -161,14 +161,14 @@ Rule:
 Before:
 
 | | Disease | Illness |
-|-|---------|---------|
+| - | --------- | --------- |
 | Sample 1 | | A |
 | Sample 2 | | B |
 
 After:
 
 | | Disease | |
-|-|---------|--|
+| - | --------- | -- |
 | Sample 1 | A | |
 | Sample 2 | B | |
 
@@ -179,14 +179,14 @@ When multiple `raw_keys` are specified, the script takes the value from the firs
 Before:
 
 | | Disease | Illness | DISEASE |
-|-|---------|---------|---------|
+| - | --------- | --------- | --------- |
 | Sample 1 | | A | A1 |
 | Sample 2 | | | B1 |
 
 After (Illness fully reassigned and deleted; DISEASE partially used and retained):
 
 | | Disease | DISEASE |
-|-|---------|---------|
+| - | --------- | --------- |
 | Sample 1 | A | A1 |
 | Sample 2 | B1 | |
 
@@ -199,14 +199,14 @@ Template attributes cannot be deleted. When `raw_key` is a template attribute, t
 Before:
 
 | | Disease | Illness |
-|-|---------|---------|
+| - | --------- | --------- |
 | Sample 1 | | A |
 | Sample 2 | | B |
 
 After:
 
 | | Disease | Illness |
-|-|---------|---------|
+| - | --------- | --------- |
 | Sample 1 | A | A |
 | Sample 2 | B | B |
 

@@ -3,7 +3,7 @@ VERSION 0.8
 ARG --global --required HARBOR_DOCKER_REGISTRY
 
 build:
-    FROM python:3.14.8-alpine
+    FROM python:3.15.2-alpine
     WORKDIR /app
 
     COPY requirements.txt .
@@ -15,7 +15,7 @@ build:
     SAVE ARTIFACT site
 
 image:
-    FROM nginxinc/nginx-unprivileged:1.31.6-alpine
+    FROM nginxinc/nginx-unprivileged:1.31.7-alpine
     COPY fs /
     COPY --pass-args +build/site/ /usr/share/nginx/html/
 

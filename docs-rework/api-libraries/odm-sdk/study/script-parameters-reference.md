@@ -14,7 +14,7 @@ For a practical walkthrough of common usage patterns, see [Upload a study](uploa
 ## Authentication parameters
 
 | Flag | Description |
-|------|-------------|
+| ------ | ------------- |
 | `-t, --token` | Genestack API token. |
 | `-at, --access-token` | Identity provider Bearer token. When using an access token, always specify `--template`. |
 | `-H, --host, -srv, --server` | URL of the ODM instance, e.g. `https://odm.genestack.com/`. |
@@ -25,7 +25,7 @@ For a practical walkthrough of common usage patterns, see [Upload a study](uploa
 ## Data source parameters
 
 | Flag | Description |
-|------|-------------|
+| ------ | ------------- |
 | `-s, --study` | URL of the study TSV file. |
 | `-sa, --study-accession` | Accession of an existing study to update. |
 | `-sm, --samples` | URL of the samples TSV file, or accession of existing samples. |
@@ -50,7 +50,7 @@ For a practical walkthrough of common usage patterns, see [Upload a study](uploa
     These flags rely on the `/xrefsets/*` cross-reference mapping endpoints, which are experimental and are no longer being developed. The flags still work, but the feature is not documented elsewhere in this guide and is not recommended for new work.
 
 | Flag | Description |
-|------|-------------|
+| ------ | ------------- |
 | `-mpf, --mapping-file` | URL of the mapping file. |
 | `-mpfm, --mapping-file-metadata` | URL of the mapping metadata file. |
 | `-mpfa, --mapping-file-accession` | Accession of an existing mapping file to link. |
@@ -69,7 +69,7 @@ Rules:
 ## Behaviour-control parameters
 
 | Flag | Description |
-|------|-------------|
+| ------ | ------------- |
 | `--allow-duplicates` | Re-import files that have already been loaded into ODM (useful for testing). |
 | `-lata, --link-all-to-all` | Bypass sequential linking — see "Link all to all" below. |
 | `--debug` | Enable debug output. |

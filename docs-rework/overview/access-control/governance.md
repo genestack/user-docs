@@ -30,7 +30,7 @@ ODM currently supports a single S3 bucket for attachments.
 ## Storage summary
 
 | Type | Example | Details | Copy | Configurability |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | Attachments | .pdf, .ppt, .h5 — can be anything | ODM indexes basic file metadata (name, date, type, file contents for archives like .zip and .h5) | Copy always stored in ODM's S3 bucket | Can configure to use the customer's S3 bucket |
 | Metadata | TSV metadata files (e.g. sample, library, preparation) | ODM captures and indexes study, sample, library/preparation, and other metadata | Copy always stored in ODM's databases | No region separation; use permissions to control access |
 | Raw data | .fastq, .bam, images, and similar — not an attachment and not indexed data | ODM stores and indexes the pointer to the file only | No copy made | |

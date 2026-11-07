@@ -28,7 +28,7 @@ A user with the **Group Administrator** platform role can manage all groups syst
 ### Group Administrator role interactions
 
 | Capability | With Group Administrator role | Without Group Administrator role |
-|---|---|---|
+| --- | --- | --- |
 | Access the groups list | All groups in the system | Only groups you are a member of |
 | Create a new group | Yes | Yes (any user can create a group) |
 | Add or remove members | Any group | Only groups you are an admin of |
@@ -39,7 +39,7 @@ A user with the **Group Administrator** platform role can manage all groups syst
 Membership in the **Curator group** grants edit permissions. Curators can import new studies, edit metadata, publish their changes as new metadata versions, and restore an earlier version. Users who are not members of the Curator group are considered researchers: they can browse, search, and download data, and they can view a study's version history, but they cannot contribute.
 
 | User type | Member of Curator group? | Capabilities |
-|---|---|---|
+| --- | --- | --- |
 | Researcher | No | Browse, search, download, view version history |
 | Curator | Yes | All of the above, plus import data, edit metadata, publish new versions, and restore earlier ones |
 

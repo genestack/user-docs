@@ -12,7 +12,7 @@ Mapping is applied separately to cell metadata and feature metadata. When an att
 ## Cell metadata attributes
 
 | ODM API display name | Alternative names |
-|---|---|
+| --- | --- |
 | cellID | — |
 | barcode | — |
 | batch | `sample_id`, `sample`, `run_id` |
@@ -39,7 +39,7 @@ Mapping is applied separately to cell metadata and feature metadata. When an att
 ## Feature metadata attributes
 
 | ODM API display name | Alternative names |
-|---|---|
+| --- | --- |
 | geneId | `gene_id` (index), `gene_ids`, `ensembl_id`, `feature_id`, `stable_id`, `ENSEMBL` |
 | gene | `symbol`, `symbols`, `gene_symbol`, `gene_symbols`, `feature_name`, `display_name`, `name`, `gene_name` |
 | totalCounts | `total_counts`, `gene_total`, `sum_counts`, `count_sum`, `total_umis` |
@@ -54,7 +54,7 @@ When feature metadata contains a `geneId` column but no gene name column, the tr
 The mapping uses Ensembl and NCBI reference data. Both Ensembl gene IDs (for example, `ENSG...`) and NCBI gene IDs are supported. The following organisms are supported in `hdf5-cells`:
 
 | Organism | Genome version | Ensembl release | NCBI release |
-|----------|----------------|-----------------|--------------|
+| ---------- | ---------------- | ----------------- | -------------- |
 | *Homo sapiens* | GRCh38.p14 | 115 | GCF_000001405.40-RS_2025_08 |
 | *Mus musculus* | GRCm39 | 115 | GCF_000001635.27-RS_2024_02 |
 | *Rattus norvegicus* | GRCr8 | 115 | GCF_036323735.1-RS_2024_02 |
