@@ -59,6 +59,8 @@ Once ready, the run is `READY`. It takes the steps you ask for one at a time, in
 
 A step that fails does not end the run: the run goes on to the next step, or waits for one.
 
+The phases of a run, extract, transform and export, do not wait for their turn: the run takes one only when it is `READY`, with no step waiting or in progress. For the phases and their review, see [About Harmonise](about-harmonise.md#phases-attempts-and-review).
+
 Each run has storage of its own for the files it works on, of a size your administrator sets, and it is deleted once the run is over. A step that runs out of that storage fails with an error that starts `No space left` and says how much the run has. If your steps need more, let your administrator know.
 
 ## Finishing: FINISHING and FINISHED

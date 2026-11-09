@@ -20,8 +20,7 @@ This guide explains how to start a Harmonise run, how to finish it, and how to f
 
 If **Start run** is disabled, point at it to see why. Usually it is because you have no LLM credentials ODM can use: follow the link to your Profile page and save them.
 
-!!! note
-    The steps a run offers between its start and its finish are early versions and will change as Harmonise develops. The run page shows the ones available now.
+Between its start and its finish, the run takes a study through its phases: see [How to harmonise a study](harmonise-a-study.md).
 
 ## Finish a run
 
@@ -35,10 +34,11 @@ A run cannot be cancelled: finishing it is the only way to end it, and a step in
 
 ## Find a run again
 
-The Harmonise page lists every run you started, those that are over included, newest first, with its number, status and times. Runs are never deleted: click any of them to see its steps and their results as they were.
+The Harmonise page lists every run you started, those that are over included, newest first, with its number, status and times. Runs are never deleted: click any of them to see its steps and their results as they were, every attempt and its review included.
 
 ## Related
 
 - [Run lifecycle](run-lifecycle.md), the states a run goes through and why a run fails.
+- [How to harmonise a study](harmonise-a-study.md), what to do with a run once it is ready.
 - [Save your LLM credentials](save-your-llm-credentials.md), the credentials a run needs to start.
 - [How to run Harmonise via the API](../../odm-api/contribute/harmonise/how-to-run-harmonise-via-the-api.md), the same steps through the API.

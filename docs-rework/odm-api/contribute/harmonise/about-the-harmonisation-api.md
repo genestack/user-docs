@@ -10,13 +10,13 @@ The Harmonisation API is the ODM API for Harmonise: it lets you start Harmonise 
 For what Harmonise is and how a run behaves, see [About Harmonise](../../../contribute/harmonise/about-harmonise.md) and [Run lifecycle](../../../contribute/harmonise/run-lifecycle.md). For every endpoint, field and value, see the [Harmonisation API reference](harmonisation-api-reference.md) and the [Harmonisation API in Swagger](/swagger/?urls.primaryName=harmonisation).
 
 !!! note "Harmonise is in development"
-    The endpoints that ask a run for a step, and the steps themselves, are early versions and will change. Runs, their states, and LLM credentials and providers are the stable part of the API.
+    The endpoints that ask a run for a step, the steps themselves and their review payloads are early versions and may change. Runs, their states, and LLM credentials and providers are the stable part of the API.
 
 ## Resources
 
 The API lives under `/api/v1/harmonisation` and has three resources:
 
-- **Runs**, at `/api/v1/harmonisation/runs`. A run is one working session of Harmonise, which ODM starts as a processing environment of its own. You start a run, ask it for steps, which it takes one at a time, and finish it. Each run is identified by its number: runs are numbered 1, 2, 3, … in the order they start, across the ODM instance.
+- **Runs**, at `/api/v1/harmonisation/runs`. A run is one working session of Harmonise, which ODM starts as a processing environment of its own. You start a run, ask it for steps, which it takes one at a time, take a study through its phases, extract, transform and export, reviewing each attempt, and finish it. Each run is identified by its number: runs are numbered 1, 2, 3, … in the order they start, across the ODM instance.
 - **LLM credentials**, at `/api/v1/harmonisation/llm-credentials`. Your own provider, model and API key, which every run you start uses.
 - **LLM providers**, at `/api/v1/harmonisation/llm-providers`. The providers, and their models, that credentials choose from.
 
