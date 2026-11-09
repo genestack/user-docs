@@ -12,6 +12,15 @@ Harmonise runs call a large language model (LLM) with your own API key. This gui
 - Membership of the **Curator** group.
 - An account with one of the LLM providers your ODM instance offers, and an API key for it. The providers and their models are set up by a user with the **Harmonisation Administrator** role; see [Manage LLM providers](../../admin/manage-users/manage-llm-providers.md).
 
+## Which provider to choose
+
+The phases of a run call the LLM through the OpenAI API:
+
+- **Transform** needs a provider that uses the OpenAI API. With another provider, the transformation fails, saying that your provider does not support the API it needs.
+- **Extract** uses the LLM to decide how to read each file when your provider uses the OpenAI API. With another provider, it decides from the files' names only, and requesting changes to an extraction does nothing new: the new attempt ignores your comments, and its review says *Feedback was not used, as no model is configured*.
+
+To take a study through every phase, choose such a provider, `openai` for example, and a key for it. Ask your Harmonisation Administrator which of your instance's providers use the OpenAI API.
+
 ## Save your credentials
 
 1. Click your username or email address in the top-right corner and select **Profile**.
@@ -61,6 +70,8 @@ A failed check says why in a sentence, with the provider's answer, and links to 
 A check can also fail for another reason, such as an answer from the provider that ODM does not expect, or a provider address it cannot call. Its message then says why.
 
 A run keeps the credentials it started with, so a key you fix applies to the next run, not to the run that found the problem.
+
+An extraction or a transformation that calls the LLM fails for the same causes, and says so in the same way. A transformation also fails when your provider does not use the OpenAI API: see [Which provider to choose](#which-provider-to-choose).
 
 ## Related
 
