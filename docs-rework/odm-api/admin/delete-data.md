@@ -44,12 +44,10 @@ For the full list of roles, see [Roles](../../overview/access-control/roles.md).
 
 ## Delete an object
 
-To delete an object, call `DELETE /api/v1/manage-data/data` with the Genestack accession of the object or group in the request body. For example, to delete the study `GSF1147012`:
+To delete an object, call `DELETE /api/v1/manage-data/data` and pass the Genestack accession of the object or group in the `accessions` query parameter. The request has no body. For example, to delete the study `GSF1147012`:
 
-```json
-{
-  "accession": "GSF1147012"
-}
+```text
+DELETE /api/v1/manage-data/data?accessions=GSF1147012
 ```
 
 A `202` response confirms the request was accepted. Deletion then runs asynchronously. To confirm it finished, check that the object no longer appears where you would normally find it: search for a study or its child objects in the Study Browser or via the API, and for a detached object, repeat the `GET /api/v1/manage-data/detached-objects` request.
@@ -71,7 +69,7 @@ You can delete:
 
 ## Delete a template
 
-Only a user with the **Template Administrator** role can delete a template. Pass the template's accession in the request body, as for any other object. Without the role, the request returns `403` and names the role it requires:
+Only a user with the **Template Administrator** role can delete a template. Pass the template's accession in the `accessions` query parameter, as for any other object. Without the role, the request returns `403` and names the role it requires:
 
 ```json
 {
