@@ -32,7 +32,7 @@ A VCF file contains three main parts:
 All data lines are tab-delimited. Missing values are specified with a dot (`.`).
 
 | Column | Type | Description |
-|---|---|---|
+| --- | --- | --- |
 | CHROM | String (no whitespace) | Chromosome identifier from the reference genome or an angle-bracketed ID string. The colon (`:`) must be absent from chromosome names. All entries for a CHROM must form a contiguous block. |
 | POS | Integer | Reference position; 1-based. Positions are sorted numerically in increasing order within each CHROM. Multiple records at the same POS are permitted. |
 | ID | String (no whitespace or semicolons) | Semicolon-separated list of unique identifiers. Use the missing value if no identifier is available. |
@@ -47,7 +47,7 @@ All data lines are tab-delimited. Missing values are specified with a dot (`.`).
 Standard reserved INFO sub-fields:
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | AA | Ancestral allele |
 | AC | Allele count in genotypes, for each ALT allele in listed order |
 | AF | Allele frequency for each ALT allele in listed order |
@@ -87,7 +87,7 @@ EFF=STOP_GAINED(HIGH|NONSENSE|Cag/Tag|Q236*|749|NOC2L||CODING|NM_015658||)
 If genotype data is present, a FORMAT column precedes the sample columns, specifying the data types and order as a colon-separated string. The GT field must be first if present. Standard reserved FORMAT sub-fields:
 
 | Key | Type | Description |
-|---|---|---|
+| --- | --- | --- |
 | GT | String | Genotype, encoded as allele values separated by `/` (unphased) or `\|` (phased). `0` = reference allele; `1` = first ALT allele; etc. Use `.` for missing alleles. |
 | DP | Integer | Read depth at this position for this sample |
 | FT | String | Sample genotype filter (same values as the FILTER field) |

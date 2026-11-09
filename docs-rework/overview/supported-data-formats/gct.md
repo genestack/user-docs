@@ -39,7 +39,7 @@ Names and descriptions may contain spaces. Missing intensity values may be left 
 `.gct.tsv`, `.gct.tsv.gz`, and `.gct.tsv.zip` files are tab-delimited files describing the expression data (for example, normalisation method and genome version). The first row contains key names; the second row contains the corresponding values.
 
 | Expression Source | Normalization Method | Genome Version |
-|---|---|---|
+| --- | --- | --- |
 | 1000 Genomes Project | RPKM | GRCh38.91 |
 
 ## External reference

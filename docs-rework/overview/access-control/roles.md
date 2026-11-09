@@ -10,7 +10,7 @@ Once a user is created, roles can be assigned in the **Users and Roles** applica
 These are platform roles, assigned to individual users across the whole instance. They are separate from group roles (group member and group admin), which apply within a single group; see [Groups](groups.md).
 
 | Role | Actions | Recommendation |
-|---|---|---|
+| --- | --- | --- |
 | Organisation Administrator | Manage roles; create and deactivate users; change user passwords | Powerful system-level role. Assign only to a few trusted administrators. |
 | Template Administrator | Create new templates; alter existing templates; delete templates through the API or the ODM SDK | Changes affect all users. Assign only to responsible Data Owners. |
 | Catalogue Administrator | Set the desired list and order of facets in the Study Browser | Changes affect all users. Assign only to responsible Data Owners. |

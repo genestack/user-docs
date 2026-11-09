@@ -8,7 +8,7 @@ tab: api-libraries
 The table below lists the dictionaries loaded by default in every ODM installation.
 
 | Dictionary | Description |
-|------------|-------------|
+| ------------ | ------------- |
 | [Assay Type](https://odm-init.s3.amazonaws.com/dictionaries/odm-12611/assay_type.csv) | A comprehensive list of molecular profiling approaches including sequencing types, epigenetic assays, and transcriptomics <br/>Domain: Methodology. Reference ontologies: EFO, OBI, OLS (assorted) <br/>ODM default dictionary, June 2025 |
 | [Cell Ontology - CL](https://odm-init.s3.amazonaws.com/dictionaries/odm-12611/cl.owl) | A structured vocabulary for cell types in animals <br/>Domain: Cell Types / Development / Single-Cell, Version: 2025-04-10 <br/>The original data is available via the [https://purl.obolibrary.org/obo/cl/releases/2025-04-10/cl.owl](https://purl.obolibrary.org/obo/cl/releases/2025-04-10/cl.owl) |
 | [Cell Ontology for Human Lung Maturation - LUNGMAP CELL](https://odm-init.s3.amazonaws.com/dictionaries/odm-12611/lmha.owl) | Cell Ontology for Human Lung Maturation from LungMAP project <br/>Domain: Single-Cell / Tissue Atlas / Development, Version: 3.2 <br/>The original data is available via the [https://data.bioontology.org/ontologies/LUNGMAP_H_CELL/submissions/6/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb](https://data.bioontology.org/ontologies/LUNGMAP_H_CELL/submissions/6/download?apikey=8b5b7825-538d-40e0-9e9e-5ab9274a9aeb) |

@@ -42,7 +42,7 @@ In the Users and Roles view, click **+ New user**. A form opens where you enter 
 On the **Users** tab, find the user you want to configure. Use the **Name or email** search field if the list is long. Click the user's row to open the panel with their roles on the right. Each role has a short description of what it enables, and the roles are grouped into four categories:
 
 | Category | Roles |
-|---|---|
+| --- | --- |
 | Administration | **Organisation Administrator**, **Group Administrator** |
 | Configuration | **Template Administrator**, **Catalogue Administrator**, **Transformation Configuration Administrator**, **Reference Data Administrator** |
 | Data stewardship | **Ownership Recovery Administrator**, **Orphan Data Administrator** |

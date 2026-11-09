@@ -20,7 +20,7 @@ For the full endpoint specification, the [Swagger UI](/swagger/helper/) is the s
 Each kind of object has exactly one route to deletion:
 
 | Object | Who can delete it |
-|---|---|
+| --- | --- |
 | A study and its child objects | The study owner |
 | Detached objects | A user with the **Orphan Data Administrator** role |
 | Templates | A user with the **Template Administrator** role |

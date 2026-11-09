@@ -67,7 +67,7 @@ A user account is created, either in the Users and Roles application or through 
 **Details:**
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `displayName` | Name assigned to the new user |
 | `email` | Email address of the new user |
 
@@ -104,7 +104,7 @@ A user group is created, either in the Groups application or through SCIM provis
 **Details:**
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `groupName` | Name assigned to the new group |
 
 ## Entities
@@ -120,7 +120,7 @@ A study is created. Studies are currently the only entity type this event covers
 **Details:**
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `templateAccession` | Accession of the template applied to the study at creation. The default template is recorded when the request names no template. |
 
 ### DELETE_ENTITY
@@ -134,7 +134,7 @@ An entity is deleted. One event is recorded for each accession supplied, and the
 **Details:**
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `objectId` | Internal system identifier of the deleted object, allowing the deletion to be traced in ODM's technical logs |
 
 > **Note:** deletion cascades to child objects, but only the entity named in the request receives an audit event. Child objects removed by the cascade do not produce events of their own.
@@ -150,7 +150,7 @@ Access to a study is granted to or revoked from a user group. One event is recor
 **Details:**
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `action` | `gained` or `lost` |
 | `principalType` | `GROUP`. Groups are currently the only supported principal type. |
 | `principalId` | Accession of the group that gained or lost access |
@@ -168,7 +168,7 @@ A new metadata version is created, either by publishing an edit or by restoring 
 **Details:**
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `version` | Identifier of the newly published version |
 | `previousVersion` | Identifier of the version it replaced |
 | `changeType` | `EDIT` for a published change, `RESTORE` for a revert to an earlier version |
@@ -187,7 +187,7 @@ Ownership of a study is transferred to another user.
 **Details:**
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `newUserId` | User who received ownership |
 | `oldUserId` | User who lost ownership |
 | `ownershipChangerId` | User who executed the transfer. Matches the acting user. For an interface transfer this is the previous owner; for ownership recovery it is the Ownership Recovery Administrator who reassigned the study. |
@@ -229,7 +229,7 @@ The audit log is retrieved through `GET /api/v1/audit/events`. Every successful 
 **Details:** an absent key means the caller did not supply that filter, not that the filter matched nothing.
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `from` | Start of the search range used. The default value is recorded when the caller supplied none. |
 | `to` | End of the search range used. The default value is recorded when the caller supplied none. |
 | `studyAccession` | Study accession the search was filtered by. Recorded only when the caller supplied one. |

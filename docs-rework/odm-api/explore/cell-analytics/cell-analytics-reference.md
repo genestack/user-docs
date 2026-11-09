@@ -14,7 +14,7 @@ All three Cell analytics endpoints live in the `integrationCurator` Swagger defi
 Every Cell analytics endpoint accepts a cohort filter object (`cellGroup`, `caseGroup`, or `controlGroup`) with the following fields:
 
 | Field | Description |
-|---|---|
+| --- | --- |
 | `studyFilter` | Filter by study metadata (e.g., `"Study Source"=ArrayExpress`) |
 | `studyQuery` | Keyword search across study metadata |
 | `sampleFilter` | Filter by sample metadata |
@@ -48,7 +48,7 @@ Computes the proportion of cells matching all criteria relative to a reference p
 **Response fields:**
 
 | Field | Description |
-|---|---|
+| --- | --- |
 | `countSelected` | Number of cells matching all criteria (cohort filter + expression filter) |
 | `countAvailable` | Number of cells in the reference population (study/sample/library/preparation filters only; no cell-metadata or expression filter) |
 | `ratio` | `countSelected / countAvailable` |
@@ -86,7 +86,7 @@ Returns descriptive statistics and distribution summaries for expression values 
 **Response fields per gene:**
 
 | Field | Description |
-|---|---|
+| --- | --- |
 | `geneId` | Gene identifier (e.g., Ensembl ID) |
 | `cellCount` | Number of cells with measurable expression under the applied filters |
 | `mean` | Average expression value |
@@ -122,7 +122,7 @@ Compares gene expression between a case group and a control group and returns pe
 **Response fields per gene:**
 
 | Field | Description |
-|---|---|
+| --- | --- |
 | `geneId` | Gene identifier |
 | `caseCellCount` | Number of case cells with measurable expression |
 | `controlCellCount` | Number of control cells with measurable expression |

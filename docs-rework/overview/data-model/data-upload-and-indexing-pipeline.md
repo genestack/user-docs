@@ -75,7 +75,7 @@ These two words are not interchangeable in ODM. They refer to different objects,
 managed by different components, with different lifecycles and status names.
 
 | | **Job** | **Task** |
-|---|---|---|
+| --- | --- | --- |
 | **What it does** | Imports one data file (ETL load) | Indexes one data file (makes it searchable) |
 | **Phase** | Phase 1 — Import | Phase 2 — Indexing |
 | **Managed by** | Job Service (`func-job`) | Core |
@@ -131,7 +131,7 @@ they are documented in full in
 [Manage import jobs](../../odm-api/contribute/import-data/manage-import-jobs.md).
 
 | Endpoint | Returns |
-|---|---|
+| --- | --- |
 | `GET /api/v1/jobs/{jobExecId}/info` | Job status, name, create/end times, exit status |
 | `GET /api/v1/jobs/{jobExecId}/output` | The job result, plus any errors |
 
@@ -140,7 +140,7 @@ A job moves through the following lifecycle, the values you may see in the
 [Job status codes reference](../../odm-api/reference/job-status-codes-reference.md).
 
 | Status | Meaning |
-|---|---|
+| --- | --- |
 | `STARTING` | Job is being prepared to run |
 | `RUNNING` | ETL pipeline is actively processing the file |
 | `STOPPING` / `STOPPED` | Job is being / has been stopped |
@@ -174,7 +174,7 @@ badge counts the tasks that are in progress or need attention. For each task the
 Task Manager shows:
 
 | Column | Meaning |
-|---|---|
+| --- | --- |
 | **Application** | The application that initiated the work (e.g. "Genestack jobs REST API") |
 | **File** | The data file being indexed |
 | **Accession** | The file's ODM accession (e.g. `GSF1030142`) |
@@ -183,7 +183,7 @@ Task Manager shows:
 A task progresses through this lifecycle:
 
 | Status | Terminal? | Meaning |
-|---|---|---|
+| --- | --- | --- |
 | `CREATED` | no | Task created, not yet started |
 | `QUEUEING` / `QUEUED` | no | Waiting in the system queue / for dependencies |
 | `STARTING` | no | Accepted by the system, not yet running |
@@ -339,7 +339,7 @@ visible in the UI** (linking to metadata or study objects, if needed, is a
 ### Reading the system by symptom
 
 | You observe | Phase | Where to look |
-|---|---|---|
+| --- | --- | --- |
 | File never appears in the UI | Import (job) | Jobs REST API: `…/info` for status, `…/output` for errors |
 | Import seems stuck | Import (job) | Job `status` — `RUNNING` on a large file is normal (streamed in chunks) |
 | File visible, but missing from search results | Indexing (task) | Task Manager — find the file's task status |

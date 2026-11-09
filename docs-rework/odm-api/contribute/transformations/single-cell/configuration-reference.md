@@ -14,7 +14,7 @@ For related documentation: [About single-cell transformations](about-single-cell
 ## Top-level parameters
 
 | Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
+| ----------- | ------ | ---------- | --------- | ------------- |
 | `file_type` | `string` | **Yes** | — | Format of the input file. Accepted values: `"h5ad"`, `"h5"`. |
 
 ---
@@ -24,7 +24,7 @@ For related documentation: [About single-cell transformations](about-single-cell
 Settings for extracting, transforming, and exporting cell-level metadata to Sample, Library, or Preparation entities. The entire section is optional.
 
 | Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
+| ----------- | ------ | ---------- | --------- | ------------- |
 | `metadata_keys` | `dict[string, string]` | Yes | — | Maps HDF5 group keys to metadata types. Use `"obs": "metadata"` to read standard cell metadata. |
 | `biosample_column_name` | `string` | Yes | — | Column identifying which biosample each cell belongs to. Rows are grouped by this column for aggregation. |
 
@@ -39,7 +39,7 @@ Settings for extracting, transforming, and exporting cell-level metadata to Samp
 Settings for exporting metadata to the Sample entity. Optional.
 
 | Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
+| ----------- | ------ | --------- | ------------- |
 | `create_new_group` | `boolean` | `false` | When `true`, creates a new Sample group in ODM and links it to the study. |
 | `template_id` | `string` | — | Template ID for the new Sample group. Falls back to the study default if omitted. |
 | `columns_to_export` | `list[string]` | — | Cell metadata columns to include in the exported Sample metadata. Only columns constant per biosample are eligible; exported columns are dropped from cell metadata. |
@@ -61,7 +61,7 @@ Settings for exporting metadata to the Sample entity. Optional.
 Accepts the same parameters as `biosample_metadata.sample`, plus:
 
 | Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
+| ----------- | ------ | --------- | ------------- |
 | `linking_group` | `string` | — | Accession of an existing Sample group to link the new Library group to. If omitted, the pipeline uses a Sample group from the same run or pre-fetched accessions. |
 
 ### `biosample_metadata.preparation`
@@ -77,7 +77,7 @@ Accepts the same parameters as `biosample_metadata.library`, including `linking_
 Settings for extracting and transforming cell-level metadata. Optional. If absent, no Cell Group is created.
 
 | Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
+| ----------- | ------ | ---------- | --------- | ------------- |
 | `metadata_keys` | `dict[string, string]` | Yes | — | Maps HDF5 group keys to metadata types. At least one key with value `"metadata"` is required. |
 | `linking_group` | `dict[string, string \| list[string] \| null]` | No | — | Specifies the parent SLP entity (`sample`, `library` or `preparation`) to link the Cell Group to. Empty value triggers auto-discovery of all available accessions. For full linking resolution rules, see [Linking group determination](transformation-process-reference.md#13-linking-group-determination). |
 | `columns_to_drop` | `list[string]` | No | — | Column names to remove before processing. |
@@ -92,7 +92,7 @@ Settings for extracting and transforming cell-level metadata. Optional. If absen
 **`metadata_keys` accepted values (H5AD):**
 
 | Key | Value | Description |
-|-----|-------|-------------|
+| ----- | ------- | ------------- |
 | `obs` | `metadata` | Standard cell annotations |
 | `obsm` | `embedding` | Multidimensional cell data (PCA, UMAP, etc.) |
 | `obsp` | `pairwise` | Pairwise cell annotations |
@@ -119,7 +119,7 @@ Settings for extracting and transforming feature (gene)-level metadata. Optional
 If you extract a matrix whose features come from a different source than default `X`'s (`.raw`, for example), see [Configuring features per matrix source](#configuring-features-per-matrix-source) below.
 
 | Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
+| ----------- | ------ | ---------- | --------- | ------------- |
 | `metadata_keys` | `dict[string, string]` | Yes | — | Maps HDF5 group keys to metadata types. At least one key with value `"metadata"` is required. |
 | `columns_to_drop` | `list[string]` | No | — | Column names to remove from feature metadata. |
 | `copy_columns_map` | `dict[string, string]` | No | — | Copies values from a source column into a destination column. Maps source name to destination name. The destination may be a new column or an existing one, which is overwritten. |
@@ -133,7 +133,7 @@ If you extract a matrix whose features come from a different source than default
 **`metadata_keys` accepted values (H5AD):**
 
 | Key | Value | Description |
-|-----|-------|-------------|
+| ----- | ------- | ------------- |
 | `var` | `metadata` | Standard feature annotations |
 | `varm` | `embedding` | Multidimensional feature data |
 | `varp` | `pairwise` | Pairwise feature annotations |
@@ -151,7 +151,7 @@ The parameters above configure the features of root matrix `X` and of every matr
 ```
 
 | Key | Configures the features of |
-|-----|----------------------------|
+| ----- | ---------------------------- |
 | `/` | `/X` and every `/layers/...` matrix |
 | `/raw` | `/raw/X`, which holds its own feature table (typically more features than `/X`, since `/raw` is pre-filtering) |
 
@@ -174,7 +174,7 @@ Settings for extracting and uploading the cell expression matrix. Optional. If a
 By default the transformation extracts root matrix `X`. To extract a different matrix, see [Extracting a matrix other than default X](#extracting-a-matrix-other-than-default-x) below.
 
 | Parameter | Type | Required | Default | Description |
-|-----------|------|----------|---------|-------------|
+| ----------- | ------ | ---------- | --------- | ------------- |
 | `data_class` | `string` | **Yes** | — | Data class label for the expression data (e.g. `"Single-cell transcriptomics"`). |
 | `compression_level` | `integer` (0–9) | No | `4` | Brotli compression level. Higher values produce smaller files at the cost of longer compression time. |
 | `chunk_size` | `integer` | No | inferred | Number of features processed per chunk. Calculated automatically from available memory if omitted. |
@@ -198,7 +198,7 @@ A key beginning with `/` names a matrix in the source file; every other key is a
 ```
 
 | Entry | Matrix extracted |
-|-------|------------------|
+| ------- | ------------------ |
 | *(no matrix keys)* | `/X`, the default |
 | `/X` | the root matrix `X` |
 | `/raw/X` | the `X` matrix inside `.raw` |

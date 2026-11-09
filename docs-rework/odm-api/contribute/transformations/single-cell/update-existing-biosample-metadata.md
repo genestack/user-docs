@@ -46,7 +46,7 @@ Configure `biosample_metadata` with `columns_to_export` for the target entity. D
 The transformation matches extracted rows to existing ODM objects using the entity ID column (Sample Source ID, Library ID, or Preparation ID). For each exported column, on objects that match:
 
 | Situation in ODM | What happens |
-|---|---|
+| --- | --- |
 | Attribute does not exist | It is **added** from the HDF5-derived table. |
 | Attribute exists but some values are missing (`null` or empty) | Missing cells are **filled** from the HDF5-derived table. Existing non-empty values are left unchanged. |
 | Attribute exists and is fully populated | It is **not** updated, even if the HDF5 file has different values. |

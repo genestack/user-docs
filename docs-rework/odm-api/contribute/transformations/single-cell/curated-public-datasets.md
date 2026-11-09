@@ -26,7 +26,7 @@ Several datasets share an aggregated configuration. Each dataset's own section r
 A dataset may appear more than once when more than one configuration has been prepared for it. `FibroticLiverWatsonMERFISH` has two: `aggregated_config_3`, which extracts the default `X` matrix, and `FibroticLiverWatsonMERFISH_raw`, which extracts expression from `.raw` instead. Pick the one that matches the matrix you want. See [Configuration reference](configuration-reference.md#extracting-a-matrix-other-than-default-x) for how a configuration names a matrix.
 
 | Configuration | Datasets |
-|---|---|
+| --- | --- |
 | [`aggregated_config_1`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_1.json) | HeartDiversityTucker10x · SCP1303 · GSE192740_human · GSE192740_mouse · GSE292928 · GSE148434 |
 | [`aggregated_config_2`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_2.json) | GSE198623_human · GSE198623_pig |
 | [`aggregated_config_3`](../../../../assets/user-guide/doc-odm-user-guide/doc-odm-user-guide/extras/aggregated_config_3.json) | GSE148073 · FibroticLiverWatsonMERFISH |

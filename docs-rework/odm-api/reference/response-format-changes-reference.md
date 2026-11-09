@@ -16,7 +16,7 @@ Streaming GET endpoints that return output in tabular text format are not affect
 The following changes apply to all affected endpoints:
 
 | Change | Description |
-|---|---|
+| --- | --- |
 | New `itemOrigin` section | A new section in the response body stores origin metadata: `runSourceId` (run ID from the original file), `runId` (Genestack-generated internal run ID), `groupId` (ID of the original file). |
 | `Run Source ID` moved | The `Run Source ID` field has been moved from the `metadata` section to `itemOrigin` and renamed to `runSourceId`. In OMICS endpoints, `sampleFilter`, `libraryFilter`, or `preparationFilter` can be used to retrieve an individual run. |
 | New `runSourceFilter` parameter | Filters data by Run IDs from original files. |
@@ -41,7 +41,7 @@ Both `as-curator` and `as-user` variants are affected:
 ## Tabular data endpoint changes
 
 | Change | Description |
-|---|---|
+| --- | --- |
 | Old response format deprecated | The old response format for tabular data is deprecated. The `multi_values` response format (introduced July 2023) is now the default. It supports data with one or more features and works for any tabular data type including `.gct` files. |
 | Field rename: `gene` → `feature` | The `gene` field is renamed to `feature` and incorporates all feature attributes. |
 | Field rename: `expression` → `value` | The `expression` field is renamed to `value` and placed in a new `value` section. |
@@ -58,7 +58,7 @@ Both `as-curator` and `as-user` variants are affected:
 ## Variant endpoint changes
 
 | Change | Description |
-|---|---|
+| --- | --- |
 | New `variant` section | A new `variant` section contains all fields related to a specific variation from the original VCF file: `CHROM`, `POS`, `ID`, `REF`, `ALT`, `QUAL`, `FILTER`, `INFO`. |
 
 ### Affected endpoints (variants)
@@ -73,7 +73,7 @@ Both `as-curator` and `as-user` variants are affected:
 ## Flow cytometry endpoint changes
 
 | Change | Description |
-|---|---|
+| --- | --- |
 | New `feature` section | The `feature` section contains `readoutType`, `cellPopulation`, and `marker` fields. |
 | `expression` renamed to `value` | The `expression` field is renamed to `value` and placed in a new `value` section. |
 

@@ -19,7 +19,7 @@ This page describes the parameters `GET /api/v1/audit/events` accepts, the error
 Every parameter is optional. Called with none, the endpoint returns the last thirty days of events.
 
 | Parameter | Description |
-|---|---|
+| --- | --- |
 | `from` | Start of the search range, exclusive. Takes a datetime in the format `yyyy-MM-ddTHH:mm:ss`, for example `2026-06-29T14:32:07`, with no timezone designator, and is interpreted as UTC. Defaults to `to` minus thirty days, so setting `to` alone returns the thirty days that preceded it. |
 | `to` | End of the search range, inclusive. Same format as `from`. Defaults to the time of the call. |
 | `studyAccession` | Genestack study accession. Matches events whose `studyAccession` field is populated, which includes events targeting the study itself and events targeting entities beneath it. |
@@ -31,7 +31,7 @@ Every parameter is optional. Called with none, the endpoint returns the last thi
 ## Query errors
 
 | Situation | Response |
-|---|---|
+| --- | --- |
 | Datetime in the wrong format, or carrying a timezone offset such as `+02:00` | `400`, `Invalid datetime ... for parameter 'from'. Expected format is 'yyyy-MM-ddTHH:mm:ss'` |
 | `from` is later than `to` | `Invalid range: 'from' ... must not be after 'to' ...` |
 | Study accession does not match the Genestack accession format | `400`, `Invalid study accession: ... does not match Genestack accession format` |
@@ -49,7 +49,7 @@ Every parameter is optional. Called with none, the endpoint returns the last thi
 A response contains the time range that was searched, a cursor for paging, and the matching events ordered by `createTime` descending.
 
 | Key | Description |
-|---|---|
+| --- | --- |
 | `timeRange.from` | Start of the searched range, exclusive. The default is `to` minus thirty days. |
 | `timeRange.to` | End of the searched range, inclusive. The default is the time of the call. |
 | `cursor` | Identifier of the last event returned. Supply it as the `cursor` parameter to retrieve the next page. |
@@ -60,7 +60,7 @@ A response contains the time range that was searched, a cursor for paging, and t
 Every event shares the following envelope. Fields whose value would be null or zero are omitted from the response rather than returned empty.
 
 | Key | Field | Description |
-|---|---|---|
+| --- | --- | --- |
 | `id` | Event ID | Unique identifier of the audit event. Also used as the paging cursor. |
 | `type` | Event type | Name of the action recorded. See the [Audit event types reference](audit-event-types-reference.md). |
 | `createTime` | Event creation time | Time of the action in ISO 8601 format, UTC, including milliseconds where available |
@@ -122,7 +122,7 @@ Every event shares the following envelope. Fields whose value would be null or z
 ## Status values
 
 | Value | Meaning |
-|---|---|
+| --- | --- |
 | `SUCCESS` | The action completed |
 | `STARTED` | The action was accepted and is processing asynchronously. Recorded for deletions, with status code `202`. |
 | `FAILURE` | The action did not complete. The `errorMessage` field describes why. |
@@ -144,7 +144,7 @@ The `source` field takes one of two values, `UI` or `API`.
 The `sourceType` field names the ODM application or API definition that executed the action.
 
 | Category | Source types |
-|---|---|
+| --- | --- |
 | Query and retrieve data | `genestack/integrationUser`, `genestack/studyUser`, `genestack/sampleUser`, `genestack/libraryUser`, `genestack/preparationUser`, `genestack/expressionUser`, `genestack/variantUser`, `genestack/flowCytometryUser`, `genestack/aFileUser`, `genestack/cellUser` |
 | Import and curate data | `genestack/integrationCurator`, `genestack/studyCurator`, `genestack/sampleCurator`, `genestack/libraryCurator`, `genestack/preparationCurator`, `genestack/cellCurator`, `genestack/expressionCurator`, `genestack/variantCurator`, `genestack/flowCytometryCurator`, `genestack/aFileCurator`, `genestack/manageData`, `genestack/taskmanager`, `genestack/job` |
 | Data sources | `genestack/reference-data`, `genestack/referenceGenome` |
