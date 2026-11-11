@@ -12,7 +12,7 @@ For a wider view of how the pieces fit together, see [About the import workflow]
 ## Prerequisites
 
 - Curator group membership. To run the curl examples, you also need an API token.
-- A study metadata TSV file hosted where ODM can reach it: an HTTP/HTTPS URL, an S3 URI, or an NFS path. For the file format itself, see the TSV format specification in the supported data formats documentation.
+- A study metadata TSV file, hosted where ODM can reach it (an HTTP/HTTPS URL, an S3 URI, or an NFS path) or as a local file for multipart upload. For the file format itself, see the TSV format specification in the supported data formats documentation.
 
 ## Send the import request
 
@@ -60,8 +60,20 @@ Hold on to that accession. It identifies your new study, and you will need it ev
 
 If you would rather see it with your own eyes, open the Study Browser: the new study is there, owned by your account.
 
+## Multipart upload alternative
+
+Prefer to upload the TSV directly instead of pointing ODM at a URL? Use `POST /api/v1/jobs/import/study/multipart`. It takes the file in a `multipart/form-data` field named `file`; to pick a template, add an optional `templateId` field before it. This call uploads a local copy of the example file above:
+
+```bash
+curl -X 'POST' \
+  'https://<HOST>/api/v1/jobs/import/study/multipart' \
+  -H 'accept: application/json' \
+  -H 'Genestack-API-Token: <TOKEN>' \
+  -F 'file=@Test_1000g.study.tsv'
+```
+
+The response, the job, and its output are the same as above: `GET /api/v1/jobs/{jobExecId}/output` returns the new study's `accession`. Unlike the other multipart imports, this one takes no `studyId`, because the study does not exist until the job creates it. Once it does, pass its accession as `studyId` when you upload the study's samples, libraries, preparations, or data the same way. ODM keeps its own copy of the uploaded file and deletes it along with the study. For how multipart uploads work, see the [Multipart uploads reference](multipart-uploads-reference.md).
+
 ## Next steps
 
 With the study in place, bring in its data and wire it together. Start with [Import sample metadata](import-sample-metadata.md), then [Link entities after import](link-entities-after-import.md).
-
-Prefer to upload a file directly instead of pointing ODM at a URL? Use the multipart upload endpoint described in the [Multipart uploads reference](multipart-uploads-reference.md).
