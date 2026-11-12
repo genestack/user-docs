@@ -53,4 +53,3 @@ push: ## Build the site image, tagged IMAGE_VERSION and latest, to IMAGE_PUSH (d
 	--tag=$(IMAGE_TAG_LATEST) \
 	$(IMAGE_BUILD_OUTPUTS) \
 	.
-
