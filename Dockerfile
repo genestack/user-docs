@@ -6,7 +6,7 @@
 #
 #   push  the image CI publishes and the odm chart deploys
 #
-# The repo has no tests: `make test` builds push with no output.
+# The repo has no tests, so there is no `make test`.
 
 ARG PYTHON_IMAGE=python:3.15.2-alpine
 ARG NGINX_IMAGE=nginxinc/nginx-unprivileged:1.31.7-alpine

@@ -54,10 +54,3 @@ push: ## Build the site image, tagged IMAGE_VERSION and latest, to IMAGE_PUSH (d
 	$(IMAGE_BUILD_OUTPUTS) \
 	.
 
-.PHONY: test
-test: ## Build the site image with no output. The repo has no tests.
-	docker buildx build \
-	--target=push \
-	--output=type=cacheonly \
-	.
-

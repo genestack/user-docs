@@ -40,7 +40,6 @@ The `Makefile` builds the `Dockerfile`'s `push` target, the nginx image with the
 
 ```bash
 make push   # the image CI publishes and the odm chart deploys
-make test   # the same build, with no output
 ```
 
 `make push` loads the image into the local Docker. `IMAGE_PUSH=registry` publishes it instead, and `IMAGE_VERSION` sets its tag. It also tags `latest`; `make help` lists every target.
