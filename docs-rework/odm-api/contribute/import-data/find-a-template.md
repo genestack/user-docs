@@ -70,7 +70,7 @@ The response has the same `id`, `name`, `description` and `isDefault` as the lis
     {
       "name": "Sample Source ID",
       "dataType": "genestack:sampleObject",
-      "type": "string",
+      "metainfoType": "com.genestack.api.metainfo.StringValue",
       "isRequired": true,
       "isReadOnly": true,
       "isTechnical": false,
@@ -79,11 +79,10 @@ The response has the same `id`, `name`, `description` and `isDefault` as the lis
     {
       "name": "Organism",
       "dataType": "genestack:sampleObject",
-      "type": "string",
+      "metainfoType": "com.genestack.api.metainfo.StringValue",
       "isRequired": true,
       "isReadOnly": false,
       "isTechnical": false,
-      "dictionaryId": "GSF000456",
       "dictionaryName": "NCBI Taxonomy"
     }
   ]
@@ -94,19 +93,20 @@ The response has the same `id`, `name`, `description` and `isDefault` as the lis
 
 The endpoint returns HTTP status `404` when no template has that accession, or when you cannot read the template.
 
+A field uses the properties of the template upload format that the [Template reference](../../../contribute/templates/template-reference.md#template-json-file-structure) describes, so a template read from the API reads like a template exported from the Template Editor (the upload format has no `isTechnical`).
+
 Each field carries these properties:
 
 | Property | Description |
 | --- | --- |
 | `name` | Name of the template key, unique within its data type |
 | `dataType` | Data type the field applies to, by its internal name. See the values below. |
-| `type` | Type of the field's values: `string` (text), `integer` (a whole number), `decimal` (a number), `boolean` (`true` or `false`), `datetime` (a date, with or without a time) or `externalLink` (a URL) |
+| `metainfoType` | Java class of the field's values: `com.genestack.api.metainfo.StringValue` (text), `com.genestack.api.metainfo.IntegerValue` (a whole number), `com.genestack.api.metainfo.DecimalValue` (a number), `com.genestack.api.metainfo.BooleanValue` (`true` or `false`), `com.genestack.api.metainfo.DateTimeValue` (a date, with or without a time) or `com.genestack.api.metainfo.ExternalLink` (a URL) |
 | `isRequired` | `true` when every object of the data type must have a value for the field |
 | `isReadOnly` | `true` when users cannot edit the field's values in ODM |
 | `isTechnical` | `true` when ODM fills the field's values itself, so a metadata file does not supply them |
 | `description` | Description of the field. Absent when the field has none. |
-| `dictionaryId` | Accession of the dictionary the field's values are checked against. Absent when the field has no dictionary. |
-| `dictionaryName` | Name of that dictionary. Absent when the field has no dictionary, or when you cannot read the dictionary. |
+| `dictionaryName` | Name of the dictionary the field's values are checked against. Absent when the field has no dictionary, or when you cannot read the dictionary. |
 
 `dataType` takes these values:
 
