@@ -73,6 +73,7 @@ The response has the same `id`, `name`, `description` and `isDefault` as the lis
       "type": "string",
       "isRequired": true,
       "isReadOnly": true,
+      "isTechnical": false,
       "description": "Unique sample identifier"
     },
     {
@@ -81,6 +82,7 @@ The response has the same `id`, `name`, `description` and `isDefault` as the lis
       "type": "string",
       "isRequired": true,
       "isReadOnly": false,
+      "isTechnical": false,
       "dictionaryId": "GSF000456",
       "dictionaryName": "NCBI Taxonomy"
     }
@@ -88,7 +90,7 @@ The response has the same `id`, `name`, `description` and `isDefault` as the lis
 }
 ```
 
-`fields` also lists the read-only fields ODM fills itself, such as `genestack:accession` for each data type and `Data Class` for expression, variant and flow cytometry groups, which have `isReadOnly: true` and which a metadata TSV does not supply (see [Mandatory technical fields](../../../contribute/templates/template-reference.md#mandatory-technical-fields)).
+`fields` also lists the fields ODM fills itself, such as `genestack:accession` for each data type and `Data Class` for expression, variant and flow cytometry groups. These fields have `isTechnical: true`, so a client that checks a metadata file before import skips them (see [Mandatory technical fields](../../../contribute/templates/template-reference.md#mandatory-technical-fields)).
 
 The endpoint returns HTTP status `404` when no template has that accession, or when you cannot read the template.
 
@@ -101,6 +103,7 @@ Each field carries these properties:
 | `type` | Type of the field's values: `string` (text), `integer` (a whole number), `decimal` (a number), `boolean` (`true` or `false`), `datetime` (a date, with or without a time) or `externalLink` (a URL) |
 | `isRequired` | `true` when every object of the data type must have a value for the field |
 | `isReadOnly` | `true` when users cannot edit the field's values in ODM |
+| `isTechnical` | `true` when ODM fills the field's values itself, so a metadata file does not supply them |
 | `description` | Description of the field. Absent when the field has none. |
 | `dictionaryId` | Accession of the dictionary the field's values are checked against. Absent when the field has no dictionary. |
 | `dictionaryName` | Name of that dictionary. Absent when the field has no dictionary, or when you cannot read the dictionary. |
