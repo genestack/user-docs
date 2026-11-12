@@ -6,13 +6,6 @@
   "rebaseWhen": "behind-base-branch",
   "updateNotScheduled": false,
   "labels": ["renovate"],
-  "dockerfile": {
-    "fileMatch": [
-      "(^|/)Earthfile$",
-      "(^|/|\\.)Dockerfile$",
-      "(^|/)Dockerfile[^/]*$"
-    ]
-  },
   "packageRules": [
     {
       "description": "Automerge non-major updates",

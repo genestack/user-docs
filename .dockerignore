@@ -1,0 +1,18 @@
+# The build context is this repo. Host state stays out of the image and the cache key:
+# the image builds its own site with its own mkdocs.
+.git
+site
+generated
+venv
+.cache
+.idea
+.vscode
+.claude
+CLAUDE.md
+docs-standards
+**/.DS_Store
+# CI's Vault step writes its secrets into the checkout. No stage reads them.
+.env
+.env-woq
+.arg
+.secret

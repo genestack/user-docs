@@ -5,7 +5,7 @@ generated
 site
 venv
 
-# Earthly stuff
+# CI's Vault step writes these into the checkout
 .env
 .env-woq
 .arg
