@@ -29,7 +29,7 @@ curl -X 'POST' \
 }'
 ```
 
-If you want the study to use a specific template, add an optional `templateId` field with the template's accession, which you can copy from the Template Editor. Leave it out and ODM applies the instance default template.
+If you want the study to use a specific template, add an optional `templateId` field with the template's accession, which you can copy from the Template Editor. Leave it out and ODM applies the instance default template. You can also find the accession with `GET /api/v1/templates`, as [Find a template and read its fields](find-a-template.md) describes.
 
 ## Track the job and get your accession
 

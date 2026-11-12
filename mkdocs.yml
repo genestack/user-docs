@@ -115,6 +115,7 @@ nav:
             - odm-api/contribute/index.md
             - Import Data:
                 - About the Import Workflow: odm-api/contribute/import-data/about-the-import-workflow.md
+                - Find a Template and Its Fields: odm-api/contribute/import-data/find-a-template.md
                 - Import Study Metadata: odm-api/contribute/import-data/import-study-metadata.md
                 - Import Sample Metadata: odm-api/contribute/import-data/import-sample-metadata.md
                 - Import Libraries Metadata: odm-api/contribute/import-data/import-libraries-metadata.md
