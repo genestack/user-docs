@@ -34,6 +34,16 @@ To serve documentation on localhost:
 mkdocs serve
 ```
 
+### Docker image
+
+The `Makefile` builds the `Dockerfile`'s `push` target, the nginx image with the built site:
+
+```bash
+make push   # the image CI publishes and the odm chart deploys
+```
+
+`make push` loads the image into the local Docker. `IMAGE_PUSH=registry` publishes it instead, and `IMAGE_VERSION` sets its tag. It also tags `latest`; `make help` lists every target.
+
 ## Linting
 
 We use [pre-commit](https://pre-commit.com/) as a tool to maintain a unified documentation standard.
