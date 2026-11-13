@@ -5,6 +5,8 @@ tab: odm-api
 
 # How to find a template and read its fields
 
+> **[BETA]** The template endpoints are in BETA and are subject to change. Backward compatibility is not guaranteed.
+
 Study, sample, library, preparation and omics data imports take an optional `templateId`, the accession of the template ODM applies to the imported metadata. `GET /api/v1/templates` lists the templates with their accessions. `GET /api/v1/templates/{id}` returns one template with its fields, so you can check which fields your metadata TSV needs before you import it.
 
 For a wider view of how the pieces fit together, see [About the import workflow](about-the-import-workflow.md), and for tokens and authorisation, see [Authentication and tokens](../../getting-started/authentication-and-tokens.md). For the full endpoint specification, the [`templates` definition in Swagger](/swagger/?urls.primaryName=templates) is the source of truth.
