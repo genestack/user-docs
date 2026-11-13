@@ -40,9 +40,12 @@ Changes take effect immediately, but the user may need to refresh their session 
 >
 > **Note:** the **Audit Log Administrator** role lets its holder search and review audit events across the platform through the API. It grants no access to study content, metadata, or files. It is never assigned automatically to any account, and only an **Organisation Administrator** can assign it. See [About audit logs](../../odm-api/admin/audit/about-audit-logs.md).
 >
+> **Note:** the **Harmonisation Administrator** role lets its holder add, edit and remove the LLM providers and models Curators choose from for their Harmonise runs. It grants no access to study content, metadata, or files. The system account `root@genestack.com` holds it by default. Assign it sparingly, and to users who do not start Harmonise runs: a provider's base URL is where Curators' runs send their API keys, and a run acts with its Curator's full identity. See [Manage LLM providers](manage-llm-providers.md).
+>
 > **Note:** assigning the **Organisation Administrator** role is significant because it allows the recipient to assign roles to other users. Assign it sparingly, and only to users who need to perform admin tasks.
 
 ## Related
 
 - [Roles](../../overview/access-control/roles.md)
 - [About audit logs](../../odm-api/admin/audit/about-audit-logs.md)
+- [Manage LLM providers](manage-llm-providers.md)
