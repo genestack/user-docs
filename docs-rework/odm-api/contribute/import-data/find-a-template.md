@@ -81,6 +81,7 @@ The response has the same `id`, `name`, `description` and `isDefault` as the lis
       "metainfoType": "com.genestack.api.metainfo.StringValue",
       "isRequired": true,
       "isReadOnly": false,
+      "dictionaryAccession": "GSF000456",
       "dictionaryName": "NCBI Taxonomy"
     }
   ]
@@ -91,7 +92,7 @@ The response has the same `id`, `name`, `description` and `isDefault` as the lis
 
 The endpoint returns HTTP status `404` when no template has that accession, or when you cannot read the template.
 
-A field has exactly the properties of the template upload format that the [Template reference](../../../contribute/templates/template-reference.md#template-json-file-structure) describes, so you can save the `fields` array as a template JSON file and upload it with `odm-update-template` (see [Create or update a template](../../../api-libraries/odm-sdk/templates/create-or-update-a-template.md)). When you cannot read a field's dictionary, `dictionaryName` is absent, so a template you save and upload again loses that field's dictionary.
+A field has the properties of the template upload format that the [Template reference](../../../contribute/templates/template-reference.md#template-json-file-structure) describes, plus `dictionaryAccession`, which that format lacks. To upload a template with `odm-update-template`, drop `dictionaryAccession` from each field, then save the `fields` array as a template JSON file (see [Create or update a template](../../../api-libraries/odm-sdk/templates/create-or-update-a-template.md)). When you cannot read a field's dictionary, `dictionaryName` is absent, so a template you save and upload again loses that field's dictionary.
 
 Each field carries these properties:
 
@@ -103,6 +104,7 @@ Each field carries these properties:
 | `isRequired` | `true` when every object of the data type must have a value for the field |
 | `isReadOnly` | `true` when users cannot edit the field's values in ODM |
 | `description` | Description of the field. Absent when the field has none. |
+| `dictionaryAccession` | Accession of the dictionary the field's values are checked against. Absent when the field has no dictionary. |
 | `dictionaryName` | Name of the dictionary the field's values are checked against. Absent when the field has no dictionary, or when you cannot read the dictionary. |
 
 `dataType` takes these values:
