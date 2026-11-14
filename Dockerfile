@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.28
+# syntax=docker/dockerfile:1.29
 #
 # The ODM user documentation: the MkDocs site built from docs-rework/ and mkdocs.yml,
 # served by its own nginx on 8080 (fs/etc/nginx/conf.d/default.conf). The build context is
