@@ -24,7 +24,7 @@ Point ODM at your file with `POST /api/v1/jobs/import/samples`. The one field th
 }
 ```
 
-If you want the samples to use a specific template, add an optional `templateId` field to specify which template to apply. Leave it out and ODM applies the instance default template.
+If you want the samples to use a specific template, add an optional `templateId` field to specify which template to apply. Leave it out and ODM applies the instance default template. To find a template's accession, call `GET /api/v1/templates`, as [Find a template and read its fields](find-a-template.md) describes.
 
 Here is the complete call. Note the `allow_dups` query parameter, which defaults to `false` and controls whether duplicate Sample Source IDs are accepted:
 

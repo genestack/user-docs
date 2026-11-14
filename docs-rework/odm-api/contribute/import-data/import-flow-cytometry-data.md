@@ -25,7 +25,7 @@ Point ODM at your file with `POST /api/v1/jobs/import/flow-cytometry`. The one f
 }
 ```
 
-If you have a separate metadata TSV, add an optional `metadataLink` field pointing to it, and if you want the group to use a specific template, add `templateId` with that template's accession.
+If you have a separate metadata TSV, add an optional `metadataLink` field pointing to it, and if you want the group to use a specific template, add `templateId` with that template's accession. To find a template's accession, call `GET /api/v1/templates`, as [Find a template and read its fields](find-a-template.md) describes.
 
 Putting it together, the call looks like this:
 

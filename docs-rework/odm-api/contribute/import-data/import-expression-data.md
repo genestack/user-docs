@@ -22,7 +22,7 @@ Point ODM at your file with `POST /api/v1/jobs/import/expression`. The request b
 - `dataLink` (required): URL of the expression data file (GCT or TSV)
 - `dataClass` (required): Data class (e.g., "Bulk transcriptomics", "Proteomics", "Single-cell transcriptomics")
 - `metadataLink` (optional): URL of an optional metadata TSV file
-- `templateId` (optional): Accession of the template to apply
+- `templateId` (optional): Accession of the template to apply, listed by `GET /api/v1/templates` (see [Find a template and read its fields](find-a-template.md))
 - `previousVersion` (optional): Accession of the previous file version (for version updates)
 - `numberOfFeatureAttributes` (conditional): Number of feature columns; mandatory for TSV files with multiple feature columns
 - `measurementSeparator` (conditional): Separator between sample/library/preparation name and measurement type in column headers

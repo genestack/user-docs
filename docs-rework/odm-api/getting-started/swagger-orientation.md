@@ -46,6 +46,7 @@ Use the top-right definition selector to navigate between API surfaces. Most def
 - `manageData`, data deletion, detached objects, and ownership recovery (each operation has its own ownership or role requirement)
 - `referenceGenome`, reference genome upload and query
 - `xrefsets`, cross-reference mapping sets built from reference data (for example, Ensembl and NCBI)
+- `templates`, metadata templates and their fields, read-only and open to all users (see [Find a template and read its fields](../contribute/import-data/find-a-template.md))
 - `processorsController`, transformations: configurations, images, and jobs (see [About the Processors Controller](../contribute/transformations/about-processors-controller.md))
 - `job`, asynchronous job status
 - `tasks`, background task status
