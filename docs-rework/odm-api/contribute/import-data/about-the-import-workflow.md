@@ -45,6 +45,8 @@ The API accepts files hosted at HTTP/HTTPS URLs, S3 URIs, and NFS paths for file
 
 An NFS path is a `file://` link, and it must lie under the mounted storage: `/local_data`, unless your administrator configured other directories. A `file://` link outside them, with a `..` segment, or through or to a symbolic link answers `400`.
 
+An HTTP/HTTPS URL answers `400` when its host is `localhost`, or is or resolves to a loopback, link-local, any-local or multicast address, such as `127.0.0.1` or `169.254.169.254`.
+
 ## The asynchronous job model
 
 Most import operations are asynchronous. The endpoint first checks that ODM can read every file the request links to. A link ODM cannot read answers `404` with hint `A0003` ("The system cannot open the file ..."), and no job is created. Otherwise, the endpoint responds immediately with a `jobExecId`. Use `GET /api/v1/jobs/{jobExecId}/info` to check the status (STARTING, RUNNING, COMPLETED, FAILED) and `GET /api/v1/jobs/{jobExecId}/output` to retrieve the result, typically the new entity's accession number. For full details, see [Manage import jobs](manage-import-jobs.md) and the [Job status codes reference](../../reference/job-status-codes-reference.md).
