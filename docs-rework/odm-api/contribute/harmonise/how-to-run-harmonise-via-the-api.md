@@ -80,7 +80,7 @@ Poll the run (`GET /api/v1/harmonisation/runs/{id}`) to follow its steps: its `s
 
 A run takes a study through three phases, extract, transform and export, each an attempt you review before the next: see [Phases, attempts and review](../../../contribute/harmonise/about-harmonise.md#phases-attempts-and-review). A phase is accepted only when the run is `READY` with no step queued or running; otherwise it is refused with `409 Conflict`. Poll the run until it is `READY` before each request. Transform needs LLM credentials for a provider whose `api` is `OPENAI`. So does feedback on an extraction: with another provider, extract reads the files by their names and ignores the comments.
 
-1. Extract a folder of the bucket. `bucket` defaults to the run's `defaultBucket`:
+1. Extract a folder of the run's `defaultBucket`. The request names the folder only:
 
     ```text
     POST /api/v1/harmonisation/runs/{id}/extract
@@ -100,7 +100,7 @@ A run takes a study through three phases, extract, transform and export, each an
 
     The response is `{"stepId", "kind", "payload"}`, where `payload` is a JSON object in the format `kind` names. It never changes, so read it once.
 
-3. To request changes, extract again with `feedback` naming the latest successful extract step. The new attempt, `extract-2`, has `revises` `extract-1`, and reads the same bucket and path unless you give others:
+3. To request changes, extract again with `feedback` naming the latest successful extract step. The new attempt, `extract-2`, has `revises` `extract-1`, and reads the same folder unless you give another `path`:
 
     ```json
     {
@@ -115,17 +115,13 @@ A run takes a study through three phases, extract, transform and export, each an
 
     A comment's `context` is free text, such as `file:raw/samples.csv` or `field:Sample.Disease`, or empty for the whole attempt. Once `extract-2` has succeeded, `extract-1` is `superseded`, with `review` `CHANGES_REQUESTED`.
 
-4. To approve the extraction, transform it, naming the template:
+4. To approve the extraction, transform it:
 
     ```text
     POST /api/v1/harmonisation/runs/{id}/transform
     ```
 
-    ```json
-    {"templateId": "public_studies"}
-    ```
-
-    The step, `transform-1`, has `basedOn` set to the latest successful extract step, which becomes `APPROVED`. Once it has `SUCCEEDED`, read its review (`reviewKind` `transformation`) as in item 2. To request changes, transform again with `feedback` naming the latest successful transform step: the new attempt keeps its extraction and template.
+    The request has no body. Every transformation maps to the public studies template, which the run picks itself. The step, `transform-1`, has `basedOn` set to the latest successful extract step, which becomes `APPROVED`. Once it has `SUCCEEDED`, read its review (`reviewKind` `transformation`) as in item 2. To request changes, transform again with `feedback` naming the latest successful transform step: the new attempt keeps its extraction.
 
 5. To approve the transformation, export it:
 

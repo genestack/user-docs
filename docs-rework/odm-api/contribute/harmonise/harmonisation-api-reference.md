@@ -38,7 +38,7 @@ A run's `{id}` is its number. There is no endpoint to delete or cancel a run.
 
 | Status | When |
 | --- | --- |
-| `400 Bad Request` | A run id that is not a number, or an invalid body, such as a first extraction without `path`, or with a blank one (`""` or `/`), a first transformation without `templateId`, or feedback outside its [limits](#feedback): see each endpoint in Swagger. |
+| `400 Bad Request` | A run id that is not a number; an invalid body, such as a first extraction without `path`, or with a blank one (`""` or `/`), or feedback outside its [limits](#feedback); or a start with `path`, a `list-files`, an `extract` or an `export` step on a run with no `defaultBucket`. See each endpoint in Swagger. |
 | `401 Unauthorized` | No valid token. |
 | `403 Forbidden` | Not a Curator, or, to change providers, not a Harmonisation Administrator. |
 | `404 Not Found` | No run with this id that you started, no step with this id in it, a step without a review payload, no credentials saved, or no provider with this id. |
@@ -57,7 +57,7 @@ A run's `{id}` is its number. There is no endpoint to delete or cancel a run.
 | `finishedAt` | When the run ended; set once it is `FINISHED` or `FAILED`. |
 | `exitCode` | Exit code of the run's process; `0` after a clean finish. Absent if it never ran. |
 | `reason` | Why the run waits, failed or ended as it did, for example `ErrImagePull` or `Finished before its Pod was ready`. |
-| `defaultBucket` | The bucket a `list-files` or an `extract` step reads when it names none, and the one an `export` step writes its Package to. |
+| `defaultBucket` | The bucket every `list-files` and `extract` step reads, and every `export` step writes its Package to. A request names no bucket. |
 | `connected` | Whether the run's processing environment is connected to ODM now; `false` once the run is over. |
 | `steps` | The [steps](#steps) you asked for, in order, and `shutdown` last once the run shuts down. |
 
@@ -87,11 +87,10 @@ See [Run lifecycle](../../../contribute/harmonise/run-lifecycle.md) for how a ru
 | `startedAt`, `finishedAt` | When the step started and ended. |
 | `error` | Why the step failed. |
 | `failure` | For a failed step that called the LLM, its [cause](#llm-failures), where the run can tell it. |
-| `bucket`, `path` | What a `list-files` or an `extract` step reads, or the listing an `upload-to-odm` step uploads. |
+| `bucket`, `path` | What a `list-files` or an `extract` step reads, the run's `defaultBucket` and a folder in it, or the listing an `upload-to-odm` step uploads. |
 | `files` | What a `list-files` step found: each file's `key`, `size` in bytes and `lastModified`. Absent in run lists. |
 | `keys` | The files an `upload-to-odm` step uploads. |
 | `upload` | What an `upload-to-odm` or an `export` step imported into ODM: `studyAccession`, `sampleGroupAccession` and `expressionGroupAccessions`, empty for an export; for an export, also `packageBucket` and `packageKeys`, where it wrote the Package. |
-| `templateId` | The template a `transform` step harmonises to. |
 | `basedOn` | The attempt a `transform` or an `export` step is built on: the one approved, for example `extract-2`. |
 | `revises` | The attempt of the same phase an `extract` or a `transform` step revises; absent for the first attempt of a phase. |
 | `feedback` | The comments a revising step carries: `attemptStepId` and `comments`. Absent in run lists. |
@@ -99,7 +98,7 @@ See [Run lifecycle](../../../contribute/harmonise/run-lifecycle.md) for how a ru
 | `review` | For a successful `extract` or `transform` step: `AWAITING`, nothing asked on it yet; `APPROVED`, a later step is built on it; `CHANGES_REQUESTED`, a later step's feedback names it. When both happened, the latest counts. |
 | `superseded` | `true` for an `extract` or a `transform` step once a later attempt of its phase has succeeded. Nothing can be built on it or comment on it. |
 
-The body of `POST /api/v1/harmonisation/runs/{id}/steps` is optional: `bucket`, the run's `defaultBucket` when absent, and `path`, a folder in the bucket, the whole bucket when absent.
+The body of `POST /api/v1/harmonisation/runs/{id}/steps` is optional: `path`, a folder in the run's `defaultBucket`, the whole bucket when absent.
 
 ### Phases
 
@@ -108,11 +107,11 @@ The body of `POST /api/v1/harmonisation/runs/{id}/steps` is optional: `bucket`, 
 | Where the run is | Approve | Request changes |
 | --- | --- | --- |
 | No successful extraction | `POST .../extract` with `path` | — |
-| An extraction succeeded, no transformation yet | `POST .../transform` with `templateId` | `POST .../extract` with `feedback` on the latest extraction |
+| An extraction succeeded, no transformation yet | `POST .../transform` with an empty body | `POST .../extract` with `feedback` on the latest extraction |
 | A transformation succeeded, no export yet | `POST .../export` | `POST .../transform` with `feedback` on the latest transformation |
 | An export succeeded | No more phases: finish the run | — |
 
-Anything else is refused with `409 Conflict`. A failed export does not count: another can be asked for. `list-files`, `upload-to-odm` and `check-llm` keep their own rules. An extraction with `feedback` keeps the bucket and path of the attempt it revises unless it gives others, and a blank `path` (`""` or `/`) keeps the revised attempt's folder too; a transformation with `feedback` keeps its extraction and template.
+Anything else is refused with `409 Conflict`. A failed export does not count: another can be asked for. `list-files`, `upload-to-odm` and `check-llm` keep their own rules. An extraction with `feedback` keeps the path of the attempt it revises unless it gives another, and a blank `path` (`""` or `/`) keeps the revised attempt's folder too; a transformation with `feedback` keeps its extraction. Every transformation maps to the public studies template, which the run picks itself: no request names a template.
 
 ### Feedback
 
