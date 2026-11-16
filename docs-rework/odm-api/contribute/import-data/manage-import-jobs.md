@@ -15,6 +15,8 @@ Use `PUT /api/v1/jobs/{jobExecId}/restart` to restart a job that has failed or w
 
 This is useful when a job failed due to a transient issue (for example, a temporary connectivity problem). Provide the `jobExecId` returned by the original import call.
 
+An import job started before your ODM instance was upgraded to 1.66 cannot be restarted: the call answers `409` with hint `A0010` ("Job `<id>` started before ODM 1.66 and holds file links: start a new import"). Submit the import again instead.
+
 ## Stop a running job
 
 Use `PUT /api/v1/jobs/{jobExecId}/stop` to cancel a job that is currently running.
