@@ -5,7 +5,7 @@ tab: contribute
 
 # Run lifecycle
 
-A Harmonise run goes through a fixed set of states, from when you start it to when it is over. The run page shows the current one as its **Status**, with the times it was **Created**, **Ready** and **Finished**. This page explains each state so that you can tell what a run is doing and why it ended as it did.
+A Harmonise run goes through a fixed set of states, from when you start it to when it is over. The run page shows the current one as its **Status**, with the times it was **Created**, **Ready** and **Finished**. This page explains each state so that you can tell what a run is doing and why it ended as it did. The Harmonise page's list of runs shows a status of its own, read from these states and the run's steps: see [Find a run again](start-and-finish-a-run.md#find-a-run-again).
 
 For what a run is, see [About Harmonise](about-harmonise.md).
 
@@ -65,7 +65,7 @@ Each run has storage of its own for the files it works on, of a size your admini
 
 ## Finishing: FINISHING and FINISHED
 
-Finishing is the only way to end a run; there is no cancel. When you finish a run, it becomes `FINISHING`: the step in progress runs to its end, the steps that have not started are `SKIPPED`, and the run shuts down, which the run page lists as its last step, `shutdown`. Once its processing environment has stopped and been removed, the run is `FINISHED`. Finishing a run again, or a run that is over, changes nothing.
+Finishing is the only way to end a run; there is no cancel action. When you finish a run, it becomes `FINISHING`: the step in progress runs to its end, the steps that have not started are `SKIPPED`, and the run shuts down, which the run page lists as its last step, `shutdown`. Once its processing environment has stopped and been removed, the run is `FINISHED`. Finishing a run again, or a run that is over, changes nothing.
 
 A run you finish while it is still `PENDING` shuts down as soon as it is ready. If its processing environment never came up, there is nothing to shut down: the run is `FINISHED` at once, with the reason `Finished before its Pod was ready`.
 
