@@ -5,10 +5,10 @@ tab: contribute
 
 # About Harmonise
 
-Harmonise prepares the raw files of a study for ODM with the help of a large language model (LLM). It reads the study's files from the S3 storage your ODM instance is set up with, and writes what it produces into ODM as you. You work with Harmonise in runs: you start a run, steer it, and finish it when you are done.
+Harmonise prepares the raw files of a study for ODM with the help of a large language model (LLM). It reads the study's files from the S3 bucket your ODM instance is set up with, and writes what it produces into ODM as you. You work with Harmonise in runs: you start a run, steer it, and finish it when you are done.
 
 !!! note "Harmonise is in development"
-    Harmonise is an early version and will change. It does not yet import expression data, and it offers one template, `public_studies`.
+    Harmonise is an early version and will change. It does not yet import expression data. It maps every study to one template, the public studies template, and imports it into ODM with ODM's Public Study template, `GSF000054`.
 
 ## Runs
 
@@ -22,9 +22,9 @@ Runs are numbered 1, 2, 3, … in the order they start, across your ODM instance
 
 A run takes a study through three phases, in order:
 
-1. **Extract** reads the files of a folder in the storage into tables, and the objects in them, such as samples.
-2. **Transform** maps what was extracted to the fields of a template: it plans the mapping, carries out the plan, and checks the result.
-3. **Export** writes the harmonised study to the storage, as a package of files, and imports its study and samples into ODM.
+1. **Extract** reads the files of a folder in the bucket into tables, and the objects in them, such as samples.
+2. **Transform** maps what was extracted to the fields of the public studies template: it plans the mapping, carries out the plan, and checks the result.
+3. **Export** writes the harmonised study to the same bucket, as a package of files, and imports its study and samples into ODM.
 
 Each time a phase runs, it makes an **attempt**, a step of the run named after its phase and number, such as `extract-1` or `transform-2`. When an extract or a transform attempt succeeds, you review what it produced on the run page, then do one of two things:
 
