@@ -9,38 +9,40 @@ This reference describes the template file format and the behaviour that governs
 
 ## Template JSON file structure
 
-A template JSON file is an array of attribute objects. Each object defines one metadata attribute and must contain the following keys:
+A template JSON file is an array of attribute objects. Each object defines one metadata attribute with these keys:
 
-`dataType`: the ODM entity type the attribute applies to. Accepted values:
+| Key | Required | Description |
+| --- | --- | --- |
+| `name` | Yes | Attribute name as it appears in the Metadata Editor, unique within its data type |
+| `dataType` | Yes | Data type the attribute applies to. See the values below. |
+| `metainfoType` | Yes | Type of the attribute's values. See the values below. No value bounds can be set. |
+| `isRequired` | Yes | When `true`, the Metadata Editor marks the attribute as invalid when it is blank or its value is wrong. |
+| `isReadOnly` | No | When `true`, curators cannot edit the attribute's values. |
+| `description` | No | Hint text shown to curators during metadata entry, at most 500 characters |
+| `dictionaryName` | No | Name of the dictionary the attribute's values are checked against. See [Load a custom ontology](../../api-libraries/odm-sdk/dictionaries-and-ontologies/load-a-custom-ontology.md). |
 
-- `"study"`
-- `"genestack:sampleObject"`
-- `"genestack:libraryObject"`
-- `"genestack:preparationObject"`
-- `"genestack:facsParent"`
-- `"genestack:genomicsParent"`
-- `"genestack:transcriptomicsParent"`
+`dataType` takes these values:
 
-`name`: the attribute name as it appears in the Metadata Editor.
+| `dataType` | Applies to |
+| --- | --- |
+| `study` | Studies |
+| `genestack:sampleObject` | Samples |
+| `genestack:libraryObject` | Libraries |
+| `genestack:preparationObject` | Preparations |
+| `genestack:transcriptomicsParent` | Expression metadata |
+| `genestack:genomicsParent` | Variant metadata |
+| `genestack:facsParent` | Flow cytometry metadata |
 
-`metainfoType`: the data type of the attribute value. Must be one of:
+`metainfoType` takes these values:
 
-- `"com.genestack.api.metainfo.IntegerValue"`: use for INT values
-- `"com.genestack.api.metainfo.DecimalValue"`: use for FLOAT values
-- `"com.genestack.api.metainfo.StringValue"`
-- `"com.genestack.api.metainfo.BooleanValue"`
-- `"com.genestack.api.metainfo.DateTimeValue"`: use for DATE or TIME values
-- `"com.genestack.api.metainfo.ExternalLink"`
-
-No value bounds can be set currently.
-
-`dictionaryName`: (optional) the name of a controlled vocabulary to validate the attribute against. See [Load a custom ontology](../../api-libraries/odm-sdk/dictionaries-and-ontologies/load-a-custom-ontology.md).
-
-`isRequired`: boolean. When `true`, leaving this attribute blank or filling it incorrectly causes it to be highlighted as invalid in the Metadata Editor.
-
-`isReadOnly`: boolean. When `true`, the attribute cannot be edited by curators.
-
-`description`: a hint text shown to curators during metadata entry. Maximum 500 characters.
+| `metainfoType` | Values |
+| --- | --- |
+| `com.genestack.api.metainfo.StringValue` | Text |
+| `com.genestack.api.metainfo.IntegerValue` | A whole number |
+| `com.genestack.api.metainfo.DecimalValue` | A number |
+| `com.genestack.api.metainfo.BooleanValue` | `true` or `false` |
+| `com.genestack.api.metainfo.DateTimeValue` | A date, with or without a time |
+| `com.genestack.api.metainfo.ExternalLink` | A URL |
 
 ### Example attribute object
 

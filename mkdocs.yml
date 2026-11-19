@@ -115,7 +115,6 @@ nav:
             - odm-api/contribute/index.md
             - Import Data:
                 - About the Import Workflow: odm-api/contribute/import-data/about-the-import-workflow.md
-                - Find a Template and Its Fields: odm-api/contribute/import-data/find-a-template.md
                 - Import Study Metadata: odm-api/contribute/import-data/import-study-metadata.md
                 - Import Sample Metadata: odm-api/contribute/import-data/import-sample-metadata.md
                 - Import Libraries Metadata: odm-api/contribute/import-data/import-libraries-metadata.md
@@ -128,6 +127,8 @@ nav:
                 - Link Entities After Import: odm-api/contribute/import-data/link-entities-after-import.md
                 - Manage Import Jobs: odm-api/contribute/import-data/manage-import-jobs.md
                 - Multipart Uploads Reference: odm-api/contribute/import-data/multipart-uploads-reference.md
+            - Templates:
+                - Read Templates through the REST API: odm-api/contribute/templates/read-templates.md
             - Transformations:
                 - About the Processors Controller: odm-api/contribute/transformations/about-processors-controller.md
                 - Job Lifecycle: odm-api/contribute/transformations/job-lifecycle.md
