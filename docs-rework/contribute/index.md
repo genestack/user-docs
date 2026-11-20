@@ -54,6 +54,12 @@ ODM supports importing studies, sample metadata, libraries, preparations, experi
 
     Share access and transfer ownership.
 
+- **[Harmonise](harmonise/index.md)**
+
+    ---
+
+    Prepare a study's raw files for ODM with the help of an LLM.
+
 </div>
 
 ## Watch the videos

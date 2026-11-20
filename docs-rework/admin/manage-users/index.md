@@ -35,4 +35,10 @@ This section covers creating and managing user accounts and their roles through 
 
     Assign or remove roles for a user.
 
+- __[Manage LLM providers](manage-llm-providers.md)__
+
+    ---
+
+    Set up the LLM providers and models Curators choose from for Harmonise.
+
 </div>
