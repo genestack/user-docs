@@ -113,7 +113,7 @@ A user group is created, either in the Groups application or through SCIM provis
 
 A study is created. Studies are currently the only entity type this event covers.
 
-**Source:** `UI` with source type `genestack/study-metainfo-editor` when created through the **Create new study** action, or `API` when created through `POST /api/v1/jobs/import/study`. The ODM SDK also records `API` for study creation.
+**Source:** `UI` with source type `genestack/study-metainfo-editor` when created through the **Create new study** action, or `API` when created through `POST /api/v1/jobs/import/study` or `POST /api/v1/jobs/import/study/multipart`. The ODM SDK also records `API` for study creation.
 
 **Target:** `STUDY`, holding the new study's accession. The `studyAccession` field carries the same value.
 
