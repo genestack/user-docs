@@ -62,7 +62,7 @@ If you would rather see it with your own eyes, open the Study Browser: the new s
 
 ## Multipart upload alternative
 
-Prefer to upload the TSV directly instead of pointing ODM at a URL? Use `POST /api/v1/jobs/import/study/multipart`. It takes the file in a `multipart/form-data` field named `file`; to pick a template, add an optional `templateId` field before it. This call uploads a local copy of the example file above:
+Prefer to upload the TSV directly instead of pointing ODM at a URL? Use `POST /api/v1/jobs/import/study/multipart`, one of the endpoints described in the [Multipart uploads reference](multipart-uploads-reference.md). This call uploads a local copy of the example file above:
 
 ```bash
 curl -X 'POST' \
@@ -72,7 +72,7 @@ curl -X 'POST' \
   -F 'file=@Test_1000g.study.tsv'
 ```
 
-The response, the job, and its output are the same as above: `GET /api/v1/jobs/{jobExecId}/output` returns the new study's `accession`. Unlike the other multipart imports, this one takes no `studyId`, because the study does not exist until the job creates it. Once it does, pass its accession as `studyId` when you upload the study's samples, libraries, preparations, or data the same way. ODM keeps its own copy of the uploaded file and deletes it along with the study. For how multipart uploads work, see the [Multipart uploads reference](multipart-uploads-reference.md).
+The optional `templateId` works as above. The response, the job, and its output are also the same: `GET /api/v1/jobs/{jobExecId}/output` returns the new study's `accession`.
 
 ## Next steps
 

@@ -32,11 +32,11 @@ Use multipart endpoints when:
 
 ## How multipart endpoints work
 
-Each endpoint creates and processes the same type of import job as its non-multipart counterpart. The only difference is how the source file is provided: multipart endpoints accept the file via the `file` parameter in the request body, while non-multipart endpoints require a `dataLink` URL.
+Each endpoint creates and processes the same type of import job as its non-multipart counterpart. The only difference is how the source file is provided: multipart endpoints accept the file via the `file` parameter in the request body, while non-multipart endpoints require a URL to it: `metadataLink` for study, sample, library, and preparation metadata, and `dataLink` for cells, data, and attached files.
 
 > **Important:** the `file` parameter must always be placed last in the list of request parameters.
 
-The study endpoint is the one multipart endpoint that takes no study accession. The others need the accession of an existing study (`studyId`, or `studyAccession` for attached files), and ODM stores the uploaded file with that study. The study import creates the study, so when you import a study and its data by direct upload, run it first: its job output gives the new study's accession, which you then pass to the other multipart imports. Passing `studyId` does not link the imported group to the study; that is still a separate step, described in [Link entities after import](link-entities-after-import.md).
+The study endpoint is the one multipart endpoint that takes no study accession. The others need the accession of an existing study (`studyId`, or `studyAccession` for attached files), and ODM stores the uploaded file with that study. The study import creates the study, so when you import a study and its data by direct upload, run it first: its job output gives the new study's accession, which you then pass to the other multipart imports.
 
 ## Data management
 
