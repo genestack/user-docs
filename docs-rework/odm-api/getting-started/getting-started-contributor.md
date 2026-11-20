@@ -22,7 +22,7 @@ In this tutorial, you will create a complete study end-to-end via the ODM API: u
 2. Locate the **Job** endpoint group and expand **Import study metadata from a TSV file** (`POST /api/v1/jobs/import/study`). Click **Try it out**.
 3. In the parameters section, enter the URL of the study metadata TSV file (e.g., the S3 link above) and click **Execute**.
 
-    > If the request includes a template accession number, replace it with the accession of your desired template, or omit it entirely to use the default template.
+    > If the request includes a template accession number, replace it with the accession of your desired template, or omit it entirely to use the default template. To find a template's accession, use the Template Editor or the REST API (see [Read templates through the REST API](../contribute/templates/read-templates.md)).
 
 ## Step 2: Track the import job
 
