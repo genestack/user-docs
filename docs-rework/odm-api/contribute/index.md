@@ -17,6 +17,12 @@ Contributing data through the API means getting your studies and their data into
 
     Per-entity how-to guides for importing studies, samples, omics data, and attached files.
 
+- __[Templates](templates/read-templates.md)__
+
+    ---
+
+    List the metadata templates and read their fields to pick the `templateId` for an import.
+
 - __[Transformations](transformations/about-processors-controller.md)__
 
     ---
