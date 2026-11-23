@@ -65,7 +65,7 @@ If the export `FAILED`, the run page shows why, and you can export the same tran
 
 ## Finish the run
 
-Click **Finish run** once the export has succeeded, or once you are done with it: see [Finish a run](start-and-finish-a-run.md#finish-a-run). The run's attempts, reviews and your comments stay on its page for good.
+ODM finishes the run itself once the export has succeeded. To end a run earlier, click **Cancel run**: see [Finish a run](start-and-finish-a-run.md#finish-a-run). The run's attempts, reviews and your comments stay on its page for good.
 
 ## Superseded attempts
 

@@ -16,8 +16,8 @@ For what a run is, see [About Harmonise](about-harmonise.md).
 | `PENDING` | The run has started, and its processing environment is being set up. It cannot take steps yet. |
 | `READY` | The run is waiting for your next step. |
 | `RUNNING` | The run is taking a step. Steps you ask for meanwhile wait for their turn. |
-| `FINISHING` | You finished the run. It completes the step in progress, then shuts down. |
-| `FINISHED` | The run shut down after you finished it. Final. |
+| `FINISHING` | The run was finished, by you or by ODM after its export. It completes the step in progress, then shuts down. |
+| `FINISHED` | The run shut down after it was finished. Final. |
 | `FAILED` | The run ended before it could shut down cleanly. Final. |
 
 For a normal run the order is `PENDING` → `READY` → `RUNNING` → `READY` → … → `FINISHING` → `FINISHED`.
@@ -28,10 +28,12 @@ stateDiagram-v2
     PENDING --> READY: ready
     READY --> RUNNING: a step starts
     RUNNING --> READY: no step left
-    PENDING --> FINISHING: Finish run
-    PENDING --> FINISHED: Finish run, never came up
-    READY --> FINISHING: Finish run
-    RUNNING --> FINISHING: Finish run
+    PENDING --> FINISHING: Cancel run
+    PENDING --> FINISHED: Cancel run, never came up
+    READY --> FINISHING: Cancel run
+    RUNNING --> FINISHING: Cancel run
+    READY --> FINISHING: export succeeded, ODM finishes the run
+    RUNNING --> FINISHING: export succeeded, ODM finishes the run
     FINISHING --> FINISHED: shut down
     PENDING --> FAILED
     READY --> FAILED
@@ -82,7 +84,7 @@ A failed run keeps its record, with the steps it took and their results. Steps i
 
 ## Time limit
 
-A run is bounded in time, from when its processing environment starts: one hour, unless your administrator set another limit. The limit covers the whole run, including a step that never ends: a run still open when it is reached is `FAILED`. Finish a run once you are done with it.
+A run is bounded in time, from when its processing environment starts: one hour, unless your administrator set another limit. The limit covers the whole run, including a step that never ends: a run still open when it is reached is `FAILED`. Cancel a run you are done with before its export.
 
 ## Related
 
