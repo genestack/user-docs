@@ -12,15 +12,16 @@ This guide explains how to take a study through a Harmonise run: extract its fil
 - Membership of the **Curator** group.
 - LLM credentials for a provider that uses the OpenAI API, saved on your Profile page. Transform needs one: with another provider, the transform fails. Extract works without one, but then reads the files by their names and ignores the comments you make when you request changes. See [Save your LLM credentials](save-your-llm-credentials.md#which-provider-to-choose).
 - The study's raw files in a folder of the S3 storage your ODM instance is set up with.
-- An open run that is `READY`. See [Start and finish a run](start-and-finish-a-run.md#start-a-run).
+- A run started on the study's folder. See [Start and finish a run](start-and-finish-a-run.md#start-a-run).
 
 The run takes one phase at a time: while an attempt is in progress, the run takes no other phase until it ends. Each attempt can take several minutes, as the run calls the LLM many times.
 
 ## Extract the files
 
-1. On the run's page, enter the path of the folder that holds the study's files and click **List files**.
-2. Check the listing, then click **Extract this folder**. The run page shows the attempt, `extract-1`, while it runs.
-3. Wait until the attempt has `SUCCEEDED`. Its review then shows every file of the folder and how it was read, the objects extracted from the files, such as samples, and the findings, the problems the run noticed.
+When you start a run with **New run**, you name the study's folder, and the run extracts it by itself once it is `READY`. See [Start a run](start-and-finish-a-run.md#start-a-run).
+
+1. Wait for the attempt, `extract-1`, on the run's page. If it failed, the **Extract** form returns with the folder filled in: correct the folder, and the bucket if the folder is not in the run's default one, then click **Extract**.
+2. Wait until the attempt has `SUCCEEDED`. Its review then shows every file of the folder and how it was read, the objects extracted from the files, such as samples, and the findings, the problems the run noticed.
 
 If the attempt `FAILED`, the run page shows why. Start the extraction again.
 
@@ -64,7 +65,7 @@ If the export `FAILED`, the run page shows why, and you can export the same tran
 
 ## Finish the run
 
-Click **Finish run** once the export has succeeded, or once you are done with it: see [Finish a run](start-and-finish-a-run.md#finish-a-run). The run's attempts, reviews and your comments stay on its page for good.
+ODM finishes the run itself once the export has succeeded. To end a run earlier, click **Cancel run**: see [Finish a run](start-and-finish-a-run.md#finish-a-run). The run's attempts, reviews and your comments stay on its page for good.
 
 ## Superseded attempts
 

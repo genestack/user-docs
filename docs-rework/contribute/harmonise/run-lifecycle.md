@@ -5,7 +5,7 @@ tab: contribute
 
 # Run lifecycle
 
-A Harmonise run goes through a fixed set of states, from when you start it to when it is over. The run page shows the current one as its **Status**, with the times it was **Created**, **Ready** and **Finished**. This page explains each state so that you can tell what a run is doing and why it ended as it did.
+A Harmonise run goes through a fixed set of states, from when you start it to when it is over. The run page shows the current one as its **Status**, with the times it was **Created**, **Ready** and **Finished**. This page explains each state so that you can tell what a run is doing and why it ended as it did. The Harmonise page's list of runs shows a status of its own, read from these states and the run's steps: see [Find a run again](start-and-finish-a-run.md#find-a-run-again).
 
 For what a run is, see [About Harmonise](about-harmonise.md).
 
@@ -16,8 +16,8 @@ For what a run is, see [About Harmonise](about-harmonise.md).
 | `PENDING` | The run has started, and its processing environment is being set up. It cannot take steps yet. |
 | `READY` | The run is waiting for your next step. |
 | `RUNNING` | The run is taking a step. Steps you ask for meanwhile wait for their turn. |
-| `FINISHING` | You finished the run. It completes the step in progress, then shuts down. |
-| `FINISHED` | The run shut down after you finished it. Final. |
+| `FINISHING` | The run was finished, by you or by ODM after its export. It completes the step in progress, then shuts down. |
+| `FINISHED` | The run shut down after it was finished. Final. |
 | `FAILED` | The run ended before it could shut down cleanly. Final. |
 
 For a normal run the order is `PENDING` → `READY` → `RUNNING` → `READY` → … → `FINISHING` → `FINISHED`.
@@ -28,10 +28,12 @@ stateDiagram-v2
     PENDING --> READY: ready
     READY --> RUNNING: a step starts
     RUNNING --> READY: no step left
-    PENDING --> FINISHING: Finish run
-    PENDING --> FINISHED: Finish run, never came up
-    READY --> FINISHING: Finish run
-    RUNNING --> FINISHING: Finish run
+    PENDING --> FINISHING: Cancel run
+    PENDING --> FINISHED: Cancel run, never came up
+    READY --> FINISHING: Cancel run
+    RUNNING --> FINISHING: Cancel run
+    READY --> FINISHING: export succeeded, ODM finishes the run
+    RUNNING --> FINISHING: export succeeded, ODM finishes the run
     FINISHING --> FINISHED: shut down
     PENDING --> FAILED
     READY --> FAILED
@@ -65,7 +67,7 @@ Each run has storage of its own for the files it works on, of a size your admini
 
 ## Finishing: FINISHING and FINISHED
 
-Finishing is the only way to end a run; there is no cancel. When you finish a run, it becomes `FINISHING`: the step in progress runs to its end, the steps that have not started are `SKIPPED`, and the run shuts down, which the run page lists as its last step, `shutdown`. Once its processing environment has stopped and been removed, the run is `FINISHED`. Finishing a run again, or a run that is over, changes nothing.
+Finishing is the only way to end a run. The run page's **Cancel run** button finishes it, and ODM finishes a run itself once its export succeeded. When you finish a run, it becomes `FINISHING`: the step in progress runs to its end, the steps that have not started are `SKIPPED`, and the run shuts down, which the run page lists as its last step, `shutdown`. Once its processing environment has stopped and been removed, the run is `FINISHED`. Finishing a run again, or a run that is over, changes nothing.
 
 A run you finish while it is still `PENDING` shuts down as soon as it is ready. If its processing environment never came up, there is nothing to shut down: the run is `FINISHED` at once, with the reason `Finished before its Pod was ready`.
 
@@ -82,7 +84,7 @@ A failed run keeps its record, with the steps it took and their results. Steps i
 
 ## Time limit
 
-A run is bounded in time, from when its processing environment starts: one hour, unless your administrator set another limit. The limit covers the whole run, including a step that never ends: a run still open when it is reached is `FAILED`. Finish a run once you are done with it.
+A run is bounded in time, from when its processing environment starts: one hour, unless your administrator set another limit. The limit covers the whole run, including a step that never ends: a run still open when it is reached is `FAILED`. Cancel a run you are done with before its export.
 
 ## Related
 

@@ -14,7 +14,7 @@ Harmonise prepares the raw files of a study for ODM with the help of a large lan
 
 A run is one working session of Harmonise. When you start a run, ODM starts a processing environment for it, separate from ODM itself, and the run waits for your instructions. It takes them one at a time, in the order you give them: an instruction you give while another is in progress waits for its turn. Each instruction is a step of the run, and the run page lists them with their results.
 
-A run stays open until you finish it. There is no cancel: a step, once started, runs to its end, and finishing a run waits for it. For the states a run goes through, see [Run lifecycle](run-lifecycle.md).
+A run stays open until it is finished: ODM finishes it once its export succeeded, and you finish it with **Cancel run**. A step, once started, runs to its end, and finishing a run waits for it. The Harmonise page lists a run finished without an import as **Cancelled**; see [Find a run again](start-and-finish-a-run.md#find-a-run-again). For the states a run goes through, see [Run lifecycle](run-lifecycle.md).
 
 Runs are numbered 1, 2, 3, … in the order they start, across your ODM instance, and named by their number, for example *Run 42*. A run is yours: only the Curator who started it sees it and steers it.
 
@@ -52,7 +52,7 @@ Once an attempt of a phase succeeds, every earlier attempt of the same phase is 
 
 ### No going back
 
-A run moves forward only. Once a transformation has succeeded, the run takes no more extractions, and once an export has succeeded, no more transformations, and no second export: finish the run. To extract a study again, start a new run.
+A run moves forward only. Once a transformation has succeeded, the run takes no more extractions, and once an export has succeeded, no more transformations, and no second export: ODM finishes the run after the export. To extract a study again, start a new run.
 
 Transform needs an LLM provider that uses the OpenAI API. Extract works with any provider, but without the OpenAI API it decides how to read each file from the file's name only, and ignores the comments of a request for changes. See [Save your LLM credentials](save-your-llm-credentials.md#which-provider-to-choose).
 
