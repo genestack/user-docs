@@ -19,6 +19,7 @@ These are platform roles, assigned to individual users across the whole instance
 | Orphan Data Administrator | List and delete detached objects through the API | Deletion is irreversible. Assign only to administrators responsible for data cleanup. |
 | Transformation Configuration Administrator | Create, update, and archive transformation configurations through the API | Configurations are reused across jobs. Assign only to users who maintain ingestion pipelines. |
 | Reference Data Administrator | Delete reference genomes and dictionaries through the API | Deletion is irreversible and affects all users. Assign only to responsible Data Owners. |
+| Harmonisation Administrator | Add, edit and remove the LLM providers and models Curators choose from for Harmonise | Grants no access to study content, metadata, or files. A provider's base URL receives the API keys of the Curators who choose it, so assign it only to trusted administrators who do not start Harmonise runs themselves. |
 | Audit Log Administrator | Search and review audit events across the platform via the API | Grants no access to study content, metadata, or files. Only an **Organisation Administrator** can assign it, and it is never assigned automatically. |
 
 ## Related
@@ -28,3 +29,4 @@ These are platform roles, assigned to individual users across the whole instance
 - [About audit logs](../../odm-api/admin/audit/about-audit-logs.md), what the **Audit Log Administrator** role gives access to.
 - [Delete data](../../odm-api/admin/delete-data.md), which role deletes which kind of object.
 - [Recover study ownership](../../odm-api/admin/recover-study-ownership.md), what the **Ownership Recovery Administrator** role is for.
+- [Manage LLM providers](../../admin/manage-users/manage-llm-providers.md), what the **Harmonisation Administrator** role is for.
