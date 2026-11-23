@@ -52,7 +52,7 @@ Once an attempt of a phase succeeds, every earlier attempt of the same phase is 
 
 ### No going back
 
-A run moves forward only. Once a transformation has succeeded, the run takes no more extractions, and once an export has succeeded, no more transformations, and no second export: finish the run. To extract a study again, start a new run.
+A run moves forward only. Once a transformation has succeeded, the run takes no more extractions, and once an export has succeeded, no more transformations, and no second export: ODM finishes the run after the export. To extract a study again, start a new run.
 
 Transform needs an LLM provider that uses the OpenAI API. Extract works with any provider, but without the OpenAI API it decides how to read each file from the file's name only, and ignores the comments of a request for changes. See [Save your LLM credentials](save-your-llm-credentials.md#which-provider-to-choose).
 

@@ -118,7 +118,7 @@ The body of `POST /api/v1/harmonisation/runs/{id}/steps` is optional: `bucket`, 
 | No successful extraction: ODM queues `extract-1` itself once the run is `READY` | `POST .../extract` with `path`, only if `extract-1` failed | — |
 | An extraction succeeded, no transformation yet | `POST .../transform` with `templateId` | `POST .../extract` with `feedback` on the latest extraction |
 | A transformation succeeded, no export yet | `POST .../export` | `POST .../transform` with `feedback` on the latest transformation |
-| An export succeeded | No more phases: finish the run | — |
+| An export succeeded | No more phases: ODM finishes the run itself | — |
 
 Anything else is refused with `409 Conflict`. A failed export does not count: another can be asked for. `list-files`, `upload-to-odm` and `check-llm` keep their own rules. An extraction with `feedback` keeps the bucket and path of the attempt it revises unless it gives others, and a blank `path` (`""` or `/`) keeps the revised attempt's folder too; a transformation with `feedback` keeps its extraction and template.
 
