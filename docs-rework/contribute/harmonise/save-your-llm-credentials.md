@@ -56,9 +56,9 @@ Until you choose again and save, you cannot start a run.
 
 ## Check your key
 
-Saving your credentials does not tell you whether the provider accepts your key. An open run can check it: **Check LLM key** on the run's page asks the provider about your model, with the key the run started with. The check costs no tokens.
+Saving your credentials does not tell you whether the provider accepts your key. The run page has no button for it. The provider answers when a run first calls it, and a step that fails on the key says why. Through the API, a run can also check the key before any step: see [Run Harmonise via the API](../../odm-api/contribute/harmonise/how-to-run-harmonise-via-the-api.md#step-4-ask-the-run-for-steps).
 
-A failed check says why in a sentence, with the provider's answer, and links to your Profile page when saving new credentials can fix it. The most common causes:
+A failed step says why in a sentence, with the provider's answer, and links to your Profile page when saving new credentials can fix it. The most common causes:
 
 | Meaning | What to do |
 | --- | --- |
@@ -67,7 +67,7 @@ A failed check says why in a sentence, with the provider's answer, and links to 
 | The provider did not answer. | Try again later. If it persists, ask your administrator whether ODM can reach the provider. |
 | No credentials were saved when the run started. | Save your credentials and start a new run. |
 
-A check can also fail for another reason, such as an answer from the provider that ODM does not expect, or a provider address it cannot call. Its message then says why.
+A step can also fail for another reason, such as an answer from the provider that ODM does not expect, or a provider address it cannot call. Its message then says why.
 
 A run keeps the credentials it started with, so a key you fix applies to the next run, not to the run that found the problem.
 

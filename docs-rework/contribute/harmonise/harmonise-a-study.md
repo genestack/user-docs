@@ -20,9 +20,7 @@ The run takes one phase at a time: while an attempt is in progress, the run take
 
 When you start a run with **New run**, you name the study's folder, and the run extracts it by itself once it is `READY`. See [Start a run](start-and-finish-a-run.md#start-a-run).
 
-1. Wait for the attempt, `extract-1`, on the run's page. If it is not there, because the run refused the extraction or you left the page before the run was `READY`, extract the folder yourself:
-    - In the **Extract** form, enter the folder, and a bucket if the folder is not in the run's default one, then click **Extract**.
-    - Or enter the folder and click **List files**, check the listing, then click **Extract this folder**.
+1. Wait for the attempt, `extract-1`, on the run's page. If it failed, the **Extract** form returns with the folder filled in: correct the folder, and the bucket if the folder is not in the run's default one, then click **Extract**.
 2. Wait until the attempt has `SUCCEEDED`. Its review then shows every file of the folder and how it was read, the objects extracted from the files, such as samples, and the findings, the problems the run noticed.
 
 If the attempt `FAILED`, the run page shows why. Start the extraction again.

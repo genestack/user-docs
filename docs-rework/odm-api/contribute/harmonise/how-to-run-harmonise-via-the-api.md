@@ -29,7 +29,13 @@ A run can start only if the response's `status` is `USABLE`. A `404 Not Found` r
 POST /api/v1/harmonisation/runs
 ```
 
-The request has no body. The response, `201 Created`, is the new run:
+The body names the folder the run works on, `path`, and optionally its `bucket`, the run's default one when absent:
+
+```json
+{"path": "harmonisation-demo/study-1"}
+```
+
+The response, `201 Created`, is the new run:
 
 ```json
 {
@@ -38,12 +44,14 @@ The request has no body. The response, `201 Created`, is the new run:
   "startedBy": "curator@example.com",
   "createdAt": "2026-10-24T17:19:08Z",
   "defaultBucket": "odm",
+  "bucket": "odm",
+  "path": "harmonisation-demo/study-1",
   "connected": false,
   "steps": []
 }
 ```
 
-Record the `id`: every other call about the run takes it. If you have no usable credentials, the start is refused with `409 Conflict`, and no run is created.
+Record the `id`: every other call about the run takes it. A start without a body, or with a blank `path` (`""` or `/`), is refused with `400 Bad Request`. If you have no usable credentials, it is refused with `409 Conflict`. In both cases no run is created.
 
 ## Step 3: Wait until the run is ready
 
@@ -51,7 +59,7 @@ Record the `id`: every other call about the run takes it. If you have no usable 
 GET /api/v1/harmonisation/runs/{id}
 ```
 
-Poll the run until its `status` is `READY`. While it is `PENDING`, its `reason` says what it waits for, for example `Unschedulable` for a moment while its storage is set up, then `ContainerCreating`. A run that stays `PENDING` with a reason such as `ErrImagePull` or `Unschedulable` cannot start: finish it (Step 6), and let your administrator know.
+Poll the run until its `status` is `READY`. ODM then queues the first extraction, `extract-1`, of the run's `bucket` and `path` by itself. While it is `PENDING`, its `reason` says what it waits for, for example `Unschedulable` for a moment while its storage is set up, then `ContainerCreating`. A run that stays `PENDING` with a reason such as `ErrImagePull` or `Unschedulable` cannot start: finish it (Step 6), and let your administrator know.
 
 ## Step 4: Ask the run for steps
 
@@ -80,7 +88,7 @@ Poll the run (`GET /api/v1/harmonisation/runs/{id}`) to follow its steps: its `s
 
 A run takes a study through three phases, extract, transform and export, each an attempt you review before the next: see [Phases, attempts and review](../../../contribute/harmonise/about-harmonise.md#phases-attempts-and-review). A phase is accepted only when the run is `READY` with no step queued or running; otherwise it is refused with `409 Conflict`. Poll the run until it is `READY` before each request. Transform needs LLM credentials for a provider whose `api` is `OPENAI`. So does feedback on an extraction: with another provider, extract reads the files by their names and ignores the comments.
 
-1. Extract a folder of the bucket. `bucket` defaults to the run's `defaultBucket`:
+1. Wait for the first extraction. ODM queues `extract-1` when the run is `READY`, so you send no request. Once it has `SUCCEEDED`, the step carries `reviewKind` `extraction` and `review` `AWAITING`. If it `FAILED`, extract again with a `path`, and a `bucket` if it is not the run's:
 
     ```text
     POST /api/v1/harmonisation/runs/{id}/extract
@@ -90,7 +98,7 @@ A run takes a study through three phases, extract, transform and export, each an
     {"path": "harmonisation-demo/study-1"}
     ```
 
-    The response, `201 Created`, is the step, `extract-1`. Once it has `SUCCEEDED`, the step carries `reviewKind` `extraction` and `review` `AWAITING`.
+    The response, `201 Created`, is the step.
 
 2. Read what the attempt extracted:
 
@@ -133,21 +141,21 @@ A run takes a study through three phases, extract, transform and export, each an
     POST /api/v1/harmonisation/runs/{id}/export
     ```
 
-    The request has no body. The step, `export-1`, writes the Package to the run's `defaultBucket` under `harmonisation/runs/<run id>/<step id>/`, and imports its study and samples into ODM as you, linked. Once it has `SUCCEEDED`, its `upload` names the `studyAccession`, the `sampleGroupAccession`, the `packageBucket` and the `packageKeys`.
+    The request has no body. The step, `export-1`, writes the Package to the run's `defaultBucket` under `harmonisation/runs/<run id>/<step id>/`, and imports its study and samples into ODM as you, linked. Once it has `SUCCEEDED`, ODM finishes the run by itself, and its `upload` names the `studyAccession`, the `sampleGroupAccession`, the `packageBucket` and the `packageKeys`.
 
     A failed export can be asked for again. But one that failed part-way may have imported the study, and perhaps the samples, already: its `error` then names them, for example `Import into ODM failed: … (imported before it: study GSF…)`. Check for them in ODM, and delete them, before you export again, or the retry imports a second study.
 
 Once a transform step has succeeded, the run takes no more extract steps, and once an export has succeeded, no more transform steps and no second export (only a successful export counts): such requests are refused with `409 Conflict`. So is a request without `feedback` for a phase that has succeeded already, and `feedback` naming an attempt that is not the latest successful one of its phase. To extract a study again, start a new run.
 
-## Step 6: Finish the run
+## Step 6: Finish the run, if it is still open
 
 ```text
 POST /api/v1/harmonisation/runs/{id}/finish
 ```
 
-The response, `200 OK`, is the run, now `FINISHING`: the step in progress runs to its end, the steps that have not started are `SKIPPED`, and the run shuts down. Poll the run until its `status` is `FINISHED`, with `finishedAt` and `exitCode` set. A run that was still `PENDING` and never came up is `FINISHED` at once.
+The response, `200 OK`, is the run, now `FINISHING`: the step in progress runs to its end, the steps that have not started are `SKIPPED`, and the run shuts down. A run whose export succeeded needs no call: ODM finishes it. Finish any other run you are done with, and poll it until its `status` is `FINISHED`, with `finishedAt` and `exitCode` set. A run that was still `PENDING` and never came up is `FINISHED` at once.
 
-There is no cancel: finishing is the only way to end a run. Finishing a run again, or a run that is over, returns it unchanged.
+Finishing is the only call that ends a run, and the UI's **Cancel run** button makes it. Finishing a run again, or a run that is over, returns it unchanged.
 
 ## Step 7: Read your runs later
 

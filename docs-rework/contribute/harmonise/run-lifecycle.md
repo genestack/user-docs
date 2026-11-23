@@ -65,7 +65,7 @@ Each run has storage of its own for the files it works on, of a size your admini
 
 ## Finishing: FINISHING and FINISHED
 
-Finishing is the only way to end a run; there is no cancel action. When you finish a run, it becomes `FINISHING`: the step in progress runs to its end, the steps that have not started are `SKIPPED`, and the run shuts down, which the run page lists as its last step, `shutdown`. Once its processing environment has stopped and been removed, the run is `FINISHED`. Finishing a run again, or a run that is over, changes nothing.
+Finishing is the only way to end a run. The run page's **Cancel run** button finishes it, and ODM finishes a run itself once its export succeeded. When you finish a run, it becomes `FINISHING`: the step in progress runs to its end, the steps that have not started are `SKIPPED`, and the run shuts down, which the run page lists as its last step, `shutdown`. Once its processing environment has stopped and been removed, the run is `FINISHED`. Finishing a run again, or a run that is over, changes nothing.
 
 A run you finish while it is still `PENDING` shuts down as soon as it is ready. If its processing environment never came up, there is nothing to shut down: the run is `FINISHED` at once, with the reason `Finished before its Pod was ready`.
 

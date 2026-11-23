@@ -14,16 +14,16 @@ Times are ISO 8601, in UTC.
 | Method and path | Who | Does | Returns |
 | --- | --- | --- | --- |
 | `GET /api/v1/harmonisation/runs` | Curators | Lists the runs you started, newest first, those that are over included | `200`, runs without the files their steps found |
-| `POST /api/v1/harmonisation/runs` | Curators | Starts a run with your LLM credentials | `201`, the run |
+| `POST /api/v1/harmonisation/runs` | Curators | Starts a run on the folder its body names, with your LLM credentials | `201`, the run |
 | `GET /api/v1/harmonisation/runs/{id}` | Curators | Reads a run you started | `200`, the run |
 | `POST /api/v1/harmonisation/runs/{id}/steps` | Curators | Queues a `list-files` step | `201`, the step |
 | `POST /api/v1/harmonisation/runs/{id}/upload` | Curators | Queues an `upload-to-odm` step | `201`, the step |
 | `POST /api/v1/harmonisation/runs/{id}/check-llm` | Curators | Queues a `check-llm` step | `201`, the step |
-| `POST /api/v1/harmonisation/runs/{id}/extract` | Curators | Starts an `extract` step: the first extraction, or changes to the latest one | `201`, the step |
+| `POST /api/v1/harmonisation/runs/{id}/extract` | Curators | Starts an `extract` step: the first extraction again after it failed, or changes to the latest one | `201`, the step |
 | `POST /api/v1/harmonisation/runs/{id}/transform` | Curators | Starts a `transform` step: approves the latest extraction, or changes to the latest transformation | `201`, the step |
 | `POST /api/v1/harmonisation/runs/{id}/export` | Curators | Starts an `export` step: approves the latest transformation | `201`, the step |
 | `GET /api/v1/harmonisation/runs/{id}/steps/{stepId}/review` | Curators | Reads the review payload of an `extract` or a `transform` step | `200`, the [review](#review) |
-| `POST /api/v1/harmonisation/runs/{id}/finish` | Curators | Finishes a run | `200`, the run |
+| `POST /api/v1/harmonisation/runs/{id}/finish` | Curators | Finishes a run. ODM also finishes a run once its export succeeded | `200`, the run |
 | `GET /api/v1/harmonisation/llm-credentials` | Curators | Reads your credentials, without the key | `200`, the credentials |
 | `PUT /api/v1/harmonisation/llm-credentials` | Curators | Saves your credentials, replacing any saved before | `200`, the credentials |
 | `DELETE /api/v1/harmonisation/llm-credentials` | Curators | Deletes your credentials | `204` |
@@ -32,13 +32,13 @@ Times are ISO 8601, in UTC.
 | `PUT /api/v1/harmonisation/llm-providers/{id}` | Harmonisation Administrators | Replaces a provider's name, API, base URL and models | `200`, the provider |
 | `DELETE /api/v1/harmonisation/llm-providers/{id}` | Harmonisation Administrators | Removes a provider and its models | `204` |
 
-A run's `{id}` is its number. There is no endpoint to delete or cancel a run.
+A run's `{id}` is its number. There is no endpoint to delete a run. Finishing is how a run is ended or cancelled.
 
 ## Errors
 
 | Status | When |
 | --- | --- |
-| `400 Bad Request` | A run id that is not a number, or an invalid body, such as a first extraction without `path`, or with a blank one (`""` or `/`), a first transformation without `templateId`, or feedback outside its [limits](#feedback): see each endpoint in Swagger. |
+| `400 Bad Request` | A run id that is not a number, or an invalid body, such as a run start without `path`, or with a blank one (`""` or `/`), a first extraction without `path`, or with a blank one, a first transformation without `templateId`, or feedback outside its [limits](#feedback): see each endpoint in Swagger. |
 | `401 Unauthorized` | No valid token. |
 | `403 Forbidden` | Not a Curator, or, to change providers, not a Harmonisation Administrator. |
 | `404 Not Found` | No run with this id that you started, no step with this id in it, a step without a review payload, no credentials saved, or no provider with this id. |
@@ -58,6 +58,7 @@ A run's `{id}` is its number. There is no endpoint to delete or cancel a run.
 | `exitCode` | Exit code of the run's process; `0` after a clean finish. Absent if it never ran. |
 | `reason` | Why the run waits, failed or ended as it did, for example `ErrImagePull` or `Finished before its Pod was ready`. |
 | `defaultBucket` | The bucket a `list-files` or an `extract` step reads when it names none, and the one an `export` step writes its Package to. |
+| `bucket`, `path` | The folder the run was started on: the bucket, the run's `defaultBucket` if the start named none, and the folder in it. ODM extracts it as `extract-1` once the run is `READY`. |
 | `connected` | Whether the run's processing environment is connected to ODM now; `false` once the run is over. |
 | `steps` | The [steps](#steps) you asked for, in order, and `shutdown` last once the run shuts down. |
 
@@ -99,6 +100,13 @@ See [Run lifecycle](../../../contribute/harmonise/run-lifecycle.md) for how a ru
 | `review` | For a successful `extract` or `transform` step: `AWAITING`, nothing asked on it yet; `APPROVED`, a later step is built on it; `CHANGES_REQUESTED`, a later step's feedback names it. When both happened, the latest counts. |
 | `superseded` | `true` for an `extract` or a `transform` step once a later attempt of its phase has succeeded. Nothing can be built on it or comment on it. |
 
+What `POST /api/v1/harmonisation/runs` takes:
+
+| Field | Description |
+| --- | --- |
+| `path` | Required. The folder of the study's files in the bucket. Blank (`""` or `/`) is refused with `400 Bad Request`. |
+| `bucket` | The bucket of the folder. The run's `defaultBucket` when absent. |
+
 The body of `POST /api/v1/harmonisation/runs/{id}/steps` is optional: `bucket`, the run's `defaultBucket` when absent, and `path`, a folder in the bucket, the whole bucket when absent.
 
 ### Phases
@@ -107,7 +115,7 @@ The body of `POST /api/v1/harmonisation/runs/{id}/steps` is optional: `bucket`, 
 
 | Where the run is | Approve | Request changes |
 | --- | --- | --- |
-| No successful extraction | `POST .../extract` with `path` | — |
+| No successful extraction: ODM queues `extract-1` itself once the run is `READY` | `POST .../extract` with `path`, only if `extract-1` failed | — |
 | An extraction succeeded, no transformation yet | `POST .../transform` with `templateId` | `POST .../extract` with `feedback` on the latest extraction |
 | A transformation succeeded, no export yet | `POST .../export` | `POST .../transform` with `feedback` on the latest transformation |
 | An export succeeded | No more phases: finish the run | — |

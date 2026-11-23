@@ -22,19 +22,19 @@ This guide explains how to start a Harmonise run, how to finish it, and how to f
 
 **Start run** stays disabled until you enter a folder. If **New run** is disabled, point at it to see why. Usually it is because you have no LLM credentials ODM can use: follow the link to your Profile page and save them.
 
-If the run refuses the extraction, the run page says why, and the folder stays entered in its **Extract** form: correct it and click **Extract**. If you leave the run's page before the run is `READY`, the extraction may not start: enter the folder in the **Extract** form then.
+If the first extraction fails, the run page says why, and its **Extract** form returns with the folder filled in: correct it and click **Extract**.
 
 Between its start and its finish, the run takes a study through its phases: see [How to harmonise a study](harmonise-a-study.md).
 
 ## Finish a run
 
-Finish a run once you are done with it. An open run keeps its processing environment, and fails when it reaches its time limit (see [Run lifecycle](run-lifecycle.md#time-limit)).
+ODM finishes a run itself once its export has succeeded. Finish any other run once you are done with it. An open run keeps its processing environment, and fails when it reaches its time limit (see [Run lifecycle](run-lifecycle.md#time-limit)).
 
 1. Open the run: select **Harmonise** in the three-line menu and click the run in the list.
-2. Click **Finish run**. The run is `FINISHING`: the step in progress runs to its end, the steps that have not started are skipped, and the run shuts down.
+2. Click **Cancel run**, at the top of the run's page. The run is `FINISHING`: the step in progress runs to its end, the steps that have not started are skipped, and the run shuts down.
 3. Wait until the run is `FINISHED`. The page shows when it finished.
 
-There is no cancel action: finishing a run is the only way to end it, and a step in progress always runs to its end. The Harmonise page lists a run that you finished before it imported a study as **Cancelled**.
+**Cancel run** is the only way to end a run that is not imported, and a step in progress always runs to its end. The Harmonise page lists a run that you finished before it imported a study as **Cancelled**.
 
 ## Find a run again
 
