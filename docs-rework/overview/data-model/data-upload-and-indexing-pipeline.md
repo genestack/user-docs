@@ -94,6 +94,11 @@ An import is initiated either by API users calling the ODM REST API or by UI use
 screens in the web application. Both paths converge on the same mechanism: the
 **Job Service** (`func-job`) creates one **job execution** to load the file.
 
+Before it creates the job, ODM checks that it can read every file the request
+links to. A link ODM cannot read fails the request at once: the import call
+answers `404` with hint `A0003` ("The system cannot open the file ..."), and no
+job is created.
+
 ### One job per file
 
 Every data file you submit becomes its **own** job execution, with its **own**
@@ -111,9 +116,9 @@ The import job is an **ETL (Extract → Transform → Load)** pipeline that proc
 the file as a *stream of chunks* rather than loading it all into memory at once.
 This is what lets ODM ingest very large files.
 
-1. **Extract**: the source file is downloaded (via the Rclone storage gateway
-   when it lives in external or object storage) and decompressed on the fly as it
-   streams in.
+1. **Extract**: the source file is downloaded through the storage service, the
+   ODM component that reads files from S3 buckets, HTTP servers and mounted
+   volumes, and decompressed on the fly as it streams in.
 2. **Transform**: each record is passed through the filters defined by the
    import specification.
 3. **Load**: records are batched into chunks and delivered to the Applications
@@ -233,7 +238,9 @@ different things and are diagnosed in different places.
 
 A job ends in `FAILED` when a step of the ETL pipeline does not complete
 successfully: for example, the file could not be parsed, a row did not match the
-expected format, or the source could not be read.
+expected format, or the source stopped being readable after the job was created.
+A link that ODM cannot read when you submit it creates no job: the import call
+answers `404`, as described under [Phase 1](#phase-1-import-the-job).
 
 You see it through the jobs REST API: `GET /api/v1/jobs/{jobExecId}/info` shows
 `status = FAILED` and an exit status, while `GET /api/v1/jobs/{jobExecId}/output`
